@@ -2,6 +2,9 @@
 #include "GameObject.h"
 
 #include <algorithm>
+#include "FPSComponent.h"
+#include "TextComponent.h"
+#include "Minigin.h"
 
 using namespace dae;
 
@@ -30,7 +33,18 @@ void Scene::Update()
 {
 	for(auto& object : m_objects)
 	{
-		object->Update();
+		if (object->ContainsComponent<FPSComponent>())
+		{
+			object->Update();
+			float currentFPS{ object->GetComponent<FPSComponent>()->GetFPS() };
+			std::ostringstream oss;
+			oss << std::fixed << std::setprecision(1) << (currentFPS);
+			object->GetComponent<TextComponent>()->SetText(oss.str() + " FPS");
+		}
+		else
+		{
+			object->Update();
+		}
 	}
 }
 

@@ -11,10 +11,13 @@
 #include "ResourceManager.h"
 #include <chrono>
 #include "TextObject.h"
+#include <thread>
 
 SDL_Window* g_window{};
 
 using namespace std::chrono;
+
+long long dae::Minigin::DELTATIME{};
 
 void PrintSDLVersion()
 {
@@ -57,7 +60,7 @@ dae::Minigin::Minigin(const std::string &dataPath)
 		"Programming 4 assignment",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
-		640,
+		750,
 		480,
 		SDL_WINDOW_OPENGL
 	);
@@ -89,21 +92,33 @@ void dae::Minigin::Run(const std::function<void()>& load)
 
 	// todo: this update loop could use some work.
 	bool doContinue = true;
-	/*auto last_time = high_resolution_clock::now();
-	float lag = 0.f;*/
+	auto lastTime = high_resolution_clock::now();
+	/*float lag = 0.f;*/
+	std::chrono::milliseconds msPerFrame{6};
+
+	m_CurrentTime = system_clock::now();
 
 	while (doContinue)
 	{
-		/*const auto current_time = high_resolution_clock::now();
-		const float delta_time = duration<float>(current_time - last_time).count();
-		last_time = current_time;
-		lag += delta_time;*/
+		//const auto currentTime = high_resolution_clock::now();
+		//const float deltaTime = duration<float>(currentTime - lastTime).count();
+		//lastTime = currentTime;
 
 		doContinue = input.ProcessInput();
 
-		/*while (lag >= fixed_time_step)*/
+		UpdateDeltaTime();
 
 		sceneManager.Update();
 		renderer.Render();
+
+		const auto sleepTime = m_CurrentTime + milliseconds(msPerFrame) - system_clock::now();
+		std::this_thread::sleep_for(sleepTime);
 	}
+}
+
+void dae::Minigin::UpdateDeltaTime()
+{
+	auto tempTime = system_clock::now();
+    DELTATIME = duration_cast<milliseconds>(tempTime - m_CurrentTime).count();
+    m_CurrentTime = std::move(tempTime);
 }

@@ -4,15 +4,17 @@
 #include <unordered_map>
 #include "Transform.h"
 #include <typeinfo>
+#include <string>
 
 namespace dae
 {
 	class Texture2D;
 	class BaseComponent;
 	// todo: this should become final.
-	class GameObject 
+	class GameObject  final
 	{
 	public:
+		//virtual void Update();
 		virtual void Update();
 		virtual void Render() const;
 
@@ -25,6 +27,12 @@ namespace dae
 
 		template<class TypeComponent>
 		TypeComponent* GetComponent();
+
+		template<class TypeComponent>
+		void RemoveComponent();
+
+		template<class TypeComponent>
+		bool ContainsComponent();
 
 		GameObject() = default;
 		virtual ~GameObject();
@@ -43,11 +51,22 @@ namespace dae
 	template<class TypeComponent>
 	inline TypeComponent* GameObject::GetComponent()
 	{
-		std::string erm{ typeid(TypeComponent).name() };
 		auto test = m_Components.find(typeid(TypeComponent).name());
 		if (test != m_Components.end())
 			return dynamic_cast<TypeComponent*>(test->second);
 
 		return nullptr;
+	}
+
+	template<class TypeComponent>
+	inline void GameObject::RemoveComponent()
+	{
+		m_Components.erase(typeid(TypeComponent).name());
+	}
+
+	template<class TypeComponent>
+	inline bool GameObject::ContainsComponent()
+	{
+		return m_Components.contains(typeid(TypeComponent).name());
 	}
 }
