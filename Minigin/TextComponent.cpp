@@ -8,6 +8,10 @@
 #include "Font.h"
 #include "Texture2D.h"
 
+dae::TextComponent::TextComponent(GameObject& go)
+	: BaseComponent(go)
+{}
+
 void dae::TextComponent::Update()
 {
 	if (m_NeedsUpdate)
@@ -29,11 +33,11 @@ void dae::TextComponent::Update()
 	}
 }
 
-void dae::TextComponent::Render(const GameObject& gameObject) const
+void dae::TextComponent::Render() const
 {
 	if (m_TextTexture != nullptr)
 	{
-		const auto& pos = gameObject.GetTransform().GetPosition();
+		const auto& pos = GetOwner()->GetTransform().GetPosition();
 		Renderer::GetInstance().RenderTexture(*m_TextTexture, pos.x, pos.y);
 	}
 }

@@ -93,10 +93,13 @@ void dae::Minigin::Run(const std::function<void()>& load)
 	// todo: this update loop could use some work.
 	bool doContinue = true;
 	auto lastTime = high_resolution_clock::now();
-	/*float lag = 0.f;*/
-	std::chrono::milliseconds msPerFrame{6};
 
-	m_CurrentTime = system_clock::now();
+	// Tried taking refresh rate but it does not work
+	/*HDC screen = GetDC(nullptr);
+	std::chrono::milliseconds msPerFrame{ GetDeviceCaps(screen, VREFRESH) };*/
+	std::chrono::milliseconds msPerFrame{ 6 };
+
+	m_CurrentTime = high_resolution_clock::now();
 
 	while (doContinue)
 	{
@@ -104,21 +107,21 @@ void dae::Minigin::Run(const std::function<void()>& load)
 		//const float deltaTime = duration<float>(currentTime - lastTime).count();
 		//lastTime = currentTime;
 
-		doContinue = input.ProcessInput();
-
 		UpdateDeltaTime();
 
+		doContinue = input.ProcessInput();
 		sceneManager.Update();
 		renderer.Render();
 
-		const auto sleepTime = m_CurrentTime + milliseconds(msPerFrame) - system_clock::now();
+		const auto sleepTime = m_CurrentTime + milliseconds(msPerFrame) - high_resolution_clock::now();
 		std::this_thread::sleep_for(sleepTime);
 	}
 }
 
 void dae::Minigin::UpdateDeltaTime()
 {
-	auto tempTime = system_clock::now();
+	high_resolution_clock::time_point tempTime = high_resolution_clock::now();
+
     DELTATIME = duration_cast<milliseconds>(tempTime - m_CurrentTime).count();
     m_CurrentTime = std::move(tempTime);
 }

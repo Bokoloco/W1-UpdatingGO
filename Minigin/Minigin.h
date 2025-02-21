@@ -20,7 +20,7 @@ namespace dae
 		static long long DELTATIME;
 
 	private:
-		std::chrono::system_clock::time_point m_CurrentTime{};
+		std::chrono::high_resolution_clock::time_point m_CurrentTime{};
 
 		void UpdateDeltaTime();
 	};

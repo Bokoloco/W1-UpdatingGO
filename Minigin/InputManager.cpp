@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include "InputManager.h"
+#include <iostream>
 
 bool dae::InputManager::ProcessInput()
 {
@@ -9,7 +10,7 @@ bool dae::InputManager::ProcessInput()
 			return false;
 		}
 		if (e.type == SDL_KEYDOWN) {
-			
+
 		}
 		if (e.type == SDL_MOUSEBUTTONDOWN) {
 			

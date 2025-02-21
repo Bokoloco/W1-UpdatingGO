@@ -11,8 +11,10 @@ namespace dae
 	class TextComponent final : public BaseComponent
 	{
 	public:
+		TextComponent(GameObject& go);
+
 		void Update() override;
-		void Render(const GameObject& gameObject) const override;
+		void Render() const override;
 
 		void SetText(const std::string& text);
 		void SetFont(std::shared_ptr<Font> font);
