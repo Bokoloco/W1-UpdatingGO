@@ -28,6 +28,11 @@ void dae::GameObject::Update()
 	UpdateWorldPosition();
 }
 
+void dae::GameObject::LateUpdate()
+{
+	m_Children.erase(std::remove_if(m_Children.begin(), m_Children.end(), [](GameObject* child) { return child->ShouldBeDeleted(); }), m_Children.end());
+}
+
 void dae::GameObject::Render() const
 {
 	const auto& pos = m_WorldPosition.GetPosition();
@@ -47,18 +52,19 @@ void dae::GameObject::SetTexture(const std::string& filename)
 	m_texture = ResourceManager::GetInstance().LoadTexture(filename);
 }
 
-void dae::GameObject::SetPosition(float x, float y)
+void dae::GameObject::SetWorldPosition(float x, float y)
 {
 	m_WorldPosition.SetPosition(x, y, 0.0f);
 }
 
-const dae::Transform& dae::GameObject::GetTransform() const
+const dae::Transform& dae::GameObject::GetWorldTransform() const
 {
 	return m_WorldPosition;
 }
 
 void dae::GameObject::AddComponent(BaseComponent* compPtr)
 {
+	//templetized function + args
 	m_Components.push_back(compPtr);
 	//m_Components.insert(std::make_pair(typeid(*compPtr).name(), compPtr));
 }
@@ -98,6 +104,7 @@ dae::GameObject* dae::GameObject::GetChildAt(int index)
 void dae::GameObject::SetLocalPosition(const glm::vec3& pos)
 {
 	m_LocalPosition.SetPosition(pos);
+	SetPositionDirty();
 }
 
 const glm::vec3 dae::GameObject::GetWorldPosition()
@@ -105,6 +112,12 @@ const glm::vec3 dae::GameObject::GetWorldPosition()
 	if (m_PositionIsDirty)
 		UpdateWorldPosition();
 	return m_WorldPosition.GetPosition();
+}
+
+const dae::Transform& dae::GameObject::GetLocalTransform()
+{
+	// TODO: insert return statement here
+	return m_LocalPosition;
 }
 
 void dae::GameObject::UpdateWorldPosition()
@@ -136,6 +149,16 @@ void dae::GameObject::SetPositionDirtyChildren()
 	}
 }
 
+void dae::GameObject::SetShouldBeDeletedFromChildren()
+{
+	m_ShouldBeDeletedFromChildren = true;
+}
+
+bool dae::GameObject::ShouldBeDeleted()
+{
+	return m_ShouldBeDeletedFromChildren;
+}
+
 void dae::GameObject::AddChild(GameObject* child)
 {
 	if (child == this || m_pParent == child)
@@ -154,7 +177,9 @@ void dae::GameObject::RemoveChild(GameObject* child)
 	// Update position, rotation and scale
 	m_LocalPosition.SetPosition(GetWorldPosition());
 
-	m_Children.erase(std::find(m_Children.begin(), m_Children.end(), child));
+	child->SetShouldBeDeletedFromChildren();
+
+	//m_Children.erase(std::find(m_Children.begin(), m_Children.end(), child));
 }
 
 bool dae::GameObject::IsChild(GameObject* child)

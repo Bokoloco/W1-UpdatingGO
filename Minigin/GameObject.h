@@ -23,12 +23,13 @@ namespace dae
 		GameObject& operator=(GameObject&& other) = delete;
 
 		void Update();
+		void LateUpdate();
 		void Render() const;
 
 		void SetTexture(const std::string& filename);
-		void SetPosition(float x, float y);
+		void SetWorldPosition(float x, float y);
 
-		const Transform& GetTransform() const;
+		const Transform& GetWorldTransform() const;
 
 		void AddComponent(BaseComponent* compPtr);
 
@@ -50,17 +51,21 @@ namespace dae
 		void SetLocalPosition(const glm::vec3& pos);
 
 		const glm::vec3 GetWorldPosition();
+		const Transform& GetLocalTransform();
 
 		void UpdateWorldPosition();
 
 		void SetPositionDirty();
 		void SetPositionDirtyChildren();
+		void SetShouldBeDeletedFromChildren();
+		bool ShouldBeDeleted();
 
 	private:
 		Transform m_LocalPosition{};
 		Transform m_WorldPosition{};
 
 		bool m_PositionIsDirty{};
+		bool m_ShouldBeDeletedFromChildren{};
 		// todo: mmm, every gameobject has a texture? Is that correct?
 		//std::unordered_map<std::string, BaseComponent*> m_Components;
 

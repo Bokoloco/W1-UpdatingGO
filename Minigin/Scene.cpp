@@ -12,7 +12,16 @@ unsigned int Scene::m_idCounter = 0;
 
 Scene::Scene(const std::string& name) : m_name(name) {}
 
-Scene::~Scene() = default;
+Scene::~Scene()
+{
+	for (GameObject* var : m_objects)
+	{
+		delete var;
+		var = nullptr;
+	}
+
+	RemoveAll();
+}
 
 void Scene::Add(GameObject* object)
 {
@@ -35,6 +44,11 @@ void Scene::Update()
 	{
 		object->Update();
 	}
+}
+
+void dae::Scene::LateUpdate()
+{
+
 }
 
 void Scene::Render() const
