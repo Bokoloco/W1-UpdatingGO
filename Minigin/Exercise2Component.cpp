@@ -75,6 +75,26 @@ void dae::Exercise2Component::Update()
 		ImGui::Plot("Exercise 2 Alt", conf);
 	}
 
+	if (m_ShowPlotGameObject3D && m_ShowPlotGameObject3DAlt)
+	{
+		ImGui::PlotConfig conf;
+		//conf.values.ys = m_AveragesGameObject3D.data();
+		conf.values.count = static_cast<int>(m_AveragesGameObject3D.size());
+		const float* combinedY[] = { m_AveragesGameObject3D.data() , m_AveragesGameObject3DAlt.data() };
+		conf.values.ys_list = combinedY;
+		conf.values.ys_count = 2;
+		conf.scale.min = 0.f;
+		conf.scale.max = m_AveragesGameObject3D.at(0);
+		conf.tooltip.show = true;
+		conf.tooltip.format = "x=%.2f, y=%.2f";
+		conf.grid_x.show = true;
+		conf.grid_y.show = true;
+		conf.frame_size = ImVec2(200, 100);
+		conf.line_thickness = 2.f;
+
+		ImGui::Plot("Combined", conf);
+	}
+
 	ImGui::End();
 }
 
