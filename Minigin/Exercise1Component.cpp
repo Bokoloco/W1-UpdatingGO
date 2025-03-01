@@ -26,7 +26,6 @@ void dae::Exercise1Component::Update()
 
 	if (ImGui::Button("Thrash the cache")) 
 	{
-		std::cout << "Thrash the cache" << std::endl;
 		m_Times.clear();
 		m_Averages.clear();
 
@@ -41,7 +40,7 @@ void dae::Exercise1Component::Update()
 		conf.values.ys = m_Averages.data();
 		conf.values.count = static_cast<int>(m_Averages.size());
 		conf.scale.min = 0.f;
-		conf.scale.max = 500000.f;
+		conf.scale.max = m_Averages.at(0);
 		conf.tooltip.show = true;
 		conf.tooltip.format = "x=%.2f, y=%.2f";
 		conf.grid_x.show = true;
@@ -58,8 +57,8 @@ void dae::Exercise1Component::Update()
 void dae::Exercise1Component::Render() const
 {
 	// ImGui::ShowDemoWindow();
-	ImGui::Render();
-	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+	/*ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());*/
 }
 
 void dae::Exercise1Component::CalculateMiliseconds()
