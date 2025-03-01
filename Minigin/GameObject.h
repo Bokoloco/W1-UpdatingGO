@@ -31,7 +31,8 @@ namespace dae
 
 		const Transform& GetWorldTransform() const;
 
-		void AddComponent(BaseComponent* compPtr);
+		template<class TypeComponent, typename... Args>
+		void AddComponent(Args&&... args);
 
 		template<class TypeComponent>
 		TypeComponent* GetComponent();
@@ -79,6 +80,12 @@ namespace dae
 		void RemoveChild(GameObject* child);
 		bool IsChild(GameObject* child);
 	};
+
+	template<class TypeComponent, typename... Args>
+	inline void GameObject::AddComponent(Args&&... args)
+	{
+		m_Components.push_back(new TypeComponent(*this, std::forward<Args>(args)...));
+	}
 
 	template<class TypeComponent>
 	inline TypeComponent* GameObject::GetComponent()
