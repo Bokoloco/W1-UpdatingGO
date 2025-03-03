@@ -62,12 +62,12 @@ const dae::Transform& dae::GameObject::GetWorldTransform() const
 	return m_WorldPosition;
 }
 
-void dae::GameObject::AddComponent(BaseComponent* compPtr)
-{
-	//templetized function + args
-	m_Components.push_back(compPtr);
-	//m_Components.insert(std::make_pair(typeid(*compPtr).name(), compPtr));
-}
+//void dae::GameObject::AddComponent(BaseComponent* compPtr)
+//{
+//	//templetized function + args
+//	m_Components.push_back(compPtr);
+//	//m_Components.insert(std::make_pair(typeid(*compPtr).name(), compPtr));
+//}
 
 dae::GameObject* dae::GameObject::GetParent()
 {
