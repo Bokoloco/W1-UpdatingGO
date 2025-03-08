@@ -3,6 +3,7 @@
 #include "ResourceManager.h"
 #include "Renderer.h"
 #include "BaseComponent.h"
+#include <iostream>
 
 dae::GameObject::~GameObject()
 {

@@ -12,6 +12,8 @@
 #include <chrono>
 #include "TextObject.h"
 #include <thread>
+#include "Command.h"
+#include <memory>
 
 SDL_Window* g_window{};
 
@@ -89,6 +91,8 @@ void dae::Minigin::Run(const std::function<void()>& load)
 	auto& renderer = Renderer::GetInstance();
 	auto& sceneManager = SceneManager::GetInstance();
 	auto& input = InputManager::GetInstance();
+
+	input.BeginPlay();
 
 	// todo: this update loop could use some work.
 	bool doContinue = true;

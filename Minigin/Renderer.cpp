@@ -30,9 +30,9 @@ void dae::Renderer::Init(SDL_Window* window)
 	}
 
 	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
+	/*ImGui::CreateContext();
 	ImGui_ImplSDL2_InitForOpenGL(window, SDL_GL_GetCurrentContext());
-	ImGui_ImplOpenGL3_Init();
+	ImGui_ImplOpenGL3_Init();*/
 }
 
 void dae::Renderer::Render() const
@@ -48,9 +48,9 @@ void dae::Renderer::Render() const
 
 void dae::Renderer::Destroy()
 {
-	ImGui_ImplOpenGL3_Shutdown();
+	/*ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplSDL2_Shutdown();
-	ImGui::DestroyContext();
+	ImGui::DestroyContext();*/
 
 	if (m_renderer != nullptr)
 	{

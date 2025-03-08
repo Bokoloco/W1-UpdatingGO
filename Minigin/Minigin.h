@@ -5,6 +5,7 @@
 
 namespace dae
 {
+	class Command;
 	class Minigin
 	{
 	public:
