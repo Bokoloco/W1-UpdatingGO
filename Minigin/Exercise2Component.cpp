@@ -1,9 +1,9 @@
 #include "Exercise2Component.h"
 #include <chrono>
-#include <backends/imgui_impl_sdl2.h>
-#include <imgui_plot.h>
-#include <backends/imgui_impl_opengl3.h>
-#include <imgui.h>
+//#include <backends/imgui_impl_sdl2.h>
+//#include <imgui_plot.h>
+//#include <backends/imgui_impl_opengl3.h>
+//#include <imgui.h>
 #include <iostream>
 
 dae::Exercise2Component::Exercise2Component(GameObject& go)
@@ -17,92 +17,92 @@ void dae::Exercise2Component::Update()
 	ImGui_ImplSDL2_NewFrame();
 	ImGui::NewFrame();*/
 
-	ImGui::Begin("Exercise 2");
+	//ImGui::Begin("Exercise 2");
 
-	ImGui::InputInt("# samples", &m_AmountOfSamples);
+	//ImGui::InputInt("# samples", &m_AmountOfSamples);
 
-	if (ImGui::Button("Thrash the cache with GameObject3D"))
-	{
-		m_TimesGameObject3D.clear();
-		m_AveragesGameObject3D.clear();
+	//if (ImGui::Button("Thrash the cache with GameObject3D"))
+	//{
+	//	m_TimesGameObject3D.clear();
+	//	m_AveragesGameObject3D.clear();
 
-		CalculateTimeGameObject();
+	//	CalculateTimeGameObject();
 
-		m_ShowPlotGameObject3D = true;
-	}
+	//	m_ShowPlotGameObject3D = true;
+	//}
 
-	if (m_ShowPlotGameObject3D)
-	{
-		ImGui::PlotConfig conf;
-		conf.values.ys = m_AveragesGameObject3D.data();
-		conf.values.count = static_cast<int>(m_AveragesGameObject3D.size());
-		conf.scale.min = 0.f;
-		conf.scale.max = m_AveragesGameObject3D.at(0);
-		conf.tooltip.show = true;
-		conf.tooltip.format = "x=%.2f, y=%.2f";
-		conf.grid_x.show = true;
-		conf.grid_y.show = true;
-		conf.frame_size = ImVec2(200, 100);
-		conf.line_thickness = 2.f;
+	//if (m_ShowPlotGameObject3D)
+	//{
+	//	ImGui::PlotConfig conf;
+	//	conf.values.ys = m_AveragesGameObject3D.data();
+	//	conf.values.count = static_cast<int>(m_AveragesGameObject3D.size());
+	//	conf.scale.min = 0.f;
+	//	conf.scale.max = m_AveragesGameObject3D.at(0);
+	//	conf.tooltip.show = true;
+	//	conf.tooltip.format = "x=%.2f, y=%.2f";
+	//	conf.grid_x.show = true;
+	//	conf.grid_y.show = true;
+	//	conf.frame_size = ImVec2(200, 100);
+	//	conf.line_thickness = 2.f;
 
-		ImGui::Plot("Exercise 2", conf);
-	}
+	//	ImGui::Plot("Exercise 2", conf);
+	//}
 
-	if (ImGui::Button("Thrash the cache with GameObject3DAlt"))
-	{
-		m_TimesGameObject3DAlt.clear();
-		m_AveragesGameObject3DAlt.clear();
+	//if (ImGui::Button("Thrash the cache with GameObject3DAlt"))
+	//{
+	//	m_TimesGameObject3DAlt.clear();
+	//	m_AveragesGameObject3DAlt.clear();
 
-		CalculateTimeGameObject3DAlt();
+	//	CalculateTimeGameObject3DAlt();
 
-		m_ShowPlotGameObject3DAlt = true;
-	}
+	//	m_ShowPlotGameObject3DAlt = true;
+	//}
 
-	if (m_ShowPlotGameObject3DAlt)
-	{
-		ImGui::PlotConfig conf;
-		conf.values.ys = m_AveragesGameObject3DAlt.data();
-		conf.values.count = static_cast<int>(m_AveragesGameObject3DAlt.size());
-		conf.scale.min = 0.f;
-		conf.scale.max = m_AveragesGameObject3DAlt.at(0);
-		conf.tooltip.show = true;
-		conf.tooltip.format = "x=%.2f, y=%.2f";
-		conf.grid_x.show = true;
-		conf.grid_y.show = true;
-		conf.frame_size = ImVec2(200, 100);
-		conf.line_thickness = 2.f;
+	//if (m_ShowPlotGameObject3DAlt)
+	//{
+	//	ImGui::PlotConfig conf;
+	//	conf.values.ys = m_AveragesGameObject3DAlt.data();
+	//	conf.values.count = static_cast<int>(m_AveragesGameObject3DAlt.size());
+	//	conf.scale.min = 0.f;
+	//	conf.scale.max = m_AveragesGameObject3DAlt.at(0);
+	//	conf.tooltip.show = true;
+	//	conf.tooltip.format = "x=%.2f, y=%.2f";
+	//	conf.grid_x.show = true;
+	//	conf.grid_y.show = true;
+	//	conf.frame_size = ImVec2(200, 100);
+	//	conf.line_thickness = 2.f;
 
-		ImGui::Plot("Exercise 2 Alt", conf);
-	}
+	//	ImGui::Plot("Exercise 2 Alt", conf);
+	//}
 
-	if (m_ShowPlotGameObject3D && m_ShowPlotGameObject3DAlt)
-	{
-		ImGui::PlotConfig conf;
-		//conf.values.ys = m_AveragesGameObject3D.data();
-		conf.values.count = static_cast<int>(m_AveragesGameObject3D.size());
-		const float* combinedY[] = { m_AveragesGameObject3D.data() , m_AveragesGameObject3DAlt.data() };
-		conf.values.ys_list = combinedY;
-		conf.values.ys_count = 2;
-		conf.scale.min = 0.f;
-		conf.scale.max = m_AveragesGameObject3D.at(0);
-		conf.tooltip.show = true;
-		conf.tooltip.format = "x=%.2f, y=%.2f";
-		conf.grid_x.show = true;
-		conf.grid_y.show = true;
-		conf.frame_size = ImVec2(200, 100);
-		conf.line_thickness = 2.f;
+	//if (m_ShowPlotGameObject3D && m_ShowPlotGameObject3DAlt)
+	//{
+	//	ImGui::PlotConfig conf;
+	//	//conf.values.ys = m_AveragesGameObject3D.data();
+	//	conf.values.count = static_cast<int>(m_AveragesGameObject3D.size());
+	//	const float* combinedY[] = { m_AveragesGameObject3D.data() , m_AveragesGameObject3DAlt.data() };
+	//	conf.values.ys_list = combinedY;
+	//	conf.values.ys_count = 2;
+	//	conf.scale.min = 0.f;
+	//	conf.scale.max = m_AveragesGameObject3D.at(0);
+	//	conf.tooltip.show = true;
+	//	conf.tooltip.format = "x=%.2f, y=%.2f";
+	//	conf.grid_x.show = true;
+	//	conf.grid_y.show = true;
+	//	conf.frame_size = ImVec2(200, 100);
+	//	conf.line_thickness = 2.f;
 
-		ImGui::Plot("Combined", conf);
-	}
+	//	ImGui::Plot("Combined", conf);
+	//}
 
-	ImGui::End();
+	//ImGui::End();
 }
 
 void dae::Exercise2Component::Render() const
 {
 	// ImGui::ShowDemoWindow();
-	ImGui::Render();
-	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+	/*ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());*/
 }
 
 void dae::Exercise2Component::CalculateTimeGameObject()

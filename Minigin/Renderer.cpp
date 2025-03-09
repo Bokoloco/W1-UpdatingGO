@@ -3,8 +3,8 @@
 #include "SceneManager.h"
 #include "Texture2D.h"
 //#include <imgui_draw.cpp>
-#include <backends/imgui_impl_sdl2.h>
-#include <backends/imgui_impl_opengl3.h>
+//#include <backends/imgui_impl_sdl2.h>
+//#include <backends/imgui_impl_opengl3.h>
 
 int GetOpenGLDriverIndex()
 {

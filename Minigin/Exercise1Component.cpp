@@ -1,13 +1,13 @@
 #include "Exercise1Component.h"
-#include <backends/imgui_impl_opengl3.h>
-#include <backends/imgui_impl_sdl2.h>
+//#include <backends/imgui_impl_opengl3.h>
+//#include <backends/imgui_impl_sdl2.h>
 
 #include <iostream>
 #include <string>
 #include <algorithm>
 #include <chrono>
 #include <array>
-#include <imgui_plot.h>
+//#include <imgui_plot.h>
 
 dae::Exercise1Component::Exercise1Component(GameObject& go)
 	: BaseComponent(go)
@@ -20,7 +20,7 @@ void dae::Exercise1Component::Update()
 	ImGui_ImplSDL2_NewFrame();
 	ImGui::NewFrame();
 
-	ImGui::Begin("Exercise 1");
+	/*ImGui::Begin("Exercise 1");
 
 	ImGui::InputInt("# samples", &m_AmountOfSamples);
 
@@ -51,7 +51,7 @@ void dae::Exercise1Component::Update()
 		ImGui::Plot("Exercise 1", conf);
 	}
 
-	ImGui::End();
+	ImGui::End();*/
 }
 
 void dae::Exercise1Component::Render() const
