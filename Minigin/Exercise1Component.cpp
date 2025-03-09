@@ -16,9 +16,9 @@ dae::Exercise1Component::Exercise1Component(GameObject& go)
 
 void dae::Exercise1Component::Update()
 {
-	ImGui_ImplOpenGL3_NewFrame();
+	/*ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplSDL2_NewFrame();
-	ImGui::NewFrame();
+	ImGui::NewFrame();*/
 
 	/*ImGui::Begin("Exercise 1");
 
