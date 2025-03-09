@@ -2,12 +2,8 @@
 #include "GameObject.h"
 #include "Minigin.h"
 
-dae::MoveDownCommand::MoveDownCommand()
-	: m_Speed{ .1f }
-{}
-
 void dae::MoveDownCommand::Execute(GameObject& go)
 {
-	float yPos = go.GetWorldTransform().GetPosition().y + m_Speed * dae::Minigin::DELTATIME;
+	float yPos = go.GetWorldTransform().GetPosition().y + go.GetSpeed() * dae::Minigin::DELTATIME;
 	go.SetWorldPosition(go.GetWorldTransform().GetPosition().x, yPos);
 }

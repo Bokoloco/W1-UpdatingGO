@@ -160,6 +160,16 @@ bool dae::GameObject::ShouldBeDeleted()
 	return m_ShouldBeDeletedFromChildren;
 }
 
+float dae::GameObject::GetSpeed()
+{
+	return m_Speed;
+}
+
+void dae::GameObject::SetSpeed(float speed)
+{
+	m_Speed = speed;
+}
+
 void dae::GameObject::AddChild(GameObject* child)
 {
 	if (child == this || m_pParent == child)

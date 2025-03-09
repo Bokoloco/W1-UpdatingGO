@@ -8,12 +8,9 @@ namespace dae
 	class MoveLeft final : public Command
 	{
 	public:
-		MoveLeft();
+		MoveLeft() = default;
 		~MoveLeft() = default;
 
 		void Execute(GameObject& go) override;
-
-	private:
-		float m_Speed;
 	};
 }

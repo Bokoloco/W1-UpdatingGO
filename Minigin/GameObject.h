@@ -61,9 +61,14 @@ namespace dae
 		void SetShouldBeDeletedFromChildren();
 		bool ShouldBeDeleted();
 
+		float GetSpeed();
+		void SetSpeed(float speed);
+
 	private:
 		Transform m_LocalPosition{};
 		Transform m_WorldPosition{};
+
+		float m_Speed{0.1f};
 
 		bool m_PositionIsDirty{};
 		bool m_ShouldBeDeletedFromChildren{};

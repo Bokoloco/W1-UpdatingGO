@@ -170,7 +170,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;xinput.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent />
   </ItemDefinitionGroup>
@@ -186,6 +186,7 @@
     <ClInclude Include="..\3rdParty\imgui-1.91.8\imstb_truetype.h" />
     <ClInclude Include="BaseComponent.h" />
     <ClInclude Include="Command.h" />
+    <ClInclude Include="ControllerInput.h" />
     <ClInclude Include="Exercise1Component.h" />
     <ClInclude Include="Exercise2Component.h" />
     <ClInclude Include="Font.h" />
@@ -196,6 +197,8 @@
     <ClInclude Include="MoveComponent.h" />
     <ClInclude Include="MoveDownCommand.h" />
     <ClInclude Include="MoveLeft.h" />
+    <ClInclude Include="MoveRightCommand.h" />
+    <ClInclude Include="MoveUpCommand.h" />
     <ClInclude Include="RenderComponent.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResourceManager.h" />
@@ -219,6 +222,7 @@
     <ClCompile Include="..\3rdParty\imgui-1.91.8\imgui_widgets.cpp" />
     <ClCompile Include="BaseComponent.cpp" />
     <ClCompile Include="Command.cpp" />
+    <ClCompile Include="ControllerInput.cpp" />
     <ClCompile Include="Exercise1Component.cpp" />
     <ClCompile Include="Exercise2Component.cpp" />
     <ClCompile Include="Font.cpp" />
@@ -230,6 +234,8 @@
     <ClCompile Include="MoveComponent.cpp" />
     <ClCompile Include="MoveDownCommand.cpp" />
     <ClCompile Include="MoveLeft.cpp" />
+    <ClCompile Include="MoveRightCommand.cpp" />
+    <ClCompile Include="MoveUpCommand.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />

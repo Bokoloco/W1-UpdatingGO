@@ -4,13 +4,12 @@
 namespace dae
 {
 	class GameObject;
-	class MoveDownCommand : public Command
+	class MoveUpCommand : public Command
 	{
 	public:
-		MoveDownCommand() = default;
-		~MoveDownCommand() = default;
+		MoveUpCommand() = default;
+		~MoveUpCommand() = default;
 
 		void Execute(GameObject& go) override;
-
 	};
 }
