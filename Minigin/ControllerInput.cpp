@@ -3,7 +3,25 @@
 
 #pragma comment(lib, "xinput.lib")
 
-void dae::ControllerInput::Update()
+
+class ControllerInput::ControllerInputImpl
+{
+public:
+	ControllerInputImpl() = default;
+	~ControllerInputImpl() {};
+
+	void Update();
+	bool CheckButtonPressed(unsigned int button) const;
+
+private:
+	XINPUT_STATE m_CurrentState{};
+	int m_ButtonsPressedThisFrame{};
+	int m_ButtonsReleasedThisFrame{};
+
+	DWORD m_ConreollerIndex{ 0 };
+};
+
+void ControllerInput::ControllerInputImpl::Update()
 {
 	XINPUT_STATE state;
 	ZeroMemory(&state, sizeof(XINPUT_STATE));
@@ -24,7 +42,27 @@ void dae::ControllerInput::Update()
 	}
 }
 
-bool dae::ControllerInput::CheckButtonPressed(unsigned int button) const
+bool ControllerInput::ControllerInputImpl::CheckButtonPressed(unsigned int button) const
 {
 	return m_CurrentState.Gamepad.wButtons & button;
+}
+
+
+ControllerInput::ControllerInput()
+	: m_pImpl{new ControllerInput::ControllerInputImpl()}
+{}
+
+ControllerInput::~ControllerInput()
+{
+	delete m_pImpl; 
+}
+
+void ControllerInput::Update()
+{
+	m_pImpl->Update();
+}
+
+bool ControllerInput::CheckButtonPressed(unsigned int button) const
+{
+	return m_pImpl->CheckButtonPressed(button);
 }

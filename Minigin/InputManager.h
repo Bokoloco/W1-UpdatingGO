@@ -3,11 +3,11 @@
 #include <memory>
 #include "ControllerInput.h"
 
+//class ControllerInput;
 namespace dae
 {
 	class Command;
 	class GameObject;
-	//class ControllerInput;
 	class InputManager final : public Singleton<InputManager>
 	{
 	public:

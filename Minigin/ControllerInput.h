@@ -3,22 +3,19 @@
 #include <windows.h>
 #include "XInput.h"
 
-namespace dae
-{
+#include <memory>
+
 	class ControllerInput
 	{
+	private:
+		class ControllerInputImpl;
+		ControllerInputImpl* m_pImpl;
+
 	public:
-		ControllerInput() = default;
-		~ControllerInput() = default;
+		ControllerInput();
+		~ControllerInput();
 
 		void Update();
 		bool CheckButtonPressed(unsigned int button) const;
 
-	private:
-		XINPUT_STATE m_CurrentState{};
-		int m_ButtonsPressedThisFrame{};
-		int m_ButtonsReleasedThisFrame{};
-
-		DWORD m_ConreollerIndex{0};
 	};
-}

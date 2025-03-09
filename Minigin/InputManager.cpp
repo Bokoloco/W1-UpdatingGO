@@ -7,6 +7,7 @@
 #include "MoveDownCommand.h"
 #include "MoveUpCommand.h"
 #include "MoveRightCommand.h"
+#include "ControllerInput.h"
 
 
 void dae::InputManager::AddPlayer1(GameObject & go)
@@ -21,7 +22,7 @@ void dae::InputManager::AddPlayer2(GameObject& go)
 
 void dae::InputManager::BeginPlay()
 {
-	m_pControllerInput = std::make_unique<dae::ControllerInput>();
+	m_pControllerInput = std::make_unique<ControllerInput>();
 	m_MoveLeftCommand = std::make_unique<dae::MoveLeft>();
 	m_MoveDownCommand = std::make_unique<dae::MoveDownCommand>();
 	m_MoveUpCommand = std::make_unique<dae::MoveUpCommand>();
@@ -39,19 +40,35 @@ bool dae::InputManager::ProcessInput()
 	//const Uint8* pStates = SDL_GetKeyboardState(nullptr);
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
-		if (e.type == SDL_QUIT) 
+		switch (e.type)
+		{
+		case SDL_QUIT:
 		{
 			return false;
+			break;
 		}
-		if (e.type == SDL_KEYDOWN)
+		case SDL_KEYDOWN:
 		{
-			if (e.key.keysym.scancode == SDL_SCANCODE_W) m_MoveUpCommand->Execute(*m_pPlayer1);
-			if (e.key.keysym.scancode == SDL_SCANCODE_A) m_MoveLeftCommand->Execute(*m_pPlayer1);
-			if (e.key.keysym.scancode == SDL_SCANCODE_S) m_MoveDownCommand->Execute(*m_pPlayer1);
-			if (e.key.keysym.scancode == SDL_SCANCODE_D) m_MoveRightCommand->Execute(*m_pPlayer1);
+			switch (e.key.keysym.sym)
+			{
+			case SDLK_w:
+				m_MoveUpCommand->Execute(*m_pPlayer1);
+				break;
+			case SDLK_a:
+				m_MoveLeftCommand->Execute(*m_pPlayer1);
+				break;
+			case SDLK_s:
+				m_MoveDownCommand->Execute(*m_pPlayer1);
+				break;
+			case SDLK_d:
+				m_MoveRightCommand->Execute(*m_pPlayer1);
+				break;
+			default:
+				break;
+			}
 		}
-		if (e.type == SDL_MOUSEBUTTONDOWN) {
-			
+		default:
+			break;
 		}
 		// etc...
 
