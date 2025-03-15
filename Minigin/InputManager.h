@@ -28,5 +28,6 @@ namespace dae
 		std::unique_ptr<Command> m_MoveRightCommand;
 		std::unique_ptr<Command> m_MoveDownCommand;
 		std::unique_ptr<Command> m_MoveUpCommand;
+		std::unique_ptr<Command> m_SuicideCommand;
 	};
 }

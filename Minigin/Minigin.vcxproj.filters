@@ -22,6 +22,9 @@
     <Filter Include="Commands">
       <UniqueIdentifier>{d2333b84-6cd9-46af-ae2f-99562b4accbc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ObserverBases">
+      <UniqueIdentifier>{75281c03-18e8-466c-8196-43e95a3c051b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h">
@@ -129,6 +132,27 @@
     <ClInclude Include="MoveRightCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>ObserverBases</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>ObserverBases</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHealthInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SuicideCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerScoreInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceManager.cpp">
@@ -231,6 +255,27 @@
       <Filter>Commands</Filter>
     </ClCompile>
     <ClCompile Include="MoveRightCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer.cpp">
+      <Filter>ObserverBases</Filter>
+    </ClCompile>
+    <ClCompile Include="Subject.cpp">
+      <Filter>ObserverBases</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHealthInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SuicideCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerScoreInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

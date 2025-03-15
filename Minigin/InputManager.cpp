@@ -8,6 +8,7 @@
 #include "MoveUpCommand.h"
 #include "MoveRightCommand.h"
 #include "ControllerInput.h"
+#include "SuicideCommand.h"
 
 
 void dae::InputManager::AddPlayer1(GameObject & go)
@@ -27,6 +28,7 @@ void dae::InputManager::BeginPlay()
 	m_MoveDownCommand = std::make_unique<dae::MoveDownCommand>();
 	m_MoveUpCommand = std::make_unique<dae::MoveUpCommand>();
 	m_MoveRightCommand = std::make_unique<dae::MoveRightCommand>();
+	m_SuicideCommand = std::make_unique<dae::SuicideCommand>();
 }
 
 bool dae::InputManager::ProcessInput()
@@ -36,6 +38,7 @@ bool dae::InputManager::ProcessInput()
 	if (m_pControllerInput->CheckButtonPressed(2)) m_MoveDownCommand->Execute(*m_pPlayer2);
 	if (m_pControllerInput->CheckButtonPressed(4)) m_MoveLeftCommand->Execute(*m_pPlayer2);
 	if (m_pControllerInput->CheckButtonPressed(8)) m_MoveRightCommand->Execute(*m_pPlayer2);
+	if (m_pControllerInput->CheckButtonPressed(XINPUT_GAMEPAD_A)) m_SuicideCommand->Execute(*m_pPlayer2);
 
 	//const Uint8* pStates = SDL_GetKeyboardState(nullptr);
 	SDL_Event e;
@@ -62,6 +65,9 @@ bool dae::InputManager::ProcessInput()
 				break;
 			case SDLK_d:
 				m_MoveRightCommand->Execute(*m_pPlayer1);
+				break;
+			case SDLK_q:
+				m_SuicideCommand->Execute(*m_pPlayer1);
 				break;
 			default:
 				break;
