@@ -19,8 +19,8 @@ namespace dae
 		bool ProcessInput();
 
 	private:
-		GameObject* m_pPlayer1;
-		GameObject* m_pPlayer2;
+		GameObject* m_pPlayer1{};
+		GameObject* m_pPlayer2{};
 
 		std::unique_ptr<ControllerInput> m_pControllerInput;
 
@@ -29,5 +29,7 @@ namespace dae
 		std::unique_ptr<Command> m_MoveDownCommand;
 		std::unique_ptr<Command> m_MoveUpCommand;
 		std::unique_ptr<Command> m_SuicideCommand;
+		std::unique_ptr<Command> m_ScoreSmallCommand;
+		std::unique_ptr<Command> m_ScoreBigCommand;
 	};
 }

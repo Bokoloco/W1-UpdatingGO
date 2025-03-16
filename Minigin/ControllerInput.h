@@ -17,5 +17,6 @@
 
 		void Update();
 		bool CheckButtonPressed(unsigned int button) const;
+		bool CheckButtonReleased(unsigned int button) const;
 
 	};

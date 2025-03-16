@@ -9,6 +9,7 @@
 #include "MoveRightCommand.h"
 #include "ControllerInput.h"
 #include "SuicideCommand.h"
+#include "ScoreCommand.h"
 
 
 void dae::InputManager::AddPlayer1(GameObject & go)
@@ -29,6 +30,8 @@ void dae::InputManager::BeginPlay()
 	m_MoveUpCommand = std::make_unique<dae::MoveUpCommand>();
 	m_MoveRightCommand = std::make_unique<dae::MoveRightCommand>();
 	m_SuicideCommand = std::make_unique<dae::SuicideCommand>();
+	m_ScoreSmallCommand = std::make_unique<dae::ScoreCommand>(ScoreAmount::Small);
+	m_ScoreBigCommand = std::make_unique<dae::ScoreCommand>(ScoreAmount::Big);
 }
 
 bool dae::InputManager::ProcessInput()
@@ -38,7 +41,9 @@ bool dae::InputManager::ProcessInput()
 	if (m_pControllerInput->CheckButtonPressed(2)) m_MoveDownCommand->Execute(*m_pPlayer2);
 	if (m_pControllerInput->CheckButtonPressed(4)) m_MoveLeftCommand->Execute(*m_pPlayer2);
 	if (m_pControllerInput->CheckButtonPressed(8)) m_MoveRightCommand->Execute(*m_pPlayer2);
-	if (m_pControllerInput->CheckButtonPressed(XINPUT_GAMEPAD_A)) m_SuicideCommand->Execute(*m_pPlayer2);
+	if (m_pControllerInput->CheckButtonReleased(XINPUT_GAMEPAD_X)) m_SuicideCommand->Execute(*m_pPlayer2);
+	if (m_pControllerInput->CheckButtonReleased(XINPUT_GAMEPAD_A)) m_ScoreSmallCommand->Execute(*m_pPlayer2);
+	if (m_pControllerInput->CheckButtonReleased(XINPUT_GAMEPAD_B)) m_ScoreBigCommand->Execute(*m_pPlayer2);
 
 	//const Uint8* pStates = SDL_GetKeyboardState(nullptr);
 	SDL_Event e;
@@ -68,6 +73,12 @@ bool dae::InputManager::ProcessInput()
 				break;
 			case SDLK_q:
 				m_SuicideCommand->Execute(*m_pPlayer1);
+				break;
+			case SDLK_c:
+				m_ScoreSmallCommand->Execute(*m_pPlayer1);
+				break;
+			case SDLK_v:
+				m_ScoreBigCommand->Execute(*m_pPlayer1);
 				break;
 			default:
 				break;

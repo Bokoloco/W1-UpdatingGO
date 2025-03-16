@@ -9,4 +9,16 @@ dae::ScoreComponent::ScoreComponent(GameObject& go)
 void dae::ScoreComponent::IncreaseScore(dae::ScoreAmount amount)
 {
 	m_Score += static_cast<int>(amount);
+
+	switch (amount)
+	{
+	case dae::ScoreAmount::Small:
+		NotifyObservers(ObserverEvent::SmallScoreIncrease);
+		break;
+	case dae::ScoreAmount::Big:
+		NotifyObservers(ObserverEvent::BigScoreIncrease);
+		break;
+	default:
+		break;
+	}
 }

@@ -12,6 +12,7 @@ public:
 
 	void Update();
 	bool CheckButtonPressed(unsigned int button) const;
+	bool CheckButtonReleased(unsigned int button) const;
 
 private:
 	XINPUT_STATE m_CurrentState{};
@@ -47,6 +48,11 @@ bool ControllerInput::ControllerInputImpl::CheckButtonPressed(unsigned int butto
 	return m_CurrentState.Gamepad.wButtons & button;
 }
 
+bool ControllerInput::ControllerInputImpl::CheckButtonReleased(unsigned int button) const
+{
+	return m_ButtonsReleasedThisFrame & button ;
+}
+
 
 ControllerInput::ControllerInput()
 	: m_pImpl{new ControllerInput::ControllerInputImpl()}
@@ -65,4 +71,9 @@ void ControllerInput::Update()
 bool ControllerInput::CheckButtonPressed(unsigned int button) const
 {
 	return m_pImpl->CheckButtonPressed(button);
+}
+
+bool ControllerInput::CheckButtonReleased(unsigned int button) const
+{
+	return m_pImpl->CheckButtonReleased(button);
 }

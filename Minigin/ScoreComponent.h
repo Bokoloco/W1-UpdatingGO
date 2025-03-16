@@ -5,7 +5,7 @@
 
 namespace dae
 {
-	enum ScoreAmount
+	enum class ScoreAmount
 	{
 		Small = 10,
 		Big = 100
@@ -14,6 +14,7 @@ namespace dae
 	class GameObject;
 	class ScoreComponent : public BaseComponent, public Subject
 	{
+	public:
 		ScoreComponent(GameObject& go);
 
 		void Update() override {};

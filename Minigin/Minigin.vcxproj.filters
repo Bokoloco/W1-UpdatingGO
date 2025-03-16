@@ -153,6 +153,9 @@
     <ClInclude Include="PlayerScoreInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ScoreCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ResourceManager.cpp">
@@ -276,6 +279,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PlayerScoreInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
