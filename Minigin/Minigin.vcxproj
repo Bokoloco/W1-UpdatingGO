@@ -129,7 +129,8 @@
     </Link>
     <PostBuildEvent />
     <PostBuildEvent>
-      <Command>xcopy $(SolutionDir)3rdParty\steamworkssdk\redistributable_bin\*.dll $(OutputPath) /y</Command>
+      <Command>xcopy $(SolutionDir)3rdParty\steamworkssdk\redistributable_bin\*.dll $(OutputPath) /y
+xcopy $(SolutionDir)3rdParty\steamworkssdk\redistributable_bin\*.txt $(OutputPath) /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -177,7 +178,8 @@
     </Link>
     <PostBuildEvent />
     <PostBuildEvent>
-      <Command>xcopy $(SolutionDir)3rdParty\steamworkssdk\redistributable_bin\*.dll $(OutputPath) /y</Command>
+      <Command>xcopy $(SolutionDir)3rdParty\steamworkssdk\redistributable_bin\*.dll $(OutputPath) /y
+xcopy $(SolutionDir)3rdParty\steamworkssdk\redistributable_bin\*.txt $(OutputPath) /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
