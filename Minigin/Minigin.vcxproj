@@ -117,17 +117,20 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\imgui-1.91.8;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\steamworkssdk\public\steam;$(SolutionDir)3rdParty\imgui-1.91.8;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\steamworkssdk\redistributable_bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>xinput.lib;steam_api64.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent />
+    <PostBuildEvent>
+      <Command>xcopy $(SolutionDir)3rdParty\steamworkssdk\redistributable_bin\*.dll $(OutputPath) /y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -160,7 +163,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\imgui-1.91.8;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\steamworkssdk\public\steam;$(SolutionDir)3rdParty\imgui-1.91.8;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
@@ -169,10 +172,13 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;xinput.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\steamworkssdk\redistributable_bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>xinput.lib;steam_api64.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent />
+    <PostBuildEvent>
+      <Command>xcopy $(SolutionDir)3rdParty\steamworkssdk\redistributable_bin\*.dll $(OutputPath) /y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\3rdParty\imgui-1.91.8\backends\imgui_impl_opengl3.h" />
@@ -187,6 +193,7 @@
     <ClInclude Include="BaseComponent.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="ControllerInput.h" />
+    <ClInclude Include="CSteamAchievements.h" />
     <ClInclude Include="Exercise1Component.h" />
     <ClInclude Include="Exercise2Component.h" />
     <ClInclude Include="Font.h" />
@@ -231,6 +238,7 @@
     <ClCompile Include="BaseComponent.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="ControllerInput.cpp" />
+    <ClCompile Include="CSteamAchievements.cpp" />
     <ClCompile Include="Exercise1Component.cpp" />
     <ClCompile Include="Exercise2Component.cpp" />
     <ClCompile Include="Font.cpp" />

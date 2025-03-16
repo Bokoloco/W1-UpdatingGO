@@ -21,4 +21,7 @@ void dae::ScoreComponent::IncreaseScore(dae::ScoreAmount amount)
 	default:
 		break;
 	}
+
+	if (m_Score >= 500)
+		NotifyObservers(ObserverEvent::GameWon);
 }

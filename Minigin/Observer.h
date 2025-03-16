@@ -7,6 +7,7 @@ namespace dae
 		LivesDecrease,
 		SmallScoreIncrease,
 		BigScoreIncrease,
+		GameWon
 	};
 
 	class Observer

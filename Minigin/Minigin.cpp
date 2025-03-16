@@ -14,6 +14,7 @@
 #include <thread>
 #include "Command.h"
 #include <memory>
+#include <steam_api.h>
 
 SDL_Window* g_window{};
 
@@ -117,6 +118,8 @@ void dae::Minigin::Run(const std::function<void()>& load)
 		sceneManager.Update();
 		renderer.Render();
 		sceneManager.LateUpdate();
+
+		SteamAPI_RunCallbacks();
 
 		const auto sleepTime = m_CurrentTime + milliseconds(msPerFrame) - high_resolution_clock::now();
 		std::this_thread::sleep_for(sleepTime);
