@@ -2,8 +2,6 @@
 #include "GameObject.h"
 
 #include <algorithm>
-#include "FPSComponent.h"
-#include "TextComponent.h"
 #include "Minigin.h"
 
 using namespace dae;
