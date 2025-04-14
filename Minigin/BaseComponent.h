@@ -20,10 +20,16 @@ namespace dae
 		BaseComponent(BaseComponent&& other) = delete;
 		BaseComponent& operator=(BaseComponent&& other) = delete;
 
+		bool ShouldGetDeleted() const { return m_FlagForDeletion; }
+
 	protected:
 		GameObject* GetOwner() const { return m_pGameObject; };
 
+		void SetFlagForDeletion(bool flag) { m_FlagForDeletion = flag; }
+
 	private:
 		GameObject* m_pGameObject;
+
+		bool m_FlagForDeletion;
 	};
 }

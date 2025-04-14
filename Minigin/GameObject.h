@@ -89,7 +89,7 @@ namespace dae
 	template<class TypeComponent, typename... Args>
 	inline void GameObject::AddComponent(Args&&... args)
 	{
-		m_Components.push_back(new TypeComponent(*this, std::forward<Args>(args)...));
+		m_Components.emplace_back(new TypeComponent(*this, std::forward<Args>(args)...));
 	}
 
 	template<class TypeComponent>
@@ -113,12 +113,11 @@ namespace dae
 		{
 			if (typeid(TypeComponent).name() == typeid(*bc).name())
 			{
-				delete bc;
-				bc = nullptr;
+				bc->SetFlagForDeletion(true);
 			}
 		}
 
-		m_Components.erase(typeid(TypeComponent).name());
+		/*m_Components.erase(typeid(TypeComponent).name());*/
 	}
 
 	template<class TypeComponent>

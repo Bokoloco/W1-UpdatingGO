@@ -32,6 +32,7 @@ void dae::GameObject::Update()
 void dae::GameObject::LateUpdate()
 {
 	m_Children.erase(std::remove_if(m_Children.begin(), m_Children.end(), [](GameObject* child) { return child->ShouldBeDeleted(); }), m_Children.end());
+	m_Components.erase(std::remove_if(m_Components.begin(), m_Components.end(), [](BaseComponent* component) {return component->ShouldGetDeleted(); }), m_Components.end());
 }
 
 void dae::GameObject::Render() const
