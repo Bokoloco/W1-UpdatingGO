@@ -64,13 +64,6 @@ const dae::Transform& dae::GameObject::GetWorldTransform() const
 	return m_WorldPosition;
 }
 
-//void dae::GameObject::AddComponent(BaseComponent* compPtr)
-//{
-//	//templetized function + args
-//	m_Components.push_back(compPtr);
-//	//m_Components.insert(std::make_pair(typeid(*compPtr).name(), compPtr));
-//}
-
 dae::GameObject* dae::GameObject::GetParent()
 {
 	return m_pParent;
@@ -138,6 +131,7 @@ void dae::GameObject::UpdateWorldPosition()
 void dae::GameObject::SetPositionDirty()
 {
 	m_PositionIsDirty = true;
+	SetPositionDirtyChildren();
 }
 
 void dae::GameObject::SetPositionDirtyChildren()
@@ -177,6 +171,7 @@ void dae::GameObject::AddChild(GameObject* child)
 		return;
 
 	// Update position, rotation and scale
+	child->SetPositionDirty();
 
 	m_Children.push_back(child);
 }
@@ -186,15 +181,27 @@ void dae::GameObject::RemoveChild(GameObject* child)
 	if (child == nullptr || !IsChild(child))
 		return;
 
-	// Update position, rotation and scale
-	m_LocalPosition.SetPosition(GetWorldPosition());
+	// Update position, rotation and scale	
+	child->SetLocalPosition(child->GetWorldPosition());
 
 	child->SetShouldBeDeletedFromChildren();
-
-	//m_Children.erase(std::find(m_Children.begin(), m_Children.end(), child));
 }
 
 bool dae::GameObject::IsChild(GameObject* child)
 {
 	return std::find(m_Children.begin(), m_Children.end(), child) != m_Children.end();
+}
+
+template<class TypeComponent>
+inline void dae::GameObject::RemoveComponent()
+{
+	for (BaseComponent* bc : m_Components)
+	{
+		if (typeid(TypeComponent).name() == typeid(*bc).name())
+		{
+			bc->SetFlagForDeletion(true);
+		}
+	}
+
+	/*m_Components.erase(typeid(TypeComponent).name());*/
 }

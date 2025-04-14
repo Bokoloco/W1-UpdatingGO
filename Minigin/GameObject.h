@@ -107,20 +107,6 @@ namespace dae
 	}
 
 	template<class TypeComponent>
-	inline void GameObject::RemoveComponent()
-	{
-		for (BaseComponent* bc : m_Components)
-		{
-			if (typeid(TypeComponent).name() == typeid(*bc).name())
-			{
-				bc->SetFlagForDeletion(true);
-			}
-		}
-
-		/*m_Components.erase(typeid(TypeComponent).name());*/
-	}
-
-	template<class TypeComponent>
 	inline bool GameObject::ContainsComponent()
 	{
 		return true;

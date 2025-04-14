@@ -83,7 +83,7 @@ void load()
 
 	// Burger guys rotating
 	// Make a point for the burger guys to rotate around (otherwise it would rotate around world 0, 0
-	/* auto burgerGuysCenterPoint = new dae::GameObject();
+	auto burgerGuysCenterPoint = new dae::GameObject();
 	burgerGuysCenterPoint->SetWorldPosition(200, 200);
 	scene.Add(burgerGuysCenterPoint);
 
@@ -91,15 +91,15 @@ void load()
 	burgerGuy->SetTexture("burgerGuy.tga");
 	burgerGuy->SetParent(burgerGuysCenterPoint);
 	burgerGuy->SetLocalPosition({ 30.f, 30.f, 0.f });
-	burgerGuy->AddComponent<dae::RotateComponent>(0.1f);
+	//burgerGuy->AddComponent<dae::RotateComponent>(0.1f);
 	scene.Add(burgerGuy);
 
 	auto burgerGuy2 = new dae::GameObject();
 	burgerGuy2->SetTexture("burgerGuy.tga");
 	burgerGuy2->SetParent(burgerGuy);
 	burgerGuy2->SetLocalPosition({ 30.f, 30.f, 0.f });
-	burgerGuy2->AddComponent<dae::RotateComponent>(-.5f);
-	scene.Add(burgerGuy2);*/
+	//burgerGuy2->AddComponent<dae::RotateComponent>(-.5f);
+	scene.Add(burgerGuy2);
 
 	// Exercise with thrashing
 	/*auto imGuiTest = new dae::GameObject();
@@ -120,61 +120,61 @@ void load()
 	burgerGuy2->SetSpeed(0.2f);
 	scene.Add(burgerGuy2);*/
 
-	auto smallerFont = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
+	//auto smallerFont = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
 
-	auto playerHeathInfoP1 = new dae::GameObject();
-	playerHeathInfoP1->AddComponent<dae::TextComponent>();
-	playerHeathInfoP1->AddComponent<dae::PlayerHealthInfo>();
-	playerHeathInfoP1->GetComponent<dae::TextComponent>()->SetFont(smallerFont);
-	playerHeathInfoP1->SetWorldPosition(10, 100);
-	scene.Add(playerHeathInfoP1);
+	//auto playerHeathInfoP1 = new dae::GameObject();
+	//playerHeathInfoP1->AddComponent<dae::TextComponent>();
+	//playerHeathInfoP1->AddComponent<dae::PlayerHealthInfo>();
+	//playerHeathInfoP1->GetComponent<dae::TextComponent>()->SetFont(smallerFont);
+	//playerHeathInfoP1->SetWorldPosition(10, 100);
+	//scene.Add(playerHeathInfoP1);
 
-	auto playerScoreInfoP1 = new dae::GameObject();
-	playerScoreInfoP1->AddComponent<dae::TextComponent>();
-	playerScoreInfoP1->AddComponent<dae::PlayerScoreInfo>();
-	playerScoreInfoP1->GetComponent<dae::TextComponent>()->SetFont(smallerFont);
-	playerScoreInfoP1->SetWorldPosition(10, 125);
-	scene.Add(playerScoreInfoP1);
+	//auto playerScoreInfoP1 = new dae::GameObject();
+	//playerScoreInfoP1->AddComponent<dae::TextComponent>();
+	//playerScoreInfoP1->AddComponent<dae::PlayerScoreInfo>();
+	//playerScoreInfoP1->GetComponent<dae::TextComponent>()->SetFont(smallerFont);
+	//playerScoreInfoP1->SetWorldPosition(10, 125);
+	//scene.Add(playerScoreInfoP1);
 
-	auto burgerGuy = new dae::GameObject();
-	burgerGuy->SetTexture("burgerGuy.tga");
-	burgerGuy->SetLocalPosition({ 200.f, 30.f, 0.f });
-	burgerGuy->SetSpeed(0.1f);
-	burgerGuy->AddComponent<dae::HealthComponent>();
-	burgerGuy->GetComponent<dae::HealthComponent>()->AddObserver(*playerHeathInfoP1->GetComponent<dae::PlayerHealthInfo>());
-	burgerGuy->AddComponent<dae::ScoreComponent>();
-	burgerGuy->GetComponent<dae::ScoreComponent>()->AddObserver(*playerScoreInfoP1->GetComponent<dae::PlayerScoreInfo>());
-	//burgerGuy->GetComponent<dae::ScoreComponent>()->AddObserver(*g_SteamAchievements);
-	scene.Add(burgerGuy);
+	//auto burgerGuy = new dae::GameObject();
+	//burgerGuy->SetTexture("burgerGuy.tga");
+	//burgerGuy->SetLocalPosition({ 200.f, 30.f, 0.f });
+	//burgerGuy->SetSpeed(0.1f);
+	//burgerGuy->AddComponent<dae::HealthComponent>();
+	//burgerGuy->GetComponent<dae::HealthComponent>()->AddObserver(*playerHeathInfoP1->GetComponent<dae::PlayerHealthInfo>());
+	//burgerGuy->AddComponent<dae::ScoreComponent>();
+	//burgerGuy->GetComponent<dae::ScoreComponent>()->AddObserver(*playerScoreInfoP1->GetComponent<dae::PlayerScoreInfo>());
+	////burgerGuy->GetComponent<dae::ScoreComponent>()->AddObserver(*g_SteamAchievements);
+	//scene.Add(burgerGuy);
 
-	auto playerHeathInfoP2 = new dae::GameObject();
-	playerHeathInfoP2->AddComponent<dae::TextComponent>();
-	playerHeathInfoP2->AddComponent<dae::PlayerHealthInfo>();
-	playerHeathInfoP2->GetComponent<dae::TextComponent>()->SetFont(smallerFont);
-	playerHeathInfoP2->SetWorldPosition(10, 150);
-	scene.Add(playerHeathInfoP2);
+	//auto playerHeathInfoP2 = new dae::GameObject();
+	//playerHeathInfoP2->AddComponent<dae::TextComponent>();
+	//playerHeathInfoP2->AddComponent<dae::PlayerHealthInfo>();
+	//playerHeathInfoP2->GetComponent<dae::TextComponent>()->SetFont(smallerFont);
+	//playerHeathInfoP2->SetWorldPosition(10, 150);
+	//scene.Add(playerHeathInfoP2);
 
-	auto playerScoreInfoP2 = new dae::GameObject();
-	playerScoreInfoP2->AddComponent<dae::TextComponent>();
-	playerScoreInfoP2->AddComponent<dae::PlayerScoreInfo>();
-	playerScoreInfoP2->GetComponent<dae::TextComponent>()->SetFont(smallerFont);
-	playerScoreInfoP2->SetWorldPosition(10, 175);
-	scene.Add(playerScoreInfoP2);
+	//auto playerScoreInfoP2 = new dae::GameObject();
+	//playerScoreInfoP2->AddComponent<dae::TextComponent>();
+	//playerScoreInfoP2->AddComponent<dae::PlayerScoreInfo>();
+	//playerScoreInfoP2->GetComponent<dae::TextComponent>()->SetFont(smallerFont);
+	//playerScoreInfoP2->SetWorldPosition(10, 175);
+	//scene.Add(playerScoreInfoP2);
 
-	auto burgerGuy2 = new dae::GameObject();
-	burgerGuy2->SetTexture("burgerGuy.tga");
-	burgerGuy2->SetLocalPosition({ 400.f, 30.f, 0.f });
-	burgerGuy2->SetSpeed(0.2f);
-	burgerGuy2->AddComponent<dae::HealthComponent>();
-	burgerGuy2->GetComponent<dae::HealthComponent>()->AddObserver(*playerHeathInfoP2->GetComponent<dae::PlayerHealthInfo>());
-	burgerGuy2->AddComponent<dae::ScoreComponent>();
-	burgerGuy2->GetComponent<dae::ScoreComponent>()->AddObserver(*playerScoreInfoP2->GetComponent<dae::PlayerScoreInfo>());
-	//burgerGuy2->GetComponent<dae::ScoreComponent>()->AddObserver(*g_SteamAchievements);
-	scene.Add(burgerGuy2);
+	//auto burgerGuy2 = new dae::GameObject();
+	//burgerGuy2->SetTexture("burgerGuy.tga");
+	//burgerGuy2->SetLocalPosition({ 400.f, 30.f, 0.f });
+	//burgerGuy2->SetSpeed(0.2f);
+	//burgerGuy2->AddComponent<dae::HealthComponent>();
+	//burgerGuy2->GetComponent<dae::HealthComponent>()->AddObserver(*playerHeathInfoP2->GetComponent<dae::PlayerHealthInfo>());
+	//burgerGuy2->AddComponent<dae::ScoreComponent>();
+	//burgerGuy2->GetComponent<dae::ScoreComponent>()->AddObserver(*playerScoreInfoP2->GetComponent<dae::PlayerScoreInfo>());
+	////burgerGuy2->GetComponent<dae::ScoreComponent>()->AddObserver(*g_SteamAchievements);
+	//scene.Add(burgerGuy2);
 
-	auto& input = dae::InputManager::GetInstance();
-	input.AddPlayer1(*burgerGuy);
-	input.AddPlayer2(*burgerGuy2);
+	//auto& input = dae::InputManager::GetInstance();
+	//input.AddPlayer1(*burgerGuy);
+	//input.AddPlayer2(*burgerGuy2);
 }
 
 int main(int, char* []) {
