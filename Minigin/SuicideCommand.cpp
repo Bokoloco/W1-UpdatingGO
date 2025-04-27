@@ -2,7 +2,12 @@
 #include "GameObject.h"
 #include "HealthComponent.h"
 
-void dae::SuicideCommand::Execute(GameObject& go)
+dae::SuicideCommand::SuicideCommand(GameObject& go)
+	: Command(go)
 {
-	(&go)->GetComponent<dae::HealthComponent>()->DecreaseLives();
+}
+
+void dae::SuicideCommand::Execute()
+{
+	GetGameObject()->GetComponent<dae::HealthComponent>()->DecreaseLives();
 }

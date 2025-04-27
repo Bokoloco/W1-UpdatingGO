@@ -1,12 +1,13 @@
 #include "ScoreCommand.h"
 #include "GameObject.h"
 
-dae::ScoreCommand::ScoreCommand(ScoreAmount amount)
+dae::ScoreCommand::ScoreCommand(GameObject& go, ScoreAmount amount)
 	: m_Amount{amount}
+	, Command(go)
 {}
 
-void dae::ScoreCommand::Execute(GameObject & go)
+void dae::ScoreCommand::Execute()
 {
-	(&go)->GetComponent<ScoreComponent>()->IncreaseScore(m_Amount);
-}
+	GetGameObject()->GetComponent<ScoreComponent>()->IncreaseScore(m_Amount);
 
+}

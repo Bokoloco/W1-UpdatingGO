@@ -8,9 +8,9 @@ namespace dae
 	class ScoreCommand : public Command
 	{
 	public:
-		ScoreCommand(ScoreAmount amount);
+		ScoreCommand(GameObject& go, ScoreAmount amount);
 
-		void Execute(GameObject& go) override;
+		void Execute() override;
 
 	private:
 		ScoreAmount m_Amount;

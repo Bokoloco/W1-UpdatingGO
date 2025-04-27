@@ -7,7 +7,7 @@
 class ControllerInput::ControllerInputImpl
 {
 public:
-	ControllerInputImpl() = default;
+	ControllerInputImpl(DWORD controllerIndex);
 	~ControllerInputImpl() {};
 
 	void Update();
@@ -19,8 +19,12 @@ private:
 	int m_ButtonsPressedThisFrame{};
 	int m_ButtonsReleasedThisFrame{};
 
-	DWORD m_ConreollerIndex{ 0 };
+	DWORD m_ControllerIndex{ 0 };
 };
+
+ControllerInput::ControllerInputImpl::ControllerInputImpl(DWORD controllerIndex)
+	: m_ControllerIndex{controllerIndex}
+{}
 
 void ControllerInput::ControllerInputImpl::Update()
 {
@@ -28,14 +32,14 @@ void ControllerInput::ControllerInputImpl::Update()
 	ZeroMemory(&state, sizeof(XINPUT_STATE));
 
 	// Simply get the state of the controller from XInput.
-	DWORD dwResult = XInputGetState(m_ConreollerIndex, &state);
+	DWORD dwResult = XInputGetState(m_ControllerIndex, &state);
 
 	if (dwResult == ERROR_SUCCESS)
 	{
 		XINPUT_STATE previousState;
 		CopyMemory(&previousState, &m_CurrentState, sizeof(XINPUT_STATE));
 		ZeroMemory(&m_CurrentState, sizeof(XINPUT_STATE));
-		XInputGetState(m_ConreollerIndex, &m_CurrentState);
+		XInputGetState(m_ControllerIndex, &m_CurrentState);
 
 		auto buttonChanges = m_CurrentState.Gamepad.wButtons ^ previousState.Gamepad.wButtons;
 		m_ButtonsPressedThisFrame = buttonChanges & m_CurrentState.Gamepad.wButtons;
@@ -54,8 +58,8 @@ bool ControllerInput::ControllerInputImpl::CheckButtonReleased(unsigned int butt
 }
 
 
-ControllerInput::ControllerInput()
-	: m_pImpl{new ControllerInput::ControllerInputImpl()}
+ControllerInput::ControllerInput(DWORD controllerIndex)
+	: m_pImpl{new ControllerInput::ControllerInputImpl(controllerIndex)}
 {}
 
 ControllerInput::~ControllerInput()

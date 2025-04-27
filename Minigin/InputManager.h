@@ -1,18 +1,38 @@
 #pragma once
 #include "Singleton.h"
-#include <memory>
+//#include <memory>
 #include "ControllerInput.h"
-
+#include <vector>
+#include <map>
+#include "Command.h"
 //class ControllerInput;
 namespace dae
 {
-	class Command;
+	struct ControllerButtonBinding
+	{
+		DWORD controllerIndex;
+		unsigned int button;
+		bool isPressed;
+
+		bool operator<(const ControllerButtonBinding& other) const {
+			/*if (button != other.button)*/
+				return button < other.button;
+			//return isPressed < other.isPressed;
+		}
+	};
+
+	//class Command;
 	class GameObject;
 	class InputManager final : public Singleton<InputManager>
 	{
 	public:
 		void AddPlayer1(GameObject& go);
 		void AddPlayer2(GameObject& go);
+
+		void AddController();
+
+		void BindInputKeyboard(SDL_Keycode keycode, std::unique_ptr<Command>);
+		void BindInputController(DWORD controllerIndex, unsigned int button, bool isPressed, std::unique_ptr<Command> command);
 
 		void BeginPlay();
 
@@ -22,14 +42,9 @@ namespace dae
 		GameObject* m_pPlayer1{};
 		GameObject* m_pPlayer2{};
 
-		std::unique_ptr<ControllerInput> m_pControllerInput;
+		std::vector<std::unique_ptr<ControllerInput>> m_pControllerInputs;
 
-		std::unique_ptr<Command> m_MoveLeftCommand;
-		std::unique_ptr<Command> m_MoveRightCommand;
-		std::unique_ptr<Command> m_MoveDownCommand;
-		std::unique_ptr<Command> m_MoveUpCommand;
-		std::unique_ptr<Command> m_SuicideCommand;
-		std::unique_ptr<Command> m_ScoreSmallCommand;
-		std::unique_ptr<Command> m_ScoreBigCommand;
+		std::map<ControllerButtonBinding, std::unique_ptr<Command>> m_CommandsControllers;
+		std::map<SDL_Keycode, std::unique_ptr<Command>> m_CommandsKeyboard;
 	};
 }

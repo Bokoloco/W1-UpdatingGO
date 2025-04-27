@@ -6,9 +6,9 @@ namespace dae
 	class SuicideCommand : public Command
 	{
 	public:
-		SuicideCommand() = default;
+		SuicideCommand(GameObject& go);
 		~SuicideCommand() = default;
 
-		void Execute(GameObject& go) override;
+		void Execute() override;
 	};
 }

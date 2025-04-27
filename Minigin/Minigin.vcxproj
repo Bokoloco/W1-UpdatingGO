@@ -218,10 +218,7 @@ xcopy $(SolutionDir)3rdParty\steamworkssdk\redistributable_bin\*.txt $(OutputPat
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="InputManager.h" />
-    <ClInclude Include="MoveDownCommand.h" />
-    <ClInclude Include="MoveLeft.h" />
-    <ClInclude Include="MoveRightCommand.h" />
-    <ClInclude Include="MoveUpCommand.h" />
+    <ClInclude Include="MoveCommand.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="Minigin.h" />
     <ClInclude Include="RenderComponent.h" />
@@ -255,10 +252,7 @@ xcopy $(SolutionDir)3rdParty\steamworkssdk\redistributable_bin\*.txt $(OutputPat
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="MoveDownCommand.cpp" />
-    <ClCompile Include="MoveLeft.cpp" />
-    <ClCompile Include="MoveRightCommand.cpp" />
-    <ClCompile Include="MoveUpCommand.cpp" />
+    <ClCompile Include="MoveCommand.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Minigin.cpp" />
     <ClCompile Include="RenderComponent.cpp" />

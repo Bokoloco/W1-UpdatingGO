@@ -12,7 +12,7 @@
 		ControllerInputImpl* m_pImpl;
 
 	public:
-		ControllerInput();
+		ControllerInput(DWORD controllerIndex);
 		~ControllerInput();
 
 		void Update();

@@ -7,6 +7,7 @@
 #endif
 #endif
 
+
 #include <memory>
 #include "Minigin.h"
 #include "SceneManager.h"
@@ -21,13 +22,14 @@
 #include "Exercise2Component.h"
 #include "InputManager.h"
 #include "Command.h"
-#include "MoveLeft.h"
 #include "HealthComponent.h"
 #include "ScoreComponent.h"
 #include "PlayerHealthInfo.h"
 #include "PlayerScoreInfo.h"
+#include "MoveCommand.h"
 //#include <steam_api.h>
 #include <iostream>
+#include <glm.hpp>
 //#include "CSteamAchievements.h"
 
 // Defining our achievements
@@ -81,7 +83,7 @@ void load()
 	fps->SetWorldPosition(10, 20);
 	scene.Add(fps);
 
-	// Burger guys rotating
+	/*// Burger guys rotating
 	// Make a point for the burger guys to rotate around (otherwise it would rotate around world 0, 0
 	auto burgerGuysCenterPoint = new dae::GameObject();
 	burgerGuysCenterPoint->SetWorldPosition(200, 200);
@@ -108,7 +110,7 @@ void load()
 	scene.Add(imGuiTest);*/
 
 	// Command exercise
-	/*auto burgerGuy = new dae::GameObject();
+	auto burgerGuy = new dae::GameObject();
 	burgerGuy->SetTexture("burgerGuy.tga");
 	burgerGuy->SetLocalPosition({ 200.f, 30.f, 0.f });
 	burgerGuy->SetSpeed(0.1f);
@@ -118,7 +120,7 @@ void load()
 	burgerGuy2->SetTexture("burgerGuy.tga");
 	burgerGuy2->SetLocalPosition({ 400.f, 30.f, 0.f });
 	burgerGuy2->SetSpeed(0.2f);
-	scene.Add(burgerGuy2);*/
+	scene.Add(burgerGuy2);
 
 	//auto smallerFont = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
 
@@ -172,9 +174,27 @@ void load()
 	////burgerGuy2->GetComponent<dae::ScoreComponent>()->AddObserver(*g_SteamAchievements);
 	//scene.Add(burgerGuy2);
 
-	//auto& input = dae::InputManager::GetInstance();
-	//input.AddPlayer1(*burgerGuy);
-	//input.AddPlayer2(*burgerGuy2);
+	auto moveLeft = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ -1.f, 0.f, 0.f });
+	auto moveRight = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ 1.f, 0.f, 0.f });
+	auto moveUp = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ 0.f, -1.f, 0.f });
+	auto moveDown = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ 0.f, 1.f, 0.f });
+
+	auto moveLeft2 = std::make_unique<dae::MoveCommand>(*burgerGuy2, glm::vec3{ -1.f, 0.f, 0.f });
+	auto moveRight2 = std::make_unique<dae::MoveCommand>(*burgerGuy2, glm::vec3{ 1.f, 0.f, 0.f });
+	auto moveUp2 = std::make_unique<dae::MoveCommand>(*burgerGuy2, glm::vec3{ 0.f, -1.f, 0.f });
+	auto moveDown2 = std::make_unique<dae::MoveCommand>(*burgerGuy2, glm::vec3{ 0.f, 1.f, 0.f });
+
+	auto& input = dae::InputManager::GetInstance();
+	input.BindInputKeyboard(SDLK_a, std::move(moveLeft));
+	input.BindInputKeyboard(SDLK_d, std::move(moveRight));
+	input.BindInputKeyboard(SDLK_w, std::move(moveUp));
+	input.BindInputKeyboard(SDLK_s, std::move(moveDown));
+
+	input.AddController();
+	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_LEFT, true, std::move(moveLeft2));
+	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_RIGHT, true, std::move(moveRight2));
+	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_UP, true, std::move(moveUp2));
+	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_DOWN, true, std::move(moveDown2));
 }
 
 int main(int, char* []) {
