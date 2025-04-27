@@ -5,18 +5,18 @@
 
 #include <memory>
 
-	class ControllerInput
-	{
-	private:
-		class ControllerInputImpl;
-		ControllerInputImpl* m_pImpl;
+class ControllerInput
+{
+private:
+	class ControllerInputImpl;
+	ControllerInputImpl* m_pImpl;
 
-	public:
-		ControllerInput(DWORD controllerIndex);
-		~ControllerInput();
+public:
+	ControllerInput(DWORD controllerIndex);
+	~ControllerInput();
 
-		void Update();
-		bool CheckButtonPressed(unsigned int button) const;
-		bool CheckButtonReleased(unsigned int button) const;
+	void Update();
+	bool CheckButtonPressed(unsigned int button) const;
+	bool CheckButtonReleased(unsigned int button) const;
 
-	};
+};

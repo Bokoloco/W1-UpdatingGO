@@ -170,6 +170,7 @@
     <ClCompile Include="MoveComponent.cpp" />
     <ClCompile Include="PlayerHealthInfo.cpp" />
     <ClCompile Include="PlayerScoreInfo.cpp" />
+    <ClCompile Include="PlaySoundCommand.cpp" />
     <ClCompile Include="RotateComponent.cpp" />
     <ClCompile Include="TextComponent.cpp" />
   </ItemGroup>
@@ -180,6 +181,7 @@
     <ClInclude Include="MoveComponent.h" />
     <ClInclude Include="PlayerHealthInfo.h" />
     <ClInclude Include="PlayerScoreInfo.h" />
+    <ClInclude Include="PlaySoundCommand.h" />
     <ClInclude Include="RotateComponent.h" />
     <ClInclude Include="TextComponent.h" />
   </ItemGroup>

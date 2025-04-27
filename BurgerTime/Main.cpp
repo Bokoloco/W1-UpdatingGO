@@ -30,6 +30,9 @@
 //#include <steam_api.h>
 #include <iostream>
 #include <glm.hpp>
+#include "ServiceLocator.h"
+#include "SDLSoundSystem.h"
+#include "PlaySoundCommand.h"
 //#include "CSteamAchievements.h"
 
 // Defining our achievements
@@ -55,6 +58,11 @@
 
 void load()
 {
+	auto testSound = std::make_unique<SDLSoundSystem>();
+	ServiceLocator::RegisterSoundSystem(std::move(testSound));
+
+	ServiceLocator::GetSoundSystem().AddSound(0, "../Data/CoinPickUpSoundEffect.wav");
+
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
 
 	dae::GameObject* go = new dae::GameObject();
@@ -184,11 +192,14 @@ void load()
 	auto moveUp2 = std::make_unique<dae::MoveCommand>(*burgerGuy2, glm::vec3{ 0.f, -1.f, 0.f });
 	auto moveDown2 = std::make_unique<dae::MoveCommand>(*burgerGuy2, glm::vec3{ 0.f, 1.f, 0.f });
 
+	auto playSound = std::make_unique<dae::PlaySoundCommand>(*burgerGuy);
+
 	auto& input = dae::InputManager::GetInstance();
 	input.BindInputKeyboard(SDLK_a, std::move(moveLeft));
 	input.BindInputKeyboard(SDLK_d, std::move(moveRight));
 	input.BindInputKeyboard(SDLK_w, std::move(moveUp));
 	input.BindInputKeyboard(SDLK_s, std::move(moveDown));
+	input.BindInputKeyboard(SDLK_q, std::move(playSound));
 
 	input.AddController();
 	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_LEFT, true, std::move(moveLeft2));
