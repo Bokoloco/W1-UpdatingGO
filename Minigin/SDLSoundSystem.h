@@ -5,17 +5,26 @@
 #include <map>
 #include <memory>
 
-class SDLSoundSystem final : public SoundSystem
+namespace dae
 {
-private:
-	class SDLSoundSystemImpl;
-	std::unique_ptr<SDLSoundSystemImpl> m_pSDLSoundSystemImpl;
+	class SDLSoundSystem final : public SoundSystem
+	{
+	private:
+		class SDLSoundSystemImpl;
+		std::unique_ptr<SDLSoundSystemImpl> m_pSDLSoundSystemImpl;
 
-public:
-	SDLSoundSystem();
-	~SDLSoundSystem();
+	public:
+		SDLSoundSystem();
+		~SDLSoundSystem();
 
-	void Play(const SoundId id) override;
-	void AddSound(SoundId soundId, const std::string& fileName) override;
-};
+		void Play(const SoundId id, int loops = 0) override;
+		void PlayMusic(const SoundId id, int loops = 0) override;
 
+		void PauseMusic() override;
+
+		void AddSound(SoundId soundId, const std::string& fileName) override;
+		void AddMusic(SoundId soundId, const std::string& fileName) override;
+
+		void ChangeMasterVolume(int volume) override;
+	};
+}

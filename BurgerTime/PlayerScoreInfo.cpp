@@ -1,6 +1,6 @@
 #include "PlayerScoreInfo.h"
 #include "GameObject.h"
-#include "TextComponent.h"
+#include "./Components/TextComponent.h"
 
 dae::PlayerScoreInfo::PlayerScoreInfo(GameObject& go)
 	: BaseComponent(go)

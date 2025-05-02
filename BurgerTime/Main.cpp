@@ -14,12 +14,12 @@
 #include "ResourceManager.h"
 #include "TextObject.h"
 #include "Scene.h"
-#include "TextComponent.h"
-#include "FPSComponent.h"
-#include "MoveComponent.h"
-#include "RotateComponent.h"
-#include "Exercise1Component.h"
-#include "Exercise2Component.h"
+#include "./Components/TextComponent.h"
+#include "./Components/FPSComponent.h"
+#include "./Components/MoveComponent.h"
+#include "./Components/RotateComponent.h"
+#include "./Components/Exercise1Component.h"
+#include "./Components/Exercise2Component.h"
 #include "InputManager.h"
 #include "Command.h"
 #include "HealthComponent.h"
@@ -31,8 +31,11 @@
 #include <iostream>
 #include <glm.hpp>
 #include "ServiceLocator.h"
+#include "SoundSystem.h"
 #include "SDLSoundSystem.h"
-#include "PlaySoundCommand.h"
+#include "./Commands/PlaySoundCommand.h"
+#include "./Commands/PlayMusicCommand.h"
+#include "./Commands/PauseMusicCommand.h"
 //#include "CSteamAchievements.h"
 
 // Defining our achievements
@@ -58,10 +61,12 @@
 
 void load()
 {
-	auto testSound = std::make_unique<SDLSoundSystem>();
-	ServiceLocator::RegisterSoundSystem(std::move(testSound));
+	auto testSound = std::make_unique<dae::SDLSoundSystem>();
+	dae::ServiceLocator::RegisterSoundSystem(std::move(testSound));
 
-	ServiceLocator::GetSoundSystem().AddSound(0, "../Data/CoinPickUpSoundEffect.wav");
+	dae::ServiceLocator::GetSoundSystem().AddSound(dae::make_sdbm_hash("Enter"), "../Data/EnterEffect.wav");
+	dae::ServiceLocator::GetSoundSystem().AddMusic(dae::make_sdbm_hash("MainMusic"), "../Data/MusicChoosePlayerScreen.mp3");
+	dae::ServiceLocator::GetSoundSystem().ChangeMasterVolume(100);
 
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
 
@@ -130,7 +135,7 @@ void load()
 	burgerGuy2->SetSpeed(0.2f);
 	scene.Add(burgerGuy2);
 
-	//auto smallerFont = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
+	auto smallerFont = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 17);
 
 	//auto playerHeathInfoP1 = new dae::GameObject();
 	//playerHeathInfoP1->AddComponent<dae::TextComponent>();
@@ -182,6 +187,13 @@ void load()
 	////burgerGuy2->GetComponent<dae::ScoreComponent>()->AddObserver(*g_SteamAchievements);
 	//scene.Add(burgerGuy2);
 
+	auto instructions = new dae::GameObject();
+	instructions->SetLocalPosition(glm::vec3{ 10.f, 150.f, 0.f });
+	instructions->AddComponent<dae::TextComponent>();
+	instructions->GetComponent<dae::TextComponent>()->SetText("Press Q to play a sound effect and E to start the music! Press P to pause/unpause the music!");
+	instructions->GetComponent<dae::TextComponent>()->SetFont(smallerFont);
+	scene.Add(instructions);
+
 	auto moveLeft = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ -1.f, 0.f, 0.f });
 	auto moveRight = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ 1.f, 0.f, 0.f });
 	auto moveUp = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ 0.f, -1.f, 0.f });
@@ -192,14 +204,18 @@ void load()
 	auto moveUp2 = std::make_unique<dae::MoveCommand>(*burgerGuy2, glm::vec3{ 0.f, -1.f, 0.f });
 	auto moveDown2 = std::make_unique<dae::MoveCommand>(*burgerGuy2, glm::vec3{ 0.f, 1.f, 0.f });
 
-	auto playSound = std::make_unique<dae::PlaySoundCommand>(*burgerGuy);
+	auto playEnterSoundEffect = std::make_unique<dae::PlaySoundCommand>(*burgerGuy, dae::make_sdbm_hash("Enter"));
+	auto playMusic = std::make_unique<dae::PlayMusicCommand>(*burgerGuy, dae::make_sdbm_hash("MainMusic"));
+	auto pauseMusic = std::make_unique<dae::PauseMusicCommand>(*burgerGuy);
 
 	auto& input = dae::InputManager::GetInstance();
 	input.BindInputKeyboard(SDLK_a, std::move(moveLeft));
 	input.BindInputKeyboard(SDLK_d, std::move(moveRight));
 	input.BindInputKeyboard(SDLK_w, std::move(moveUp));
 	input.BindInputKeyboard(SDLK_s, std::move(moveDown));
-	input.BindInputKeyboard(SDLK_q, std::move(playSound));
+	input.BindInputKeyboard(SDLK_q, std::move(playEnterSoundEffect));
+	input.BindInputKeyboard(SDLK_e, std::move(playMusic));
+	input.BindInputKeyboard(SDLK_p, std::move(pauseMusic));
 
 	input.AddController();
 	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_LEFT, true, std::move(moveLeft2));

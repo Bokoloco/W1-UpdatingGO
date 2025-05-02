@@ -163,27 +163,31 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Exercise1Component.cpp" />
-    <ClCompile Include="Exercise2Component.cpp" />
-    <ClCompile Include="FPSComponent.cpp" />
+    <ClCompile Include="Components\Exercise1Component.cpp" />
+    <ClCompile Include="Components\Exercise2Component.cpp" />
+    <ClCompile Include="Components\FPSComponent.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MoveComponent.cpp" />
+    <ClCompile Include="Components\MoveComponent.cpp" />
+    <ClCompile Include="Commands\PauseMusicCommand.cpp" />
     <ClCompile Include="PlayerHealthInfo.cpp" />
     <ClCompile Include="PlayerScoreInfo.cpp" />
-    <ClCompile Include="PlaySoundCommand.cpp" />
-    <ClCompile Include="RotateComponent.cpp" />
-    <ClCompile Include="TextComponent.cpp" />
+    <ClCompile Include="Commands\PlayMusicCommand.cpp" />
+    <ClCompile Include="Commands\PlaySoundCommand.cpp" />
+    <ClCompile Include="Components\RotateComponent.cpp" />
+    <ClCompile Include="Components\TextComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Exercise1Component.h" />
-    <ClInclude Include="Exercise2Component.h" />
-    <ClInclude Include="FPSComponent.h" />
-    <ClInclude Include="MoveComponent.h" />
+    <ClInclude Include="Components\Exercise1Component.h" />
+    <ClInclude Include="Components\Exercise2Component.h" />
+    <ClInclude Include="Components\FPSComponent.h" />
+    <ClInclude Include="Components\MoveComponent.h" />
+    <ClInclude Include="Commands\PauseMusicCommand.h" />
     <ClInclude Include="PlayerHealthInfo.h" />
     <ClInclude Include="PlayerScoreInfo.h" />
-    <ClInclude Include="PlaySoundCommand.h" />
-    <ClInclude Include="RotateComponent.h" />
-    <ClInclude Include="TextComponent.h" />
+    <ClInclude Include="Commands\PlayMusicCommand.h" />
+    <ClInclude Include="Commands\PlaySoundCommand.h" />
+    <ClInclude Include="Components\RotateComponent.h" />
+    <ClInclude Include="Components\TextComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

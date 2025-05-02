@@ -16,7 +16,6 @@ dae::PlayerHealthInfo::PlayerHealthInfo(GameObject& go)
 
 void dae::PlayerHealthInfo::OnNotify(dae::ObserverEvent e)
 {
-
 	if (e == dae::ObserverEvent::LivesDecrease)
 	{
 		m_pTextComponent->SetText("#Lives: " + std::to_string(--m_Lives));

@@ -24,25 +24,31 @@
     <ClCompile Include="PlayerScoreInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RotateComponent.cpp">
+    <ClCompile Include="Components\RotateComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Exercise1Component.cpp">
+    <ClCompile Include="Components\Exercise1Component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Exercise2Component.cpp">
+    <ClCompile Include="Components\Exercise2Component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TextComponent.cpp">
+    <ClCompile Include="Components\TextComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MoveComponent.cpp">
+    <ClCompile Include="Components\MoveComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FPSComponent.cpp">
+    <ClCompile Include="Components\FPSComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PlaySoundCommand.cpp">
+    <ClCompile Include="Commands\PlaySoundCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Commands\PlayMusicCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Commands\PauseMusicCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,25 +59,31 @@
     <ClInclude Include="PlayerScoreInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RotateComponent.h">
+    <ClInclude Include="Components\RotateComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Exercise1Component.h">
+    <ClInclude Include="Components\Exercise1Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Exercise2Component.h">
+    <ClInclude Include="Components\Exercise2Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TextComponent.h">
+    <ClInclude Include="Components\TextComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MoveComponent.h">
+    <ClInclude Include="Components\MoveComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FPSComponent.h">
+    <ClInclude Include="Components\FPSComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PlaySoundCommand.h">
+    <ClInclude Include="Commands\PlaySoundCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\PlayMusicCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Commands\PauseMusicCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
