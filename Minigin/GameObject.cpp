@@ -4,6 +4,11 @@
 #include "Renderer.h"
 #include "BaseComponent.h"
 #include <iostream>
+#include "Texture2D.h"
+
+dae::GameObject::GameObject()
+{
+}
 
 dae::GameObject::~GameObject()
 {
@@ -52,6 +57,7 @@ void dae::GameObject::Render() const
 void dae::GameObject::SetTexture(const std::string& filename)
 {
 	m_texture = ResourceManager::GetInstance().LoadTexture(filename);
+	m_BoundingRect = new SDL_FRect(m_WorldPosition.GetPosition().x, m_WorldPosition.GetPosition().y, static_cast<float>(m_texture->GetSize().x), static_cast<float>(m_texture->GetSize().y));
 }
 
 void dae::GameObject::SetWorldPosition(float x, float y)
@@ -163,6 +169,23 @@ float dae::GameObject::GetSpeed()
 void dae::GameObject::SetSpeed(float speed)
 {
 	m_Speed = speed;
+}
+
+void dae::GameObject::SetCanCollide(bool value)
+{
+	m_CanCollide = value;
+}
+
+bool dae::GameObject::CanCollide()
+{
+	return m_CanCollide;
+}
+
+const SDL_FRect* dae::GameObject::GetBoundingBox()
+{
+	m_BoundingRect->x = m_WorldPosition.GetPosition().x;
+	m_BoundingRect->y = m_WorldPosition.GetPosition().y;
+	return m_BoundingRect;
 }
 
 void dae::GameObject::AddChild(GameObject* child)

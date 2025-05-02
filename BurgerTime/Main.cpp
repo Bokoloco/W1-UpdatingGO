@@ -36,6 +36,7 @@
 #include "./Commands/PlaySoundCommand.h"
 #include "./Commands/PlayMusicCommand.h"
 #include "./Commands/PauseMusicCommand.h"
+#include "CollisionComponent.h"
 //#include "CSteamAchievements.h"
 
 // Defining our achievements
@@ -127,12 +128,16 @@ void load()
 	burgerGuy->SetTexture("burgerGuy.tga");
 	burgerGuy->SetLocalPosition({ 200.f, 30.f, 0.f });
 	burgerGuy->SetSpeed(0.1f);
+	burgerGuy->SetCanCollide(true);
+	burgerGuy->AddComponent<dae::CollisionComponent>();
 	scene.Add(burgerGuy);
 
 	auto burgerGuy2 = new dae::GameObject();
 	burgerGuy2->SetTexture("burgerGuy.tga");
 	burgerGuy2->SetLocalPosition({ 400.f, 30.f, 0.f });
 	burgerGuy2->SetSpeed(0.2f);
+	burgerGuy2->SetCanCollide(true);
+	burgerGuy2->AddComponent<dae::CollisionComponent>();
 	scene.Add(burgerGuy2);
 
 	auto smallerFont = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 17);

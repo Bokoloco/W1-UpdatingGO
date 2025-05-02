@@ -5,6 +5,7 @@
 #include "Transform.h"
 #include <typeinfo>
 #include <string>
+#include <SDL.h>
 
 namespace dae
 {
@@ -14,7 +15,7 @@ namespace dae
 	class GameObject final
 	{
 	public:
-		GameObject() = default;
+		GameObject();
 		~GameObject();
 
 		GameObject(const GameObject& other) = delete;
@@ -64,14 +65,21 @@ namespace dae
 		float GetSpeed();
 		void SetSpeed(float speed);
 
+		void SetCanCollide(bool value);
+		bool CanCollide();
+
+		const SDL_FRect* GetBoundingBox();
+
 	private:
 		Transform m_LocalPosition{};
 		Transform m_WorldPosition{};
+		SDL_FRect* m_BoundingRect{};
 
 		float m_Speed{0.1f};
 
 		bool m_PositionIsDirty{};
 		bool m_ShouldBeDeletedFromChildren{};
+		bool m_CanCollide{};
 		// todo: mmm, every gameobject has a texture? Is that correct?
 		//std::unordered_map<std::string, BaseComponent*> m_Components;
 
@@ -109,6 +117,14 @@ namespace dae
 	template<class TypeComponent>
 	inline bool GameObject::ContainsComponent()
 	{
-		return true;
+		for (BaseComponent* bc : m_Components)
+		{
+			if (typeid(TypeComponent).name() == typeid(*bc).name())
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

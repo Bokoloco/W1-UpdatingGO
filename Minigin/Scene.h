@@ -16,6 +16,8 @@ namespace dae
 		void LateUpdate();
 		void Render() const;
 
+		void CheckCollision();
+
 		~Scene();
 		Scene(const Scene& other) = delete;
 		Scene(Scene&& other) = delete;
