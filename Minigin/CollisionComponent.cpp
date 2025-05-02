@@ -1,6 +1,7 @@
 #include "CollisionComponent.h"
 #include <iostream>
 #include "GameObject.h"
+#include "SoundSystem.h"
 
 dae::CollisionComponent::CollisionComponent(GameObject& go)
 	: BaseComponent(go)
@@ -19,5 +20,6 @@ void dae::CollisionComponent::Render() const
 
 void dae::CollisionComponent::OnEnter(GameObject& go)
 {
-	std::cout << "Overlapping!!!!" << std::endl;
+	if (go.ActorHasTag(dae::make_sdbm_hash("Player1")))
+		std::cout << "Overlapping!!!!" << std::endl;
 }

@@ -68,6 +68,9 @@ namespace dae
 		void SetCanCollide(bool value);
 		bool CanCollide();
 
+		void AddTag(unsigned int tag);
+		bool ActorHasTag(unsigned int tag);
+
 		const SDL_FRect* GetBoundingBox();
 
 	private:
@@ -80,14 +83,13 @@ namespace dae
 		bool m_PositionIsDirty{};
 		bool m_ShouldBeDeletedFromChildren{};
 		bool m_CanCollide{};
-		// todo: mmm, every gameobject has a texture? Is that correct?
-		//std::unordered_map<std::string, BaseComponent*> m_Components;
 
 		std::vector<BaseComponent*> m_Components{};
 		std::shared_ptr<Texture2D> m_texture{};
 
 		GameObject* m_pParent{};
 		std::vector<GameObject*> m_Children{};
+		std::vector<unsigned int> m_Tags{};
 
 		void AddChild(GameObject* go);
 		void RemoveChild(GameObject* child);

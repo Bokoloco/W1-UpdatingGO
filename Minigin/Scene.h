@@ -28,7 +28,7 @@ namespace dae
 		explicit Scene(const std::string& name);
 
 		std::string m_name;
-		std::vector < GameObject*> m_objects{};
+		std::vector <GameObject*> m_objects{};
 
 		static unsigned int m_idCounter; 
 	};

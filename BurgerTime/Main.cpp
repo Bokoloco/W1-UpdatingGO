@@ -129,6 +129,7 @@ void load()
 	burgerGuy->SetLocalPosition({ 200.f, 30.f, 0.f });
 	burgerGuy->SetSpeed(0.1f);
 	burgerGuy->SetCanCollide(true);
+	burgerGuy->AddTag(dae::make_sdbm_hash("Player1"));
 	burgerGuy->AddComponent<dae::CollisionComponent>();
 	scene.Add(burgerGuy);
 

@@ -181,6 +181,16 @@ bool dae::GameObject::CanCollide()
 	return m_CanCollide;
 }
 
+void dae::GameObject::AddTag(unsigned int tag)
+{
+	m_Tags.push_back(tag);
+}
+
+bool dae::GameObject::ActorHasTag(unsigned int tag)
+{
+	return std::find(m_Tags.begin(), m_Tags.end(), tag) != m_Tags.end();
+}
+
 const SDL_FRect* dae::GameObject::GetBoundingBox()
 {
 	m_BoundingRect->x = m_WorldPosition.GetPosition().x;
