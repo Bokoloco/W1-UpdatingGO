@@ -75,31 +75,31 @@ void load()
 
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
 
-	dae::GameObject* go = new dae::GameObject();
+	/*dae::GameObject* go = new dae::GameObject();
 	go->SetTexture("background.tga");
-	scene.Add(go);
+	scene.Add(go);*/
 
-	go = new dae::GameObject();
+	/*go = new dae::GameObject();
 	go->SetTexture("logo.tga");
 	go->SetWorldPosition(216, 180);
-	scene.Add(go);
+	scene.Add(go);*/
 
 	//W1 Fps component
-	auto font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
-	dae::GameObject* title = new dae::GameObject();
-	title->AddComponent<dae::TextComponent>();
-	dae::TextComponent* test = title->GetComponent<dae::TextComponent>();
-	test->SetText("Programming 4 Assignment");
-	test->SetFont(font);
-	title->SetWorldPosition(180, 20);
-	scene.Add(title);
+	//auto font = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
+	//dae::GameObject* title = new dae::GameObject();
+	//title->AddComponent<dae::TextComponent>();
+	//dae::TextComponent* test = title->GetComponent<dae::TextComponent>();
+	//test->SetText("Programming 4 Assignment");
+	//test->SetFont(font);
+	//title->SetWorldPosition(180, 20);
+	//scene.Add(title);
 
-	auto fps = new dae::GameObject();
+	/*auto fps = new dae::GameObject();
 	fps->AddComponent<dae::TextComponent>();
 	fps->AddComponent<dae::FPSComponent>(*fps->GetComponent<dae::TextComponent>());
 	fps->GetComponent<dae::TextComponent>()->SetFont(font);
 	fps->SetWorldPosition(10, 20);
-	scene.Add(fps);
+	scene.Add(fps);*/
 
 	/*// Burger guys rotating
 	// Make a point for the burger guys to rotate around (otherwise it would rotate around world 0, 0
@@ -127,10 +127,42 @@ void load()
 	imGuiTest->AddComponent<dae::Exercise2Component>();
 	scene.Add(imGuiTest);*/
 
+	auto ladder = new dae::GameObject();
+	ladder->SetTexture("BackgroundSheet.tga", 10, 34);
+	ladder->SetSourceRectTexture(0, 6, 10, 34);
+	ladder->SetLocalPosition({ 100.f, 50.f, 0.f });
+	ladder->SetCanCollide(true);
+	ladder->SetScaling(2.f, 2.f, 2.f);
+	ladder->AddTag(dae::make_sdbm_hash("Ladder"));
+	ladder->AddComponent<dae::CollisionComponent>();
+	scene.Add(ladder);
+
+	auto ladderPlatform1 = new dae::GameObject();
+	ladderPlatform1->SetTexture("BackgroundSheet.tga", 16, 3);
+	ladderPlatform1->SetSourceRectTexture(0, 3, 16, 3);
+	ladderPlatform1->SetLocalPosition({ 94.f, 53.f, 0.f });
+	ladderPlatform1->SetScaling(2.f, 2.f, 2.f);
+	scene.Add(ladderPlatform1);
+
+	auto burgerPlatform1 = new dae::GameObject();
+	burgerPlatform1->SetTexture("BackgroundSheet.tga", 32, 3);
+	burgerPlatform1->SetSourceRectTexture(0, 0, 32, 3);
+	burgerPlatform1->SetLocalPosition({ 126.f, 53.f, 0.f });
+	burgerPlatform1->SetScaling(2.f, 2.f, 2.f);
+	scene.Add(burgerPlatform1);
+
+	auto burgerBun1 = new dae::GameObject();
+	burgerBun1->SetTexture("BurgerTime.png", 31, 7);
+	burgerBun1->SetSourceRectTexture(112, 49, 31, 7);
+	burgerBun1->SetLocalPosition({ 127.f, 43.f, 0.f });
+	burgerBun1->SetScaling(2.f, 2.f, 2.f);
+	scene.Add(burgerBun1);
+
 	// Command exercise
 	auto burgerGuy = new dae::GameObject();
-	burgerGuy->SetTexture("BurgerTime.tga", 16.f, 16.f);
-	burgerGuy->SetLocalPosition({ 200.f, 30.f, 0.f });
+	burgerGuy->SetTexture("BurgerTime.png", 16.f, 16.f);
+	burgerGuy->SetSourceRectTexture(0, 0, 16, 16);
+	burgerGuy->SetLocalPosition({ 200.f, 21.f, 0.f });
 	burgerGuy->SetSpeed(0.1f);
 	burgerGuy->SetCanCollide(true);
 	burgerGuy->SetScaling(2.f, 2.f, 2.f);
@@ -141,20 +173,12 @@ void load()
 
 	auto burgerGuy2 = new dae::GameObject();
 	burgerGuy2->SetTexture("burgerGuy.tga", 16.f, 16.f);
-	burgerGuy2->SetLocalPosition({ 400.f, 30.f, 0.f });
+	burgerGuy->SetSourceRectTexture(0, 0, 16, 16);
+	burgerGuy2->SetLocalPosition({ 400.f, 29.f, 0.f });
 	burgerGuy2->SetSpeed(0.2f);
 	burgerGuy2->SetCanCollide(true);
 	burgerGuy2->AddComponent<dae::PlayerCollisionComponent>();
 	scene.Add(burgerGuy2);
-
-	auto ladder = new dae::GameObject();
-	ladder->SetTexture("Ladder.tga");
-	ladder->SetLocalPosition({ 100.f, 55.f, 0.f });
-	ladder->SetCanCollide(true);
-	ladder->SetScaling(2.3f, 2.3f, 2.f);
-	ladder->AddTag(dae::make_sdbm_hash("Ladder"));
-	ladder->AddComponent<dae::CollisionComponent>();
-	scene.Add(ladder);
 
 	auto smallerFont = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 17);
 
@@ -208,12 +232,12 @@ void load()
 	////burgerGuy2->GetComponent<dae::ScoreComponent>()->AddObserver(*g_SteamAchievements);
 	//scene.Add(burgerGuy2);
 
-	auto instructions = new dae::GameObject();
+	/*auto instructions = new dae::GameObject();
 	instructions->SetLocalPosition(glm::vec3{ 10.f, 150.f, 0.f });
 	instructions->AddComponent<dae::TextComponent>();
 	instructions->GetComponent<dae::TextComponent>()->SetText("Press Q to play a sound effect and E to start the music! Press P to pause/unpause the music!");
 	instructions->GetComponent<dae::TextComponent>()->SetFont(smallerFont);
-	scene.Add(instructions);
+	scene.Add(instructions);*/
 
 	auto moveLeft = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ -1.f, 0.f, 0.f });
 	auto moveRight = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ 1.f, 0.f, 0.f });

@@ -13,7 +13,8 @@ namespace dae
 		void Update() override;
 		void Render() const override {};
 
-		void OnEnter(GameObject& go) override;
+		void OnColliding(GameObject& go) override;
+		//void OnEnter(GameObject& go) override;
 		void OnExit(GameObject& go) override;
 
 	private:

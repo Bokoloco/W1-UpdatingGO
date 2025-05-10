@@ -79,6 +79,8 @@ void dae::Scene::CheckCollision()
 						collisionComponent2->OnEnter(*gameObj1);
 						m_CurrentCollisions.emplace(collisionComponent2, gameObj1);
 					}
+					else
+						collisionComponent2->OnColliding(*gameObj1);
 				}
 
 				if (!SDL_HasIntersectionF(gameObj1->GetBoundingBox(), gameObj2->GetBoundingBox()) && m_CurrentCollisions.find(collisionComponent2) != m_CurrentCollisions.end())

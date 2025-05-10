@@ -15,10 +15,16 @@ void dae::MoveDownLadderComponent::SetCanMoveDownLadder(bool value)
 
 void dae::MoveDownLadderComponent::SetMoveToHeight(float value)
 {
-	m_MoveToHeight = value;
+	m_MaxHeight = value;
+	m_MinHeight = GetOwner()->GetWorldPosition().y;
 }
 
 bool dae::MoveDownLadderComponent::CanMoveOnLadder()
 {
-	return m_CanMoveDownLadder && GetOwner()->GetWorldPosition().y < m_MoveToHeight;
+	return m_CanMoveDownLadder && GetOwner()->GetWorldPosition().y < m_MaxHeight && GetOwner()->GetWorldPosition().y >= m_MinHeight;
+}
+
+float dae::MoveDownLadderComponent::GetMinHeight() const
+{
+	return m_MinHeight;
 }

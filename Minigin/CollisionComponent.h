@@ -12,6 +12,7 @@ namespace dae
 		void Update() override;
 		void Render() const override;
 
+		virtual void OnColliding(GameObject&) {};
 		virtual void OnEnter(GameObject&) {};
 		virtual void OnExit(GameObject&) {};
 

@@ -15,6 +15,7 @@ void dae::MoveOnLadderCommand::Execute()
 	if (m_pMoveDownLadderComponent->CanMoveOnLadder())
 	{
 		glm::vec3 newPos = GetGameObject()->GetWorldPosition() + GetGameObject()->GetSpeed() * dae::Minigin::DELTATIME * m_Direction;
-		GetGameObject()->SetLocalPosition(newPos);
+		if (newPos.y >= m_pMoveDownLadderComponent->GetMinHeight())
+			GetGameObject()->SetLocalPosition(newPos);
 	}
 }

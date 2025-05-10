@@ -22,7 +22,6 @@ dae::GameObject::~GameObject()
 	m_Components.clear();
 
 	delete m_BoundingRect;
-	delete m_SourceRect;
 }
 
 void dae::GameObject::Update()
@@ -47,7 +46,7 @@ void dae::GameObject::LateUpdate()
 void dae::GameObject::Render() const
 {
 	const auto& pos = m_WorldPosition.GetPosition();
-	if (m_texture != nullptr) Renderer::GetInstance().RenderTexture(*m_texture, m_SourceRect, pos.x, pos.y, m_BoundingRect->w, m_BoundingRect->h);
+	if (m_texture != nullptr) Renderer::GetInstance().RenderTexture(*m_texture, m_SourceRect.get(), pos.x, pos.y, m_BoundingRect->w, m_BoundingRect->h);
 
 	if (m_Components.size() != 0)
 	{
@@ -62,19 +61,22 @@ void dae::GameObject::SetTexture(const std::string& filename)
 {
 	m_texture = ResourceManager::GetInstance().LoadTexture(filename);
 	m_BoundingRect = new SDL_FRect(m_WorldPosition.GetPosition().x, m_WorldPosition.GetPosition().y, static_cast<float>(m_texture->GetSize().x), static_cast<float>(m_texture->GetSize().y));
-	m_SourceRect = new SDL_Rect(0, 0, m_texture->GetSize().x, m_texture->GetSize().y);
 }
 
 void dae::GameObject::SetTexture(const std::string& filename, float widthObject, float heightObject)
 {
 	m_texture = ResourceManager::GetInstance().LoadTexture(filename);
 	m_BoundingRect = new SDL_FRect(m_WorldPosition.GetPosition().x, m_WorldPosition.GetPosition().y, widthObject, heightObject);
-	m_SourceRect = new SDL_Rect(0, 0, static_cast<int>(widthObject), static_cast<int>(heightObject));
 }
 
 void dae::GameObject::SetWorldPosition(float x, float y)
 {
 	m_WorldPosition.SetPosition(x, y, 0.0f);
+}
+
+void dae::GameObject::SetSourceRectTexture(int x, int y, int w, int h)
+{
+	m_SourceRect = std::make_unique<SDL_Rect>(x, y, w, h);
 }
 
 void dae::GameObject::SetScaling(float x, float y, float z)

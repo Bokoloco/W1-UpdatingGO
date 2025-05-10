@@ -31,6 +31,8 @@ namespace dae
 		void SetTexture(const std::string& filename, float widthObject, float heightObject);
 		void SetWorldPosition(float x, float y);
 
+		void SetSourceRectTexture(int x, int y, int w, int h);
+
 		void SetScaling(float x, float y, float z);
 
 		const Transform& GetWorldTransform() const;
@@ -81,7 +83,7 @@ namespace dae
 		Transform m_LocalPosition{};
 		Transform m_WorldPosition{};
 		SDL_FRect* m_BoundingRect{};
-		SDL_Rect* m_SourceRect{};
+		std::unique_ptr<SDL_Rect> m_SourceRect{};
 
 		float m_Speed{0.1f};
 

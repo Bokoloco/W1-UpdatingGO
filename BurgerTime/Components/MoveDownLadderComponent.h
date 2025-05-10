@@ -16,9 +16,12 @@ namespace dae
 		void SetMoveToHeight(float value);
 
 		bool CanMoveOnLadder();
+		float GetMinHeight() const;
 
 	private:
 		bool m_CanMoveDownLadder{};
-		float m_MoveToHeight{};
+		float m_MaxHeight{};
+		float m_MinHeight{};
+
 	};
 }
