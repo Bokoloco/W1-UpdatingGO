@@ -20,6 +20,6 @@ void dae::CollisionComponent::Render() const
 
 void dae::CollisionComponent::OnEnter(GameObject& go)
 {
-	if (go.ActorHasTag(dae::make_sdbm_hash("Player1")))
+	if (go.ActorHasTag(dae::make_sdbm_hash("Ladder")))
 		std::cout << "Overlapping!!!!" << std::endl;
 }

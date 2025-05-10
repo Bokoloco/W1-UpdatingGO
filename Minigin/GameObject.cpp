@@ -45,7 +45,7 @@ void dae::GameObject::LateUpdate()
 void dae::GameObject::Render() const
 {
 	const auto& pos = m_WorldPosition.GetPosition();
-	if (m_texture != nullptr) Renderer::GetInstance().RenderTexture(*m_texture, pos.x, pos.y, m_BoundingRect->w * m_WorldPosition.GetScaling().x, m_BoundingRect->h * m_WorldPosition.GetScaling().y);
+	if (m_texture != nullptr) Renderer::GetInstance().RenderTexture(*m_texture, pos.x, pos.y, m_BoundingRect->w, m_BoundingRect->h);
 
 	if (m_Components.size() != 0)
 	{
@@ -70,6 +70,8 @@ void dae::GameObject::SetWorldPosition(float x, float y)
 void dae::GameObject::SetScaling(float x, float y, float z)
 {
 	m_WorldPosition.SetScaling(x, y, z);
+	m_BoundingRect->w *= x;
+	m_BoundingRect->h *= y;
 }
 
 const dae::Transform& dae::GameObject::GetWorldTransform() const

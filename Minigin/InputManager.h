@@ -31,7 +31,7 @@ namespace dae
 
 		void AddController();
 
-		void BindInputKeyboard(SDL_Keycode keycode, std::unique_ptr<Command>);
+		void BindInputKeyboard(SDL_Scancode scancode, std::unique_ptr<Command>);
 		void BindInputController(DWORD controllerIndex, unsigned int button, bool isPressed, std::unique_ptr<Command> command);
 
 		void BeginPlay();
@@ -45,6 +45,6 @@ namespace dae
 		std::vector<std::unique_ptr<ControllerInput>> m_pControllerInputs;
 
 		std::map<ControllerButtonBinding, std::unique_ptr<Command>> m_CommandsControllers;
-		std::map<SDL_Keycode, std::unique_ptr<Command>> m_CommandsKeyboard;
+		std::map<SDL_Scancode, std::unique_ptr<Command>> m_CommandsKeyboard;
 	};
 }

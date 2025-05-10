@@ -21,9 +21,9 @@ void dae::InputManager::AddController()
 	m_pControllerInputs.push_back(std::make_unique<ControllerInput>(static_cast<DWORD>(m_pControllerInputs.size())));
 }
 
-void dae::InputManager::BindInputKeyboard(SDL_Keycode keycode, std::unique_ptr<Command> command)
+void dae::InputManager::BindInputKeyboard(SDL_Scancode scancode, std::unique_ptr<Command> command)
 {
-	m_CommandsKeyboard.emplace(keycode, std::move(command));
+	m_CommandsKeyboard.emplace(scancode, std::move(command));
 }
 
 void dae::InputManager::BindInputController(DWORD controllerIndex, unsigned int button, bool isPressed, std::unique_ptr<Command> command)
@@ -71,31 +71,47 @@ bool dae::InputManager::ProcessInput()
 	if (m_pControllerInput->CheckButtonReleased(XINPUT_GAMEPAD_B)) m_ScoreBigCommand->Execute(*m_pPlayer2);*/
 
 	//const Uint8* pStates = SDL_GetKeyboardState(nullptr);
+
+	//	case SDL_KEYDOWN:
+	//	{
+	//		for (auto& binding : m_CommandsKeyboard)
+	//		{
+	//			if (binding.first == e.key.keysym.sym)
+	//				binding.second->Execute();
+	//		}
+	//		break;
+	//	}
+	//	default:
+	//		break;
+	//	}
+	//	// etc...
+
+	//	//ImGui_ImplSDL2_ProcessEvent(&e);
+	//}
+	auto inputs = SDL_GetKeyboardState(nullptr);
+	for (auto& binding : m_CommandsKeyboard)
+	{
+		if (inputs[binding.first])
+		{
+			binding.second->Execute();
+		}
+	}
+
+	if (inputs[SDL_SCANCODE_ESCAPE])
+		return false;
+
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
 		switch (e.type)
 		{
-		case SDL_QUIT:
-		{
-			return false;
-			break;
-		}
-		case SDL_KEYDOWN:
-		{
-			for (auto& binding : m_CommandsKeyboard)
+			case SDL_QUIT:
 			{
-				if (binding.first == e.key.keysym.sym)
-					binding.second->Execute();
+				return false;
+				break;
 			}
-			break;
 		}
-		default:
-			break;
-		}
-		// etc...
-
-		//ImGui_ImplSDL2_ProcessEvent(&e);
 	}
+
 
 	return true;
 }

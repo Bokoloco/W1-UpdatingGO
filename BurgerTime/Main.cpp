@@ -142,6 +142,15 @@ void load()
 	burgerGuy2->AddComponent<dae::CollisionComponent>();
 	scene.Add(burgerGuy2);
 
+	auto ladder = new dae::GameObject();
+	ladder->SetTexture("Ladder.tga");
+	ladder->SetLocalPosition({ 100.f, 55.f, 0.f });
+	ladder->SetCanCollide(true);
+	ladder->SetScaling(2.f, 2.f, 2.f);
+	ladder->AddTag(dae::make_sdbm_hash("Ladder"));
+	ladder->AddComponent<dae::CollisionComponent>();
+	scene.Add(ladder);
+
 	auto smallerFont = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 17);
 
 	//auto playerHeathInfoP1 = new dae::GameObject();
@@ -203,8 +212,8 @@ void load()
 
 	auto moveLeft = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ -1.f, 0.f, 0.f });
 	auto moveRight = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ 1.f, 0.f, 0.f });
-	auto moveUp = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ 0.f, -1.f, 0.f });
-	auto moveDown = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ 0.f, 1.f, 0.f });
+	//auto moveUp = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ 0.f, -1.f, 0.f });
+	//auto moveDown = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ 0.f, 1.f, 0.f });
 
 	auto moveLeft2 = std::make_unique<dae::MoveCommand>(*burgerGuy2, glm::vec3{ -1.f, 0.f, 0.f });
 	auto moveRight2 = std::make_unique<dae::MoveCommand>(*burgerGuy2, glm::vec3{ 1.f, 0.f, 0.f });
@@ -216,13 +225,13 @@ void load()
 	auto pauseMusic = std::make_unique<dae::PauseMusicCommand>(*burgerGuy);
 
 	auto& input = dae::InputManager::GetInstance();
-	input.BindInputKeyboard(SDLK_a, std::move(moveLeft));
-	input.BindInputKeyboard(SDLK_d, std::move(moveRight));
-	input.BindInputKeyboard(SDLK_w, std::move(moveUp));
-	input.BindInputKeyboard(SDLK_s, std::move(moveDown));
-	input.BindInputKeyboard(SDLK_q, std::move(playEnterSoundEffect));
-	input.BindInputKeyboard(SDLK_e, std::move(playMusic));
-	input.BindInputKeyboard(SDLK_p, std::move(pauseMusic));
+	input.BindInputKeyboard(SDL_SCANCODE_A, std::move(moveLeft));
+	input.BindInputKeyboard(SDL_SCANCODE_D, std::move(moveRight));
+	//input.BindInputKeyboard(SDLK_w, std::move(moveUp));
+	//input.BindInputKeyboard(SDLK_s, std::move(moveDown));
+	input.BindInputKeyboard(SDL_SCANCODE_Q, std::move(playEnterSoundEffect));
+	input.BindInputKeyboard(SDL_SCANCODE_E, std::move(playMusic));
+	input.BindInputKeyboard(SDL_SCANCODE_P, std::move(pauseMusic));
 
 	input.AddController();
 	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_LEFT, true, std::move(moveLeft2));
