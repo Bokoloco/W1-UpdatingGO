@@ -27,6 +27,7 @@
 #include "PlayerHealthInfo.h"
 #include "PlayerScoreInfo.h"
 #include "MoveCommand.h"
+#include "MoveOnLadderCommand.h"
 //#include <steam_api.h>
 #include <iostream>
 #include <glm.hpp>
@@ -38,6 +39,9 @@
 #include "./Commands/PauseMusicCommand.h"
 #include "CollisionComponent.h"
 //#include "CSteamAchievements.h"
+#include "Utils.h"
+#include "./Components/MoveDownLadderComponent.h"
+#include "./Components/PlayerCollisionComponent.h"
 
 // Defining our achievements
 //enum EAchievements
@@ -131,7 +135,8 @@ void load()
 	burgerGuy->SetCanCollide(true);
 	burgerGuy->SetScaling(2.f, 2.f, 2.f);
 	burgerGuy->AddTag(dae::make_sdbm_hash("Player1"));
-	burgerGuy->AddComponent<dae::CollisionComponent>();
+	burgerGuy->AddComponent<dae::MoveDownLadderComponent>();
+	burgerGuy->AddComponent<dae::PlayerCollisionComponent>();
 	scene.Add(burgerGuy);
 
 	auto burgerGuy2 = new dae::GameObject();
@@ -139,14 +144,14 @@ void load()
 	burgerGuy2->SetLocalPosition({ 400.f, 30.f, 0.f });
 	burgerGuy2->SetSpeed(0.2f);
 	burgerGuy2->SetCanCollide(true);
-	burgerGuy2->AddComponent<dae::CollisionComponent>();
+	burgerGuy2->AddComponent<dae::PlayerCollisionComponent>();
 	scene.Add(burgerGuy2);
 
 	auto ladder = new dae::GameObject();
 	ladder->SetTexture("Ladder.tga");
 	ladder->SetLocalPosition({ 100.f, 55.f, 0.f });
 	ladder->SetCanCollide(true);
-	ladder->SetScaling(2.f, 2.f, 2.f);
+	ladder->SetScaling(2.3f, 2.3f, 2.f);
 	ladder->AddTag(dae::make_sdbm_hash("Ladder"));
 	ladder->AddComponent<dae::CollisionComponent>();
 	scene.Add(ladder);
@@ -212,8 +217,8 @@ void load()
 
 	auto moveLeft = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ -1.f, 0.f, 0.f });
 	auto moveRight = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ 1.f, 0.f, 0.f });
-	//auto moveUp = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ 0.f, -1.f, 0.f });
-	//auto moveDown = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ 0.f, 1.f, 0.f });
+	auto moveUp = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy, -1.f);
+	auto moveDown = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy, 1.f);
 
 	auto moveLeft2 = std::make_unique<dae::MoveCommand>(*burgerGuy2, glm::vec3{ -1.f, 0.f, 0.f });
 	auto moveRight2 = std::make_unique<dae::MoveCommand>(*burgerGuy2, glm::vec3{ 1.f, 0.f, 0.f });
@@ -227,8 +232,8 @@ void load()
 	auto& input = dae::InputManager::GetInstance();
 	input.BindInputKeyboard(SDL_SCANCODE_A, std::move(moveLeft));
 	input.BindInputKeyboard(SDL_SCANCODE_D, std::move(moveRight));
-	//input.BindInputKeyboard(SDLK_w, std::move(moveUp));
-	//input.BindInputKeyboard(SDLK_s, std::move(moveDown));
+	input.BindInputKeyboard(SDL_SCANCODE_W, std::move(moveUp));
+	input.BindInputKeyboard(SDL_SCANCODE_S, std::move(moveDown));
 	input.BindInputKeyboard(SDL_SCANCODE_Q, std::move(playEnterSoundEffect));
 	input.BindInputKeyboard(SDL_SCANCODE_E, std::move(playMusic));
 	input.BindInputKeyboard(SDL_SCANCODE_P, std::move(pauseMusic));

@@ -112,9 +112,13 @@ namespace dae
 	{
 		for (BaseComponent* bc : m_Components)
 		{
-			if (typeid(TypeComponent).name() == typeid(*bc).name())
+			//if (Component<TypeComponent>:: == typeid(*bc).name() || dynamic_cast<TypeComponent*>(bc))
+			//{
+			//	return dynamic_cast<TypeComponent*>(bc);
+			//}
+			if (auto casted = dynamic_cast<TypeComponent*>(bc))
 			{
-				return dynamic_cast<TypeComponent*>(bc);
+				return casted;
 			}
 		}
 

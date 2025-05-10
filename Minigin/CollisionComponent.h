@@ -12,8 +12,8 @@ namespace dae
 		void Update() override;
 		void Render() const override;
 
-		void OnEnter(GameObject& go);
-		void OnExit(GameObject& go);
+		virtual void OnEnter(GameObject&) {};
+		virtual void OnExit(GameObject&) {};
 
 	private:
 	};
