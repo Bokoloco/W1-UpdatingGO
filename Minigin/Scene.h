@@ -1,8 +1,11 @@
 #pragma once
 #include "SceneManager.h"
+#include <set>
+#include <map>
 
 namespace dae
 {
+	class CollisionComponent;
 	class GameObject;
 	class Scene final
 	{
@@ -29,6 +32,7 @@ namespace dae
 
 		std::string m_name;
 		std::vector <GameObject*> m_objects{};
+		std::map<CollisionComponent*, GameObject*> m_CurrentCollisions{};
 
 		static unsigned int m_idCounter; 
 	};

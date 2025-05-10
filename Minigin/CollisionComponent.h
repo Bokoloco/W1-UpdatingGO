@@ -13,8 +13,8 @@ namespace dae
 		void Render() const override;
 
 		void OnEnter(GameObject& go);
+		void OnExit(GameObject& go);
 
 	private:
-		
 	};
 }

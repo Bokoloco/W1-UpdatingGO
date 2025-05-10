@@ -28,6 +28,7 @@ namespace dae
 		void Render() const;
 
 		void SetTexture(const std::string& filename);
+		void SetTexture(const std::string& filename, float widthObject, float heightObject);
 		void SetWorldPosition(float x, float y);
 
 		void SetScaling(float x, float y, float z);
@@ -75,10 +76,12 @@ namespace dae
 
 		const SDL_FRect* GetBoundingBox();
 
+
 	private:
 		Transform m_LocalPosition{};
 		Transform m_WorldPosition{};
 		SDL_FRect* m_BoundingRect{};
+		SDL_Rect* m_SourceRect{};
 
 		float m_Speed{0.1f};
 

@@ -74,7 +74,20 @@ void dae::Scene::CheckCollision()
 				dae::CollisionComponent* collisionComponent2 = gameObj2->GetComponent<dae::CollisionComponent>();
 				if (SDL_HasIntersectionF(gameObj1->GetBoundingBox(), gameObj2->GetBoundingBox()))
 				{
-					collisionComponent2->OnEnter(*gameObj1);
+					if (m_CurrentCollisions.find(collisionComponent2) == m_CurrentCollisions.end())
+					{
+						collisionComponent2->OnEnter(*gameObj1);
+						m_CurrentCollisions.emplace(collisionComponent2, gameObj1);
+					}
+				}
+
+				if (!SDL_HasIntersectionF(gameObj1->GetBoundingBox(), gameObj2->GetBoundingBox()) && m_CurrentCollisions.find(collisionComponent2) != m_CurrentCollisions.end())
+				{
+					if (gameObj1 == m_CurrentCollisions.find(collisionComponent2)->second)
+					{
+						collisionComponent2->OnExit(*gameObj1);
+						m_CurrentCollisions.erase(collisionComponent2);
+					}
 				}
 			}
 		}

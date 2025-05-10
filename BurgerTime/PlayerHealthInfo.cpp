@@ -1,5 +1,5 @@
 #include "PlayerHealthInfo.h"
-#include "TextComponent.h"
+#include "Components/TextComponent.h"
 #include "GameObject.h"
 
 #include <string>

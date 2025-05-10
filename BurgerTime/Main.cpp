@@ -125,7 +125,7 @@ void load()
 
 	// Command exercise
 	auto burgerGuy = new dae::GameObject();
-	burgerGuy->SetTexture("burgerGuy.tga");
+	burgerGuy->SetTexture("BurgerTime.tga", 16.f, 16.f);
 	burgerGuy->SetLocalPosition({ 200.f, 30.f, 0.f });
 	burgerGuy->SetSpeed(0.1f);
 	burgerGuy->SetCanCollide(true);
@@ -135,7 +135,7 @@ void load()
 	scene.Add(burgerGuy);
 
 	auto burgerGuy2 = new dae::GameObject();
-	burgerGuy2->SetTexture("burgerGuy.tga");
+	burgerGuy2->SetTexture("burgerGuy.tga", 16.f, 16.f);
 	burgerGuy2->SetLocalPosition({ 400.f, 30.f, 0.f });
 	burgerGuy2->SetSpeed(0.2f);
 	burgerGuy2->SetCanCollide(true);
