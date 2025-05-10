@@ -10,6 +10,10 @@ namespace dae
 		void SetPosition(float x, float y, float z);
 		void SetPosition(const glm::vec3 pos);
 
+		const glm::vec3& GetScaling() const { return m_Scaling; };
+		void SetScaling(float x, float y, float z);
+		void SetScaling(const glm::vec3 scale);
+
 	private:
 		glm::vec3 m_Position{};
 		glm::vec3 m_Rotation{};

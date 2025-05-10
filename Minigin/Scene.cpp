@@ -65,16 +65,17 @@ void dae::Scene::CheckCollision()
 	for (GameObject* gameObj1 : m_objects)
 	{
 		if (!gameObj1->CanCollide()) continue;
-		dae::CollisionComponent* collisionComponent1 = gameObj1->GetComponent<dae::CollisionComponent>();
-		for (GameObject* gameObj2 : m_objects)
+		if (gameObj1->ContainsComponent<dae::CollisionComponent>())
 		{
-			if (gameObj1 == gameObj2 || !gameObj2->CanCollide()) continue;
-
-			dae::CollisionComponent* collisionComponent2 = gameObj2->GetComponent<dae::CollisionComponent>();
-			if (SDL_HasIntersectionF(gameObj1->GetBoundingBox(), gameObj2->GetBoundingBox()))
+			for (GameObject* gameObj2 : m_objects)
 			{
-				collisionComponent1->OnEnter(*gameObj2);
-				collisionComponent2->OnEnter(*gameObj1);
+				if (gameObj1 == gameObj2 || !gameObj2->CanCollide()) continue;
+
+				dae::CollisionComponent* collisionComponent2 = gameObj2->GetComponent<dae::CollisionComponent>();
+				if (SDL_HasIntersectionF(gameObj1->GetBoundingBox(), gameObj2->GetBoundingBox()))
+				{
+					collisionComponent2->OnEnter(*gameObj1);
+				}
 			}
 		}
 	}

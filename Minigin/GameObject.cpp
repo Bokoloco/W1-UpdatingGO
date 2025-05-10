@@ -19,6 +19,8 @@ dae::GameObject::~GameObject()
 	}
 
 	m_Components.clear();
+
+	delete m_BoundingRect;
 }
 
 void dae::GameObject::Update()
@@ -43,7 +45,7 @@ void dae::GameObject::LateUpdate()
 void dae::GameObject::Render() const
 {
 	const auto& pos = m_WorldPosition.GetPosition();
-	if (m_texture != nullptr) Renderer::GetInstance().RenderTexture(*m_texture, pos.x, pos.y);
+	if (m_texture != nullptr) Renderer::GetInstance().RenderTexture(*m_texture, pos.x, pos.y, m_BoundingRect->w * m_WorldPosition.GetScaling().x, m_BoundingRect->h * m_WorldPosition.GetScaling().y);
 
 	if (m_Components.size() != 0)
 	{
@@ -63,6 +65,11 @@ void dae::GameObject::SetTexture(const std::string& filename)
 void dae::GameObject::SetWorldPosition(float x, float y)
 {
 	m_WorldPosition.SetPosition(x, y, 0.0f);
+}
+
+void dae::GameObject::SetScaling(float x, float y, float z)
+{
+	m_WorldPosition.SetScaling(x, y, z);
 }
 
 const dae::Transform& dae::GameObject::GetWorldTransform() const
@@ -126,7 +133,7 @@ void dae::GameObject::UpdateWorldPosition()
 	if (m_PositionIsDirty)
 	{
 		if (m_pParent == nullptr)
-			m_WorldPosition = m_LocalPosition;
+			m_WorldPosition.SetPosition(m_LocalPosition.GetPosition());
 		else
 			m_WorldPosition.SetPosition(m_pParent->GetWorldPosition() + m_LocalPosition.GetPosition());
 	}

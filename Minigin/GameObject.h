@@ -30,6 +30,8 @@ namespace dae
 		void SetTexture(const std::string& filename);
 		void SetWorldPosition(float x, float y);
 
+		void SetScaling(float x, float y, float z);
+
 		const Transform& GetWorldTransform() const;
 
 		template<class TypeComponent, typename... Args>
