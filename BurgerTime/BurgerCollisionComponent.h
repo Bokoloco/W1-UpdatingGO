@@ -20,11 +20,14 @@ namespace dae
 		void OnEnter(GameObject&) override {};
 		void OnExit(GameObject&) override {};
 
+		bool HasBeenSteppedOn() const;
+
 	private:
-		Texture2D* m_Texture{};
+		//Texture2D* m_Texture{};
 
-		std::vector<std::pair<bool, std::unique_ptr<SDL_Rect>>> m_Pieces{};
+		//std::vector<std::pair<bool, std::unique_ptr<SDL_Rect>>> m_Pieces{};
 
-		int m_WidthPiece{};
+		//int m_WidthPiece{};
+		bool m_HasBeenSteppedOn{};
 	};
 }

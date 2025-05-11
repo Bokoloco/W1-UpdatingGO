@@ -43,6 +43,7 @@
 #include "./Components/MoveDownLadderComponent.h"
 #include "./Components/PlayerCollisionComponent.h"
 #include "BurgerCollisionComponent.h"
+#include "FoodFallingComponent.h"
 
 // Defining our achievements
 //enum EAchievements
@@ -153,13 +154,56 @@ void load()
 	scene.Add(burgerPlatform1);
 
 	auto burgerBun1 = new dae::GameObject();
-	burgerBun1->SetTexture("BurgerTime.png", 32, 7);
-	burgerBun1->SetSourceRectTexture(112, 49, 31, 7);
+	//burgerBun1->SetTexture("BurgerTime.png", 32, 7);
+	//burgerBun1->SetSourceRectTexture(112, 49, 32, 7);
 	burgerBun1->SetLocalPosition({ 127.f, 43.f, 0.f });
-	burgerBun1->SetScaling(2.f, 2.f, 2.f);
+	//burgerBun1->SetScaling(2.f, 2.f, 2.f);
 	burgerBun1->SetShouldRender(false);
-	burgerBun1->SetCanCollide(true);
-	burgerBun1->AddComponent<dae::BurgerCollisionComponent>();
+	burgerBun1->SetCanCollide(false);
+	//burgerBun1->AddComponent<dae::BurgerCollisionComponent>();
+
+
+	auto burgerBunPart1 = new dae::GameObject();
+	burgerBunPart1->SetTexture("BurgerTime.png", 8, 7);
+	burgerBunPart1->SetSourceRectTexture(112, 49, 8, 7);
+	burgerBunPart1->SetLocalPosition({ 0.f, 0.f, 0.f });
+	burgerBunPart1->SetScaling(2.f, 2.f, 2.f);
+	burgerBunPart1->SetCanCollide(true);
+	burgerBunPart1->AddComponent<dae::BurgerCollisionComponent>();
+	burgerBunPart1->SetParent(burgerBun1);
+	scene.Add(burgerBunPart1);
+
+	auto burgerBunPart2 = new dae::GameObject();
+	burgerBunPart2->SetTexture("BurgerTime.png", 8, 7);
+	burgerBunPart2->SetSourceRectTexture(120, 49, 8, 7);
+	burgerBunPart2->SetLocalPosition({ 16.f, 0.f, 0.f });
+	burgerBunPart2->SetScaling(2.f, 2.f, 2.f);
+	burgerBunPart2->SetCanCollide(true);
+	burgerBunPart2->AddComponent<dae::BurgerCollisionComponent>();
+	burgerBunPart2->SetParent(burgerBun1);
+	scene.Add(burgerBunPart2);
+
+	auto burgerBunPart3 = new dae::GameObject();
+	burgerBunPart3->SetTexture("BurgerTime.png", 8, 7);
+	burgerBunPart3->SetSourceRectTexture(128, 49, 8, 7);
+	burgerBunPart3->SetLocalPosition({ 32.f, 0.f, 0.f });
+	burgerBunPart3->SetScaling(2.f, 2.f, 2.f);
+	burgerBunPart3->SetCanCollide(true);
+	burgerBunPart3->AddComponent<dae::BurgerCollisionComponent>();
+	burgerBunPart3->SetParent(burgerBun1);
+	scene.Add(burgerBunPart3);
+
+	auto burgerBunPart4 = new dae::GameObject();
+	burgerBunPart4->SetTexture("BurgerTime.png", 8, 7);
+	burgerBunPart4->SetSourceRectTexture(136, 49, 8, 7);
+	burgerBunPart4->SetLocalPosition({ 48.f, 0.f, 0.f });
+	burgerBunPart4->SetScaling(2.f, 2.f, 2.f);
+	burgerBunPart4->SetCanCollide(true);
+	burgerBunPart4->AddComponent<dae::BurgerCollisionComponent>();
+	burgerBunPart4->SetParent(burgerBun1);
+	scene.Add(burgerBunPart4);
+
+	burgerBun1->AddComponent<dae::FoodFallingComponent>();
 	scene.Add(burgerBun1);
 
 	// Command exercise

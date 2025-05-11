@@ -168,6 +168,7 @@
     <ClCompile Include="Components\Exercise1Component.cpp" />
     <ClCompile Include="Components\Exercise2Component.cpp" />
     <ClCompile Include="Components\FPSComponent.cpp" />
+    <ClCompile Include="FoodFallingComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Components\MoveComponent.cpp" />
     <ClCompile Include="Commands\PauseMusicCommand.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="Commands\PauseMusicCommand.h" />
     <ClInclude Include="Components\PlayerCollisionComponent.h" />
     <ClInclude Include="Components\MoveDownLadderComponent.h" />
+    <ClInclude Include="FoodFallingComponent.h" />
     <ClInclude Include="MoveOnLadderCommand.h" />
     <ClInclude Include="PlayerHealthInfo.h" />
     <ClInclude Include="PlayerScoreInfo.h" />

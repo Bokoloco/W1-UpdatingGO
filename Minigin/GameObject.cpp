@@ -46,7 +46,7 @@ void dae::GameObject::LateUpdate()
 void dae::GameObject::Render() const
 {
 	const auto& pos = m_WorldPosition.GetPosition();
-	if (m_texture != nullptr && m_ShouldRender) Renderer::GetInstance().RenderTexture(*m_texture, m_SourceRect.get(), pos.x, pos.y, m_BoundingRect->w, m_BoundingRect->h);
+	if (m_texture != nullptr) Renderer::GetInstance().RenderTexture(*m_texture, m_SourceRect.get(), pos.x, pos.y, m_BoundingRect->w, m_BoundingRect->h);
 
 	if (m_Components.size() != 0)
 	{
@@ -139,6 +139,11 @@ const glm::vec3 dae::GameObject::GetWorldPosition()
 	if (m_PositionIsDirty)
 		UpdateWorldPosition();
 	return m_WorldPosition.GetPosition();
+}
+
+const glm::vec3 dae::GameObject::GetLocalPosition()
+{
+	return m_LocalPosition.GetPosition();
 }
 
 const dae::Transform& dae::GameObject::GetLocalTransform()
