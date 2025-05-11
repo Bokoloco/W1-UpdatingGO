@@ -2,9 +2,11 @@
 #include "Renderer.h"
 #include "GameObject.h"
 #include "Utils.h"
+#include <iostream>
 
-dae::BurgerCollisionComponent::BurgerCollisionComponent(GameObject& go)
+dae::BurgerCollisionComponent::BurgerCollisionComponent(GameObject& go, int idx)
 	: CollisionComponent(go)
+	, m_idx{idx}
 {}
 
 void dae::BurgerCollisionComponent::Update()
@@ -28,11 +30,23 @@ void dae::BurgerCollisionComponent::OnColliding(GameObject& go)
 			GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, GetOwner()->GetLocalPosition().y + 3.f, 0.f });
 		}
 	}
-	if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")))
+	if (go.ActorHasTag(dae::make_sdbm_hash("Plate")))
 	{
 		m_HasBeenSteppedOn = false;
-		go.SetCanCollide(false);
-		//GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
+	}
+	if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")) /*|| go.ActorHasTag(dae::make_sdbm_hash("Ladder"))*/)
+	{
+		m_HasBeenSteppedOn = false;
+		if (m_idx == 3 && go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform"))) go.SetCanCollide(false);
+		GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
+	}
+}
+
+void dae::BurgerCollisionComponent::OnExit(GameObject& go)
+{
+	if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")))
+	{
+		go.SetCanCollide(true);
 	}
 }
 

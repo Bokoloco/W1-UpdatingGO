@@ -143,11 +143,24 @@ void load()
 	ladder->AddComponent<dae::CollisionComponent>();
 	scene.Add(ladder);
 
+	auto ladder3 = new dae::GameObject();
+	ladder3->SetTexture("BackgroundSheet.tga", 10, 34);
+	ladder3->SetSourceRectTexture(0, 6, 10, 34);
+	ladder3->SetLocalPosition({ 100.f, 115.f, 0.f });
+	ladder3->SetCanCollide(true);
+	ladder3->SetScaling(2.f, 2.f, 2.f);
+	ladder3->AddTag(dae::make_sdbm_hash("Ladder"));
+	ladder3->AddComponent<dae::CollisionComponent>();
+	scene.Add(ladder3);
+
 	auto ladderPlatform1 = new dae::GameObject();
 	ladderPlatform1->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform1->SetSourceRectTexture(0, 3, 16, 3);
 	ladderPlatform1->SetLocalPosition({ 94.f, 53.f, 0.f });
 	ladderPlatform1->SetScaling(2.f, 2.f, 2.f);
+	ladderPlatform1->AddTag(dae::make_sdbm_hash("Platform"));
+	//ladderPlatform1->SetCanCollide(true);
+	//ladderPlatform1->AddComponent<dae::CollisionComponent>();
 	scene.Add(ladderPlatform1);
 
 	auto burgerPlatform1 = new dae::GameObject();
@@ -157,15 +170,92 @@ void load()
 	burgerPlatform1->SetScaling(2.f, 2.f, 2.f);
 	scene.Add(burgerPlatform1);
 
+	auto ladderPlatform2 = new dae::GameObject();
+	ladderPlatform2->SetTexture("BackgroundSheet.tga", 16, 3);
+	ladderPlatform2->SetSourceRectTexture(0, 3, 16, 3);
+	ladderPlatform2->SetLocalPosition({ 190.f, 53.f, 0.f });
+	ladderPlatform2->SetScaling(2.f, 2.f, 2.f);
+	scene.Add(ladderPlatform2);
+
+	//auto ladder2 = new dae::GameObject();
+	//ladder2->SetTexture("BackgroundSheet.tga", 10, 34);
+	//ladder2->SetSourceRectTexture(0, 6, 10, 34);
+	//ladder2->SetLocalPosition({ 148.f, 115.f, 0.f });
+	//ladder2->SetCanCollide(true);
+	//ladder2->SetScaling(2.f, 2.f, 2.f);
+	//ladder2->AddTag(dae::make_sdbm_hash("Ladder"));
+	//ladder2->AddComponent<dae::CollisionComponent>();
+	//scene.Add(ladder2);
+
 	auto burgerPlatform2 = new dae::GameObject();
 	burgerPlatform2->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform2->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform2->SetLocalPosition({ 126.f, 100.f, 0.f });
+	burgerPlatform2->SetLocalPosition({ 126.f, 118.f, 0.f });
 	burgerPlatform2->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform2->SetCanCollide(true);
 	burgerPlatform2->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
 	burgerPlatform2->AddComponent<dae::CollisionComponent>();
 	scene.Add(burgerPlatform2);
+
+	auto lol = new dae::GameObject();
+	lol->SetTexture("BackgroundSheet.tga", 32, 3);
+	lol->SetSourceRectTexture(0, 0, 32, 3);
+	lol->SetLocalPosition({ 126.f, 185.f, 0.f });
+	lol->SetScaling(2.f, 2.f, 2.f);
+	lol->SetCanCollide(true);
+	lol->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
+	lol->AddComponent<dae::CollisionComponent>();
+	scene.Add(lol);
+
+	//auto burgerPlatform4 = new dae::GameObject();
+	//burgerPlatform4->SetTexture("BackgroundSheet.tga", 32, 3);
+	//burgerPlatform4->SetSourceRectTexture(0, 0, 32, 3);
+	//burgerPlatform4->SetLocalPosition({ 126.f, 250.f, 0.f });
+	//burgerPlatform4->SetScaling(2.f, 2.f, 2.f);
+	//burgerPlatform4->SetCanCollide(true);
+	//burgerPlatform4->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
+	//burgerPlatform4->AddComponent<dae::CollisionComponent>();
+	//scene.Add(burgerPlatform4);
+
+	auto ladderPlatform3 = new dae::GameObject();
+	ladderPlatform3->SetTexture("BackgroundSheet.tga", 16, 3);
+	ladderPlatform3->SetSourceRectTexture(0, 3, 16, 3);
+	ladderPlatform3->SetLocalPosition({ 94.f, 118.f, 0.f });
+	ladderPlatform3->SetScaling(2.f, 2.f, 2.f);
+	ladderPlatform3->AddTag(dae::make_sdbm_hash("Platform"));
+	scene.Add(ladderPlatform3);
+
+	auto ladderPlatform5 = new dae::GameObject();
+	ladderPlatform5->SetTexture("BackgroundSheet.tga", 16, 3);
+	ladderPlatform5->SetSourceRectTexture(0, 3, 16, 3);
+	ladderPlatform5->SetLocalPosition({ 94.f, 185.f, 0.f });
+	ladderPlatform5->SetScaling(2.f, 2.f, 2.f);
+	ladderPlatform5->AddTag(dae::make_sdbm_hash("Platform"));
+	scene.Add(ladderPlatform5);
+
+	//auto ladderPlatform2 = new dae::GameObject();
+	//ladderPlatform2->SetTexture("BackgroundSheet.tga", 16, 3);
+	//ladderPlatform2->SetSourceRectTexture(0, 3, 16, 3);
+	//ladderPlatform2->SetLocalPosition({ 190.f, 53.f, 0.f });
+	//ladderPlatform2->SetScaling(2.f, 2.f, 2.f);
+	//scene.Add(ladderPlatform2);
+
+	auto ladderPlatform4 = new dae::GameObject();
+	ladderPlatform4->SetTexture("BackgroundSheet.tga", 16, 3);
+	ladderPlatform4->SetSourceRectTexture(0, 3, 16, 3);
+	ladderPlatform4->SetLocalPosition({ 190.f, 118.f, 0.f });
+	ladderPlatform4->SetScaling(2.f, 2.f, 2.f);
+	scene.Add(ladderPlatform4);
+
+	auto plate1 = new dae::GameObject();
+	plate1->SetTexture("BackgroundSheet.tga", 38, 6);
+	plate1->SetSourceRectTexture(0, 40, 38, 6);
+	plate1->SetLocalPosition({ 120.f, 400.f, 0.f });
+	plate1->SetScaling(2.f, 2.f, 2.f);
+	plate1->SetCanCollide(true);
+	plate1->AddTag(dae::make_sdbm_hash("Plate"));
+	plate1->AddComponent<dae::CollisionComponent>();
+	scene.Add(plate1);
 
 	auto burgerBun1 = new dae::GameObject();
 	burgerBun1->SetLocalPosition({ 127.f, 43.f, 0.f });
@@ -178,7 +268,7 @@ void load()
 	burgerBunPart1->SetLocalPosition({ 0.f, 0.f, 0.f });
 	burgerBunPart1->SetScaling(2.f, 2.f, 2.f);
 	burgerBunPart1->SetCanCollide(true);
-	burgerBunPart1->AddComponent<dae::BurgerCollisionComponent>();
+	burgerBunPart1->AddComponent<dae::BurgerCollisionComponent>(0);
 	burgerBunPart1->SetParent(burgerBun1);
 	scene.Add(burgerBunPart1);
 
@@ -188,7 +278,7 @@ void load()
 	burgerBunPart2->SetLocalPosition({ 16.f, 0.f, 0.f });
 	burgerBunPart2->SetScaling(2.f, 2.f, 2.f);
 	burgerBunPart2->SetCanCollide(true);
-	burgerBunPart2->AddComponent<dae::BurgerCollisionComponent>();
+	burgerBunPart2->AddComponent<dae::BurgerCollisionComponent>(1);
 	burgerBunPart2->SetParent(burgerBun1);
 	scene.Add(burgerBunPart2);
 
@@ -198,7 +288,7 @@ void load()
 	burgerBunPart3->SetLocalPosition({ 32.f, 0.f, 0.f });
 	burgerBunPart3->SetScaling(2.f, 2.f, 2.f);
 	burgerBunPart3->SetCanCollide(true);
-	burgerBunPart3->AddComponent<dae::BurgerCollisionComponent>();
+	burgerBunPart3->AddComponent<dae::BurgerCollisionComponent>(2);
 	burgerBunPart3->SetParent(burgerBun1);
 	scene.Add(burgerBunPart3);
 
@@ -208,7 +298,7 @@ void load()
 	burgerBunPart4->SetLocalPosition({ 48.f, 0.f, 0.f });
 	burgerBunPart4->SetScaling(2.f, 2.f, 2.f);
 	burgerBunPart4->SetCanCollide(true);
-	burgerBunPart4->AddComponent<dae::BurgerCollisionComponent>();
+	burgerBunPart4->AddComponent<dae::BurgerCollisionComponent>(3);
 	burgerBunPart4->SetParent(burgerBun1);
 	scene.Add(burgerBunPart4);
 
@@ -236,7 +326,7 @@ void load()
 
 	auto burgerGuy2 = new dae::GameObject();
 	burgerGuy2->SetTexture("burgerGuy.tga", 16.f, 16.f);
-	burgerGuy->SetSourceRectTexture(0, 0, 16, 16);
+	burgerGuy2->SetSourceRectTexture(0, 0, 16, 16);
 	burgerGuy2->SetLocalPosition({ 400.f, 29.f, 0.f });
 	burgerGuy2->SetSpeed(0.2f);
 	burgerGuy2->SetCanCollide(true);

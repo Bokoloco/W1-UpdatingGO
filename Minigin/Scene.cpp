@@ -71,24 +71,32 @@ void dae::Scene::CheckCollision()
 			{
 				if (gameObj1 == gameObj2 || !gameObj2->CanCollide()) continue;
 
-				dae::CollisionComponent* collisionComponent2 = gameObj2->GetComponent<dae::CollisionComponent>();
+				dae::CollisionComponent* collisionComponent1 = gameObj1->GetComponent<dae::CollisionComponent>();
+				//dae::CollisionComponent* collisionComponent2 = gameObj2->GetComponent<dae::CollisionComponent>();
 				if (SDL_HasIntersectionF(gameObj1->GetBoundingBox(), gameObj2->GetBoundingBox()))
 				{
-					if (m_CurrentCollisions.find(collisionComponent2) == m_CurrentCollisions.end())
+					if (m_CurrentCollisions.find(collisionComponent1) == m_CurrentCollisions.end() /*&& m_CurrentCollisions.find(collisionComponent1) == m_CurrentCollisions.end()*/)
 					{
-						collisionComponent2->OnEnter(*gameObj1);
-						m_CurrentCollisions.emplace(collisionComponent2, gameObj1);
+						collisionComponent1->OnEnter(*gameObj2);
+						//collisionComponent2->OnEnter(*gameObj1);
+						m_CurrentCollisions.emplace(collisionComponent1, gameObj2);
+						//m_CurrentCollisions.emplace(collisionComponent2, gameObj1);
 					}
 					else
-						collisionComponent2->OnColliding(*gameObj1);
+					{
+						collisionComponent1->OnColliding(*gameObj2);
+						//collisionComponent2->OnColliding(*gameObj1);
+					}
 				}
 
-				if (!SDL_HasIntersectionF(gameObj1->GetBoundingBox(), gameObj2->GetBoundingBox()) && m_CurrentCollisions.find(collisionComponent2) != m_CurrentCollisions.end())
+				if (!SDL_HasIntersectionF(gameObj1->GetBoundingBox(), gameObj2->GetBoundingBox()) && m_CurrentCollisions.find(collisionComponent1) != m_CurrentCollisions.end())
 				{
-					if (gameObj1 == m_CurrentCollisions.find(collisionComponent2)->second)
+					if (/*gameObj1 == m_CurrentCollisions.find(collisionComponent2)->second &&*/ gameObj2 == m_CurrentCollisions.find(collisionComponent1)->second)
 					{
-						collisionComponent2->OnExit(*gameObj1);
-						m_CurrentCollisions.erase(collisionComponent2);
+						collisionComponent1->OnExit(*gameObj2);
+						//collisionComponent2->OnExit(*gameObj1);
+						m_CurrentCollisions.erase(collisionComponent1);
+						//m_CurrentCollisions.erase(collisionComponent2);
 					}
 				}
 			}

@@ -11,14 +11,14 @@ namespace dae
 	class BurgerCollisionComponent : public CollisionComponent
 	{
 	public:
-		BurgerCollisionComponent(GameObject& go);
+		BurgerCollisionComponent(GameObject& go, int idx);
 
 		void Update() override;
 		void Render() const override;
 
 		void OnColliding(GameObject& go) override;
 		void OnEnter(GameObject&) override {};
-		void OnExit(GameObject&) override {};
+		void OnExit(GameObject& go) override;
 
 		bool HasBeenSteppedOn() const;
 
@@ -29,5 +29,7 @@ namespace dae
 
 		//int m_WidthPiece{};
 		bool m_HasBeenSteppedOn{};
+
+		int m_idx{};
 	};
 }

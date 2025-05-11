@@ -22,6 +22,5 @@ namespace dae
 		bool m_CanMoveDownLadder{};
 		float m_MaxHeight{};
 		float m_MinHeight{};
-
 	};
 }

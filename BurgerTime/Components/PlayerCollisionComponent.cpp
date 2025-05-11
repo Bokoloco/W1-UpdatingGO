@@ -24,7 +24,7 @@ void dae::PlayerCollisionComponent::OnColliding(GameObject& go)
 		if (xPosOwner <= xPosCollidingObject && xPosOwner >= go.GetWorldPosition().x)
 		{
 			m_pMoveDownLadderComponent->SetCanMoveDownLadder(true);
-			m_pMoveDownLadderComponent->SetMoveToHeight(go.GetWorldPosition().y + go.GetBoundingBox()->h - GetOwner()->GetBoundingBox()->h);
+			m_pMoveDownLadderComponent->SetMoveToHeight(go.GetWorldPosition().y + go.GetBoundingBox()->h);
 		}
 		else
 			m_pMoveDownLadderComponent->SetCanMoveDownLadder(false);
