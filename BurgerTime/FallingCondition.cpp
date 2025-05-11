@@ -1,9 +1,10 @@
-#include "FoodFallingComponent.h"
+#include "FallingCondition.h"
 #include "GameObject.h"
 #include "BurgerCollisionComponent.h"
 
-dae::FoodFallingComponent::FoodFallingComponent(GameObject& go)
-	: BaseComponent(go)
+dae::FallingCondition::FallingCondition(GameObject& go, bool toFallTransition)
+	: FSMCondition(go)
+	, m_ToFallTransition{toFallTransition}
 {
 	for (int i{}; i < GetOwner()->GetChildCount(); ++i)
 	{
@@ -14,14 +15,12 @@ dae::FoodFallingComponent::FoodFallingComponent(GameObject& go)
 	}
 }
 
-void dae::FoodFallingComponent::Update()
+bool dae::FallingCondition::Evaluate() const
 {
 	auto it = std::find_if(m_CollisionComponents.begin(), m_CollisionComponents.end(), [&](BurgerCollisionComponent* comp) {return !comp->HasBeenSteppedOn(); });
-	if (it == m_CollisionComponents.end())
-	{
-		GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, GetOwner()->GetLocalPosition().y + 2.f, 0.f });
-	}
-}
 
-void dae::FoodFallingComponent::Render() const
-{}
+	if (m_ToFallTransition)
+		return it == m_CollisionComponents.end();
+
+	return it != m_CollisionComponents.end();
+}

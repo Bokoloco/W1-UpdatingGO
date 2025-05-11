@@ -44,6 +44,10 @@
 #include "./Components/PlayerCollisionComponent.h"
 #include "BurgerCollisionComponent.h"
 #include "FoodFallingComponent.h"
+#include "FallingCondition.h"
+#include "FallingState.h"
+#include "FSMComponent.h"
+#include "IdleState.h"
 
 // Defining our achievements
 //enum EAchievements
@@ -153,15 +157,20 @@ void load()
 	burgerPlatform1->SetScaling(2.f, 2.f, 2.f);
 	scene.Add(burgerPlatform1);
 
+	auto burgerPlatform2 = new dae::GameObject();
+	burgerPlatform2->SetTexture("BackgroundSheet.tga", 32, 3);
+	burgerPlatform2->SetSourceRectTexture(0, 0, 32, 3);
+	burgerPlatform2->SetLocalPosition({ 126.f, 100.f, 0.f });
+	burgerPlatform2->SetScaling(2.f, 2.f, 2.f);
+	burgerPlatform2->SetCanCollide(true);
+	burgerPlatform2->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
+	burgerPlatform2->AddComponent<dae::CollisionComponent>();
+	scene.Add(burgerPlatform2);
+
 	auto burgerBun1 = new dae::GameObject();
-	//burgerBun1->SetTexture("BurgerTime.png", 32, 7);
-	//burgerBun1->SetSourceRectTexture(112, 49, 32, 7);
 	burgerBun1->SetLocalPosition({ 127.f, 43.f, 0.f });
-	//burgerBun1->SetScaling(2.f, 2.f, 2.f);
 	burgerBun1->SetShouldRender(false);
 	burgerBun1->SetCanCollide(false);
-	//burgerBun1->AddComponent<dae::BurgerCollisionComponent>();
-
 
 	auto burgerBunPart1 = new dae::GameObject();
 	burgerBunPart1->SetTexture("BurgerTime.png", 8, 7);
@@ -203,7 +212,13 @@ void load()
 	burgerBunPart4->SetParent(burgerBun1);
 	scene.Add(burgerBunPart4);
 
-	burgerBun1->AddComponent<dae::FoodFallingComponent>();
+	burgerBun1->AddComponent<dae::FSMComponent>();
+	burgerBun1->GetComponent<dae::FSMComponent>()->AddState<dae::IdleState>(dae::make_sdbm_hash("BurgerIdleState"));
+	burgerBun1->GetComponent<dae::FSMComponent>()->AddState<dae::FallingState>(dae::make_sdbm_hash("BurgerFallingState"), 0.2f);
+	burgerBun1->GetComponent<dae::FSMComponent>()->AddCondition<dae::FallingCondition>(dae::make_sdbm_hash("BurgerToFallingCondition"), *burgerBun1, true);
+	burgerBun1->GetComponent<dae::FSMComponent>()->AddCondition<dae::FallingCondition>(dae::make_sdbm_hash("BurgerFromFallingCondition"), *burgerBun1, false);
+	burgerBun1->GetComponent<dae::FSMComponent>()->AddTransition(dae::make_sdbm_hash("BurgerIdleState"), dae::make_sdbm_hash("BurgerFallingState"), dae::make_sdbm_hash("BurgerToFallingCondition"));
+	burgerBun1->GetComponent<dae::FSMComponent>()->AddTransition(dae::make_sdbm_hash("BurgerFallingState"), dae::make_sdbm_hash("BurgerIdleState"), dae::make_sdbm_hash("BurgerFromFallingCondition"));
 	scene.Add(burgerBun1);
 
 	// Command exercise

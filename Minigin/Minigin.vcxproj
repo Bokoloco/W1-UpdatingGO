@@ -226,6 +226,8 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "$(OutputPat
     <ClInclude Include="ControllerInput.h" />
     <ClInclude Include="CSteamAchievements.h" />
     <ClInclude Include="Font.h" />
+    <ClInclude Include="FSMComponent.h" />
+    <ClInclude Include="FSMStateAndCondition.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="HealthComponent.h" />
     <ClInclude Include="InputManager.h" />
@@ -265,6 +267,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\$(PlatformTarget)\*.dll" "$(OutputPat
     <ClCompile Include="ControllerInput.cpp" />
     <ClCompile Include="CSteamAchievements.cpp" />
     <ClCompile Include="Font.cpp" />
+    <ClCompile Include="FSMComponent.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="HealthComponent.cpp" />
     <ClCompile Include="InputManager.cpp" />
