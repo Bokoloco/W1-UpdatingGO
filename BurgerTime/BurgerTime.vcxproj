@@ -164,6 +164,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BoxColliderComponent.cpp" />
+    <ClCompile Include="BurgerCollisionComponent.cpp" />
     <ClCompile Include="Components\Exercise1Component.cpp" />
     <ClCompile Include="Components\Exercise2Component.cpp" />
     <ClCompile Include="Components\FPSComponent.cpp" />
@@ -182,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoxColliderComponent.h" />
+    <ClInclude Include="BurgerCollisionComponent.h" />
     <ClInclude Include="Components\Exercise1Component.h" />
     <ClInclude Include="Components\Exercise2Component.h" />
     <ClInclude Include="Components\FPSComponent.h" />

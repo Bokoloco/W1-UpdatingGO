@@ -46,7 +46,7 @@ void dae::GameObject::LateUpdate()
 void dae::GameObject::Render() const
 {
 	const auto& pos = m_WorldPosition.GetPosition();
-	if (m_texture != nullptr) Renderer::GetInstance().RenderTexture(*m_texture, m_SourceRect.get(), pos.x, pos.y, m_BoundingRect->w, m_BoundingRect->h);
+	if (m_texture != nullptr && m_ShouldRender) Renderer::GetInstance().RenderTexture(*m_texture, m_SourceRect.get(), pos.x, pos.y, m_BoundingRect->w, m_BoundingRect->h);
 
 	if (m_Components.size() != 0)
 	{
@@ -77,6 +77,11 @@ void dae::GameObject::SetWorldPosition(float x, float y)
 void dae::GameObject::SetSourceRectTexture(int x, int y, int w, int h)
 {
 	m_SourceRect = std::make_unique<SDL_Rect>(x, y, w, h);
+}
+
+SDL_Rect* dae::GameObject::GetSourceRect()
+{
+	return m_SourceRect.get();
 }
 
 void dae::GameObject::SetScaling(float x, float y, float z)
@@ -217,6 +222,16 @@ const SDL_FRect* dae::GameObject::GetBoundingBox()
 	m_BoundingRect->x = m_WorldPosition.GetPosition().x;
 	m_BoundingRect->y = m_WorldPosition.GetPosition().y;
 	return m_BoundingRect;
+}
+
+dae::Texture2D* dae::GameObject::GetTexture()
+{
+	return m_texture.get();
+}
+
+void dae::GameObject::SetShouldRender(bool value)
+{
+	m_ShouldRender = value;
 }
 
 void dae::GameObject::AddChild(GameObject* child)

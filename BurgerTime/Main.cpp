@@ -42,6 +42,7 @@
 #include "Utils.h"
 #include "./Components/MoveDownLadderComponent.h"
 #include "./Components/PlayerCollisionComponent.h"
+#include "BurgerCollisionComponent.h"
 
 // Defining our achievements
 //enum EAchievements
@@ -152,10 +153,13 @@ void load()
 	scene.Add(burgerPlatform1);
 
 	auto burgerBun1 = new dae::GameObject();
-	burgerBun1->SetTexture("BurgerTime.png", 31, 7);
+	burgerBun1->SetTexture("BurgerTime.png", 32, 7);
 	burgerBun1->SetSourceRectTexture(112, 49, 31, 7);
 	burgerBun1->SetLocalPosition({ 127.f, 43.f, 0.f });
 	burgerBun1->SetScaling(2.f, 2.f, 2.f);
+	burgerBun1->SetShouldRender(false);
+	burgerBun1->SetCanCollide(true);
+	burgerBun1->AddComponent<dae::BurgerCollisionComponent>();
 	scene.Add(burgerBun1);
 
 	// Command exercise
@@ -166,7 +170,7 @@ void load()
 	burgerGuy->SetSpeed(0.1f);
 	burgerGuy->SetCanCollide(true);
 	burgerGuy->SetScaling(2.f, 2.f, 2.f);
-	burgerGuy->AddTag(dae::make_sdbm_hash("Player1"));
+	burgerGuy->AddTag(dae::make_sdbm_hash("Player"));
 	burgerGuy->AddComponent<dae::MoveDownLadderComponent>();
 	burgerGuy->AddComponent<dae::PlayerCollisionComponent>();
 	scene.Add(burgerGuy);

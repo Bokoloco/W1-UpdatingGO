@@ -32,6 +32,7 @@ namespace dae
 		void SetWorldPosition(float x, float y);
 
 		void SetSourceRectTexture(int x, int y, int w, int h);
+		SDL_Rect* GetSourceRect();
 
 		void SetScaling(float x, float y, float z);
 
@@ -78,6 +79,8 @@ namespace dae
 
 		const SDL_FRect* GetBoundingBox();
 
+		Texture2D* GetTexture();
+		void SetShouldRender(bool value);
 
 	private:
 		Transform m_LocalPosition{};
@@ -90,6 +93,7 @@ namespace dae
 		bool m_PositionIsDirty{};
 		bool m_ShouldBeDeletedFromChildren{};
 		bool m_CanCollide{};
+		bool m_ShouldRender{true};
 
 		std::vector<BaseComponent*> m_Components{};
 		std::shared_ptr<Texture2D> m_texture{};
@@ -132,7 +136,7 @@ namespace dae
 	{
 		for (BaseComponent* bc : m_Components)
 		{
-			if (typeid(TypeComponent).name() == typeid(*bc).name())
+			if (dynamic_cast<TypeComponent*>(bc))
 			{
 				return true;
 			}
