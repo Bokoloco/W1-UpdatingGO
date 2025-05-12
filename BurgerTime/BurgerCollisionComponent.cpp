@@ -30,14 +30,53 @@ void dae::BurgerCollisionComponent::OnColliding(GameObject& go)
 			GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, GetOwner()->GetLocalPosition().y + 3.f, 0.f });
 		}
 	}
-	if (go.ActorHasTag(dae::make_sdbm_hash("Plate")))
+	if (go.ActorHasTag(dae::make_sdbm_hash("Food")))
 	{
-		m_HasBeenSteppedOn = false;
+		if (!go.GetComponent<BurgerCollisionComponent>()->HasHitPlate())
+		{
+			if (go.GetWorldPosition().y < GetOwner()->GetWorldPosition().y)
+			{
+				m_HasBeenSteppedOn = true;
+				GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, GetOwner()->GetLocalPosition().y + 3.f, 0.f });
+			}
+			if (go.GetWorldPosition().y > GetOwner()->GetWorldPosition().y)
+			{
+				m_HasBeenSteppedOn = false;
+				GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
+			}
+		}
+		else
+		{
+			m_HasBeenSteppedOn = false;
+			m_HasHitPlate = true;
+			//GetOwner()->GetParent()->SetLocalPosition({ GetOwner()->GetParent()->GetLocalPosition().x, GetOwner()->GetParent()->GetLocalPosition().y + 1.f, 0.f });
+		}
 	}
+	//if (go.ActorHasTag(dae::make_sdbm_hash("Plate")))
+	//{
+	//	m_HasBeenSteppedOn = false;
+	//}
+	//if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")) /*|| go.ActorHasTag(dae::make_sdbm_hash("Ladder"))*/)
+	//{
+	//	m_HasBeenSteppedOn = false;
+	//	if (m_idx == 3 && go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform"))) go.SetCanCollide(false);
+	//	GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
+	//}
+}
+
+void dae::BurgerCollisionComponent::OnEnter(GameObject& go)
+{
 	if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")) /*|| go.ActorHasTag(dae::make_sdbm_hash("Ladder"))*/)
 	{
 		m_HasBeenSteppedOn = false;
-		if (m_idx == 3 && go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform"))) go.SetCanCollide(false);
+		//if (m_idx == 3 && go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform"))) go.SetCanCollide(false);
+		GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
+		//GetOwner()->GetParent()->SetLocalPosition({ GetOwner()->GetParent()->GetLocalPosition().x, GetOwner()->GetParent()->GetLocalPosition().y + 1.f, 0.f });
+	}
+	if (go.ActorHasTag(dae::make_sdbm_hash("Plate")))
+	{
+		m_HasBeenSteppedOn = false;
+		m_HasHitPlate = true;
 		GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
 	}
 }
@@ -52,5 +91,10 @@ void dae::BurgerCollisionComponent::OnExit(GameObject& go)
 
 bool dae::BurgerCollisionComponent::HasBeenSteppedOn() const
 {
-	return m_HasBeenSteppedOn;
+	return m_HasBeenSteppedOn && !m_HasHitPlate;
+}
+
+bool dae::BurgerCollisionComponent::HasHitPlate() const
+{
+	return m_HasHitPlate;
 }

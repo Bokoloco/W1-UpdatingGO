@@ -39,7 +39,10 @@ void dae::FSMComponent::Update()
             for (auto pair : transitions)
             {
                 if (pair.first->Evaluate())
+                {
                     m_pCurrentState = pair.second;
+                    m_pCurrentState->OnEnter(GetOwner());
+                }
             }
         }
     }

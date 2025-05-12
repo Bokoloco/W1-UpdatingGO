@@ -9,7 +9,7 @@ namespace dae
 		IdleState() = default;
 		~IdleState() = default;
 
-		void OnEnter(GameObject*) override {};
+		void OnEnter(GameObject* go) override;
 		void Update(GameObject*) override {};
 
 	};
