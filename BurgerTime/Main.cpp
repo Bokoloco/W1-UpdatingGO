@@ -329,10 +329,12 @@ void load()
 	burgerBun1->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
 	scene.Add(burgerBun1);
 
-	/*auto lettuce1 = new dae::GameObject();
+	auto lettuce1 = new dae::GameObject();
 	lettuce1->SetLocalPosition({ 127.f, 108.f, 0.f });
 	lettuce1->SetShouldRender(false);
-	lettuce1->SetCanCollide(false);
+	lettuce1->SetCanCollide(true);
+	lettuce1->SetBoudingBoxDimensions(8.f * 4.f, 7.f);
+	lettuce1->SetScaling(2.f, 2.f, 2.f);
 
 	auto lettuce1Part1 = new dae::GameObject();
 	lettuce1Part1->SetTexture("BurgerTime.png", 8, 7);
@@ -378,14 +380,17 @@ void load()
 	lettuce1Part4->AddTag(dae::make_sdbm_hash("Food"));
 	scene.Add(lettuce1Part4);
 
-	lettuce1->AddComponent<dae::FSMComponent>();
+	/*lettuce1->AddComponent<dae::FSMComponent>();
 	lettuce1->GetComponent<dae::FSMComponent>()->AddState<dae::IdleState>(dae::make_sdbm_hash("BurgerIdleState"));
 	lettuce1->GetComponent<dae::FSMComponent>()->AddState<dae::FallingState>(dae::make_sdbm_hash("BurgerFallingState"), 0.2f);
 	lettuce1->GetComponent<dae::FSMComponent>()->AddCondition<dae::FallingCondition>(dae::make_sdbm_hash("BurgerToFallingCondition"), *lettuce1, true);
 	lettuce1->GetComponent<dae::FSMComponent>()->AddCondition<dae::FallingCondition>(dae::make_sdbm_hash("BurgerFromFallingCondition"), *lettuce1, false);
 	lettuce1->GetComponent<dae::FSMComponent>()->AddTransition(dae::make_sdbm_hash("BurgerIdleState"), dae::make_sdbm_hash("BurgerFallingState"), dae::make_sdbm_hash("BurgerToFallingCondition"));
-	lettuce1->GetComponent<dae::FSMComponent>()->AddTransition(dae::make_sdbm_hash("BurgerFallingState"), dae::make_sdbm_hash("BurgerIdleState"), dae::make_sdbm_hash("BurgerFromFallingCondition"));
-	scene.Add(lettuce1);*/
+	lettuce1->GetComponent<dae::FSMComponent>()->AddTransition(dae::make_sdbm_hash("BurgerFallingState"), dae::make_sdbm_hash("BurgerIdleState"), dae::make_sdbm_hash("BurgerFromFallingCondition"));*/
+	lettuce1->AddComponent<dae::FoodFallingComponent>(0.2f);
+	lettuce1->AddComponent<dae::BurgerCollisionComponent>();
+	lettuce1->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
+	scene.Add(lettuce1);
 
 	// Command exercise
 	auto burgerGuy = new dae::GameObject();

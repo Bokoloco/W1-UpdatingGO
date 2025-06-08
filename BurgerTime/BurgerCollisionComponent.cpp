@@ -27,11 +27,15 @@ void dae::BurgerCollisionComponent::OnEnter(GameObject& go)
 	if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")))
 	{
 		//go.SetCanCollide(false);
-		std::cout << "in Enter" << std::endl;
-
 		m_pSubject->NotifyObservers(dae::make_sdbm_hash("BurgerDropped"), GetOwner());
 		m_pFoodFallingComponent->ShouldNotFall(false);
 		//GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, GetOwner()->GetLocalPosition().y + 2.f, 0.f });
+	}
+	if (go.ActorHasTag(dae::make_sdbm_hash("Food")) || go.ActorHasTag(dae::make_sdbm_hash("Plate")))
+	{
+		std::cout << "in Enter" << std::endl;
+		m_pFoodFallingComponent->ShouldNotFall(false);
+		m_pSubject->NotifyObservers(dae::make_sdbm_hash("BurgerDropped"), GetOwner());
 	}
 }
 
@@ -39,10 +43,9 @@ void dae::BurgerCollisionComponent::OnExit(GameObject& go)
 {
 	std::cout << "in exit" << std::endl;
 
-	if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")))
+	if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")) || go.ActorHasTag(dae::make_sdbm_hash("Food")) || go.ActorHasTag(dae::make_sdbm_hash("Plate")))
 	{
 		m_pFoodFallingComponent->ShouldNotFall(true);
-		//go.SetCanCollide(true);
 	}
 }
 

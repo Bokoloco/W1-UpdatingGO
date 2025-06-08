@@ -32,7 +32,7 @@ namespace dae
 
 		std::string m_name;
 		std::vector <GameObject*> m_objects{};
-		std::map<CollisionComponent*, GameObject*> m_CurrentCollisions{};
+		std::multimap<CollisionComponent*, GameObject*> m_CurrentCollisions{};
 
 		static unsigned int m_idCounter; 
 	};

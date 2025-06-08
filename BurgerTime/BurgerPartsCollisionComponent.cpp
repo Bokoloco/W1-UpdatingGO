@@ -37,12 +37,11 @@ void dae::BurgerPartsCollisionComponent::OnColliding(GameObject& go)
 			if (go.GetWorldPosition().y < GetOwner()->GetWorldPosition().y)
 			{
 				m_HasBeenSteppedOn = true;
-				GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 3.f, 0.f });
+				GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 8.f, 0.f });
 			}
 			if (go.GetWorldPosition().y > GetOwner()->GetWorldPosition().y)
 			{
 				m_HasBeenSteppedOn = false;
-				GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
 			}
 		}
 		else
@@ -69,10 +68,10 @@ void dae::BurgerPartsCollisionComponent::OnEnter(GameObject& go)
 	if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")) /*|| go.ActorHasTag(dae::make_sdbm_hash("Ladder"))*/)
 	{
 		m_HasBeenSteppedOn = false;
-		std::cout << "OnEnter BurgerPlatform" << std::endl;
+
 		//if (m_idx == 3) go.SetCanCollide(false);
 		GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
-		GetOwner()->GetParent()->SetLocalPosition({ GetOwner()->GetParent()->GetLocalPosition().x, GetOwner()->GetParent()->GetLocalPosition().y + 1.f, 0.f });
+		//GetOwner()->GetParent()->SetLocalPosition({ GetOwner()->GetParent()->GetLocalPosition().x, GetOwner()->GetParent()->GetLocalPosition().y + 1.f, 0.f });
 	}
 	if (go.ActorHasTag(dae::make_sdbm_hash("Plate")))
 	{
@@ -86,7 +85,7 @@ void dae::BurgerPartsCollisionComponent::OnExit(GameObject& go)
 {
 	if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")))
 	{
-		std::cout << "OnExit burger" << std::endl;
+
 		GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
 	}
 }

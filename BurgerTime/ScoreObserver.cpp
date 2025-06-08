@@ -11,6 +11,7 @@ void dae::ScoreObserver::OnNotify(unsigned int eventID, GameObject* )
 {
 	if (eventID == m_HashBurgerDropped)
 	{
-		std::cout << "+ 50" << std::endl;
+		m_Score += 50;
+		std::cout << "Score: " << m_Score << std::endl;
 	}
 }

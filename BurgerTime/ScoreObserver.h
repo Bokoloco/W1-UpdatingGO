@@ -18,6 +18,8 @@ namespace dae
 		unsigned int m_HashMrHotDog{};
 		unsigned int m_HashMrPickle{};
 		unsigned int m_HashMrEgg{};
+
+		unsigned int m_Score{};
 		
 	};
 
