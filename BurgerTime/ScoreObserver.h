@@ -8,7 +8,7 @@ namespace dae
 	class ScoreObserver final : public Observer
 	{
 	public: 
-		ScoreObserver() = default;
+		ScoreObserver();
 		~ScoreObserver() = default;
 
 		void OnNotify(unsigned int eventID, GameObject* go);
