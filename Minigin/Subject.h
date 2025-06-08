@@ -11,8 +11,10 @@ namespace dae
 		void AddObserver(Observer& observer);
 		//void RemoveObserver(Observer& observer);
 
+		friend class BurgerCollisionComponent;
+
 	protected:
-		void NotifyObservers(ObserverEvent e);
+		void NotifyObservers(unsigned int eventId, GameObject* go);
 
 	private:
 		std::vector<Observer*> m_pObservers;

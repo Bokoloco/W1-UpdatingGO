@@ -6,7 +6,7 @@
 namespace dae
 {
 	class GameObject;
-	class HealthComponent : public BaseComponent, public Subject
+	class HealthComponent : public BaseComponent
 	{
 	public:
 		HealthComponent(GameObject& go);

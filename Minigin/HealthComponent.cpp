@@ -14,5 +14,5 @@ void dae::HealthComponent::Render() const
 void dae::HealthComponent::DecreaseLives()
 {
 	--m_Lives;
-	NotifyObservers(dae::ObserverEvent::LivesDecrease);	
+	//NotifyObservers(dae::ObserverEvent::LivesDecrease);	
 }

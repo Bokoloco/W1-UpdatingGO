@@ -6,9 +6,9 @@ dae::ScoreComponent::ScoreComponent(GameObject& go)
 	, m_Score{0}
 { }
 
-void dae::ScoreComponent::IncreaseScore(dae::ScoreAmount amount)
+void dae::ScoreComponent::IncreaseScore(dae::ScoreAmount)
 {
-	m_Score += static_cast<int>(amount);
+	/*m_Score += static_cast<int>(amount);
 
 	switch (amount)
 	{
@@ -23,5 +23,5 @@ void dae::ScoreComponent::IncreaseScore(dae::ScoreAmount amount)
 	}
 
 	if (m_Score >= 500)
-		NotifyObservers(ObserverEvent::GameWon);
+		NotifyObservers(ObserverEvent::GameWon);*/
 }

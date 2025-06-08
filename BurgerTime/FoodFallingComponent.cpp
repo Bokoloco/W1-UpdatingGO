@@ -1,13 +1,17 @@
 #include "FoodFallingComponent.h"
 #include "GameObject.h"
-#include "BurgerCollisionComponent.h"
+#include "BurgerPartsCollisionComponent.h"
+#include <Minigin.h>
+#include "Renderer.h"
 
-dae::FoodFallingComponent::FoodFallingComponent(GameObject& go)
+
+dae::FoodFallingComponent::FoodFallingComponent(GameObject& go, float speed)
 	: BaseComponent(go)
+	, m_Speed{speed}
 {
 	for (int i{}; i < GetOwner()->GetChildCount(); ++i)
 	{
-		if (auto casted = GetOwner()->GetChildAt(i)->GetComponent<BurgerCollisionComponent>())
+		if (auto casted = GetOwner()->GetChildAt(i)->GetComponent<BurgerPartsCollisionComponent>())
 		{
 			m_CollisionComponents.push_back(casted);
 		}
@@ -16,12 +20,21 @@ dae::FoodFallingComponent::FoodFallingComponent(GameObject& go)
 
 void dae::FoodFallingComponent::Update()
 {
-	auto it = std::find_if(m_CollisionComponents.begin(), m_CollisionComponents.end(), [&](BurgerCollisionComponent* comp) {return !comp->HasBeenSteppedOn(); });
-	if (it == m_CollisionComponents.end())
+	auto it = std::find_if(m_CollisionComponents.begin(), m_CollisionComponents.end(), [&](BurgerPartsCollisionComponent* comp) {return !comp->HasBeenSteppedOn(); });
+	if (it == m_CollisionComponents.end() || m_ShouldFall)
 	{
-		GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, GetOwner()->GetLocalPosition().y + 2.f, 0.f });
+		m_ShouldFall = true;
+		GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, GetOwner()->GetLocalPosition().y + m_Speed * dae::Minigin::DELTATIME, 0.f });
 	}
 }
 
 void dae::FoodFallingComponent::Render() const
-{}
+{
+	SDL_SetRenderDrawColor(Renderer::GetInstance().GetSDLRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_RenderDrawRectF(Renderer::GetInstance().GetSDLRenderer(), GetOwner()->GetBoundingBox());
+}
+
+void dae::FoodFallingComponent::ShouldNotFall(bool value)
+{
+	m_ShouldFall = value;
+}

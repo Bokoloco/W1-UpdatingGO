@@ -5,16 +5,21 @@
 namespace dae
 {
 	class GameObject;
-	class BurgerCollisionComponent;
+	class BurgerPartsCollisionComponent;
 	class FoodFallingComponent : public BaseComponent
 	{
 	public:
-		FoodFallingComponent(GameObject& go);
+		FoodFallingComponent(GameObject& go, float speed);
 
 		void Update() override;
 		void Render() const override;
 
+		void ShouldNotFall(bool value);
+
 	private:
-		std::vector< BurgerCollisionComponent*> m_CollisionComponents{};
+		std::vector<BurgerPartsCollisionComponent*> m_CollisionComponents{};
+
+		float m_Speed{};
+		bool m_ShouldFall{};
 	};
 }

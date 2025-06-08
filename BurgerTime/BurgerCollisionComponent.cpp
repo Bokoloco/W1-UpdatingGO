@@ -1,100 +1,52 @@
 #include "BurgerCollisionComponent.h"
-#include "Renderer.h"
+#include "Subject.h"
+#include "Observer.h"
 #include "GameObject.h"
-#include "Utils.h"
+#include <Utils.h>
 #include <iostream>
+#include "FoodFallingComponent.h"
 
-dae::BurgerCollisionComponent::BurgerCollisionComponent(GameObject& go, int idx)
+dae::BurgerCollisionComponent::BurgerCollisionComponent(GameObject& go)
 	: CollisionComponent(go)
-	, m_idx{idx}
-{}
-
-void dae::BurgerCollisionComponent::Update()
 {
-}
-
-void dae::BurgerCollisionComponent::Render() const
-{
-
+	m_pSubject = std::make_unique<Subject>();
+	m_pFoodFallingComponent = GetOwner()->GetComponent<dae::FoodFallingComponent>();
 }
 
 void dae::BurgerCollisionComponent::OnColliding(GameObject& go)
 {
+
 	if (go.ActorHasTag(dae::make_sdbm_hash("Player")))
 	{
-		float xPosCollidingPlayer = go.GetWorldPosition().x + (go.GetBoundingBox()->w / 2);
-		float xPosOwner = GetOwner()->GetWorldPosition().x + GetOwner()->GetBoundingBox()->w;
-		if (xPosCollidingPlayer <= xPosOwner && xPosCollidingPlayer >= GetOwner()->GetWorldPosition().x && !m_HasBeenSteppedOn)
-		{
-			m_HasBeenSteppedOn = true;
-			GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, GetOwner()->GetLocalPosition().y + 3.f, 0.f });
-		}
 	}
-	if (go.ActorHasTag(dae::make_sdbm_hash("Food")))
-	{
-		if (!go.GetComponent<BurgerCollisionComponent>()->HasHitPlate())
-		{
-			if (go.GetWorldPosition().y < GetOwner()->GetWorldPosition().y)
-			{
-				m_HasBeenSteppedOn = true;
-				GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, GetOwner()->GetLocalPosition().y + 3.f, 0.f });
-			}
-			if (go.GetWorldPosition().y > GetOwner()->GetWorldPosition().y)
-			{
-				m_HasBeenSteppedOn = false;
-				GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
-			}
-		}
-		else
-		{
-			m_HasBeenSteppedOn = false;
-			m_HasHitPlate = true;
-			//GetOwner()->GetParent()->SetLocalPosition({ GetOwner()->GetParent()->GetLocalPosition().x, GetOwner()->GetParent()->GetLocalPosition().y + 1.f, 0.f });
-		}
-	}
-	//if (go.ActorHasTag(dae::make_sdbm_hash("Plate")))
-	//{
-	//	m_HasBeenSteppedOn = false;
-	//}
-	//if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")) /*|| go.ActorHasTag(dae::make_sdbm_hash("Ladder"))*/)
-	//{
-	//	m_HasBeenSteppedOn = false;
-	//	if (m_idx == 3 && go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform"))) go.SetCanCollide(false);
-	//	GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
-	//}
 }
 
 void dae::BurgerCollisionComponent::OnEnter(GameObject& go)
 {
-	if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")) /*|| go.ActorHasTag(dae::make_sdbm_hash("Ladder"))*/)
+
+	if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")))
 	{
-		m_HasBeenSteppedOn = false;
-		//if (m_idx == 3 && go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform"))) go.SetCanCollide(false);
-		GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
-		//GetOwner()->GetParent()->SetLocalPosition({ GetOwner()->GetParent()->GetLocalPosition().x, GetOwner()->GetParent()->GetLocalPosition().y + 1.f, 0.f });
-	}
-	if (go.ActorHasTag(dae::make_sdbm_hash("Plate")))
-	{
-		m_HasBeenSteppedOn = false;
-		m_HasHitPlate = true;
-		GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
+		//go.SetCanCollide(false);
+		std::cout << "in Enter" << std::endl;
+
+		m_pSubject->NotifyObservers(dae::make_sdbm_hash("BurgerDropped"), GetOwner());
+		m_pFoodFallingComponent->ShouldNotFall(false);
+		//GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, GetOwner()->GetLocalPosition().y + 2.f, 0.f });
 	}
 }
 
 void dae::BurgerCollisionComponent::OnExit(GameObject& go)
 {
+	std::cout << "in exit" << std::endl;
+
 	if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")))
 	{
-		go.SetCanCollide(true);
+		m_pFoodFallingComponent->ShouldNotFall(true);
+		//go.SetCanCollide(true);
 	}
 }
 
-bool dae::BurgerCollisionComponent::HasBeenSteppedOn() const
+void dae::BurgerCollisionComponent::AddObserver(Observer& observer)
 {
-	return m_HasBeenSteppedOn && !m_HasHitPlate;
-}
-
-bool dae::BurgerCollisionComponent::HasHitPlate() const
-{
-	return m_HasHitPlate;
+	m_pSubject->AddObserver(observer);
 }

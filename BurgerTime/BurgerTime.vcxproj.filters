@@ -63,7 +63,7 @@
     <ClCompile Include="MoveOnLadderCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BurgerCollisionComponent.cpp">
+    <ClCompile Include="BurgerPartsCollisionComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FoodFallingComponent.cpp">
@@ -76,6 +76,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IdleState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreObserver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScoreDisplayComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BurgerCollisionComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -125,7 +134,7 @@
     <ClInclude Include="MoveOnLadderCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BurgerCollisionComponent.h">
+    <ClInclude Include="BurgerPartsCollisionComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FoodFallingComponent.h">
@@ -138,6 +147,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IdleState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreObserver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreDisplayComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BurgerCollisionComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

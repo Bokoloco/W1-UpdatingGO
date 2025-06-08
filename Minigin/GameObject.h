@@ -55,6 +55,7 @@ namespace dae
 
 		int GetChildCount();
 		GameObject* GetChildAt(int index);
+		bool IsChild(GameObject* child);
 
 		void SetLocalPosition(const glm::vec3& pos);
 
@@ -79,6 +80,7 @@ namespace dae
 		bool ActorHasTag(unsigned int tag);
 
 		const SDL_FRect* GetBoundingBox();
+		void SetBoudingBoxDimensions(float width, float height);
 
 		Texture2D* GetTexture();
 		void SetShouldRender(bool value);
@@ -105,7 +107,6 @@ namespace dae
 
 		void AddChild(GameObject* go);
 		void RemoveChild(GameObject* child);
-		bool IsChild(GameObject* child);
 	};
 
 	template<class TypeComponent, typename... Args>

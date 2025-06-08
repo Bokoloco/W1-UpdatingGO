@@ -1,5 +1,6 @@
 #include "Subject.h"
 #include "Observer.h"
+#include "GameObject.h"
 
 void dae::Subject::AddObserver(Observer& observer)
 {
@@ -11,10 +12,10 @@ void dae::Subject::AddObserver(Observer& observer)
 //	//m_pObservers.erase();
 //}
 
-void dae::Subject::NotifyObservers(dae::ObserverEvent e)
+void dae::Subject::NotifyObservers(unsigned int eventId, GameObject* go)
 {
 	for (Observer* observer : m_pObservers)
 	{
-		observer->OnNotify(e);
+		observer->OnNotify(eventId, go);
 	}
 }

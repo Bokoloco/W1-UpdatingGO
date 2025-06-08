@@ -48,6 +48,9 @@ void dae::GameObject::Render() const
 	const auto& pos = m_WorldPosition.GetPosition();
 	if (m_texture != nullptr) Renderer::GetInstance().RenderTexture(*m_texture, m_SourceRect.get(), pos.x, pos.y, m_BoundingRect->w, m_BoundingRect->h);
 
+	/*SDL_SetRenderDrawColor(Renderer::GetInstance().GetSDLRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_RenderDrawRectF(Renderer::GetInstance().GetSDLRenderer(), m_BoundingRect);*/
+
 	if (m_Components.size() != 0)
 	{
 		for (BaseComponent* var : m_Components)
@@ -227,6 +230,13 @@ const SDL_FRect* dae::GameObject::GetBoundingBox()
 	m_BoundingRect->x = m_WorldPosition.GetPosition().x;
 	m_BoundingRect->y = m_WorldPosition.GetPosition().y;
 	return m_BoundingRect;
+}
+
+void dae::GameObject::SetBoudingBoxDimensions(float width, float height)
+{
+	if (!m_BoundingRect) m_BoundingRect = new SDL_FRect();
+	m_BoundingRect->w = width;
+	m_BoundingRect->h = height;
 }
 
 dae::Texture2D* dae::GameObject::GetTexture()

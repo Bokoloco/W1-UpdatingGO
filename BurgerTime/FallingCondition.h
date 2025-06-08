@@ -4,7 +4,7 @@
 
 namespace dae
 {
-	class BurgerCollisionComponent;
+	class BurgerPartsCollisionComponent;
 	class GameObject;
 	class FallingCondition : public FSMCondition
 	{
@@ -15,7 +15,7 @@ namespace dae
 		bool Evaluate() const override;
 
 	private:
-		std::vector<BurgerCollisionComponent*> m_CollisionComponents;
+		std::vector<BurgerPartsCollisionComponent*> m_CollisionComponents;
 
 		bool m_ToFallTransition{};
 	};

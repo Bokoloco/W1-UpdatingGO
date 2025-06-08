@@ -10,10 +10,11 @@ namespace dae
 		GameWon
 	};
 
+	class GameObject;
 	class Observer
 	{
 	public:
 		virtual ~Observer() {};
-		virtual void OnNotify(ObserverEvent e) = 0;
+		virtual void OnNotify(unsigned int eventID, GameObject* go) = 0;
 	};
 }

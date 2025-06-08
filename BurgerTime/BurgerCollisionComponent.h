@@ -1,37 +1,32 @@
 #pragma once
+
 #include "CollisionComponent.h"
-#include <vector>
-#include <SDL_rect.h>
-#include <map>
+#include <memory>
 
 namespace dae
 {
-	class Texture2D;
-	class GameObject;
-	class BurgerCollisionComponent : public CollisionComponent
+	class Subject;
+	class Observer;
+	class FoodFallingComponent;
+	class BurgerCollisionComponent final : public CollisionComponent
 	{
 	public:
-		BurgerCollisionComponent(GameObject& go, int idx);
+		BurgerCollisionComponent(GameObject& go);
+		~BurgerCollisionComponent() = default;
 
-		void Update() override;
-		void Render() const override;
+		void Update() override {};
+		void Render() const override {};
 
 		void OnColliding(GameObject& go) override;
 		void OnEnter(GameObject& go) override;
 		void OnExit(GameObject& go) override;
 
-		bool HasBeenSteppedOn() const;
-		bool HasHitPlate() const;
+		void AddObserver(Observer& observer);
 
 	private:
-		//Texture2D* m_Texture{};
+		std::unique_ptr<Subject> m_pSubject{};
 
-		//std::vector<std::pair<bool, std::unique_ptr<SDL_Rect>>> m_Pieces{};
+		FoodFallingComponent* m_pFoodFallingComponent{};
 
-		//int m_WidthPiece{};
-		bool m_HasBeenSteppedOn{};
-		bool m_HasHitPlate{};
-
-		int m_idx{};
 	};
 }

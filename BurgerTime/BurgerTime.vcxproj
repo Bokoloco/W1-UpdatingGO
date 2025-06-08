@@ -165,6 +165,7 @@
   <ItemGroup>
     <ClCompile Include="BoxColliderComponent.cpp" />
     <ClCompile Include="BurgerCollisionComponent.cpp" />
+    <ClCompile Include="BurgerPartsCollisionComponent.cpp" />
     <ClCompile Include="FallingCondition.cpp" />
     <ClCompile Include="FallingState.cpp" />
     <ClCompile Include="Components\Exercise1Component.cpp" />
@@ -184,10 +185,13 @@
     <ClCompile Include="Commands\PlaySoundCommand.cpp" />
     <ClCompile Include="Components\RotateComponent.cpp" />
     <ClCompile Include="Components\TextComponent.cpp" />
+    <ClCompile Include="ScoreDisplayComponent.cpp" />
+    <ClCompile Include="ScoreObserver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoxColliderComponent.h" />
     <ClInclude Include="BurgerCollisionComponent.h" />
+    <ClInclude Include="BurgerPartsCollisionComponent.h" />
     <ClInclude Include="FallingCondition.h" />
     <ClInclude Include="FallingState.h" />
     <ClInclude Include="Components\Exercise1Component.h" />
@@ -206,6 +210,8 @@
     <ClInclude Include="Commands\PlaySoundCommand.h" />
     <ClInclude Include="Components\RotateComponent.h" />
     <ClInclude Include="Components\TextComponent.h" />
+    <ClInclude Include="ScoreDisplayComponent.h" />
+    <ClInclude Include="ScoreObserver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

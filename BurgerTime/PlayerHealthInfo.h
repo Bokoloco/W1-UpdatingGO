@@ -7,7 +7,7 @@ namespace dae
 {
 	class GameObject;
 	class TextComponent;
-	class PlayerHealthInfo : public BaseComponent, public Observer
+	class PlayerHealthInfo : public BaseComponent
 	{
 	public:
 		PlayerHealthInfo(GameObject& go);
@@ -15,7 +15,7 @@ namespace dae
 		void Update() override {};
 		void Render() const override {};
 
-		void OnNotify(ObserverEvent e) override;
+		//void OnNotify(ObserverEvent e) override;
 
 	private:
 		TextComponent* m_pTextComponent;
