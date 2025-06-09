@@ -8,6 +8,16 @@
 //class ControllerInput;
 namespace dae
 {
+	struct KeyboardBinding
+	{
+		SDL_Scancode scancode;
+		SDL_EventType eventType;
+
+		bool operator<(const KeyboardBinding& other) const {
+			return scancode < other.scancode;
+		}
+	};
+
 	struct ControllerButtonBinding
 	{
 		DWORD controllerIndex;
@@ -31,7 +41,7 @@ namespace dae
 
 		void AddController();
 
-		void BindInputKeyboard(SDL_Scancode scancode, std::unique_ptr<Command>);
+		void BindInputKeyboard(SDL_Scancode scancode, SDL_EventType eventType, std::unique_ptr<Command>);
 		void BindInputController(DWORD controllerIndex, unsigned int button, bool isPressed, std::unique_ptr<Command> command);
 
 		void BeginPlay();
@@ -45,6 +55,6 @@ namespace dae
 		std::vector<std::unique_ptr<ControllerInput>> m_pControllerInputs;
 
 		std::map<ControllerButtonBinding, std::unique_ptr<Command>> m_CommandsControllers;
-		std::map<SDL_Scancode, std::unique_ptr<Command>> m_CommandsKeyboard;
+		std::map<KeyboardBinding, std::unique_ptr<Command>> m_CommandsKeyboard;
 	};
 }

@@ -21,9 +21,9 @@ void dae::InputManager::AddController()
 	m_pControllerInputs.push_back(std::make_unique<ControllerInput>(static_cast<DWORD>(m_pControllerInputs.size())));
 }
 
-void dae::InputManager::BindInputKeyboard(SDL_Scancode scancode, std::unique_ptr<Command> command)
+void dae::InputManager::BindInputKeyboard(SDL_Scancode scancode, SDL_EventType eventType, std::unique_ptr<Command> command)
 {
-	m_CommandsKeyboard.emplace(scancode, std::move(command));
+	m_CommandsKeyboard.emplace(KeyboardBinding{ scancode, eventType }, std::move(command));
 }
 
 void dae::InputManager::BindInputController(DWORD controllerIndex, unsigned int button, bool isPressed, std::unique_ptr<Command> command)
@@ -89,9 +89,10 @@ bool dae::InputManager::ProcessInput()
 	//	//ImGui_ImplSDL2_ProcessEvent(&e);
 	//}
 	auto inputs = SDL_GetKeyboardState(nullptr);
+	
 	for (auto& binding : m_CommandsKeyboard)
 	{
-		if (inputs[binding.first])
+		if (inputs[binding.first.scancode])
 		{
 			binding.second->Execute();
 		}

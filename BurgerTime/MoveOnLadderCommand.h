@@ -9,7 +9,7 @@ namespace dae
 	class MoveOnLadderCommand : public Command
 	{
 	public:
-		MoveOnLadderCommand(GameObject& go, float direction);
+		MoveOnLadderCommand(GameObject& go, glm::vec3 direction);
 
 		void Execute() override;
 

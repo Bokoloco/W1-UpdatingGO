@@ -85,7 +85,11 @@ void dae::BurgerPartsCollisionComponent::OnExit(GameObject& go)
 {
 	if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")))
 	{
+		std::cout << "onExit bourgir" << std::endl;
+		m_HasBeenSteppedOn = false;
 
+		//if (m_idx == 3) go.SetCanCollide(false);
+		//GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
 		GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
 	}
 }

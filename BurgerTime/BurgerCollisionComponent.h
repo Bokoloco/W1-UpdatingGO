@@ -24,6 +24,8 @@ namespace dae
 		void AddObserver(Observer& observer);
 
 	private:
+		bool m_JustSpawned{ true };
+
 		std::unique_ptr<Subject> m_pSubject{};
 
 		FoodFallingComponent* m_pFoodFallingComponent{};

@@ -82,8 +82,40 @@ void dae::Scene::CheckCollision()
 						m_CurrentCollisions.emplace(collisionComponent1, gameObj2);
 						//m_CurrentCollisions.emplace(collisionComponent2, gameObj1);
 					}
+					//else if (m_CurrentCollisions.find(collisionComponent1)->second != gameObj2)
+					//{
+					//	collisionComponent1->OnEnter(*gameObj2);
+					//	//collisionComponent2->OnEnter(*gameObj1);
+					//	m_CurrentCollisions.emplace(collisionComponent1, gameObj2);
+					//	//m_CurrentCollisions.emplace(collisionComponent2, gameObj1);
+					//}
 					else
 					{
+						/*auto range = m_CurrentCollisions.equal_range(collisionComponent1);
+
+						for (auto it = range.first; it != range.second; ++it) 
+						{
+							if (it->second != gameObj2) 
+							{
+								collisionComponent1->OnEnter(*gameObj2);
+								m_CurrentCollisions.emplace(collisionComponent1, gameObj2);
+								break;
+							}
+						}*/
+
+						bool alreadyColliding = false;
+						auto range = m_CurrentCollisions.equal_range(collisionComponent1);
+						for (auto it = range.first; it != range.second; ++it) {
+							if (it->second == gameObj2) {
+								alreadyColliding = true;
+								break;
+							}
+						}
+						if (!alreadyColliding) {
+							collisionComponent1->OnEnter(*gameObj2);
+							m_CurrentCollisions.emplace(collisionComponent1, gameObj2);
+						}
+
 						collisionComponent1->OnColliding(*gameObj2);
 						//collisionComponent2->OnColliding(*gameObj1);
 					}
@@ -91,12 +123,30 @@ void dae::Scene::CheckCollision()
 
 				if (!SDL_HasIntersectionF(gameObj1->GetBoundingBox(), gameObj2->GetBoundingBox()) && m_CurrentCollisions.find(collisionComponent1) != m_CurrentCollisions.end())
 				{
-					if (/*gameObj1 == m_CurrentCollisions.find(collisionComponent2)->second &&*/ gameObj2 == m_CurrentCollisions.find(collisionComponent1)->second)
+					//if (/*gameObj1 == m_CurrentCollisions.find(collisionComponent2)->second &&*/ gameObj2 == m_CurrentCollisions.find(collisionComponent1)->second)
+					//{
+					//	collisionComponent1->OnExit(*gameObj2);
+					//	//collisionComponent2->OnExit(*gameObj1);
+					//	auto range = m_CurrentCollisions.equal_range(collisionComponent1);
+
+					//	for (auto it = range.first; it != range.second; ++it) {
+					//		if (it->second == gameObj2) {
+					//			m_CurrentCollisions.erase(it);
+					//			break;
+					//		}
+					//	}
+					//	//m_CurrentCollisions.erase(collisionComponent1);
+					//	//m_CurrentCollisions.erase(collisionComponent2);
+					//}
+					auto range = m_CurrentCollisions.equal_range(collisionComponent1);
+					for (auto it = range.first; it != range.second; ++it) 
 					{
-						collisionComponent1->OnExit(*gameObj2);
-						//collisionComponent2->OnExit(*gameObj1);
-						m_CurrentCollisions.erase(collisionComponent1);
-						//m_CurrentCollisions.erase(collisionComponent2);
+						if (it->second == gameObj2) 
+						{
+							collisionComponent1->OnExit(*gameObj2);
+							m_CurrentCollisions.erase(it);
+							break;
+						}
 					}
 				}
 			}

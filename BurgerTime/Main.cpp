@@ -137,7 +137,7 @@ void load()
 	scene.Add(imGuiTest);*/
 
 	auto ladder = new dae::GameObject();
-	ladder->SetTexture("BackgroundSheet.tga", 10, 34);
+	ladder->SetTexture("BackgroundSheet.tga", 10, 36);
 	ladder->SetSourceRectTexture(0, 6, 10, 34);
 	ladder->SetLocalPosition({ 100.f, 50.f, 0.f });
 	ladder->SetCanCollide(true);
@@ -147,7 +147,7 @@ void load()
 	scene.Add(ladder);
 
 	auto ladder3 = new dae::GameObject();
-	ladder3->SetTexture("BackgroundSheet.tga", 10, 34);
+	ladder3->SetTexture("BackgroundSheet.tga", 10, 36);
 	ladder3->SetSourceRectTexture(0, 6, 10, 34);
 	ladder3->SetLocalPosition({ 100.f, 115.f, 0.f });
 	ladder3->SetCanCollide(true);
@@ -161,9 +161,9 @@ void load()
 	ladderPlatform1->SetSourceRectTexture(0, 3, 16, 3);
 	ladderPlatform1->SetLocalPosition({ 94.f, 53.f, 0.f });
 	ladderPlatform1->SetScaling(2.f, 2.f, 2.f);
-	ladderPlatform1->AddTag(dae::make_sdbm_hash("Platform"));
-	//ladderPlatform1->SetCanCollide(true);
-	//ladderPlatform1->AddComponent<dae::CollisionComponent>();
+	ladderPlatform1->AddTag(dae::make_sdbm_hash("LadderPlatform"));
+	ladderPlatform1->SetCanCollide(true);
+	ladderPlatform1->AddComponent<dae::CollisionComponent>();
 	scene.Add(ladderPlatform1);
 
 	auto burgerPlatform1 = new dae::GameObject();
@@ -172,6 +172,8 @@ void load()
 	burgerPlatform1->SetLocalPosition({ 126.f, 53.f, 0.f });
 	burgerPlatform1->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform1->SetCanCollide(true);
+	burgerPlatform1->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
+	burgerPlatform1->AddComponent<dae::CollisionComponent>();
 	scene.Add(burgerPlatform1);
 
 	auto ladderPlatform2 = new dae::GameObject();
@@ -226,7 +228,9 @@ void load()
 	ladderPlatform3->SetSourceRectTexture(0, 3, 16, 3);
 	ladderPlatform3->SetLocalPosition({ 94.f, 118.f, 0.f });
 	ladderPlatform3->SetScaling(2.f, 2.f, 2.f);
-	ladderPlatform3->AddTag(dae::make_sdbm_hash("Platform"));
+	ladderPlatform3->AddTag(dae::make_sdbm_hash("LadderPlatform"));
+	ladderPlatform3->SetCanCollide(true);
+	ladderPlatform3->AddComponent<dae::CollisionComponent>();
 	scene.Add(ladderPlatform3);
 
 	auto ladderPlatform5 = new dae::GameObject();
@@ -234,7 +238,9 @@ void load()
 	ladderPlatform5->SetSourceRectTexture(0, 3, 16, 3);
 	ladderPlatform5->SetLocalPosition({ 94.f, 185.f, 0.f });
 	ladderPlatform5->SetScaling(2.f, 2.f, 2.f);
-	ladderPlatform5->AddTag(dae::make_sdbm_hash("Platform"));
+	ladderPlatform5->AddTag(dae::make_sdbm_hash("LadderPlatform"));
+	ladderPlatform5->SetCanCollide(true);
+	ladderPlatform5->AddComponent<dae::CollisionComponent>();
 	scene.Add(ladderPlatform5);
 
 	//auto ladderPlatform2 = new dae::GameObject();
@@ -401,7 +407,7 @@ void load()
 	burgerGuy->SetCanCollide(true);
 	burgerGuy->SetScaling(2.f, 2.f, 2.f);
 	burgerGuy->AddTag(dae::make_sdbm_hash("Player"));
-	burgerGuy->AddComponent<dae::MoveDownLadderComponent>();
+	burgerGuy->AddComponent<dae::MoveDownLadderComponent>(0.1f);
 	burgerGuy->AddComponent<dae::PlayerCollisionComponent>();
 	scene.Add(burgerGuy);
 
@@ -473,10 +479,10 @@ void load()
 	instructions->GetComponent<dae::TextComponent>()->SetFont(smallerFont);
 	scene.Add(instructions);*/
 
-	auto moveLeft = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ -1.f, 0.f, 0.f });
-	auto moveRight = std::make_unique<dae::MoveCommand>(*burgerGuy, glm::vec3{ 1.f, 0.f, 0.f });
-	auto moveUp = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy, -1.f);
-	auto moveDown = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy, 1.f);
+	auto moveLeft = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy, glm::vec3{ -1.f, 0.f, 0.f });
+	auto moveRight = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy, glm::vec3{ 1.f, 0.f, 0.f });
+	auto moveUp = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy, glm::vec3{0.f, -1.f, 0.f});
+	auto moveDown = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy, glm::vec3{ 0.f, 1.f, 0.f });
 
 	auto moveLeft2 = std::make_unique<dae::MoveCommand>(*burgerGuy2, glm::vec3{ -1.f, 0.f, 0.f });
 	auto moveRight2 = std::make_unique<dae::MoveCommand>(*burgerGuy2, glm::vec3{ 1.f, 0.f, 0.f });
@@ -488,13 +494,14 @@ void load()
 	auto pauseMusic = std::make_unique<dae::PauseMusicCommand>(*burgerGuy);
 
 	auto& input = dae::InputManager::GetInstance();
-	input.BindInputKeyboard(SDL_SCANCODE_A, std::move(moveLeft));
-	input.BindInputKeyboard(SDL_SCANCODE_D, std::move(moveRight));
-	input.BindInputKeyboard(SDL_SCANCODE_W, std::move(moveUp));
-	input.BindInputKeyboard(SDL_SCANCODE_S, std::move(moveDown));
-	input.BindInputKeyboard(SDL_SCANCODE_Q, std::move(playEnterSoundEffect));
-	input.BindInputKeyboard(SDL_SCANCODE_E, std::move(playMusic));
-	input.BindInputKeyboard(SDL_SCANCODE_P, std::move(pauseMusic));
+	input.BindInputKeyboard(SDL_SCANCODE_A, SDL_KEYDOWN, std::move(moveLeft));
+	input.BindInputKeyboard(SDL_SCANCODE_D, SDL_KEYDOWN, std::move(moveRight));
+	input.BindInputKeyboard(SDL_SCANCODE_W, SDL_KEYDOWN, std::move(moveUp));
+	input.BindInputKeyboard(SDL_SCANCODE_S, SDL_KEYDOWN, std::move(moveDown));
+	input.BindInputKeyboard(SDL_SCANCODE_Q, SDL_KEYDOWN, std::move(playEnterSoundEffect));
+	input.BindInputKeyboard(SDL_SCANCODE_E, SDL_KEYDOWN, std::move(playMusic));
+	input.BindInputKeyboard(SDL_SCANCODE_P, SDL_KEYDOWN, std::move(pauseMusic));
+
 
 	input.AddController();
 	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_LEFT, true, std::move(moveLeft2));
