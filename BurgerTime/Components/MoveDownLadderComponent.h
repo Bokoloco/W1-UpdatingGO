@@ -22,6 +22,9 @@ namespace dae
 		bool CanMoveOnLadder();
 		float GetMinHeight() const;
 
+		void SetXPosOnLadder(float xpos);
+		void SetYPosOnPltform(float yPos);
+
 		void SetDirection(const glm::vec3& direction);
 
 	private:
@@ -33,6 +36,9 @@ namespace dae
 		float m_Speed{};
 
 		glm::vec3 m_Direction{};
+
+		float m_XPosOnLadder{};
+		float m_YPosOnPlatform{};
 
 		std::vector<float> m_MinHeights{};
 		std::vector<float> m_MaxHeights{};

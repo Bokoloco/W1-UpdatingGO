@@ -31,6 +31,7 @@ void dae::PlayerCollisionComponent::OnColliding(GameObject& go)
 			//std::cout << "In colliding laddr" << std::endl;
 
 			m_pMoveDownLadderComponent->SetCanMoveDownLadder(true);
+			m_pMoveDownLadderComponent->SetXPosOnLadder(go.GetWorldPosition().x + (go.GetBoundingBox()->w / 2));
 			m_pMoveDownLadderComponent->SetMoveToHeight(go.GetWorldPosition().y, go.GetWorldPosition().y + go.GetBoundingBox()->h);
 		}
 		/*else
@@ -43,6 +44,7 @@ void dae::PlayerCollisionComponent::OnColliding(GameObject& go)
 
 		if (yPosOwnerBottom >= go.GetWorldPosition().y && yPosOwnerBottom <= yPosCollidingObjectBottom)
 		{
+			m_pMoveDownLadderComponent->SetYPosOnPltform(go.GetWorldPosition().y + 1.f);
 			m_pMoveDownLadderComponent->SetCanMoveHorizontally(true);
 		}
 		else
@@ -61,10 +63,6 @@ void dae::PlayerCollisionComponent::OnEnter(GameObject& go)
 	{
 		float xPosOwner = GetOwner()->GetWorldPosition().x + (GetOwner()->GetBoundingBox()->w / 2);
 		float xPosCollidingObject = go.GetWorldPosition().x + go.GetBoundingBox()->w;
-		std::cout << "Player: " << xPosOwner << std::endl;
-		std::cout << "Ladder: " << xPosCollidingObject << std::endl;
-		std::cout << "Ladder pos: " << go.GetWorldPosition().x << std::endl;
-
 
 		/*float yPosOwner = GetOwner()->GetWorldPosition().y + (GetOwner()->GetBoundingBox()->h / 2);
 		float yPosOwnerBottom = GetOwner()->GetWorldPosition().y + (GetOwner()->GetBoundingBox()->h);

@@ -15,9 +15,8 @@ void dae::MoveDownLadderComponent::Update()
 	if (m_CanMoveDownLadder && m_Direction.y != 0.f)
 	{
 		glm::vec3 newPos = GetOwner()->GetLocalPosition() + m_Speed * dae::Minigin::DELTATIME * m_Direction;
-		std::cout << "Min: " << m_MinHeights.at(0) << "Player height: " << newPos.y << std::endl;
-		std::cout << "Max: " << m_MaxHeights.at(0) << "Player height: " << newPos.y << std::endl;
-		
+		newPos.x = m_XPosOnLadder;
+
 		if (m_MinHeights.size() == 2)
 		{
 			if ((newPos.y + GetOwner()->GetBoundingBox()->h > m_MinHeights.at(0) && newPos.y + GetOwner()->GetBoundingBox()->h < m_MaxHeights.at(0)) ||
@@ -39,6 +38,8 @@ void dae::MoveDownLadderComponent::Update()
 	if (m_CanMoveHorizontally && m_Direction.x != 0.f)
 	{
 		glm::vec3 newPos = GetOwner()->GetLocalPosition() + m_Speed * dae::Minigin::DELTATIME * m_Direction;
+		std::cout << "xPos: " << newPos.x << std::endl;
+		if (m_YPosOnPlatform != 0.f) newPos.y = m_YPosOnPlatform;
 		GetOwner()->SetLocalPosition(newPos);
 	}
 
@@ -86,6 +87,16 @@ bool dae::MoveDownLadderComponent::CanMoveOnLadder()
 float dae::MoveDownLadderComponent::GetMinHeight() const
 {
 	return m_MinHeight;
+}
+
+void dae::MoveDownLadderComponent::SetXPosOnLadder(float xpos)
+{
+	m_XPosOnLadder = xpos - (GetOwner()->GetBoundingBox()->w / 2);
+}
+
+void dae::MoveDownLadderComponent::SetYPosOnPltform(float yPos)
+{
+	m_YPosOnPlatform = yPos - GetOwner()->GetBoundingBox()->h;
 }
 
 void dae::MoveDownLadderComponent::SetDirection(const glm::vec3& direction)

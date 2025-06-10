@@ -20,5 +20,7 @@ namespace dae
 	private:
 		MoveDownLadderComponent* m_pMoveDownLadderComponent{};
 
+		const float m_Offset{10.f};
+
 	};
 }
