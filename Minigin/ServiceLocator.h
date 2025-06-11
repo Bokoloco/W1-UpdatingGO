@@ -7,7 +7,7 @@ namespace dae
 	class NullSoundSystem final : public SoundSystem
 	{
 		void Play(const SoundId, int = 0) override {};
-		void PlayMusic(const SoundId, int = 0) override {};
+		void PlayMusic(const SoundId, int = -1) override {};
 		void PauseMusic() override {};
 		void AddSound(SoundId, const std::string&) override {};
 		void AddMusic(SoundId, const std::string&) override {};

@@ -6,6 +6,7 @@
 #include <Utils.h>
 #include <iostream>
 #include "FoodFallingComponent.h"
+#include <ServiceLocator.h>
 
 dae::BurgerCollisionComponent::BurgerCollisionComponent(GameObject& go)
 	: CollisionComponent(go)
@@ -24,28 +25,34 @@ void dae::BurgerCollisionComponent::OnColliding(GameObject& go)
 
 void dae::BurgerCollisionComponent::OnEnter(GameObject& go)
 {
-
 	if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")))
 	{
 		if (!m_JustSpawned)
 		{
 			m_pSubject->NotifyObservers(dae::make_sdbm_hash("BurgerDropped"), GetOwner());
 			m_pFoodFallingComponent->ShouldNotFall(false);
+			dae::ServiceLocator::GetSoundSystem().Play(dae::make_sdbm_hash("BurgerLand"));
 		}
 		else
 			m_JustSpawned = false;
 	}
 	if (go.ActorHasTag(dae::make_sdbm_hash("Food")))
 	{
-		if (go.GetComponent<BurgerPartsCollisionComponent>()->HasHitPlate())
+		if (go.GetComponent<BurgerPartsCollisionComponent>()->HasHitPlate() && go.GetWorldPosition().y > GetOwner()->GetWorldPosition().y 
+			&& m_pFoodFallingComponent->IsFalling())
+		{
+			std::cout << "On enter food bourgir??" << std::endl;
+			m_pFoodFallingComponent->ShouldNotFall(false);
 			m_pSubject->NotifyObservers(dae::make_sdbm_hash("BurgerDropped"), GetOwner());
-
+			dae::ServiceLocator::GetSoundSystem().Play(dae::make_sdbm_hash("BurgerLand"));
+		}
 	}
 	if (go.ActorHasTag(dae::make_sdbm_hash("Plate")))
 	{
 		m_pFoodFallingComponent->ShouldNotFall(false);
 		m_pSubject->NotifyObservers(dae::make_sdbm_hash("BurgerDropped"), GetOwner());
-		GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, GetOwner()->GetLocalPosition().y + 5.f, 0.f });
+		dae::ServiceLocator::GetSoundSystem().Play(dae::make_sdbm_hash("BurgerLand"));
+		GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, GetOwner()->GetLocalPosition().y + 6.f, 0.f });
 	}
 }
 

@@ -8,5 +8,5 @@ dae::PlayMusicCommand::PlayMusicCommand(GameObject& go, const SoundId soundId)
 
 void dae::PlayMusicCommand::Execute()
 {
-	dae::ServiceLocator::GetSoundSystem().PlayMusic(m_SoundId);
+	dae::ServiceLocator::GetSoundSystem().PlayMusic(m_SoundId, -1);
 }

@@ -30,11 +30,16 @@ void dae::FoodFallingComponent::Update()
 
 void dae::FoodFallingComponent::Render() const
 {
-	SDL_SetRenderDrawColor(Renderer::GetInstance().GetSDLRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
-	SDL_RenderDrawRectF(Renderer::GetInstance().GetSDLRenderer(), GetOwner()->GetBoundingBox());
+	//SDL_SetRenderDrawColor(Renderer::GetInstance().GetSDLRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+	//SDL_RenderDrawRectF(Renderer::GetInstance().GetSDLRenderer(), GetOwner()->GetBoundingBox());
 }
 
 void dae::FoodFallingComponent::ShouldNotFall(bool value)
 {
 	m_ShouldFall = value;
+}
+
+bool dae::FoodFallingComponent::IsFalling()
+{
+	return m_ShouldFall;
 }

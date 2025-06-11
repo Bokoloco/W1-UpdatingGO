@@ -64,7 +64,7 @@ dae::Minigin::Minigin(const std::string &dataPath)
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
 		480,
-		450,
+		475,
 		SDL_WINDOW_OPENGL
 	);
 	if (g_window == nullptr) 

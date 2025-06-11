@@ -18,7 +18,7 @@ namespace dae
 		~SDLSoundSystem();
 
 		void Play(const SoundId id, int loops = 0) override;
-		void PlayMusic(const SoundId id, int loops = 0) override;
+		void PlayMusic(const SoundId id, int = -1) override;
 
 		void PauseMusic() override;
 

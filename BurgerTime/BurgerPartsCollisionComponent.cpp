@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "Utils.h"
 #include <iostream>
+#include <ServiceLocator.h>
 
 dae::BurgerPartsCollisionComponent::BurgerPartsCollisionComponent(GameObject& go, int idx)
 	: CollisionComponent(go)
@@ -78,6 +79,20 @@ void dae::BurgerPartsCollisionComponent::OnEnter(GameObject& go)
 		m_HasBeenSteppedOn = false;
 		m_HasHitPlate = true;
 		GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
+	}
+	if (go.ActorHasTag(dae::make_sdbm_hash("Food")))
+	{
+		if (go.GetComponent<BurgerPartsCollisionComponent>()->HasHitPlate())
+		{
+			m_HasBeenSteppedOn = false;
+			m_HasHitPlate = true;
+			GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
+		}
+	}
+	if (go.ActorHasTag(dae::make_sdbm_hash("Player")))
+	{
+		std::cout << "lay sound?" << std::endl;
+		dae::ServiceLocator::GetSoundSystem().Play(dae::make_sdbm_hash("BurgerStep"));
 	}
 }
 

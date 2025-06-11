@@ -15,6 +15,7 @@ namespace dae
 		void Render() const override;
 
 		void ShouldNotFall(bool value);
+		bool IsFalling();
 
 	private:
 		std::vector<BurgerPartsCollisionComponent*> m_CollisionComponents{};

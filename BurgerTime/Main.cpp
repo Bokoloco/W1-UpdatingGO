@@ -78,9 +78,10 @@ void load()
 	auto testSound = std::make_unique<dae::SDLSoundSystem>();
 	dae::ServiceLocator::RegisterSoundSystem(std::move(testSound));
 
-	dae::ServiceLocator::GetSoundSystem().AddSound(dae::make_sdbm_hash("Enter"), "../Data/EnterEffect.wav");
-	dae::ServiceLocator::GetSoundSystem().AddMusic(dae::make_sdbm_hash("MainMusic"), "../Data/MusicChoosePlayerScreen.mp3");
-	dae::ServiceLocator::GetSoundSystem().ChangeMasterVolume(100);
+	dae::ServiceLocator::GetSoundSystem().AddSound(dae::make_sdbm_hash("BurgerStep"), "../Data/Sounds/BurgerStep.wav");
+	dae::ServiceLocator::GetSoundSystem().AddSound(dae::make_sdbm_hash("BurgerLand"), "../Data/Sounds/BurgerLand.wav");
+	dae::ServiceLocator::GetSoundSystem().AddMusic(dae::make_sdbm_hash("MainMusic"), "../Data/Sounds/BGM.mp3");
+	dae::ServiceLocator::GetSoundSystem().ChangeMasterVolume(50);
 
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
 
@@ -138,7 +139,7 @@ void load()
 	auto ladder19 = new dae::GameObject();
 	ladder19->SetTexture("BackgroundSheet.tga", 10, 50);
 	ladder19->SetSourceRectTexture(0, 46, 10, 50);
-	ladder19->SetLocalPosition({ 324.f, 242.f, 0.f });
+	ladder19->SetLocalPosition({ 324.f, 267.f, 0.f });
 	ladder19->SetCanCollide(true);
 	ladder19->SetScaling(2.f, 2.f, 2.f);
 	ladder19->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -148,7 +149,7 @@ void load()
 	auto ladder18 = new dae::GameObject();
 	ladder18->SetTexture("BackgroundSheet.tga", 10, 50);
 	ladder18->SetSourceRectTexture(0, 46, 10, 50);
-	ladder18->SetLocalPosition({ 372.f, 242.f, 0.f });
+	ladder18->SetLocalPosition({ 372.f, 267.f, 0.f });
 	ladder18->SetCanCollide(true);
 	ladder18->SetScaling(2.f, 2.f, 2.f);
 	ladder18->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -158,7 +159,7 @@ void load()
 	auto ladder17 = new dae::GameObject();
 	ladder17->SetTexture("BackgroundSheet.tga", 10, 50);
 	ladder17->SetSourceRectTexture(0, 46, 10, 50);
-	ladder17->SetLocalPosition({ 420.f, 242.f, 0.f });
+	ladder17->SetLocalPosition({ 420.f, 267.f, 0.f });
 	ladder17->SetCanCollide(true);
 	ladder17->SetScaling(2.f, 2.f, 2.f);
 	ladder17->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -168,7 +169,7 @@ void load()
 	auto ladder16 = new dae::GameObject();
 	ladder16->SetTexture("BackgroundSheet.tga", 10, 36);
 	ladder16->SetSourceRectTexture(0, 6, 10, 34);
-	ladder16->SetLocalPosition({ 228.f, 274.f, 0.f });
+	ladder16->SetLocalPosition({ 228.f, 299.f, 0.f });
 	ladder16->SetCanCollide(true);
 	ladder16->SetScaling(2.f, 2.f, 2.f);
 	ladder16->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -178,7 +179,7 @@ void load()
 	auto ladder15 = new dae::GameObject();
 	ladder15->SetTexture("BackgroundSheet.tga", 10, 36);
 	ladder15->SetSourceRectTexture(0, 6, 10, 34);
-	ladder15->SetLocalPosition({ 132.f, 274.f, 0.f });
+	ladder15->SetLocalPosition({ 132.f, 299.f, 0.f });
 	ladder15->SetCanCollide(true);
 	ladder15->SetScaling(2.f, 2.f, 2.f);
 	ladder15->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -188,7 +189,7 @@ void load()
 	auto ladder14 = new dae::GameObject();
 	ladder14->SetTexture("BackgroundSheet.tga", 10, 36);
 	ladder14->SetSourceRectTexture(0, 6, 10, 34);
-	ladder14->SetLocalPosition({ 36.f, 274.f, 0.f });
+	ladder14->SetLocalPosition({ 36.f, 299.f, 0.f });
 	ladder14->SetCanCollide(true);
 	ladder14->SetScaling(2.f, 2.f, 2.f);
 	ladder14->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -198,7 +199,7 @@ void load()
 	auto ladder13 = new dae::GameObject();
 	ladder13->SetTexture("BackgroundSheet.tga", 10, 36);
 	ladder13->SetSourceRectTexture(0, 6, 10, 34);
-	ladder13->SetLocalPosition({ 228.f, 210.f, 0.f });
+	ladder13->SetLocalPosition({ 228.f, 235.f, 0.f });
 	ladder13->SetCanCollide(true);
 	ladder13->SetScaling(2.f, 2.f, 2.f);
 	ladder13->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -208,7 +209,7 @@ void load()
 	auto ladder12 = new dae::GameObject();
 	ladder12->SetTexture("BackgroundSheet.tga", 10, 36);
 	ladder12->SetSourceRectTexture(0, 6, 10, 34);
-	ladder12->SetLocalPosition({ 324.f, 179.f, 0.f });
+	ladder12->SetLocalPosition({ 324.f, 204.f, 0.f });
 	ladder12->SetCanCollide(true);
 	ladder12->SetScaling(2.f, 2.f, 2.f);
 	ladder12->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -218,7 +219,7 @@ void load()
 	auto ladder11 = new dae::GameObject();
 	ladder11->SetTexture("BackgroundSheet.tga", 10, 36);
 	ladder11->SetSourceRectTexture(0, 6, 10, 34);
-	ladder11->SetLocalPosition({ 324.f, 179.f, 0.f });
+	ladder11->SetLocalPosition({ 324.f, 204.f, 0.f });
 	ladder11->SetCanCollide(true);
 	ladder11->SetScaling(2.f, 2.f, 2.f);
 	ladder11->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -228,7 +229,7 @@ void load()
 	auto ladder20 = new dae::GameObject();
 	ladder20->SetTexture("BackgroundSheet.tga", 10, 50);
 	ladder20->SetSourceRectTexture(0, 46, 10, 50);
-	ladder20->SetLocalPosition({ 132.f, 179.f, 0.f });
+	ladder20->SetLocalPosition({ 132.f, 204.f, 0.f });
 	ladder20->SetCanCollide(true);
 	ladder20->SetScaling(2.f, 2.f, 2.f);
 	ladder20->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -238,7 +239,7 @@ void load()
 	auto ladder21 = new dae::GameObject();
 	ladder21->SetTexture("BackgroundSheet.tga", 10, 50);
 	ladder21->SetSourceRectTexture(0, 46, 10, 50);
-	ladder21->SetLocalPosition({ 276.f, 114.f, 0.f });
+	ladder21->SetLocalPosition({ 276.f, 139.f, 0.f });
 	ladder21->SetCanCollide(true);
 	ladder21->SetScaling(2.f, 2.f, 2.f);
 	ladder21->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -248,7 +249,7 @@ void load()
 	auto ladder22 = new dae::GameObject();
 	ladder22->SetTexture("BackgroundSheet.tga", 10, 50);
 	ladder22->SetSourceRectTexture(0, 46, 10, 50);
-	ladder22->SetLocalPosition({ 180.f, 50.f, 0.f });
+	ladder22->SetLocalPosition({ 180.f, 75.f, 0.f });
 	ladder22->SetCanCollide(true);
 	ladder22->SetScaling(2.f, 2.f, 2.f);
 	ladder22->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -258,7 +259,7 @@ void load()
 	auto ladder23 = new dae::GameObject();
 	ladder23->SetTexture("BackgroundSheet.tga", 10, 50);
 	ladder23->SetSourceRectTexture(0, 46, 10, 50);
-	ladder23->SetLocalPosition({ 228.f, 50.f, 0.f });
+	ladder23->SetLocalPosition({ 228.f, 75.f, 0.f });
 	ladder23->SetCanCollide(true);
 	ladder23->SetScaling(2.f, 2.f, 2.f);
 	ladder23->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -268,7 +269,7 @@ void load()
 	auto ladder10 = new dae::GameObject();
 	ladder10->SetTexture("BackgroundSheet.tga", 10, 36);
 	ladder10->SetSourceRectTexture(0, 6, 10, 34);
-	ladder10->SetLocalPosition({ 228.f, 148.f, 0.f });
+	ladder10->SetLocalPosition({ 228.f, 173.f, 0.f });
 	ladder10->SetCanCollide(true);
 	ladder10->SetScaling(2.f, 2.f, 2.f);
 	ladder10->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -278,7 +279,7 @@ void load()
 	auto ladder9 = new dae::GameObject();
 	ladder9->SetTexture("BackgroundSheet.tga", 10, 36);
 	ladder9->SetSourceRectTexture(0, 6, 10, 34);
-	ladder9->SetLocalPosition({ 420.f, 114.f, 0.f });
+	ladder9->SetLocalPosition({ 420.f, 139.f, 0.f });
 	ladder9->SetCanCollide(true);
 	ladder9->SetScaling(2.f, 2.f, 2.f);
 	ladder9->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -288,7 +289,7 @@ void load()
 	auto ladder8 = new dae::GameObject();
 	ladder8->SetTexture("BackgroundSheet.tga", 10, 36);
 	ladder8->SetSourceRectTexture(0, 6, 10, 34);
-	ladder8->SetLocalPosition({ 324.f, 114.f, 0.f });
+	ladder8->SetLocalPosition({ 324.f, 139.f, 0.f });
 	ladder8->SetCanCollide(true);
 	ladder8->SetScaling(2.f, 2.f, 2.f);
 	ladder8->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -298,7 +299,7 @@ void load()
 	auto ladder7 = new dae::GameObject();
 	ladder7->SetTexture("BackgroundSheet.tga", 10, 36);
 	ladder7->SetSourceRectTexture(0, 6, 10, 34);
-	ladder7->SetLocalPosition({ 132.f, 114.f, 0.f });
+	ladder7->SetLocalPosition({ 132.f, 139.f, 0.f });
 	ladder7->SetCanCollide(true);
 	ladder7->SetScaling(2.f, 2.f, 2.f);
 	ladder7->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -308,7 +309,7 @@ void load()
 	auto forgottenLadder = new dae::GameObject();
 	forgottenLadder->SetTexture("BackgroundSheet.tga", 10, 36);
 	forgottenLadder->SetSourceRectTexture(0, 6, 10, 34);
-	forgottenLadder->SetLocalPosition({ 420.f, 50.f, 0.f });
+	forgottenLadder->SetLocalPosition({ 420.f, 75.f, 0.f });
 	forgottenLadder->SetCanCollide(true);
 	forgottenLadder->SetScaling(2.f, 2.f, 2.f);
 	forgottenLadder->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -318,7 +319,7 @@ void load()
 	auto ladder6 = new dae::GameObject();
 	ladder6->SetTexture("BackgroundSheet.tga", 10, 36);
 	ladder6->SetSourceRectTexture(0, 6, 10, 34);
-	ladder6->SetLocalPosition({ 324.f, 50.f, 0.f });
+	ladder6->SetLocalPosition({ 324.f, 75.f, 0.f });
 	ladder6->SetCanCollide(true);
 	ladder6->SetScaling(2.f, 2.f, 2.f);
 	ladder6->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -328,7 +329,7 @@ void load()
 	auto ladder5 = new dae::GameObject();
 	ladder5->SetTexture("BackgroundSheet.tga", 10, 36);
 	ladder5->SetSourceRectTexture(0, 6, 10, 34);
-	ladder5->SetLocalPosition({ 132.f, 50.f, 0.f });
+	ladder5->SetLocalPosition({ 132.f, 75.f, 0.f });
 	ladder5->SetCanCollide(true);
 	ladder5->SetScaling(2.f, 2.f, 2.f);
 	ladder5->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -338,7 +339,7 @@ void load()
 	auto ladder3 = new dae::GameObject();
 	ladder3->SetTexture("BackgroundSheet.tga", 10, 50);
 	ladder3->SetSourceRectTexture(0, 46, 10, 50);
-	ladder3->SetLocalPosition({ 84.f, 179.f, 0.f });
+	ladder3->SetLocalPosition({ 84.f, 204.f, 0.f });
 	ladder3->SetCanCollide(true);
 	ladder3->SetScaling(2.f, 2.f, 2.f);
 	ladder3->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -348,7 +349,7 @@ void load()
 	auto ladder4 = new dae::GameObject();
 	ladder4->SetTexture("BackgroundSheet.tga", 10, 50);
 	ladder4->SetSourceRectTexture(0, 46, 10, 50);
-	ladder4->SetLocalPosition({ 36.f, 179.f, 0.f });
+	ladder4->SetLocalPosition({ 36.f, 204.f, 0.f });
 	ladder4->SetCanCollide(true);
 	ladder4->SetScaling(2.f, 2.f, 2.f);
 	ladder4->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -358,7 +359,7 @@ void load()
 	auto ladder = new dae::GameObject();
 	ladder->SetTexture("BackgroundSheet.tga", 10, 36);
 	ladder->SetSourceRectTexture(0, 6, 10, 34);
-	ladder->SetLocalPosition({ 36.f, 50.f, 0.f });
+	ladder->SetLocalPosition({ 36.f, 75.f, 0.f });
 	ladder->SetCanCollide(true);
 	ladder->SetScaling(2.f, 2.f, 2.f);
 	ladder->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -378,7 +379,7 @@ void load()
 	auto ladderPlatform1 = new dae::GameObject();
 	ladderPlatform1->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform1->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform1->SetLocalPosition({ 30.f, 53.f, 0.f });
+	ladderPlatform1->SetLocalPosition({ 30.f, 78.f, 0.f });
 	ladderPlatform1->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform1->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform1->SetCanCollide(true);
@@ -388,7 +389,7 @@ void load()
 	auto ladderPlatform2 = new dae::GameObject();
 	ladderPlatform2->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform2->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform2->SetLocalPosition({ 126.f, 53.f, 0.f });
+	ladderPlatform2->SetLocalPosition({ 126.f, 78.f, 0.f });
 	ladderPlatform2->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform2->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform2->SetCanCollide(true);
@@ -398,7 +399,7 @@ void load()
 	auto ladderPlatform3 = new dae::GameObject();
 	ladderPlatform3->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform3->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform3->SetLocalPosition({ 222.f, 53.f, 0.f });
+	ladderPlatform3->SetLocalPosition({ 222.f, 78.f, 0.f });
 	ladderPlatform3->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform3->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform3->SetCanCollide(true);
@@ -408,7 +409,7 @@ void load()
 	auto ladderPlatform4 = new dae::GameObject();
 	ladderPlatform4->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform4->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform4->SetLocalPosition({ 318.f, 53.f, 0.f });
+	ladderPlatform4->SetLocalPosition({ 318.f, 78.f, 0.f });
 	ladderPlatform4->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform4->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform4->SetCanCollide(true);
@@ -418,7 +419,7 @@ void load()
 	auto ladderPlatform5 = new dae::GameObject();
 	ladderPlatform5->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform5->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform5->SetLocalPosition({ 414.f, 53.f, 0.f });
+	ladderPlatform5->SetLocalPosition({ 414.f, 78.f, 0.f });
 	ladderPlatform5->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform5->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform5->SetCanCollide(true);
@@ -428,7 +429,7 @@ void load()
 	auto ladderPlatform6 = new dae::GameObject();
 	ladderPlatform6->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform6->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform6->SetLocalPosition({ 30.f, 117.f, 0.f });
+	ladderPlatform6->SetLocalPosition({ 30.f, 142.f, 0.f });
 	ladderPlatform6->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform6->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform6->SetCanCollide(true);
@@ -438,7 +439,7 @@ void load()
 	auto ladderPlatform7 = new dae::GameObject();
 	ladderPlatform7->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform7->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform7->SetLocalPosition({ 126.f, 117.f, 0.f });
+	ladderPlatform7->SetLocalPosition({ 126.f, 142.f, 0.f });
 	ladderPlatform7->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform7->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform7->SetCanCollide(true);
@@ -448,7 +449,7 @@ void load()
 	auto ladderPlatform8 = new dae::GameObject();
 	ladderPlatform8->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform8->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform8->SetLocalPosition({ 222.f, 117.f, 0.f });
+	ladderPlatform8->SetLocalPosition({ 222.f, 142.f, 0.f });
 	ladderPlatform8->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform8->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform8->SetCanCollide(true);
@@ -458,7 +459,7 @@ void load()
 	auto ladderPlatform9 = new dae::GameObject();
 	ladderPlatform9->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform9->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform9->SetLocalPosition({ 318.f, 117.f, 0.f });
+	ladderPlatform9->SetLocalPosition({ 318.f, 142.f, 0.f });
 	ladderPlatform9->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform9->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform9->SetCanCollide(true);
@@ -468,7 +469,7 @@ void load()
 	auto ladderPlatform10 = new dae::GameObject();
 	ladderPlatform10->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform10->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform10->SetLocalPosition({ 414.f, 117.f, 0.f });
+	ladderPlatform10->SetLocalPosition({ 414.f, 142.f, 0.f });
 	ladderPlatform10->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform10->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform10->SetCanCollide(true);
@@ -478,7 +479,7 @@ void load()
 	auto ladderPlatform11 = new dae::GameObject();
 	ladderPlatform11->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform11->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform11->SetLocalPosition({ 126.f, 149.f, 0.f });
+	ladderPlatform11->SetLocalPosition({ 126.f, 174.f, 0.f });
 	ladderPlatform11->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform11->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform11->SetCanCollide(true);
@@ -488,7 +489,7 @@ void load()
 	auto ladderPlatform12 = new dae::GameObject();
 	ladderPlatform12->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform12->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform12->SetLocalPosition({ 222.f, 149.f, 0.f });
+	ladderPlatform12->SetLocalPosition({ 222.f, 174.f, 0.f });
 	ladderPlatform12->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform12->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform12->SetCanCollide(true);
@@ -498,7 +499,7 @@ void load()
 	auto ladderPlatform13 = new dae::GameObject();
 	ladderPlatform13->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform13->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform13->SetLocalPosition({ 30.f, 181.f, 0.f });
+	ladderPlatform13->SetLocalPosition({ 30.f, 206.f, 0.f });
 	ladderPlatform13->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform13->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform13->SetCanCollide(true);
@@ -508,7 +509,7 @@ void load()
 	auto ladderPlatform14 = new dae::GameObject();
 	ladderPlatform14->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform14->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform14->SetLocalPosition({ 126.f, 181.f, 0.f });
+	ladderPlatform14->SetLocalPosition({ 126.f, 206.f, 0.f });
 	ladderPlatform14->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform14->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform14->SetCanCollide(true);
@@ -518,7 +519,7 @@ void load()
 	auto ladderPlatform15 = new dae::GameObject();
 	ladderPlatform15->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform15->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform15->SetLocalPosition({ 318.f, 181.f, 0.f });
+	ladderPlatform15->SetLocalPosition({ 318.f, 206.f, 0.f });
 	ladderPlatform15->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform15->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform15->SetCanCollide(true);
@@ -528,7 +529,7 @@ void load()
 	auto ladderPlatform16 = new dae::GameObject();
 	ladderPlatform16->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform16->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform16->SetLocalPosition({ 414.f, 181.f, 0.f });
+	ladderPlatform16->SetLocalPosition({ 414.f, 206.f, 0.f });
 	ladderPlatform16->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform16->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform16->SetCanCollide(true);
@@ -538,7 +539,7 @@ void load()
 	auto ladderPlatform17 = new dae::GameObject();
 	ladderPlatform17->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform17->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform17->SetLocalPosition({ 126.f, 213.f, 0.f });
+	ladderPlatform17->SetLocalPosition({ 126.f, 238.f, 0.f });
 	ladderPlatform17->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform17->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform17->SetCanCollide(true);
@@ -548,7 +549,7 @@ void load()
 	auto ladderPlatform18 = new dae::GameObject();
 	ladderPlatform18->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform18->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform18->SetLocalPosition({ 222.f, 213.f, 0.f });
+	ladderPlatform18->SetLocalPosition({ 222.f, 238.f, 0.f });
 	ladderPlatform18->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform18->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform18->SetCanCollide(true);
@@ -558,7 +559,7 @@ void load()
 	auto ladderPlatform19 = new dae::GameObject();
 	ladderPlatform19->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform19->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform19->SetLocalPosition({ 318.f, 213.f, 0.f });
+	ladderPlatform19->SetLocalPosition({ 318.f, 238.f, 0.f });
 	ladderPlatform19->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform19->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform19->SetCanCollide(true);
@@ -568,7 +569,7 @@ void load()
 	auto ladderPlatform20 = new dae::GameObject();
 	ladderPlatform20->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform20->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform20->SetLocalPosition({ 318.f, 245.f, 0.f });
+	ladderPlatform20->SetLocalPosition({ 318.f, 270.f, 0.f });
 	ladderPlatform20->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform20->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform20->SetCanCollide(true);
@@ -578,7 +579,7 @@ void load()
 	auto ladderPlatform21 = new dae::GameObject();
 	ladderPlatform21->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform21->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform21->SetLocalPosition({ 414.f, 245.f, 0.f });
+	ladderPlatform21->SetLocalPosition({ 414.f, 270.f, 0.f });
 	ladderPlatform21->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform21->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform21->SetCanCollide(true);
@@ -588,7 +589,7 @@ void load()
 	auto ladderPlatform22 = new dae::GameObject();
 	ladderPlatform22->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform22->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform22->SetLocalPosition({ 30.f, 277.f, 0.f });
+	ladderPlatform22->SetLocalPosition({ 30.f, 302.f, 0.f });
 	ladderPlatform22->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform22->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform22->SetCanCollide(true);
@@ -598,7 +599,7 @@ void load()
 	auto ladderPlatform23 = new dae::GameObject();
 	ladderPlatform23->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform23->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform23->SetLocalPosition({ 126.f, 277.f, 0.f });
+	ladderPlatform23->SetLocalPosition({ 126.f, 302.f, 0.f });
 	ladderPlatform23->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform23->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform23->SetCanCollide(true);
@@ -608,7 +609,7 @@ void load()
 	auto ladderPlatform24 = new dae::GameObject();
 	ladderPlatform24->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform24->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform24->SetLocalPosition({ 222.f, 277.f, 0.f });
+	ladderPlatform24->SetLocalPosition({ 222.f, 302.f, 0.f });
 	ladderPlatform24->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform24->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform24->SetCanCollide(true);
@@ -618,7 +619,7 @@ void load()
 	auto ladderPlatform25 = new dae::GameObject();
 	ladderPlatform25->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform25->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform25->SetLocalPosition({ 318.f, 277.f, 0.f });
+	ladderPlatform25->SetLocalPosition({ 318.f, 302.f, 0.f });
 	ladderPlatform25->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform25->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform25->SetCanCollide(true);
@@ -628,7 +629,7 @@ void load()
 	auto ladderPlatform26 = new dae::GameObject();
 	ladderPlatform26->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform26->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform26->SetLocalPosition({ 30.f, 341.f, 0.f });
+	ladderPlatform26->SetLocalPosition({ 30.f, 366.f, 0.f });
 	ladderPlatform26->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform26->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform26->SetCanCollide(true);
@@ -638,7 +639,7 @@ void load()
 	auto ladderPlatform27 = new dae::GameObject();
 	ladderPlatform27->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform27->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform27->SetLocalPosition({ 126.f, 341.f, 0.f });
+	ladderPlatform27->SetLocalPosition({ 126.f, 366.f, 0.f });
 	ladderPlatform27->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform27->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform27->SetCanCollide(true);
@@ -648,7 +649,7 @@ void load()
 	auto ladderPlatform28 = new dae::GameObject();
 	ladderPlatform28->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform28->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform28->SetLocalPosition({ 222.f, 341.f, 0.f });
+	ladderPlatform28->SetLocalPosition({ 222.f, 366.f, 0.f });
 	ladderPlatform28->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform28->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform28->SetCanCollide(true);
@@ -658,7 +659,7 @@ void load()
 	auto ladderPlatform29 = new dae::GameObject();
 	ladderPlatform29->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform29->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform29->SetLocalPosition({ 318.f, 341.f, 0.f });
+	ladderPlatform29->SetLocalPosition({ 318.f, 366.f, 0.f });
 	ladderPlatform29->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform29->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform29->SetCanCollide(true);
@@ -668,7 +669,7 @@ void load()
 	auto ladderPlatform30 = new dae::GameObject();
 	ladderPlatform30->SetTexture("BackgroundSheet.tga", 16, 3);
 	ladderPlatform30->SetSourceRectTexture(0, 3, 16, 3);
-	ladderPlatform30->SetLocalPosition({ 414.f, 341.f, 0.f });
+	ladderPlatform30->SetLocalPosition({ 414.f, 366.f, 0.f });
 	ladderPlatform30->SetScaling(2.f, 2.f, 2.f);
 	ladderPlatform30->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	ladderPlatform30->SetCanCollide(true);
@@ -678,7 +679,7 @@ void load()
 	auto ladder2 = new dae::GameObject();
 	ladder2->SetTexture("BackgroundSheet.tga", 10, 34);
 	ladder2->SetSourceRectTexture(0, 6, 10, 34);
-	ladder2->SetLocalPosition({ 84.f, 115.f, 0.f });
+	ladder2->SetLocalPosition({ 84.f, 140.f, 0.f });
 	ladder2->SetCanCollide(true);
 	ladder2->SetScaling(2.f, 2.f, 2.f);
 	ladder2->AddTag(dae::make_sdbm_hash("Ladder"));
@@ -688,7 +689,7 @@ void load()
 	auto burgerPlatform1 = new dae::GameObject();
 	burgerPlatform1->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform1->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform1->SetLocalPosition({ 62.f, 53.f, 0.f });
+	burgerPlatform1->SetLocalPosition({ 62.f, 78.f, 0.f });
 	burgerPlatform1->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform1->SetCanCollide(true);
 	burgerPlatform1->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -698,7 +699,7 @@ void load()
 	auto burgerPlatform2 = new dae::GameObject();
 	burgerPlatform2->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform2->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform2->SetLocalPosition({ 62.f, 117.f, 0.f });
+	burgerPlatform2->SetLocalPosition({ 62.f, 142.f, 0.f });
 	burgerPlatform2->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform2->SetCanCollide(true);
 	burgerPlatform2->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -709,7 +710,7 @@ void load()
 	auto burgerPlatform3 = new dae::GameObject();
 	burgerPlatform3->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform3->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform3->SetLocalPosition({ 62.f, 182.f, 0.f });
+	burgerPlatform3->SetLocalPosition({ 62.f, 207.f, 0.f });
 	burgerPlatform3->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform3->SetCanCollide(true);
 	burgerPlatform3->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -720,7 +721,7 @@ void load()
 	auto burgerPlatform4 = new dae::GameObject();
 	burgerPlatform4->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform4->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform4->SetLocalPosition({ 62.f, 278.f, 0.f });
+	burgerPlatform4->SetLocalPosition({ 62.f, 303.f, 0.f });
 	burgerPlatform4->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform4->SetCanCollide(true);
 	burgerPlatform4->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -731,7 +732,7 @@ void load()
 	auto burgerPlatform5 = new dae::GameObject();
 	burgerPlatform5->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform5->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform5->SetLocalPosition({ 158.f, 53.f, 0.f });
+	burgerPlatform5->SetLocalPosition({ 158.f, 78.f, 0.f });
 	burgerPlatform5->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform5->SetCanCollide(true);
 	burgerPlatform5->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -742,7 +743,7 @@ void load()
 	auto burgerPlatform6 = new dae::GameObject();
 	burgerPlatform6->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform6->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform6->SetLocalPosition({ 254.f, 53.f, 0.f });
+	burgerPlatform6->SetLocalPosition({ 254.f, 78.f, 0.f });
 	burgerPlatform6->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform6->SetCanCollide(true);
 	burgerPlatform6->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -753,7 +754,7 @@ void load()
 	auto burgerPlatform7 = new dae::GameObject();
 	burgerPlatform7->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform7->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform7->SetLocalPosition({ 350.f, 53.f, 0.f });
+	burgerPlatform7->SetLocalPosition({ 350.f, 78.f, 0.f });
 	burgerPlatform7->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform7->SetCanCollide(true);
 	burgerPlatform7->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -764,7 +765,7 @@ void load()
 	auto burgerPlatform8 = new dae::GameObject();
 	burgerPlatform8->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform8->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform8->SetLocalPosition({ 254.f, 117.f, 0.f });
+	burgerPlatform8->SetLocalPosition({ 254.f, 142.f, 0.f });
 	burgerPlatform8->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform8->SetCanCollide(true);
 	burgerPlatform8->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -775,7 +776,7 @@ void load()
 	auto burgerPlatform9 = new dae::GameObject();
 	burgerPlatform9->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform9->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform9->SetLocalPosition({ 350.f, 117.f, 0.f });
+	burgerPlatform9->SetLocalPosition({ 350.f, 142.f, 0.f });
 	burgerPlatform9->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform9->SetCanCollide(true);
 	burgerPlatform9->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -786,7 +787,7 @@ void load()
 	auto burgerPlatform10 = new dae::GameObject();
 	burgerPlatform10->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform10->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform10->SetLocalPosition({ 158.f, 149.f, 0.f });
+	burgerPlatform10->SetLocalPosition({ 158.f, 174.f, 0.f });
 	burgerPlatform10->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform10->SetCanCollide(true);
 	burgerPlatform10->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -797,7 +798,7 @@ void load()
 	auto burgerPlatform11 = new dae::GameObject();
 	burgerPlatform11->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform11->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform11->SetLocalPosition({ 350.f, 181.f, 0.f });
+	burgerPlatform11->SetLocalPosition({ 350.f, 206.f, 0.f });
 	burgerPlatform11->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform11->SetCanCollide(true);
 	burgerPlatform11->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -808,7 +809,7 @@ void load()
 	auto burgerPlatform12 = new dae::GameObject();
 	burgerPlatform12->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform12->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform12->SetLocalPosition({ 158.f, 213.f, 0.f });
+	burgerPlatform12->SetLocalPosition({ 158.f, 238.f, 0.f });
 	burgerPlatform12->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform12->SetCanCollide(true);
 	burgerPlatform12->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -819,7 +820,7 @@ void load()
 	auto burgerPlatform13 = new dae::GameObject();
 	burgerPlatform13->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform13->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform13->SetLocalPosition({ 158.f, 213.f, 0.f });
+	burgerPlatform13->SetLocalPosition({ 158.f, 238.f, 0.f });
 	burgerPlatform13->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform13->SetCanCollide(true);
 	burgerPlatform13->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -830,7 +831,7 @@ void load()
 	auto forgottenBourgirPlat = new dae::GameObject();
 	forgottenBourgirPlat->SetTexture("BackgroundSheet.tga", 32, 3);
 	forgottenBourgirPlat->SetSourceRectTexture(0, 0, 32, 3);
-	forgottenBourgirPlat->SetLocalPosition({ 254.f, 213.f, 0.f });
+	forgottenBourgirPlat->SetLocalPosition({ 254.f, 238.f, 0.f });
 	forgottenBourgirPlat->SetScaling(2.f, 2.f, 2.f);
 	forgottenBourgirPlat->SetCanCollide(true);
 	forgottenBourgirPlat->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -841,7 +842,7 @@ void load()
 	auto burgerPlatform14 = new dae::GameObject();
 	burgerPlatform14->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform14->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform14->SetLocalPosition({ 350.f, 245.f, 0.f });
+	burgerPlatform14->SetLocalPosition({ 350.f, 270.f, 0.f });
 	burgerPlatform14->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform14->SetCanCollide(true);
 	burgerPlatform14->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -852,7 +853,7 @@ void load()
 	auto burgerPlatform15 = new dae::GameObject();
 	burgerPlatform15->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform15->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform15->SetLocalPosition({ 158.f, 277.f, 0.f });
+	burgerPlatform15->SetLocalPosition({ 158.f, 302.f, 0.f });
 	burgerPlatform15->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform15->SetCanCollide(true);
 	burgerPlatform15->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -863,7 +864,7 @@ void load()
 	auto burgerPlatform16 = new dae::GameObject();
 	burgerPlatform16->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform16->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform16->SetLocalPosition({ 254.f, 277.f, 0.f });
+	burgerPlatform16->SetLocalPosition({ 254.f, 302.f, 0.f });
 	burgerPlatform16->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform16->SetCanCollide(true);
 	burgerPlatform16->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -874,7 +875,7 @@ void load()
 	auto burgerPlatform17 = new dae::GameObject();
 	burgerPlatform17->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform17->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform17->SetLocalPosition({ 62.f, 341.f, 0.f });
+	burgerPlatform17->SetLocalPosition({ 62.f, 366.f, 0.f });
 	burgerPlatform17->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform17->SetCanCollide(true);
 	burgerPlatform17->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -885,7 +886,7 @@ void load()
 	auto burgerPlatform18 = new dae::GameObject();
 	burgerPlatform18->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform18->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform18->SetLocalPosition({ 158.f, 341.f, 0.f });
+	burgerPlatform18->SetLocalPosition({ 158.f, 366.f, 0.f });
 	burgerPlatform18->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform18->SetCanCollide(true);
 	burgerPlatform18->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -896,7 +897,7 @@ void load()
 	auto burgerPlatform19 = new dae::GameObject();
 	burgerPlatform19->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform19->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform19->SetLocalPosition({ 254.f, 341.f, 0.f });
+	burgerPlatform19->SetLocalPosition({ 254.f, 366.f, 0.f });
 	burgerPlatform19->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform19->SetCanCollide(true);
 	burgerPlatform19->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -907,7 +908,7 @@ void load()
 	auto burgerPlatform20 = new dae::GameObject();
 	burgerPlatform20->SetTexture("BackgroundSheet.tga", 32, 3);
 	burgerPlatform20->SetSourceRectTexture(0, 0, 32, 3);
-	burgerPlatform20->SetLocalPosition({ 350.f, 341.f, 0.f });
+	burgerPlatform20->SetLocalPosition({ 350.f, 366.f, 0.f });
 	burgerPlatform20->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform20->SetCanCollide(true);
 	burgerPlatform20->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
@@ -918,7 +919,7 @@ void load()
 	auto plate1 = new dae::GameObject();
 	plate1->SetTexture("BackgroundSheet.tga", 38, 6);
 	plate1->SetSourceRectTexture(0, 40, 38, 6);
-	plate1->SetLocalPosition({ 56.f, 400.f, 0.f });
+	plate1->SetLocalPosition({ 56.f, 445.f, 0.f });
 	plate1->SetScaling(2.f, 2.f, 2.f);
 	plate1->SetCanCollide(true);
 	plate1->AddTag(dae::make_sdbm_hash("Plate"));
@@ -931,7 +932,7 @@ void load()
 	scene.Add(scoreDisplay);
 
 	auto burgerBun1 = new dae::GameObject();
-	burgerBun1->SetLocalPosition({ 63.f, 43.f, 0.f });
+	burgerBun1->SetLocalPosition({ 63.f, 68.f, 0.f });
 	burgerBun1->SetShouldRender(false);
 	burgerBun1->SetCanCollide(true);
 	burgerBun1->SetBoudingBoxDimensions(8.f * 4.f, 7.f);
@@ -981,20 +982,13 @@ void load()
 	burgerBun1Part4->AddTag(dae::make_sdbm_hash("Food"));
 	scene.Add(burgerBun1Part4);
 
-	//burgerBun1->AddComponent<dae::FSMComponent>();
-	//burgerBun1->GetComponent<dae::FSMComponent>()->AddState<dae::IdleState>(dae::make_sdbm_hash("BurgerIdleState"));
-	//burgerBun1->GetComponent<dae::FSMComponent>()->AddState<dae::FallingState>(dae::make_sdbm_hash("BurgerFallingState"), 0.2f);
-	//burgerBun1->GetComponent<dae::FSMComponent>()->AddCondition<dae::FallingCondition>(dae::make_sdbm_hash("BurgerToFallingCondition"), *burgerBun1, true);
-	//burgerBun1->GetComponent<dae::FSMComponent>()->AddCondition<dae::FallingCondition>(dae::make_sdbm_hash("BurgerFromFallingCondition"), *burgerBun1, false);
-	//burgerBun1->GetComponent<dae::FSMComponent>()->AddTransition(dae::make_sdbm_hash("BurgerIdleState"), dae::make_sdbm_hash("BurgerFallingState"), dae::make_sdbm_hash("BurgerToFallingCondition"));
-	//burgerBun1->GetComponent<dae::FSMComponent>()->AddTransition(dae::make_sdbm_hash("BurgerFallingState"), dae::make_sdbm_hash("BurgerIdleState"), dae::make_sdbm_hash("BurgerFromFallingCondition"));
 	burgerBun1->AddComponent<dae::FoodFallingComponent>(0.2f);
 	burgerBun1->AddComponent<dae::BurgerCollisionComponent>();
 	burgerBun1->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
 	scene.Add(burgerBun1);
 
 	auto lettuce1 = new dae::GameObject();
-	lettuce1->SetLocalPosition({ 63.f, 108.f, 0.f });
+	lettuce1->SetLocalPosition({ 63.f, 133.f, 0.f });
 	lettuce1->SetShouldRender(false);
 	lettuce1->SetCanCollide(true);
 	lettuce1->SetBoudingBoxDimensions(8.f * 4.f, 7.f);
@@ -1044,23 +1038,128 @@ void load()
 	lettuce1Part4->AddTag(dae::make_sdbm_hash("Food"));
 	scene.Add(lettuce1Part4);
 
-	/*lettuce1->AddComponent<dae::FSMComponent>();
-	lettuce1->GetComponent<dae::FSMComponent>()->AddState<dae::IdleState>(dae::make_sdbm_hash("BurgerIdleState"));
-	lettuce1->GetComponent<dae::FSMComponent>()->AddState<dae::FallingState>(dae::make_sdbm_hash("BurgerFallingState"), 0.2f);
-	lettuce1->GetComponent<dae::FSMComponent>()->AddCondition<dae::FallingCondition>(dae::make_sdbm_hash("BurgerToFallingCondition"), *lettuce1, true);
-	lettuce1->GetComponent<dae::FSMComponent>()->AddCondition<dae::FallingCondition>(dae::make_sdbm_hash("BurgerFromFallingCondition"), *lettuce1, false);
-	lettuce1->GetComponent<dae::FSMComponent>()->AddTransition(dae::make_sdbm_hash("BurgerIdleState"), dae::make_sdbm_hash("BurgerFallingState"), dae::make_sdbm_hash("BurgerToFallingCondition"));
-	lettuce1->GetComponent<dae::FSMComponent>()->AddTransition(dae::make_sdbm_hash("BurgerFallingState"), dae::make_sdbm_hash("BurgerIdleState"), dae::make_sdbm_hash("BurgerFromFallingCondition"));*/
 	lettuce1->AddComponent<dae::FoodFallingComponent>(0.2f);
 	lettuce1->AddComponent<dae::BurgerCollisionComponent>();
 	lettuce1->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
 	scene.Add(lettuce1);
 
+	auto beef1 = new dae::GameObject();
+	beef1->SetLocalPosition({ 65.f, 195.f, 0.f });
+	beef1->SetShouldRender(false);
+	beef1->SetCanCollide(true);
+	beef1->SetBoudingBoxDimensions(7.f * 4.f, 7.f);
+	beef1->SetScaling(2.f, 2.f, 2.f);
+
+	auto beef1Part1 = new dae::GameObject();
+	beef1Part1->SetTexture("BurgerTime.png", 7, 7);
+	beef1Part1->SetSourceRectTexture(114, 73, 7, 7);
+	beef1Part1->SetLocalPosition({ 0.f, 0.f, 0.f });
+	beef1Part1->SetScaling(2.f, 2.f, 2.f);
+	beef1Part1->SetCanCollide(true);
+	beef1Part1->AddComponent<dae::BurgerPartsCollisionComponent>(0);
+	beef1Part1->SetParent(beef1);
+	beef1Part1->AddTag(dae::make_sdbm_hash("Food"));
+	scene.Add(beef1Part1);
+
+	auto beef1Part2 = new dae::GameObject();
+	beef1Part2->SetTexture("BurgerTime.png", 7, 7);
+	beef1Part2->SetSourceRectTexture(120, 73, 7, 7);
+	beef1Part2->SetLocalPosition({ 14.f, 0.f, 0.f });
+	beef1Part2->SetScaling(2.f, 2.f, 2.f);
+	beef1Part2->SetCanCollide(true);
+	beef1Part2->AddComponent<dae::BurgerPartsCollisionComponent>(1);
+	beef1Part2->SetParent(beef1);
+	beef1Part2->AddTag(dae::make_sdbm_hash("Food"));
+	scene.Add(beef1Part2);
+
+	auto beef1Part3 = new dae::GameObject();
+	beef1Part3->SetTexture("BurgerTime.png", 7, 7);
+	beef1Part3->SetSourceRectTexture(127, 73, 7, 7);
+	beef1Part3->SetLocalPosition({ 28.f, 0.f, 0.f });
+	beef1Part3->SetScaling(2.f, 2.f, 2.f);
+	beef1Part3->SetCanCollide(true);
+	beef1Part3->AddComponent<dae::BurgerPartsCollisionComponent>(2);
+	beef1Part3->SetParent(beef1);
+	beef1Part3->AddTag(dae::make_sdbm_hash("Food"));
+	scene.Add(beef1Part3);
+
+	auto beef1Part4 = new dae::GameObject();
+	beef1Part4->SetTexture("BurgerTime.png", 8, 7);
+	beef1Part4->SetSourceRectTexture(134, 73, 7, 7);
+	beef1Part4->SetLocalPosition({ 42.f, 0.f, 0.f });
+	beef1Part4->SetScaling(2.f, 2.f, 2.f);
+	beef1Part4->SetCanCollide(true);
+	beef1Part4->AddComponent<dae::BurgerPartsCollisionComponent>(3);
+	beef1Part4->SetParent(beef1);
+	beef1Part4->AddTag(dae::make_sdbm_hash("Food"));
+	scene.Add(beef1Part4);
+
+	beef1->AddComponent<dae::FoodFallingComponent>(0.2f);
+	beef1->AddComponent<dae::BurgerCollisionComponent>();
+	beef1->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
+	scene.Add(beef1);
+
+	auto topBun1 = new dae::GameObject();
+	topBun1->SetLocalPosition({ 62.f, 356.f, 0.f });
+	topBun1->SetShouldRender(false);
+	topBun1->SetCanCollide(true);
+	topBun1->SetBoudingBoxDimensions(8.f * 4.f, 7.f);
+	topBun1->SetScaling(2.f, 2.f, 2.f);
+
+	auto topBun1Part1 = new dae::GameObject();
+	topBun1Part1->SetTexture("BurgerTime.png", 8, 7);
+	topBun1Part1->SetSourceRectTexture(112, 57, 8, 7);
+	topBun1Part1->SetLocalPosition({ 0.f, 0.f, 0.f });
+	topBun1Part1->SetScaling(2.f, 2.f, 2.f);
+	topBun1Part1->SetCanCollide(true);
+	topBun1Part1->AddComponent<dae::BurgerPartsCollisionComponent>(0);
+	topBun1Part1->SetParent(topBun1);
+	topBun1Part1->AddTag(dae::make_sdbm_hash("Food"));
+	scene.Add(topBun1Part1);
+
+	auto topBun1Part2 = new dae::GameObject();
+	topBun1Part2->SetTexture("BurgerTime.png", 8, 7);
+	topBun1Part2->SetSourceRectTexture(120, 57, 8, 7);
+	topBun1Part2->SetLocalPosition({ 16.f, 0.f, 0.f });
+	topBun1Part2->SetScaling(2.f, 2.f, 2.f);
+	topBun1Part2->SetCanCollide(true);
+	topBun1Part2->AddComponent<dae::BurgerPartsCollisionComponent>(1);
+	topBun1Part2->SetParent(topBun1);
+	topBun1Part2->AddTag(dae::make_sdbm_hash("Food"));
+	scene.Add(topBun1Part2);
+
+	auto topBun1Part3 = new dae::GameObject();
+	topBun1Part3->SetTexture("BurgerTime.png", 8, 7);
+	topBun1Part3->SetSourceRectTexture(128, 57, 8, 7);
+	topBun1Part3->SetLocalPosition({ 32.f, 0.f, 0.f });
+	topBun1Part3->SetScaling(2.f, 2.f, 2.f);
+	topBun1Part3->SetCanCollide(true);
+	topBun1Part3->AddComponent<dae::BurgerPartsCollisionComponent>(2);
+	topBun1Part3->SetParent(topBun1);
+	topBun1Part3->AddTag(dae::make_sdbm_hash("Food"));
+	scene.Add(topBun1Part3);
+
+	auto topBun1Part4 = new dae::GameObject();
+	topBun1Part4->SetTexture("BurgerTime.png", 8, 7);
+	topBun1Part4->SetSourceRectTexture(136, 57, 8, 7);
+	topBun1Part4->SetLocalPosition({ 48.f, 0.f, 0.f });
+	topBun1Part4->SetScaling(2.f, 2.f, 2.f);
+	topBun1Part4->SetCanCollide(true);
+	topBun1Part4->AddComponent<dae::BurgerPartsCollisionComponent>(3);
+	topBun1Part4->SetParent(topBun1);
+	topBun1Part4->AddTag(dae::make_sdbm_hash("Food"));
+	scene.Add(topBun1Part4);
+
+	topBun1->AddComponent<dae::FoodFallingComponent>(0.2f);
+	topBun1->AddComponent<dae::BurgerCollisionComponent>();
+	topBun1->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
+	scene.Add(topBun1);
+
 	// Command exercise
 	auto burgerGuy = new dae::GameObject();
 	burgerGuy->SetTexture("BurgerTime.png", 16.f, 16.f);
 	burgerGuy->SetSourceRectTexture(0, 0, 16, 16);
-	burgerGuy->SetLocalPosition({ 200.f, 21.f, 0.f });
+	burgerGuy->SetLocalPosition({ 200.f, 46.f, 0.f });
 	burgerGuy->SetSpeed(0.1f);
 	burgerGuy->SetCanCollide(true);
 	burgerGuy->SetScaling(2.f, 2.f, 2.f);

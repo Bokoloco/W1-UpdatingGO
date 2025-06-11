@@ -26,7 +26,7 @@ namespace dae
 		~SDLSoundSystemImpl();
 
 		void Play(const SoundId id, int loops = 0);
-		void PlayMusic(const SoundId id, int loops = 0);
+		void PlayMusic(const SoundId id, int = -1);
 
 		void PauseMusic();
 
@@ -143,6 +143,7 @@ void dae::SDLSoundSystem::SDLSoundSystemImpl::ProcessQueue()
 		{
 			if (m_Music[sd.id])
 				Mix_PlayMusic(m_Music[sd.id], sd.loops);
+			
 
 			break;
 		}
