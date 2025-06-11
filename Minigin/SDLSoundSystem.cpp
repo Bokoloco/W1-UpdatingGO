@@ -74,26 +74,15 @@ dae::SDLSoundSystem::SDLSoundSystemImpl::~SDLSoundSystemImpl()
 void dae::SDLSoundSystem::SDLSoundSystemImpl::Play(const SoundId id, int loops)
 {
 	if (m_Sounds.find(id) == m_Sounds.end()) return;
-		//std::lock_guard<std::mutex> lg(m_SoundEffectMutex);
-		/*if (m_Sounds[id])
-			Mix_PlayChannel(-1, m_Sounds[id], loops);*/
-	std::cout << "Add to queue pimpl" << std::endl;
 
 	std::lock_guard<std::mutex> lock(m_SoundMutex);
-	std::cout << "Add to queue after lock" << std::endl;
-
 	m_SoundQueue.push({ SoundType::PlaySound, id, loops });
 	m_ConditionalVariable.notify_all();
-	std::cout << "size queue:" << m_SoundQueue.size() << std::endl;
 
 }
 
 void dae::SDLSoundSystem::SDLSoundSystemImpl::PlayMusic(const SoundId id, int loops)
 {
-	//if (m_Music.find(id) != m_Music.end())
-	//	std::lock_guard<std::mutex> lg(m_MusicEffectMutex);
-	//	if (m_Music[id])
-	//		Mix_PlayMusic(m_Music[id], loops);
 	if (m_Music.find(id) == m_Music.end()) return;
 
 	std::lock_guard<std::mutex> lock(m_SoundMutex);
@@ -159,8 +148,6 @@ void dae::SDLSoundSystem::SDLSoundSystemImpl::ProcessQueue()
 		}
 		case SoundType::PlaySound:
 		{
-			std::cout << "Playing sound" << std::endl;
-
 			if (m_Sounds[sd.id])
 				Mix_PlayChannel(-1, m_Sounds[sd.id], sd.loops);
 
@@ -181,15 +168,11 @@ dae::SDLSoundSystem::~SDLSoundSystem()
 
 void dae::SDLSoundSystem::Play(const SoundId id, int loops)
 {
-	//std::jthread(&SDLSoundSystemImpl::Play, m_pSDLSoundSystemImpl.get(), id, loops).join();
-	std::cout << "Add to queue" << std::endl;
-
 	m_pSDLSoundSystemImpl->Play(id, loops);
 }
 
 void dae::SDLSoundSystem::PlayMusic(const SoundId id, int loops)
 {
-	//std::jthread(&SDLSoundSystemImpl::PlayMusic, m_pSDLSoundSystemImpl.get(), id, loops).join();
 	m_pSDLSoundSystemImpl->PlayMusic(id, loops);
 }
 

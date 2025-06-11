@@ -38,7 +38,9 @@ void dae::MoveDownLadderComponent::Update()
 	if (m_CanMoveHorizontally && m_Direction.x != 0.f)
 	{
 		glm::vec3 newPos = GetOwner()->GetLocalPosition() + m_Speed * dae::Minigin::DELTATIME * m_Direction;
-		std::cout << "xPos: " << newPos.x << std::endl;
+
+		if (newPos.x < 30.f || newPos.x + GetOwner()->GetBoundingBox()->w > 446.f) return;
+
 		if (m_YPosOnPlatform != 0.f) newPos.y = m_YPosOnPlatform;
 		GetOwner()->SetLocalPosition(newPos);
 	}
