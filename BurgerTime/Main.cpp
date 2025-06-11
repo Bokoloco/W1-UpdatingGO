@@ -498,7 +498,7 @@ void load()
 	input.BindInputKeyboard(SDL_SCANCODE_D, SDL_KEYDOWN, std::move(moveRight));
 	input.BindInputKeyboard(SDL_SCANCODE_W, SDL_KEYDOWN, std::move(moveUp));
 	input.BindInputKeyboard(SDL_SCANCODE_S, SDL_KEYDOWN, std::move(moveDown));
-	input.BindInputKeyboard(SDL_SCANCODE_Q, SDL_KEYDOWN, std::move(playEnterSoundEffect));
+	input.BindInputKeyboard(SDL_SCANCODE_Q, SDL_KEYUP, std::move(playEnterSoundEffect));
 	input.BindInputKeyboard(SDL_SCANCODE_E, SDL_KEYDOWN, std::move(playMusic));
 	input.BindInputKeyboard(SDL_SCANCODE_P, SDL_KEYDOWN, std::move(pauseMusic));
 

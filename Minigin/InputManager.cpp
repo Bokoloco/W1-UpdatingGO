@@ -92,6 +92,7 @@ bool dae::InputManager::ProcessInput()
 	
 	for (auto& binding : m_CommandsKeyboard)
 	{
+		if (binding.first.eventType != SDL_KEYDOWN) continue;
 		if (inputs[binding.first.scancode])
 		{
 			binding.second->Execute();
@@ -105,6 +106,17 @@ bool dae::InputManager::ProcessInput()
 	while (SDL_PollEvent(&e)) {
 		switch (e.type)
 		{
+		case SDL_KEYUP:
+		{
+			for (auto& binding : m_CommandsKeyboard)
+			{
+				if (e.key.keysym.scancode == binding.first.scancode)
+				{
+					binding.second->Execute();
+				}
+			}
+			break;
+		}
 			case SDL_QUIT:
 			{
 				return false;

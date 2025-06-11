@@ -2,14 +2,28 @@
 #include <iostream>
 #include <vector>
 #include <mutex>
+#include <queue>
 
 namespace dae
 {
+	enum class SoundType
+	{
+		PlayMusic,
+		PlaySound,
+		ChangeMasterVolume
+	};
+	struct SoundData
+	{
+		SoundType type;
+		const SoundId id;
+		int loops{ 0 };
+	};
+
 	class SDLSoundSystem::SDLSoundSystemImpl final
 	{
 	public:
-		SDLSoundSystemImpl() = default;
-		~SDLSoundSystemImpl() = default;
+		SDLSoundSystemImpl();
+		~SDLSoundSystemImpl();
 
 		void Play(const SoundId id, int loops = 0);
 		void PlayMusic(const SoundId id, int loops = 0);
@@ -22,28 +36,69 @@ namespace dae
 		void ChangeMasterVolume(int volume);
 
 	private:
+		void ProcessQueue();
+
+		bool m_RunQueue{true};
+
 		std::map<SoundId, Mix_Chunk*> m_Sounds{};
 		std::map<SoundId, Mix_Music*> m_Music{};
 
-		std::mutex m_SoundEffectMutex;
+		std::mutex m_SoundMutex;
 		std::mutex m_MusicEffectMutex;
+
+		std::queue<SoundData> m_SoundQueue{};
+		std::condition_variable m_ConditionalVariable{};
+		std::jthread m_SoundThread{};
 	};
+}
+
+dae::SDLSoundSystem::SDLSoundSystemImpl::SDLSoundSystemImpl()
+{
+	m_SoundThread = std::jthread(&SDLSoundSystemImpl::ProcessQueue, this);
+}
+
+dae::SDLSoundSystem::SDLSoundSystemImpl::~SDLSoundSystemImpl()
+{
+	
+	m_RunQueue = false;
+	m_ConditionalVariable.notify_all();
+
+	for (auto music : m_Music)
+	{
+		Mix_FreeMusic(music.second);
+	}
+
+	Mix_CloseAudio();
 }
 
 void dae::SDLSoundSystem::SDLSoundSystemImpl::Play(const SoundId id, int loops)
 {
-	if (m_Sounds.find(id) != m_Sounds.end())
-		std::lock_guard<std::mutex> lg(m_SoundEffectMutex);
-		if (m_Sounds[id])
-			Mix_PlayChannel(-1, m_Sounds[id], loops);
+	if (m_Sounds.find(id) == m_Sounds.end()) return;
+		//std::lock_guard<std::mutex> lg(m_SoundEffectMutex);
+		/*if (m_Sounds[id])
+			Mix_PlayChannel(-1, m_Sounds[id], loops);*/
+	std::cout << "Add to queue pimpl" << std::endl;
+
+	std::lock_guard<std::mutex> lock(m_SoundMutex);
+	std::cout << "Add to queue after lock" << std::endl;
+
+	m_SoundQueue.push({ SoundType::PlaySound, id, loops });
+	m_ConditionalVariable.notify_all();
+	std::cout << "size queue:" << m_SoundQueue.size() << std::endl;
+
 }
 
 void dae::SDLSoundSystem::SDLSoundSystemImpl::PlayMusic(const SoundId id, int loops)
 {
-	if (m_Music.find(id) != m_Music.end())
-		std::lock_guard<std::mutex> lg(m_MusicEffectMutex);
-		if (m_Music[id])
-			Mix_PlayMusic(m_Music[id], loops);
+	//if (m_Music.find(id) != m_Music.end())
+	//	std::lock_guard<std::mutex> lg(m_MusicEffectMutex);
+	//	if (m_Music[id])
+	//		Mix_PlayMusic(m_Music[id], loops);
+	if (m_Music.find(id) == m_Music.end()) return;
+
+	std::lock_guard<std::mutex> lock(m_SoundMutex);
+	m_SoundQueue.push({ SoundType::PlayMusic, id, loops });
+	m_ConditionalVariable.notify_all();
 }
 
 void dae::SDLSoundSystem::SDLSoundSystemImpl::PauseMusic()
@@ -79,6 +134,44 @@ void dae::SDLSoundSystem::SDLSoundSystemImpl::ChangeMasterVolume(int volume)
 	Mix_MasterVolume(volume);
 }
 
+void dae::SDLSoundSystem::SDLSoundSystemImpl::ProcessQueue()
+{
+	while (m_RunQueue) {
+		std::unique_lock<std::mutex> lock(m_SoundMutex);
+		m_ConditionalVariable.wait(lock, [this] { return !m_SoundQueue.empty() || !m_RunQueue; });
+
+		if (!m_RunQueue) {
+			break;
+		}
+
+		SoundData sd = m_SoundQueue.front();
+		m_SoundQueue.pop();
+		lock.unlock();
+
+		switch (sd.type)
+		{
+		case SoundType::PlayMusic:
+		{
+			if (m_Music[sd.id])
+				Mix_PlayMusic(m_Music[sd.id], sd.loops);
+
+			break;
+		}
+		case SoundType::PlaySound:
+		{
+			std::cout << "Playing sound" << std::endl;
+
+			if (m_Sounds[sd.id])
+				Mix_PlayChannel(-1, m_Sounds[sd.id], sd.loops);
+
+			break;
+		}
+		default:
+			break;
+		}
+	}
+}
+
 dae::SDLSoundSystem::SDLSoundSystem()
 	: m_pSDLSoundSystemImpl{std::make_unique<SDLSoundSystemImpl>()}
 {}
@@ -88,14 +181,16 @@ dae::SDLSoundSystem::~SDLSoundSystem()
 
 void dae::SDLSoundSystem::Play(const SoundId id, int loops)
 {
-	std::jthread(&SDLSoundSystemImpl::Play, m_pSDLSoundSystemImpl.get(), id, loops).join();
-	//m_pSDLSoundSystemImpl->Play(id, loops);
+	//std::jthread(&SDLSoundSystemImpl::Play, m_pSDLSoundSystemImpl.get(), id, loops).join();
+	std::cout << "Add to queue" << std::endl;
+
+	m_pSDLSoundSystemImpl->Play(id, loops);
 }
 
 void dae::SDLSoundSystem::PlayMusic(const SoundId id, int loops)
 {
-	std::jthread(&SDLSoundSystemImpl::PlayMusic, m_pSDLSoundSystemImpl.get(), id, loops).join();
-	//m_pSDLSoundSystemImpl->PlayMusic(id, loops);
+	//std::jthread(&SDLSoundSystemImpl::PlayMusic, m_pSDLSoundSystemImpl.get(), id, loops).join();
+	m_pSDLSoundSystemImpl->PlayMusic(id, loops);
 }
 
 void dae::SDLSoundSystem::PauseMusic()
