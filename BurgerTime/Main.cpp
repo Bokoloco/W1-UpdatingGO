@@ -52,6 +52,8 @@
 #include "BurgerCollisionComponent.h"
 #include "ScoreDisplayComponent.h"
 #include "MuteSoundCommand.h"
+#include "HealthDisplayComponent.h"
+#include "DecreaseLivesCommand.h"
 
 // Defining our achievements
 //enum EAchievements
@@ -1170,11 +1172,14 @@ void load()
 	scene.Add(burgerGuy);
 
 	auto burgerGuy2 = new dae::GameObject();
-	burgerGuy2->SetTexture("burgerGuy.tga", 16.f, 16.f);
+	burgerGuy2->SetTexture("BurgerTime.png", 16.f, 16.f);
 	burgerGuy2->SetSourceRectTexture(0, 0, 16, 16);
-	burgerGuy2->SetLocalPosition({ 400.f, 29.f, 0.f });
-	burgerGuy2->SetSpeed(0.2f);
+	burgerGuy2->SetLocalPosition({ 250.f, 46.f, 0.f });
+	burgerGuy2->SetSpeed(0.1f);
 	burgerGuy2->SetCanCollide(true);
+	burgerGuy2->SetScaling(2.f, 2.f, 2.f);
+	burgerGuy2->AddTag(dae::make_sdbm_hash("Player"));
+	burgerGuy2->AddComponent<dae::MoveDownLadderComponent>(0.1f);
 	burgerGuy2->AddComponent<dae::PlayerCollisionComponent>();
 	scene.Add(burgerGuy2);
 
@@ -1230,6 +1235,14 @@ void load()
 	////burgerGuy2->GetComponent<dae::ScoreComponent>()->AddObserver(*g_SteamAchievements);
 	//scene.Add(burgerGuy2);
 
+	auto healthDisplay = new dae::GameObject();
+	healthDisplay->SetTexture("BurgerTime.png", 7, 8);
+	healthDisplay->SetSourceRectTexture(201, 0, 7, 8);
+	healthDisplay->SetLocalPosition({ 20.f, 445.f, 0.f });
+	healthDisplay->SetScaling(2.f, 2.f, 2.f);
+	healthDisplay->AddComponent<dae::HealthDisplayComponent>();
+	scene.Add(healthDisplay);
+
 	/*auto instructions = new dae::GameObject();
 	instructions->SetLocalPosition(glm::vec3{ 10.f, 150.f, 0.f });
 	instructions->AddComponent<dae::TextComponent>();
@@ -1242,15 +1255,17 @@ void load()
 	auto moveUp = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy, glm::vec3{0.f, -1.f, 0.f});
 	auto moveDown = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy, glm::vec3{ 0.f, 1.f, 0.f });
 
-	auto moveLeft2 = std::make_unique<dae::MoveCommand>(*burgerGuy2, glm::vec3{ -1.f, 0.f, 0.f });
-	auto moveRight2 = std::make_unique<dae::MoveCommand>(*burgerGuy2, glm::vec3{ 1.f, 0.f, 0.f });
-	auto moveUp2 = std::make_unique<dae::MoveCommand>(*burgerGuy2, glm::vec3{ 0.f, -1.f, 0.f });
-	auto moveDown2 = std::make_unique<dae::MoveCommand>(*burgerGuy2, glm::vec3{ 0.f, 1.f, 0.f });
+	auto moveLeft2 = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy2, glm::vec3{ -1.f, 0.f, 0.f });
+	auto moveRight2 = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy2, glm::vec3{ 1.f, 0.f, 0.f });
+	auto moveUp2 = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy2, glm::vec3{ 0.f, -1.f, 0.f });
+	auto moveDown2 = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy2, glm::vec3{ 0.f, 1.f, 0.f });
 
 	auto playEnterSoundEffect = std::make_unique<dae::PlaySoundCommand>(*burgerGuy, dae::make_sdbm_hash("Enter"));
 	auto playMusic = std::make_unique<dae::PlayMusicCommand>(*burgerGuy, dae::make_sdbm_hash("MainMusic"));
 	auto pauseMusic = std::make_unique<dae::PauseMusicCommand>(*burgerGuy);
 	auto muteCommand = std::make_unique<dae::MuteSoundCommand>(*burgerGuy, 50);
+	auto decLivesCommand = std::make_unique<dae::DecreaseLivesCommand>(*burgerGuy);
+	decLivesCommand->AddObserver(*healthDisplay->GetComponent<dae::HealthDisplayComponent>()->GetObserver());
 
 	auto& input = dae::InputManager::GetInstance();
 	input.BindInputKeyboard(SDL_SCANCODE_A, SDL_KEYDOWN, std::move(moveLeft));
@@ -1261,6 +1276,7 @@ void load()
 	input.BindInputKeyboard(SDL_SCANCODE_E, SDL_KEYDOWN, std::move(playMusic));
 	input.BindInputKeyboard(SDL_SCANCODE_P, SDL_KEYDOWN, std::move(pauseMusic));
 	input.BindInputKeyboard(SDL_SCANCODE_F2, SDL_KEYUP, std::move(muteCommand));
+	input.BindInputKeyboard(SDL_SCANCODE_H, SDL_KEYUP, std::move(decLivesCommand));
 
 
 	input.AddController();

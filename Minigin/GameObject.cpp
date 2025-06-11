@@ -46,7 +46,7 @@ void dae::GameObject::LateUpdate()
 void dae::GameObject::Render() const
 {
 	const auto& pos = m_WorldPosition.GetPosition();
-	if (m_texture != nullptr) Renderer::GetInstance().RenderTexture(*m_texture, m_SourceRect.get(), pos.x, pos.y, m_BoundingRect->w, m_BoundingRect->h);
+	if (m_texture != nullptr && m_ShowTexture) Renderer::GetInstance().RenderTexture(*m_texture, m_SourceRect.get(), pos.x, pos.y, m_BoundingRect->w, m_BoundingRect->h);
 
 	/*SDL_SetRenderDrawColor(Renderer::GetInstance().GetSDLRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderDrawRectF(Renderer::GetInstance().GetSDLRenderer(), m_BoundingRect);*/

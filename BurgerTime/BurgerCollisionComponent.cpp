@@ -40,7 +40,6 @@ void dae::BurgerCollisionComponent::OnEnter(GameObject& go)
 	{
 		if (go.GetComponent<BurgerPartsCollisionComponent>()->HasHitPlate() && go.GetWorldPosition().y > GetOwner()->GetWorldPosition().y && m_pFoodFallingComponent->IsFalling())
 		{
-			std::cout << "On enter food bourgir??" << std::endl;
 			m_pFoodFallingComponent->ShouldNotFall(false);
 			m_pSubject->NotifyObservers(dae::make_sdbm_hash("BurgerDropped"), GetOwner());
 			dae::ServiceLocator::GetSoundSystem().Play(dae::make_sdbm_hash("BurgerLand"));

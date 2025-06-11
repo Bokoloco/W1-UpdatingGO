@@ -49,7 +49,6 @@ void dae::BurgerPartsCollisionComponent::OnColliding(GameObject& go)
 		{
 			m_HasBeenSteppedOn = false;
 			m_HasHitPlate = true;
-			//GetOwner()->GetParent()->SetLocalPosition({ GetOwner()->GetParent()->GetLocalPosition().x, GetOwner()->GetParent()->GetLocalPosition().y + 1.f, 0.f });
 		}
 	}
 	//if (go.ActorHasTag(dae::make_sdbm_hash("Plate")))
@@ -70,9 +69,7 @@ void dae::BurgerPartsCollisionComponent::OnEnter(GameObject& go)
 	{
 		m_HasBeenSteppedOn = false;
 
-		//if (m_idx == 3) go.SetCanCollide(false);
 		GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
-		//GetOwner()->GetParent()->SetLocalPosition({ GetOwner()->GetParent()->GetLocalPosition().x, GetOwner()->GetParent()->GetLocalPosition().y + 1.f, 0.f });
 	}
 	if (go.ActorHasTag(dae::make_sdbm_hash("Plate")))
 	{

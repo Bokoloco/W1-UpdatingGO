@@ -85,6 +85,8 @@ namespace dae
 		Texture2D* GetTexture();
 		void SetShouldRender(bool value);
 
+		bool m_ShowTexture{true};
+
 	private:
 		Transform m_LocalPosition{};
 		Transform m_WorldPosition{};
