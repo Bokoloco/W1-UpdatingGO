@@ -51,6 +51,7 @@
 #include "ScoreObserver.h"
 #include "BurgerCollisionComponent.h"
 #include "ScoreDisplayComponent.h"
+#include "MuteSoundCommand.h"
 
 // Defining our achievements
 //enum EAchievements
@@ -1249,6 +1250,7 @@ void load()
 	auto playEnterSoundEffect = std::make_unique<dae::PlaySoundCommand>(*burgerGuy, dae::make_sdbm_hash("Enter"));
 	auto playMusic = std::make_unique<dae::PlayMusicCommand>(*burgerGuy, dae::make_sdbm_hash("MainMusic"));
 	auto pauseMusic = std::make_unique<dae::PauseMusicCommand>(*burgerGuy);
+	auto muteCommand = std::make_unique<dae::MuteSoundCommand>(*burgerGuy, 50);
 
 	auto& input = dae::InputManager::GetInstance();
 	input.BindInputKeyboard(SDL_SCANCODE_A, SDL_KEYDOWN, std::move(moveLeft));
@@ -1258,6 +1260,7 @@ void load()
 	input.BindInputKeyboard(SDL_SCANCODE_Q, SDL_KEYUP, std::move(playEnterSoundEffect));
 	input.BindInputKeyboard(SDL_SCANCODE_E, SDL_KEYDOWN, std::move(playMusic));
 	input.BindInputKeyboard(SDL_SCANCODE_P, SDL_KEYDOWN, std::move(pauseMusic));
+	input.BindInputKeyboard(SDL_SCANCODE_F2, SDL_KEYUP, std::move(muteCommand));
 
 
 	input.AddController();

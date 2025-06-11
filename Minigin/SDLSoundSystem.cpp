@@ -120,7 +120,13 @@ void dae::SDLSoundSystem::SDLSoundSystemImpl::ChangeMasterVolume(int volume)
 	if (volume > MIX_MAX_VOLUME)
 		volume = MIX_MAX_VOLUME;
 
+	Mix_VolumeMusic(volume);
+	//for (auto chunk : m_Sounds)
+	//{
+	//	Mix_VolumeChunk(chunk.second, volume);
+	//}
 	Mix_MasterVolume(volume);
+	//Mix_Mast
 }
 
 void dae::SDLSoundSystem::SDLSoundSystemImpl::ProcessQueue()

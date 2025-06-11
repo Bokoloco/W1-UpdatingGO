@@ -179,6 +179,7 @@
     <ClCompile Include="Components\PlayerCollisionComponent.cpp" />
     <ClCompile Include="Components\MoveDownLadderComponent.cpp" />
     <ClCompile Include="MoveOnLadderCommand.cpp" />
+    <ClCompile Include="MuteSoundCommand.cpp" />
     <ClCompile Include="PlayerHealthInfo.cpp" />
     <ClCompile Include="PlayerScoreInfo.cpp" />
     <ClCompile Include="Commands\PlayMusicCommand.cpp" />
@@ -204,6 +205,7 @@
     <ClInclude Include="FoodFallingComponent.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="MoveOnLadderCommand.h" />
+    <ClInclude Include="MuteSoundCommand.h" />
     <ClInclude Include="PlayerHealthInfo.h" />
     <ClInclude Include="PlayerScoreInfo.h" />
     <ClInclude Include="Commands\PlayMusicCommand.h" />

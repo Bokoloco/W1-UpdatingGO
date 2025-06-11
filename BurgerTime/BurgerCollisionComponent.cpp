@@ -38,8 +38,7 @@ void dae::BurgerCollisionComponent::OnEnter(GameObject& go)
 	}
 	if (go.ActorHasTag(dae::make_sdbm_hash("Food")))
 	{
-		if (go.GetComponent<BurgerPartsCollisionComponent>()->HasHitPlate() && go.GetWorldPosition().y > GetOwner()->GetWorldPosition().y 
-			&& m_pFoodFallingComponent->IsFalling())
+		if (go.GetComponent<BurgerPartsCollisionComponent>()->HasHitPlate() && go.GetWorldPosition().y > GetOwner()->GetWorldPosition().y && m_pFoodFallingComponent->IsFalling())
 		{
 			std::cout << "On enter food bourgir??" << std::endl;
 			m_pFoodFallingComponent->ShouldNotFall(false);
