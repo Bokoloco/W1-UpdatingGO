@@ -51,21 +51,11 @@ void dae::BurgerPartsCollisionComponent::OnColliding(GameObject& go)
 			m_HasHitPlate = true;
 		}
 	}
-	//if (go.ActorHasTag(dae::make_sdbm_hash("Plate")))
-	//{
-	//	m_HasBeenSteppedOn = false;
-	//}
-	//if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")) /*|| go.ActorHasTag(dae::make_sdbm_hash("Ladder"))*/)
-	//{
-	//	m_HasBeenSteppedOn = false;
-	//	if (m_idx == 3 && go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform"))) go.SetCanCollide(false);
-	//	GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
-	//}
 }
 
 void dae::BurgerPartsCollisionComponent::OnEnter(GameObject& go)
 {
-	if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")) /*|| go.ActorHasTag(dae::make_sdbm_hash("Ladder"))*/)
+	if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")))
 	{
 		m_HasBeenSteppedOn = false;
 

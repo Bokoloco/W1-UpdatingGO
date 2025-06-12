@@ -20,7 +20,8 @@ void dae::HealthDisplayComponent::Render() const
 
 	for (unsigned int i{}; i < m_AmountOfLives; ++i)
 	{
-		if (GetOwner()->GetTexture() != nullptr) Renderer::GetInstance().RenderTexture(*GetOwner()->GetTexture(), GetOwner()->GetSourceRect(), GetOwner()->GetWorldPosition().x, GetOwner()->GetWorldPosition().y - (offset * i), GetOwner()->GetBoundingBox()->w, GetOwner()->GetBoundingBox()->h);
+		if (GetOwner()->GetTexture() != nullptr) 
+			Renderer::GetInstance().RenderTexture(*GetOwner()->GetTexture(), GetOwner()->GetSourceRect(), GetOwner()->GetWorldPosition().x, GetOwner()->GetWorldPosition().y - (offset * i), GetOwner()->GetBoundingBox()->w, GetOwner()->GetBoundingBox()->h);
 	}
 }
 

@@ -22,20 +22,12 @@ void dae::PlayerCollisionComponent::OnColliding(GameObject& go)
 		float xPosOwner = GetOwner()->GetWorldPosition().x + (GetOwner()->GetBoundingBox()->w / 2);
 		float xPosCollidingObject = go.GetWorldPosition().x + go.GetBoundingBox()->w;
 
-		/*float yPosOwner = GetOwner()->GetWorldPosition().y + (GetOwner()->GetBoundingBox()->h / 2);
-		float yPosOwnerBottom = GetOwner()->GetWorldPosition().y + (GetOwner()->GetBoundingBox()->h);
-		float yPosCollidingObjectBottom = go.GetWorldPosition().y + go.GetBoundingBox()->h;*/
-
-		if ((xPosOwner <= xPosCollidingObject && xPosOwner >= go.GetWorldPosition().x) /*&& (yPosOwner <= go.GetWorldPosition().y || yPosOwnerBottom > yPosCollidingObjectBottom)*/)
+		if ((xPosOwner <= xPosCollidingObject && xPosOwner >= go.GetWorldPosition().x))
 		{
-			//std::cout << "In colliding laddr" << std::endl;
-
 			m_pMoveDownLadderComponent->SetCanMoveDownLadder(true);
 			m_pMoveDownLadderComponent->SetXPosOnLadder(go.GetWorldPosition().x + (go.GetBoundingBox()->w / 2));
 			m_pMoveDownLadderComponent->SetMoveToHeight(go.GetWorldPosition().y, go.GetWorldPosition().y + go.GetBoundingBox()->h);
 		}
-		/*else
-			m_pMoveDownLadderComponent->SetCanMoveDownLadder(false);*/
 	}
 	if (go.ActorHasTag(dae::make_sdbm_hash("LadderPlatform")))
 	{
@@ -59,18 +51,13 @@ void dae::PlayerCollisionComponent::OnEnter(GameObject& go)
 		m_pMoveDownLadderComponent->SetCanMoveDownLadder(false);
 		m_pMoveDownLadderComponent->SetCanMoveHorizontally(true);
 	}
-	if (go.ActorHasTag(dae::make_sdbm_hash("Ladder")) /*&& !m_pMoveDownLadderComponent->CanMoveOnLadder()*/)
+	if (go.ActorHasTag(dae::make_sdbm_hash("Ladder")))
 	{
 		float xPosOwner = GetOwner()->GetWorldPosition().x + (GetOwner()->GetBoundingBox()->w / 2);
 		float xPosCollidingObject = go.GetWorldPosition().x + go.GetBoundingBox()->w;
 
-		/*float yPosOwner = GetOwner()->GetWorldPosition().y + (GetOwner()->GetBoundingBox()->h / 2);
-		float yPosOwnerBottom = GetOwner()->GetWorldPosition().y + (GetOwner()->GetBoundingBox()->h);
-		float yPosCollidingObjectBottom = go.GetWorldPosition().y + go.GetBoundingBox()->h;*/
-
-		if ((xPosOwner <= xPosCollidingObject && xPosOwner >= go.GetWorldPosition().x) /*&& (yPosOwner <= go.GetWorldPosition().y || yPosOwnerBottom > yPosCollidingObjectBottom)*/)
+		if ((xPosOwner <= xPosCollidingObject && xPosOwner >= go.GetWorldPosition().x))
 		{
-
 			m_pMoveDownLadderComponent->SetCanMoveDownLadder(true);
 			m_pMoveDownLadderComponent->SetMoveToHeight(go.GetWorldPosition().y, go.GetWorldPosition().y + go.GetBoundingBox()->h/* +5.f*/);
 		}

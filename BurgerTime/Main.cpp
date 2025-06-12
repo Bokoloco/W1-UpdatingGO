@@ -1196,57 +1196,20 @@ void load()
 	mrHotDog->AddComponent<dae::PlayerCollisionComponent>();
 	scene.Add(std::move(mrHotDog));
 
+	auto mrHotDog2 = std::make_unique<dae::GameObject>();
+	mrHotDog2->SetTexture("BurgerTime.png", 15.f, 16.f);
+	mrHotDog2->SetSourceRectTexture(1, 32, 15, 16);
+	mrHotDog2->SetLocalPosition({ 75.f, 175.f, 0.f });
+	mrHotDog2->SetSpeed(0.1f);
+	mrHotDog2->SetCanCollide(true);
+	mrHotDog2->SetScaling(2.f, 2.f, 2.f);
+	mrHotDog2->AddTag(dae::make_sdbm_hash("Enemy"));
+	mrHotDog2->AddTag(dae::make_sdbm_hash("MrHotDog"));
+	mrHotDog2->AddComponent<dae::MoveDownLadderComponent>(0.1f);
+	mrHotDog2->AddComponent<dae::PlayerCollisionComponent>();
+	scene.Add(std::move(mrHotDog2));
+
 	auto smallerFont = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 17);
-
-	//auto playerHeathInfoP1 = std::make_unique<dae::GameObject>();
-	//playerHeathInfoP1->AddComponent<dae::TextComponent>();
-	//playerHeathInfoP1->AddComponent<dae::PlayerHealthInfo>();
-	//playerHeathInfoP1->GetComponent<dae::TextComponent>()->SetFont(smallerFont);
-	//playerHeathInfoP1->SetWorldPosition(10, 100);
-	//scene.Add(playerHeathInfoP1);
-
-	//auto playerScoreInfoP1 = std::make_unique<dae::GameObject>();
-	//playerScoreInfoP1->AddComponent<dae::TextComponent>();
-	//playerScoreInfoP1->AddComponent<dae::PlayerScoreInfo>();
-	//playerScoreInfoP1->GetComponent<dae::TextComponent>()->SetFont(smallerFont);
-	//playerScoreInfoP1->SetWorldPosition(10, 125);
-	//scene.Add(playerScoreInfoP1);
-
-	//auto burgerGuy = std::make_unique<dae::GameObject>();
-	//burgerGuy->SetTexture("burgerGuy.tga");
-	//burgerGuy->SetLocalPosition({ 200.f, 30.f, 0.f });
-	//burgerGuy->SetSpeed(0.1f);
-	//burgerGuy->AddComponent<dae::HealthComponent>();
-	//burgerGuy->GetComponent<dae::HealthComponent>()->AddObserver(*playerHeathInfoP1->GetComponent<dae::PlayerHealthInfo>());
-	//burgerGuy->AddComponent<dae::ScoreComponent>();
-	//burgerGuy->GetComponent<dae::ScoreComponent>()->AddObserver(*playerScoreInfoP1->GetComponent<dae::PlayerScoreInfo>());
-	////burgerGuy->GetComponent<dae::ScoreComponent>()->AddObserver(*g_SteamAchievements);
-	//scene.Add(burgerGuy);
-
-	//auto playerHeathInfoP2 = std::make_unique<dae::GameObject>();
-	//playerHeathInfoP2->AddComponent<dae::TextComponent>();
-	//playerHeathInfoP2->AddComponent<dae::PlayerHealthInfo>();
-	//playerHeathInfoP2->GetComponent<dae::TextComponent>()->SetFont(smallerFont);
-	//playerHeathInfoP2->SetWorldPosition(10, 150);
-	//scene.Add(playerHeathInfoP2);
-
-	//auto playerScoreInfoP2 = std::make_unique<dae::GameObject>();
-	//playerScoreInfoP2->AddComponent<dae::TextComponent>();
-	//playerScoreInfoP2->AddComponent<dae::PlayerScoreInfo>();
-	//playerScoreInfoP2->GetComponent<dae::TextComponent>()->SetFont(smallerFont);
-	//playerScoreInfoP2->SetWorldPosition(10, 175);
-	//scene.Add(playerScoreInfoP2);
-
-	//auto burgerGuy2 = std::make_unique<dae::GameObject>();
-	//burgerGuy2->SetTexture("burgerGuy.tga");
-	//burgerGuy2->SetLocalPosition({ 400.f, 30.f, 0.f });
-	//burgerGuy2->SetSpeed(0.2f);
-	//burgerGuy2->AddComponent<dae::HealthComponent>();
-	//burgerGuy2->GetComponent<dae::HealthComponent>()->AddObserver(*playerHeathInfoP2->GetComponent<dae::PlayerHealthInfo>());
-	//burgerGuy2->AddComponent<dae::ScoreComponent>();
-	//burgerGuy2->GetComponent<dae::ScoreComponent>()->AddObserver(*playerScoreInfoP2->GetComponent<dae::PlayerScoreInfo>());
-	////burgerGuy2->GetComponent<dae::ScoreComponent>()->AddObserver(*g_SteamAchievements);
-	//scene.Add(burgerGuy2);
 
 	auto healthDisplay = std::make_unique<dae::GameObject>();
 	healthDisplay->SetTexture("BurgerTime.png", 7, 8);

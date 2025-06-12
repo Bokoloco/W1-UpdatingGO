@@ -23,12 +23,15 @@ namespace dae
 
 		void AddObserver(Observer& observer);
 
+		int GetAmountOfEnemiesOnBurger() const;
+
 	private:
 		bool m_JustSpawned{ true };
+		int m_AmountOfEnemiesOnBurger{};
+		int m_AmountOfEnemiesOnBurgerForScore{};
 
 		std::unique_ptr<Subject> m_pSubject{};
-
-		FoodFallingComponent* m_pFoodFallingComponent{};
-
+		
+		FoodFallingComponent* m_pFoodFallingComponent{};  
 	};
 }
