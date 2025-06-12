@@ -984,6 +984,7 @@ void load()
 	burgerBun1Part4->AddTag(dae::make_sdbm_hash("Food"));
 	scene.Add(std::move(burgerBun1Part4));
 
+	burgerBun1->AddTag(dae::make_sdbm_hash("FoodParent"));
 	burgerBun1->AddComponent<dae::FoodFallingComponent>(0.2f);
 	burgerBun1->AddComponent<dae::BurgerCollisionComponent>();
 	burgerBun1->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
@@ -1040,6 +1041,7 @@ void load()
 	lettuce1Part4->AddTag(dae::make_sdbm_hash("Food"));
 	scene.Add(std::move(lettuce1Part4));
 
+	lettuce1->AddTag(dae::make_sdbm_hash("FoodParent"));
 	lettuce1->AddComponent<dae::FoodFallingComponent>(0.2f);
 	lettuce1->AddComponent<dae::BurgerCollisionComponent>();
 	lettuce1->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
@@ -1051,6 +1053,7 @@ void load()
 	beef1->SetCanCollide(true);
 	beef1->SetBoudingBoxDimensions(7.f * 4.f, 7.f);
 	beef1->SetScaling(2.f, 2.f, 2.f);
+	beef1->AddTag(dae::make_sdbm_hash("FoodParent"));
 
 	auto beef1Part1 = std::make_unique<dae::GameObject>();
 	beef1Part1->SetTexture("BurgerTime.png", 7, 7);
@@ -1152,6 +1155,7 @@ void load()
 	topBun1Part4->AddTag(dae::make_sdbm_hash("Food"));
 	scene.Add(std::move(topBun1Part4));
 
+	topBun1->AddTag(dae::make_sdbm_hash("FoodParent"));
 	topBun1->AddComponent<dae::FoodFallingComponent>(0.2f);
 	topBun1->AddComponent<dae::BurgerCollisionComponent>();
 	topBun1->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
@@ -1196,18 +1200,18 @@ void load()
 	mrHotDog->AddComponent<dae::PlayerCollisionComponent>();
 	scene.Add(std::move(mrHotDog));
 
-	auto mrHotDog2 = std::make_unique<dae::GameObject>();
-	mrHotDog2->SetTexture("BurgerTime.png", 15.f, 16.f);
-	mrHotDog2->SetSourceRectTexture(1, 32, 15, 16);
-	mrHotDog2->SetLocalPosition({ 75.f, 175.f, 0.f });
-	mrHotDog2->SetSpeed(0.1f);
-	mrHotDog2->SetCanCollide(true);
-	mrHotDog2->SetScaling(2.f, 2.f, 2.f);
-	mrHotDog2->AddTag(dae::make_sdbm_hash("Enemy"));
-	mrHotDog2->AddTag(dae::make_sdbm_hash("MrHotDog"));
-	mrHotDog2->AddComponent<dae::MoveDownLadderComponent>(0.1f);
-	mrHotDog2->AddComponent<dae::PlayerCollisionComponent>();
-	scene.Add(std::move(mrHotDog2));
+	//auto mrHotDog2 = std::make_unique<dae::GameObject>();
+	//mrHotDog2->SetTexture("BurgerTime.png", 15.f, 16.f);
+	//mrHotDog2->SetSourceRectTexture(1, 32, 15, 16);
+	//mrHotDog2->SetLocalPosition({ 75.f, 175.f, 0.f });
+	//mrHotDog2->SetSpeed(0.1f);
+	//mrHotDog2->SetCanCollide(true);
+	//mrHotDog2->SetScaling(2.f, 2.f, 2.f);
+	//mrHotDog2->AddTag(dae::make_sdbm_hash("Enemy"));
+	//mrHotDog2->AddTag(dae::make_sdbm_hash("MrHotDog"));
+	//mrHotDog2->AddComponent<dae::MoveDownLadderComponent>(0.1f);
+	//mrHotDog2->AddComponent<dae::PlayerCollisionComponent>();
+	//scene.Add(std::move(mrHotDog2));
 
 	auto smallerFont = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 17);
 

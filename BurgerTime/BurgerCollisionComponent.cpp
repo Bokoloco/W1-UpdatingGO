@@ -34,8 +34,15 @@ void dae::BurgerCollisionComponent::OnEnter(GameObject& go)
 		{
 			if (m_AmountOfEnemiesOnBurger == 0)
 			{
-				m_pSubject->NotifyObservers(dae::make_sdbm_hash("EnemiesOnBurger"), GetOwner());
 				m_pFoodFallingComponent->ShouldNotFall(false);
+
+				if (m_AmountOfEnemiesOnBurgerForScore != 0)
+				{
+					m_pSubject->NotifyObservers(dae::make_sdbm_hash("EnemiesOnBurger"), GetOwner());
+					m_AmountOfEnemiesOnBurgerForScore = 0;
+				}
+				else m_pSubject->NotifyObservers(dae::make_sdbm_hash("BurgerDropped"), GetOwner());
+
 				GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, go.GetLocalPosition().y - (GetOwner()->GetBoundingBox()->h / 2), 0.f });
 			}
 			else
@@ -44,7 +51,6 @@ void dae::BurgerCollisionComponent::OnEnter(GameObject& go)
 			}
 
 			dae::ServiceLocator::GetSoundSystem().Play(dae::make_sdbm_hash("BurgerLand"));
-			//m_pSubject->NotifyObservers(dae::make_sdbm_hash("BurgerDropped"), GetOwner());
 		}
 		else
 			m_JustSpawned = false;
@@ -56,10 +62,21 @@ void dae::BurgerCollisionComponent::OnEnter(GameObject& go)
 		{
 			m_pFoodFallingComponent->ShouldNotFall(false);
 
-			if(m_AmountOfEnemiesOnBurgerForScore != 0) m_pSubject->NotifyObservers(dae::make_sdbm_hash("EnemiesOnBurger"), GetOwner());
+			if (m_AmountOfEnemiesOnBurgerForScore != 0)
+			{
+				m_pSubject->NotifyObservers(dae::make_sdbm_hash("EnemiesOnBurger"), GetOwner());
+				m_AmountOfEnemiesOnBurgerForScore = 0;
+			}
 			else m_pSubject->NotifyObservers(dae::make_sdbm_hash("BurgerDropped"), GetOwner());
 
 			dae::ServiceLocator::GetSoundSystem().Play(dae::make_sdbm_hash("BurgerLand"));
+		}
+	}
+	if (go.ActorHasTag(dae::make_sdbm_hash("FoodParent")))
+	{
+		if (go.GetWorldPosition().y > GetOwner()->GetWorldPosition().y && m_pFoodFallingComponent->IsFalling())
+		{
+			go.GetComponent<dae::BurgerCollisionComponent>()->ResetAmountOfEnemiesOnBurger();
 		}
 	}
 
@@ -77,7 +94,7 @@ void dae::BurgerCollisionComponent::OnEnter(GameObject& go)
 		go.m_ReadyForDelete = true;
 	}
 
-	if (go.ActorHasTag(dae::make_sdbm_hash("Enemy")))
+	if (go.ActorHasTag(dae::make_sdbm_hash("Enemy")) && !m_pFoodFallingComponent->IsFalling())
 	{
 		++m_AmountOfEnemiesOnBurger;
 		++m_AmountOfEnemiesOnBurgerForScore;
@@ -92,7 +109,7 @@ void dae::BurgerCollisionComponent::OnExit(GameObject& go)
 		m_pFoodFallingComponent->ShouldNotFall(true);
 	}
 
-	if (go.ActorHasTag(dae::make_sdbm_hash("Enemy")))
+	if (go.ActorHasTag(dae::make_sdbm_hash("Enemy")) && !m_pFoodFallingComponent->IsFalling())
 	{
 		--m_AmountOfEnemiesOnBurger;
 		--m_AmountOfEnemiesOnBurgerForScore;
@@ -108,4 +125,10 @@ void dae::BurgerCollisionComponent::AddObserver(Observer& observer)
 int dae::BurgerCollisionComponent::GetAmountOfEnemiesOnBurger() const
 {
 	return m_AmountOfEnemiesOnBurgerForScore;
+}
+
+void dae::BurgerCollisionComponent::ResetAmountOfEnemiesOnBurger()
+{
+	m_AmountOfEnemiesOnBurger = 0;
+	m_AmountOfEnemiesOnBurgerForScore = 0;
 }

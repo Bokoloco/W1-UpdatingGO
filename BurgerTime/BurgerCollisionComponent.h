@@ -24,6 +24,7 @@ namespace dae
 		void AddObserver(Observer& observer);
 
 		int GetAmountOfEnemiesOnBurger() const;
+		void ResetAmountOfEnemiesOnBurger();
 
 	private:
 		bool m_JustSpawned{ true };
