@@ -81,7 +81,6 @@ void dae::PlayerCollisionComponent::OnExit(GameObject& go)
 {
 	if (go.ActorHasTag(dae::make_sdbm_hash("Ladder")))
 	{
-		std::cout << "Exiting " << std::endl;
 		m_pMoveDownLadderComponent->SetCanMoveDownLadder(false);
 		m_pMoveDownLadderComponent->RemoveLadderFromList(go.GetWorldPosition().y, go.GetWorldPosition().y + go.GetBoundingBox()->h);
 	}

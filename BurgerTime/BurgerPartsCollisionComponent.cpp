@@ -88,7 +88,6 @@ void dae::BurgerPartsCollisionComponent::OnEnter(GameObject& go)
 	}
 	if (go.ActorHasTag(dae::make_sdbm_hash("Player")))
 	{
-		std::cout << "lay sound?" << std::endl;
 		dae::ServiceLocator::GetSoundSystem().Play(dae::make_sdbm_hash("BurgerStep"));
 	}
 }
@@ -97,11 +96,8 @@ void dae::BurgerPartsCollisionComponent::OnExit(GameObject& go)
 {
 	if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")))
 	{
-		std::cout << "onExit bourgir" << std::endl;
 		m_HasBeenSteppedOn = false;
 
-		//if (m_idx == 3) go.SetCanCollide(false);
-		//GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
 		GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, 0.f, 0.f });
 	}
 }

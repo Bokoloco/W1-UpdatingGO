@@ -56,8 +56,6 @@ void dae::BurgerCollisionComponent::OnEnter(GameObject& go)
 
 void dae::BurgerCollisionComponent::OnExit(GameObject& go)
 {
-	std::cout << "in exit" << std::endl;
-
 	if (go.ActorHasTag(dae::make_sdbm_hash("BurgerPlatform")) || go.ActorHasTag(dae::make_sdbm_hash("Plate")))
 	{
 		m_pFoodFallingComponent->ShouldNotFall(true);

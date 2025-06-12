@@ -145,7 +145,6 @@ void dae::SDLSoundSystem::SDLSoundSystemImpl::ProcessQueue()
 			if (m_Music[sd.id])
 				Mix_PlayMusic(m_Music[sd.id], sd.loops);
 			
-
 			break;
 		}
 		case SoundType::PlaySound:
