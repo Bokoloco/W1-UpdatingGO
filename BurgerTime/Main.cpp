@@ -1193,6 +1193,7 @@ void load()
 	mrHotDog->SetSpeed(0.1f);
 	mrHotDog->SetCanCollide(true);
 	mrHotDog->SetScaling(2.f, 2.f, 2.f);
+	mrHotDog->SetAmountFrames(2);
 	mrHotDog->AddTag(dae::make_sdbm_hash("Enemy"));
 	mrHotDog->AddTag(dae::make_sdbm_hash("MrHotDog"));
 	mrHotDog->AddComponent<dae::MoveDownLadderComponent>(0.1f);

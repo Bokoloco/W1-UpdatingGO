@@ -5,6 +5,7 @@
 #include "BaseComponent.h"
 #include <iostream>
 #include "Texture2D.h"
+#include "Minigin.h"
 
 dae::GameObject::GameObject()
 {
@@ -26,6 +27,16 @@ dae::GameObject::~GameObject()
 
 void dae::GameObject::Update()
 {
+	m_TimePassed += static_cast<float>(dae::Minigin::DELTATIME);
+	if (m_TimePassed >= m_FrameDelay)
+	{
+		++m_CurrentFrame;
+		m_TimePassed -= m_FrameDelay;
+		m_CurrentFrame %= m_AmountSprites;
+		if (m_AmountSprites == 2) std::cout << "CurrentFrame: " << m_CurrentFrame << std::endl;
+		if (m_SourceRect) m_SourceRect->x = m_xOffset + m_CurrentFrame * m_SourceRect->w;
+	}
+
 	if (m_Components.size() != 0)
 	{
 		for (BaseComponent* var : m_Components)
@@ -79,7 +90,15 @@ void dae::GameObject::SetWorldPosition(float x, float y)
 
 void dae::GameObject::SetSourceRectTexture(int x, int y, int w, int h)
 {
-	m_SourceRect = std::make_unique<SDL_Rect>(x, y, w, h);
+	if (!m_SourceRect) m_SourceRect = std::make_unique<SDL_Rect>(x, y, w, h);
+	else
+	{
+		m_SourceRect->x = x;
+		m_SourceRect->y = y;
+		m_SourceRect->w = w;
+		m_SourceRect->h = h;
+	}
+	m_xOffset = x;
 }
 
 SDL_Rect* dae::GameObject::GetSourceRect()
@@ -247,6 +266,11 @@ dae::Texture2D* dae::GameObject::GetTexture()
 void dae::GameObject::SetShouldRender(bool value)
 {
 	m_ShouldRender = value;
+}
+
+void dae::GameObject::SetAmountFrames(unsigned int amount)
+{
+	m_AmountSprites = amount;
 }
 
 void dae::GameObject::AddChild(GameObject* child)

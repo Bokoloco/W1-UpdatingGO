@@ -36,6 +36,8 @@ namespace dae
 		void Update() override;
 
 	private:
+		float m_YDirection{};
+		float m_CoolDown{250.f};
 		MoveDownLadderComponent* m_pMoveDownLadderComponent{};
 	};
 

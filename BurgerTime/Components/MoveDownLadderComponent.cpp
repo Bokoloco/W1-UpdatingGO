@@ -19,17 +19,16 @@ void dae::MoveDownLadderComponent::Update()
 
 		if (m_MinHeights.size() == 2)
 		{
-			if ((newPos.y + GetOwner()->GetBoundingBox()->h > m_MinHeights.at(0) - 2.f && newPos.y + GetOwner()->GetBoundingBox()->h < m_MaxHeights.at(0)) ||
-				(newPos.y + GetOwner()->GetBoundingBox()->h > m_MinHeights.at(1) - 2.f && newPos.y + GetOwner()->GetBoundingBox()->h < m_MaxHeights.at(1)))
+			if ((newPos.y + GetOwner()->GetBoundingBox()->h > m_MinHeights.at(0) + 3.f && newPos.y + GetOwner()->GetBoundingBox()->h < m_MaxHeights.at(0)) ||
+				(newPos.y + GetOwner()->GetBoundingBox()->h > m_MinHeights.at(1) + 3.f && newPos.y + GetOwner()->GetBoundingBox()->h < m_MaxHeights.at(1)))
 			{
 				GetOwner()->SetLocalPosition(newPos);
 			}
 		}
 		else
 		{
-			if (newPos.y + GetOwner()->GetBoundingBox()->h > m_MinHeights.at(0) && newPos.y + GetOwner()->GetBoundingBox()->h < m_MaxHeights.at(0))
+			if (newPos.y + GetOwner()->GetBoundingBox()->h > m_MinHeights.at(0) + 3.f && newPos.y + GetOwner()->GetBoundingBox()->h < m_MaxHeights.at(0))
 			{
-				//std::cout << "Hey?" << std::endl;
 				GetOwner()->SetLocalPosition(newPos);
 			}
 		}
@@ -37,6 +36,7 @@ void dae::MoveDownLadderComponent::Update()
 	
 	if (m_CanMoveHorizontally && m_Direction.x != 0.f)
 	{
+
 		glm::vec3 newPos = GetOwner()->GetLocalPosition() + m_Speed * dae::Minigin::DELTATIME * m_Direction;
 
 		if (newPos.x < 30.f || newPos.x + GetOwner()->GetBoundingBox()->w > 446.f) return;
@@ -104,4 +104,10 @@ void dae::MoveDownLadderComponent::SetYPosOnPltform(float yPos)
 void dae::MoveDownLadderComponent::SetDirection(const glm::vec3& direction)
 {
 	m_Direction = direction;
+}
+
+bool dae::MoveDownLadderComponent::CanMoveDownLadder()
+{
+	auto it = std::find_if(m_MaxHeights.begin(), m_MaxHeights.end(), [&](float height) {return GetOwner()->GetLocalPosition().y <= height; });
+	return it != m_MaxHeights.end();
 }

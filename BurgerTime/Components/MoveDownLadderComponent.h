@@ -27,6 +27,8 @@ namespace dae
 
 		void SetDirection(const glm::vec3& direction);
 
+		bool CanMoveDownLadder();
+
 		bool m_CanMoveHorizontally{ true };
 
 	private:

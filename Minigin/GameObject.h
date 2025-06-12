@@ -85,6 +85,8 @@ namespace dae
 		Texture2D* GetTexture();
 		void SetShouldRender(bool value);
 
+		void SetAmountFrames(unsigned int amount);
+
 		bool m_ShowTexture{true};
 		bool m_ReadyForDelete{};
 
@@ -94,7 +96,14 @@ namespace dae
 		SDL_FRect* m_BoundingRect{};
 		std::unique_ptr<SDL_Rect> m_SourceRect{};
 
+		unsigned int m_AmountSprites{ 1 };
+		unsigned int m_CurrentFrame{};
+
+		float m_TimePassed{};
+		float m_FrameDelay{ 250.f };
 		float m_Speed{0.1f};
+
+		int m_xOffset{};
 
 		bool m_PositionIsDirty{};
 		bool m_ShouldBeDeletedFromChildren{};
