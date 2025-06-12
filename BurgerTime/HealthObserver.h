@@ -19,7 +19,7 @@ namespace dae
 	private:
 		unsigned int m_LowerHealth{};
 
-		unsigned int m_Lives{3};
+		unsigned int m_Lives{ 4 };
 	};
 }
 

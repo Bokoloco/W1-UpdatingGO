@@ -15,12 +15,8 @@ dae::BurgerCollisionComponent::BurgerCollisionComponent(GameObject& go)
 	m_pFoodFallingComponent = GetOwner()->GetComponent<dae::FoodFallingComponent>();
 }
 
-void dae::BurgerCollisionComponent::OnColliding(GameObject& go)
+void dae::BurgerCollisionComponent::OnColliding(GameObject&)
 {
-
-	if (go.ActorHasTag(dae::make_sdbm_hash("Player")))
-	{
-	}
 }
 
 void dae::BurgerCollisionComponent::OnEnter(GameObject& go)
@@ -36,6 +32,7 @@ void dae::BurgerCollisionComponent::OnEnter(GameObject& go)
 		else
 			m_JustSpawned = false;
 	}
+
 	if (go.ActorHasTag(dae::make_sdbm_hash("Food")))
 	{
 		if (go.GetComponent<BurgerPartsCollisionComponent>()->HasHitPlate() && go.GetWorldPosition().y > GetOwner()->GetWorldPosition().y && m_pFoodFallingComponent->IsFalling())
@@ -45,12 +42,19 @@ void dae::BurgerCollisionComponent::OnEnter(GameObject& go)
 			dae::ServiceLocator::GetSoundSystem().Play(dae::make_sdbm_hash("BurgerLand"));
 		}
 	}
+
 	if (go.ActorHasTag(dae::make_sdbm_hash("Plate")))
 	{
 		m_pFoodFallingComponent->ShouldNotFall(false);
 		m_pSubject->NotifyObservers(dae::make_sdbm_hash("BurgerDropped"), GetOwner());
 		dae::ServiceLocator::GetSoundSystem().Play(dae::make_sdbm_hash("BurgerLand"));
 		GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, GetOwner()->GetLocalPosition().y + 6.f, 0.f });
+	}
+
+	if (go.ActorHasTag(dae::make_sdbm_hash("MrHotDog")) && go.GetWorldPosition().y >= GetOwner()->GetWorldPosition().y)
+	{
+		m_pSubject->NotifyObservers(dae::make_sdbm_hash("MrHotDog"), GetOwner());
+		go.m_ReadyForDelete = true;
 	}
 }
 

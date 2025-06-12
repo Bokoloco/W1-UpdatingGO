@@ -32,7 +32,6 @@ void dae::MoveDownLadderComponent::Update()
 				GetOwner()->SetLocalPosition(newPos);
 			}
 		}
-
 	}
 	
 	if (m_CanMoveHorizontally && m_Direction.x != 0.f)

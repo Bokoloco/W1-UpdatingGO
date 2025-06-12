@@ -86,6 +86,7 @@ namespace dae
 		void SetShouldRender(bool value);
 
 		bool m_ShowTexture{true};
+		bool m_ReadyForDelete{};
 
 	private:
 		Transform m_LocalPosition{};

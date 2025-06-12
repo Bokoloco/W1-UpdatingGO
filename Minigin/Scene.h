@@ -2,17 +2,18 @@
 #include "SceneManager.h"
 #include <set>
 #include <map>
+#include "GameObject.h"
 
 namespace dae
 {
 	class CollisionComponent;
-	class GameObject;
+	//class GameObject;
 	class Scene final
 	{
 		friend Scene& SceneManager::CreateScene(const std::string& name);
 	public:
-		void Add(GameObject* object);
-		void Remove(GameObject* object);
+		void Add(std::unique_ptr<GameObject> object);
+		//void Remove(GameObject* object);
 		void RemoveAll();
 
 		void Update();
@@ -31,7 +32,7 @@ namespace dae
 		explicit Scene(const std::string& name);
 
 		std::string m_name;
-		std::vector <GameObject*> m_objects{};
+		std::vector <std::unique_ptr<GameObject>> m_objects{};
 		std::multimap<CollisionComponent*, GameObject*> m_CurrentCollisions{};
 
 		static unsigned int m_idCounter; 
