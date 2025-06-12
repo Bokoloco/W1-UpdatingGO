@@ -45,15 +45,14 @@
 #include "BurgerPartsCollisionComponent.h"
 #include "FoodFallingComponent.h"
 #include "FallingCondition.h"
-#include "FallingState.h"
 #include "FSMComponent.h"
-#include "IdleState.h"
 #include "ScoreObserver.h"
 #include "BurgerCollisionComponent.h"
 #include "ScoreDisplayComponent.h"
 #include "MuteSoundCommand.h"
 #include "HealthDisplayComponent.h"
 #include "DecreaseLivesCommand.h"
+#include "EnemyStateComponent.h"
 
 // Defining our achievements
 //enum EAchievements
@@ -1198,6 +1197,7 @@ void load()
 	mrHotDog->AddTag(dae::make_sdbm_hash("MrHotDog"));
 	mrHotDog->AddComponent<dae::MoveDownLadderComponent>(0.1f);
 	mrHotDog->AddComponent<dae::PlayerCollisionComponent>();
+	mrHotDog->AddComponent<dae::EnemyStateComponent>(*burgerGuy);
 	scene.Add(std::move(mrHotDog));
 
 	//auto mrHotDog2 = std::make_unique<dae::GameObject>();

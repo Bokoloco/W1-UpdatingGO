@@ -9,9 +9,10 @@ namespace dae
 	enum class SoundType
 	{
 		PlayMusic,
-		PlaySound,
-		ChangeMasterVolume
+		PlaySoundEffect,
+		ChangeVolume
 	};
+
 	struct SoundData
 	{
 		SoundType type;
@@ -59,7 +60,6 @@ dae::SDLSoundSystem::SDLSoundSystemImpl::SDLSoundSystemImpl()
 
 dae::SDLSoundSystem::SDLSoundSystemImpl::~SDLSoundSystemImpl()
 {
-	
 	m_RunQueue = false;
 	m_ConditionalVariable.notify_all();
 
@@ -76,7 +76,7 @@ void dae::SDLSoundSystem::SDLSoundSystemImpl::Play(const SoundId id, int loops)
 	if (m_Sounds.find(id) == m_Sounds.end()) return;
 
 	std::lock_guard<std::mutex> lock(m_SoundMutex);
-	m_SoundQueue.push({ SoundType::PlaySound, id, loops });
+	m_SoundQueue.push({ SoundType::PlaySoundEffect, id, loops });
 	m_ConditionalVariable.notify_all();
 
 }
@@ -130,9 +130,8 @@ void dae::SDLSoundSystem::SDLSoundSystemImpl::ProcessQueue()
 		std::unique_lock<std::mutex> lock(m_SoundMutex);
 		m_ConditionalVariable.wait(lock, [this] { return !m_SoundQueue.empty() || !m_RunQueue; });
 
-		if (!m_RunQueue) {
+		if (!m_RunQueue)
 			break;
-		}
 
 		SoundData sd = m_SoundQueue.front();
 		m_SoundQueue.pop();
@@ -147,7 +146,7 @@ void dae::SDLSoundSystem::SDLSoundSystemImpl::ProcessQueue()
 			
 			break;
 		}
-		case SoundType::PlaySound:
+		case SoundType::PlaySoundEffect:
 		{
 			if (m_Sounds[sd.id])
 				Mix_PlayChannel(-1, m_Sounds[sd.id], sd.loops);

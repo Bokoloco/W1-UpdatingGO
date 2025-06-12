@@ -90,6 +90,7 @@ void dae::BurgerCollisionComponent::OnEnter(GameObject& go)
 
 	if (go.ActorHasTag(dae::make_sdbm_hash("MrHotDog")) && go.GetWorldPosition().y >= GetOwner()->GetWorldPosition().y)
 	{
+		if (!m_pFoodFallingComponent->IsFalling()) return;
 		m_pSubject->NotifyObservers(dae::make_sdbm_hash("MrHotDog"), GetOwner());
 		go.m_ReadyForDelete = true;
 	}

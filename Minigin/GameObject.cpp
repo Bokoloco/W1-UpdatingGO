@@ -144,12 +144,12 @@ const glm::vec3 dae::GameObject::GetWorldPosition()
 	return m_WorldPosition.GetPosition();
 }
 
-const glm::vec3 dae::GameObject::GetLocalPosition()
+const glm::vec3 dae::GameObject::GetLocalPosition() const
 {
 	return m_LocalPosition.GetPosition();
 }
 
-const dae::Transform& dae::GameObject::GetLocalTransform()
+const dae::Transform& dae::GameObject::GetLocalTransform() const
 {
 	// TODO: insert return statement here
 	return m_LocalPosition;

@@ -19,8 +19,8 @@ void dae::MoveDownLadderComponent::Update()
 
 		if (m_MinHeights.size() == 2)
 		{
-			if ((newPos.y + GetOwner()->GetBoundingBox()->h > m_MinHeights.at(0) && newPos.y + GetOwner()->GetBoundingBox()->h < m_MaxHeights.at(0)) ||
-				(newPos.y + GetOwner()->GetBoundingBox()->h > m_MinHeights.at(1) && newPos.y + GetOwner()->GetBoundingBox()->h < m_MaxHeights.at(1)))
+			if ((newPos.y + GetOwner()->GetBoundingBox()->h > m_MinHeights.at(0) - 2.f && newPos.y + GetOwner()->GetBoundingBox()->h < m_MaxHeights.at(0)) ||
+				(newPos.y + GetOwner()->GetBoundingBox()->h > m_MinHeights.at(1) - 2.f && newPos.y + GetOwner()->GetBoundingBox()->h < m_MaxHeights.at(1)))
 			{
 				GetOwner()->SetLocalPosition(newPos);
 			}
@@ -29,6 +29,7 @@ void dae::MoveDownLadderComponent::Update()
 		{
 			if (newPos.y + GetOwner()->GetBoundingBox()->h > m_MinHeights.at(0) && newPos.y + GetOwner()->GetBoundingBox()->h < m_MaxHeights.at(0))
 			{
+				//std::cout << "Hey?" << std::endl;
 				GetOwner()->SetLocalPosition(newPos);
 			}
 		}

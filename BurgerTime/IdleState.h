@@ -11,6 +11,5 @@ namespace dae
 
 		void OnEnter(GameObject* go) override;
 		void Update(GameObject*) override {};
-
 	};
 }

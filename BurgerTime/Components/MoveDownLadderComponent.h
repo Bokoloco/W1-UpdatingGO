@@ -27,9 +27,10 @@ namespace dae
 
 		void SetDirection(const glm::vec3& direction);
 
+		bool m_CanMoveHorizontally{ true };
+
 	private:
 		bool m_CanMoveDownLadder{};
-		bool m_CanMoveHorizontally{true};
 
 		float m_MaxHeight{};
 		float m_MinHeight{};

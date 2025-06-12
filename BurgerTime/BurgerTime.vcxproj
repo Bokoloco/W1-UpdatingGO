@@ -167,15 +167,15 @@
     <ClCompile Include="BurgerCollisionComponent.cpp" />
     <ClCompile Include="BurgerPartsCollisionComponent.cpp" />
     <ClCompile Include="DecreaseLivesCommand.cpp" />
+    <ClCompile Include="EnemyStateComponent.cpp" />
+    <ClCompile Include="EnemyStates.cpp" />
     <ClCompile Include="FallingCondition.cpp" />
-    <ClCompile Include="FallingState.cpp" />
     <ClCompile Include="Components\Exercise1Component.cpp" />
     <ClCompile Include="Components\Exercise2Component.cpp" />
     <ClCompile Include="Components\FPSComponent.cpp" />
     <ClCompile Include="FoodFallingComponent.cpp" />
     <ClCompile Include="HealthDisplayComponent.cpp" />
     <ClCompile Include="HealthObserver.cpp" />
-    <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Components\MoveComponent.cpp" />
     <ClCompile Include="Commands\PauseMusicCommand.cpp" />
@@ -197,8 +197,9 @@
     <ClInclude Include="BurgerCollisionComponent.h" />
     <ClInclude Include="BurgerPartsCollisionComponent.h" />
     <ClInclude Include="DecreaseLivesCommand.h" />
+    <ClInclude Include="EnemyStateComponent.h" />
+    <ClInclude Include="EnemyStates.h" />
     <ClInclude Include="FallingCondition.h" />
-    <ClInclude Include="FallingState.h" />
     <ClInclude Include="Components\Exercise1Component.h" />
     <ClInclude Include="Components\Exercise2Component.h" />
     <ClInclude Include="Components\FPSComponent.h" />
@@ -209,7 +210,6 @@
     <ClInclude Include="FoodFallingComponent.h" />
     <ClInclude Include="HealthDisplayComponent.h" />
     <ClInclude Include="HealthObserver.h" />
-    <ClInclude Include="IdleState.h" />
     <ClInclude Include="MoveOnLadderCommand.h" />
     <ClInclude Include="MuteSoundCommand.h" />
     <ClInclude Include="PlayerHealthInfo.h" />

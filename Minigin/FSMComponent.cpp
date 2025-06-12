@@ -29,7 +29,7 @@ void dae::FSMComponent::AddTransition(unsigned int startState, unsigned int toSt
 void dae::FSMComponent::Update()
 {
     if (m_pCurrentState)
-        m_pCurrentState->Update(GetOwner());
+        m_pCurrentState->Update();
 
     if (m_Transitions.find(m_pCurrentState) != m_Transitions.end())
     {
@@ -41,7 +41,7 @@ void dae::FSMComponent::Update()
                 if (pair.first->Evaluate())
                 {
                     m_pCurrentState = pair.second;
-                    m_pCurrentState->OnEnter(GetOwner());
+                    m_pCurrentState->OnEnter();
                 }
             }
         }

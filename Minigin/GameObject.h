@@ -60,8 +60,8 @@ namespace dae
 		void SetLocalPosition(const glm::vec3& pos);
 
 		const glm::vec3 GetWorldPosition();
-		const glm::vec3 GetLocalPosition();
-		const Transform& GetLocalTransform();
+		const glm::vec3 GetLocalPosition() const;
+		const Transform& GetLocalTransform() const;
 
 		void UpdateWorldPosition();
 

@@ -6,11 +6,17 @@ namespace dae
 	class FSMState
 	{
 	public:
-		FSMState() = default;
+		FSMState(GameObject& go) : m_GameObject{ &go } {};
 		virtual ~FSMState() = default;
 
-		virtual void OnEnter(GameObject* go) = 0;
-		virtual void Update(GameObject* go) = 0;
+		virtual void OnEnter() = 0;
+		virtual void Update() = 0;
+
+	protected:
+		GameObject* GetOwner() { return m_GameObject; };
+
+	private:
+		GameObject* m_GameObject;
 	};
 
 	class FSMCondition
