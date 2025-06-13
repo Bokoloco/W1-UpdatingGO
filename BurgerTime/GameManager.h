@@ -32,9 +32,11 @@ namespace dae
 		void AddPlayer1(std::unique_ptr<GameObject> player1);
 		void AddPlayer2(std::unique_ptr<GameObject> player2);
 
-		GameObject* Player1();
+		GameObject* Player1() const;
+		GameObject* ScoreObserverObject() const;
 
 		void AddHealthObserver(std::unique_ptr<GameObject> healthObserverObject);
+		void AddScoreObserver(std::unique_ptr<GameObject> scoreObserverObject);
 
 		void NextLevel();
 

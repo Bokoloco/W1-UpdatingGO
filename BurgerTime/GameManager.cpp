@@ -33,14 +33,13 @@ void dae::GameManager::SwitchScene(unsigned int sceneName)
 		case dae::GameMode::SinglePlayer:
 		{
 			SceneManager::GetInstance().GetCurrentScene()->Add(std::move(m_pPlayer1));
-			SceneManager::GetInstance().GetCurrentScene()->Add(std::move(m_HealthObserverObject));
 			break;
 		}
 		case dae::GameMode::Coop:
 		{
 			SceneManager::GetInstance().GetCurrentScene()->Add(std::move(m_pPlayer1));
 			SceneManager::GetInstance().GetCurrentScene()->Add(std::move(m_pPlayer2));
-			SceneManager::GetInstance().GetCurrentScene()->Add(std::move(m_HealthObserverObject));
+
 			break;
 		}
 		case dae::GameMode::Versus:
@@ -49,12 +48,14 @@ void dae::GameManager::SwitchScene(unsigned int sceneName)
 			m_pPlayer2->SetSourceRectTexture(32, 32, 15, 16);
 			SceneManager::GetInstance().GetCurrentScene()->Add(std::move(m_pPlayer1));
 			SceneManager::GetInstance().GetCurrentScene()->Add(std::move(m_pPlayer2));
-			SceneManager::GetInstance().GetCurrentScene()->Add(std::move(m_HealthObserverObject));
 			break;
 		}
 		default:
 			break;
 		}
+
+		SceneManager::GetInstance().GetCurrentScene()->Add(std::move(m_HealthObserverObject));
+		SceneManager::GetInstance().GetCurrentScene()->Add(std::move(m_ScoreObserverObject));
 	}
 }
 
@@ -64,6 +65,7 @@ void dae::GameManager::ResetScene()
 	if (m_GameMode != GameMode::SinglePlayer) m_pPlayer2 = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("Player2"));
 
 	m_HealthObserverObject = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("HealthObComponent"));
+	m_ScoreObserverObject = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("ScoreObComponent"));
 
 	auto curScene = SceneManager::GetInstance().GetCurrentScene();
 	curScene->m_ReadyForDelete = true;
@@ -85,14 +87,24 @@ void dae::GameManager::AddPlayer2(std::unique_ptr<GameObject> player2)
 	m_pPlayer2 = std::move(player2);
 }
 
-dae::GameObject* dae::GameManager::Player1()
+dae::GameObject* dae::GameManager::Player1() const
 {
 	return m_pPlayer1.get();
+}
+
+dae::GameObject* dae::GameManager::ScoreObserverObject() const
+{
+	return m_ScoreObserverObject.get();
 }
 
 void dae::GameManager::AddHealthObserver(std::unique_ptr<GameObject> healthObserverObject)
 {
 	m_HealthObserverObject = std::move(healthObserverObject);
+}
+
+void dae::GameManager::AddScoreObserver(std::unique_ptr<GameObject> scoreObserverObject)
+{
+	m_ScoreObserverObject = std::move(scoreObserverObject);
 }
 
 void dae::GameManager::NextLevel()
@@ -101,6 +113,7 @@ void dae::GameManager::NextLevel()
 	if (m_GameMode != GameMode::SinglePlayer) m_pPlayer2 = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("Player2"));
 
 	m_HealthObserverObject = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("HealthObComponent"));
+	m_ScoreObserverObject = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("ScoreObComponent"));
 
 	auto curScene = SceneManager::GetInstance().GetCurrentScene();
 	curScene->m_ReadyForDelete = true;

@@ -131,6 +131,11 @@ void load()
 	auto moveUp = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy, glm::vec3{0.f, -1.f, 0.f});
 	auto moveDown = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy, glm::vec3{ 0.f, 1.f, 0.f });
 
+	auto moveLeftp1GP = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy, glm::vec3{ -1.f, 0.f, 0.f });
+	auto moveRightp1GP = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy, glm::vec3{ 1.f, 0.f, 0.f });
+	auto moveUpp1GP = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy, glm::vec3{ 0.f, -1.f, 0.f });
+	auto moveDownp1GP = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy, glm::vec3{ 0.f, 1.f, 0.f });
+
 	auto moveLeft2 = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy2, glm::vec3{ -1.f, 0.f, 0.f });
 	auto moveRight2 = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy2, glm::vec3{ 1.f, 0.f, 0.f });
 	auto moveUp2 = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy2, glm::vec3{ 0.f, -1.f, 0.f });
@@ -163,13 +168,23 @@ void load()
 	input.BindInputKeyboard(SDL_SCANCODE_M, SDL_KEYUP, std::move(mainMenuCommand));
 
 	input.AddController();
-	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_LEFT, true, std::move(moveLeft2));
-	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_RIGHT, true, std::move(moveRight2));
-	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_UP, true, std::move(moveUp2));
-	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_DOWN, true, std::move(moveDown2));
+	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_LEFT, true, std::move(moveLeftp1GP));
+	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_RIGHT, true, std::move(moveRightp1GP));
+	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_UP, true, std::move(moveUpp1GP));
+	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_DOWN, true, std::move(moveDownp1GP));
 
 	burgerGuy->GetComponent<dae::PlayerCollisionComponent>()->AddObserver(*healthDisplay->GetComponent<dae::HealthDisplayComponent>()->GetObserver());
 
+	auto scoreDisplay = std::make_unique<dae::GameObject>();
+	scoreDisplay->SetLocalPosition({ 100.f, 0.f, 0.f });
+	scoreDisplay->SetBoudingBoxDimensions(100.f, 100.f);
+	scoreDisplay->SetScaling(1.f, 1.f, 1.f);
+	scoreDisplay->AddComponent<dae::TextComponent>();
+	scoreDisplay->GetComponent<dae::TextComponent>()->SetFont(font);
+	scoreDisplay->AddComponent<dae::ScoreDisplayComponent>();
+	scoreDisplay->AddTag(dae::make_sdbm_hash("ScoreObComponent"));
+
+	dae::GameManager::GetInstance().AddScoreObserver(std::move(scoreDisplay));
 	dae::GameManager::GetInstance().AddPlayer1(std::move(burgerGuy));
 	dae::GameManager::GetInstance().AddPlayer2(std::move(burgerGuy2));
 	dae::GameManager::GetInstance().AddHealthObserver(std::move(healthDisplay));
