@@ -26,6 +26,7 @@ void dae::TopBurgerComponent::Update()
 	{
 		std::cout << "In if" << std::endl;
 		m_pSubject->NotifyObservers(make_sdbm_hash("BurgerHitPlate"), GetOwner());
+		m_HasHitPlate = true;
 	}
 }
 

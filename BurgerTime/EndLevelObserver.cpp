@@ -15,8 +15,9 @@ void dae::EndLevelObserver::OnNotify(unsigned int eventID, GameObject*)
 	{
 		++m_AmountBurgersHitPlate;
 		std::cout << "BurgerHitPlate: " << m_AmountBurgersHitPlate << std::endl;
-		if (m_AmountBurgersHitPlate >= 1)
+		if (m_AmountBurgersHitPlate >= 4)
 		{
+			std::cout << "Next Level: " << m_AmountBurgersHitPlate << std::endl;
 			GameManager::GetInstance().NextLevel();
 		}
 	}
