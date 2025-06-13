@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include "ResourceManager.h"
+#include "glm.hpp"
 
 namespace dae
 {
@@ -9,10 +10,12 @@ namespace dae
 	class Level1
 	{
 	public:
-		Level1(unsigned int sceneName);
+		Level1();
 		~Level1() = default;
 
 		void MakeBurgerParts(int xOffset, int yOffset, GameObject* parent, Scene& scene);
+
+		const glm::vec3 m_Player1StartPos{ 222.f, 335.f , 0.f };
 	};
 }
 

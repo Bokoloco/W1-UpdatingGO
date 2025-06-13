@@ -18,9 +18,9 @@
 #include "EndLevelObserver.h"
 #include "EndLevelComponent.h"
 
-dae::Level1::Level1(unsigned int sceneName)
+dae::Level1::Level1()
 {
-	auto& scene = dae::SceneManager::GetInstance().CreateScene(sceneName);
+	auto& scene = dae::SceneManager::GetInstance().CreateScene(dae::make_sdbm_hash("Level1"));
 	auto font = dae::ResourceManager::GetInstance().LoadFont("PressStart2P-Regular.ttf", 12);
 
 	auto ladder19 = std::make_unique<dae::GameObject>();

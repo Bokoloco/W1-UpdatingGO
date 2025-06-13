@@ -70,9 +70,18 @@ void dae::GameManager::ResetScene()
 	auto curScene = SceneManager::GetInstance().GetCurrentScene();
 	curScene->m_ReadyForDelete = true;
 
-	auto level1 = std::make_unique<dae::Level1>(make_sdbm_hash("Level1"));
-
-	SwitchScene(make_sdbm_hash("Level1"));
+	if (m_CurrentLevel == 0)
+	{
+		auto level = std::make_unique<dae::Level1>();
+		m_pPlayer1->SetLocalPosition(level->m_Player1StartPos);
+		SwitchScene(make_sdbm_hash("Level1"));
+	}
+	else if (m_CurrentLevel == 1)
+	{
+		auto level = std::make_unique<dae::Level2>();
+		m_pPlayer1->SetLocalPosition(level->m_Player1StartPos);
+		SwitchScene(make_sdbm_hash("Level2"));
+	}
 
 	SceneManager::GetInstance().QueueRemoveScene(curScene);
 }
@@ -115,13 +124,24 @@ void dae::GameManager::NextLevel()
 	m_HealthObserverObject = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("HealthObComponent"));
 	m_ScoreObserverObject = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("ScoreObComponent"));
 
+	++m_CurrentLevel;
+	m_CurrentLevel %= 2;
+
 	auto curScene = SceneManager::GetInstance().GetCurrentScene();
 	curScene->m_ReadyForDelete = true;
 
-	auto level = std::make_unique<dae::Level2>();
-	m_pPlayer1->SetLocalPosition(level->m_Player1StartPos);
-
-	SwitchScene(make_sdbm_hash("Level2"));
+	if (m_CurrentLevel == 0)
+	{
+		auto level = std::make_unique<dae::Level1>();
+		m_pPlayer1->SetLocalPosition(level->m_Player1StartPos);
+		SwitchScene(make_sdbm_hash("Level1"));
+	}
+	else if (m_CurrentLevel == 1)
+	{
+		auto level = std::make_unique<dae::Level2>();
+		m_pPlayer1->SetLocalPosition(level->m_Player1StartPos);
+		SwitchScene(make_sdbm_hash("Level2"));
+	}
 
 	SceneManager::GetInstance().QueueRemoveScene(curScene);
 }

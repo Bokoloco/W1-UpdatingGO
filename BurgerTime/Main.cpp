@@ -189,7 +189,7 @@ void load()
 	dae::GameManager::GetInstance().AddPlayer2(std::move(burgerGuy2));
 	dae::GameManager::GetInstance().AddHealthObserver(std::move(healthDisplay));
 
-	auto level1 = std::make_unique<dae::Level1>(dae::make_sdbm_hash("Level1"));
+	auto level1 = std::make_unique<dae::Level1>();
 	//auto level2 = std::make_unique<dae::Level2>();
 
 	mainMenuScene.Add(std::move(intro));
