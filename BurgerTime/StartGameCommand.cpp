@@ -35,3 +35,13 @@ void dae::StartVersusGameCommand::Execute()
 	GameManager::GetInstance().SetGameMode(GameMode::Versus);
 	GameManager::GetInstance().SwitchScene(dae::make_sdbm_hash("Level1"));
 }
+
+dae::MainMenuCommand::MainMenuCommand(GameObject& go)
+	: Command(go)
+{
+}
+
+void dae::MainMenuCommand::Execute()
+{
+	GameManager::GetInstance().SwitchScene(dae::make_sdbm_hash("MainMenu"));
+}

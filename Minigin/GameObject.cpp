@@ -33,7 +33,6 @@ void dae::GameObject::Update()
 		++m_CurrentFrame;
 		m_TimePassed -= m_FrameDelay;
 		m_CurrentFrame %= m_AmountSprites;
-		if (m_AmountSprites == 2) std::cout << "CurrentFrame: " << m_CurrentFrame << std::endl;
 		if (m_SourceRect) m_SourceRect->x = m_xOffset + m_CurrentFrame * m_SourceRect->w;
 	}
 

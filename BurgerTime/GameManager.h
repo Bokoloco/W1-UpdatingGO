@@ -24,9 +24,15 @@ namespace dae
 		void AddPlayer1(std::unique_ptr<GameObject> player1);
 		void AddPlayer2(std::unique_ptr<GameObject> player2);
 
+		GameObject* Player1();
+
+		void AddHealthObserver(std::unique_ptr<GameObject> healthObserverObject);
+
 	private:
 		friend class Singleton<GameManager>;
 		GameManager() = default;
+
+		bool m_GetObjectsOut{};
 
 		GameMode m_GameMode;
 

@@ -27,4 +27,12 @@ namespace dae
 
 		void Execute() override;
 	};
+
+	class MainMenuCommand : public Command
+	{
+	public:
+		MainMenuCommand(GameObject& go);
+
+		void Execute() override;
+	};
 }

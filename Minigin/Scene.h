@@ -23,7 +23,7 @@ namespace dae
 		void CheckCollision();
 		unsigned int GetName() const;
 
-		std::vector<std::unique_ptr<GameObject>> GetObjectsWithTag(unsigned int tag);
+		std::unique_ptr<GameObject> GetObjectsWithTag(unsigned int tag);
 
 		~Scene();
 		Scene(const Scene& other) = delete;

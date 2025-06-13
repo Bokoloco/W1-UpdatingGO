@@ -167,6 +167,8 @@
     <ClCompile Include="BurgerCollisionComponent.cpp" />
     <ClCompile Include="BurgerPartsCollisionComponent.cpp" />
     <ClCompile Include="DecreaseLivesCommand.cpp" />
+    <ClCompile Include="EndLevelComponent.cpp" />
+    <ClCompile Include="EndLevelObserver.cpp" />
     <ClCompile Include="EnemyStateComponent.cpp" />
     <ClCompile Include="EnemyStates.cpp" />
     <ClCompile Include="FallingCondition.cpp" />
@@ -177,6 +179,7 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="HealthDisplayComponent.cpp" />
     <ClCompile Include="HealthObserver.cpp" />
+    <ClCompile Include="Level1.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Components\MoveComponent.cpp" />
     <ClCompile Include="Commands\PauseMusicCommand.cpp" />
@@ -193,12 +196,15 @@
     <ClCompile Include="ScoreDisplayComponent.cpp" />
     <ClCompile Include="ScoreObserver.cpp" />
     <ClCompile Include="StartGameCommand.cpp" />
+    <ClCompile Include="TopBurgerComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoxColliderComponent.h" />
     <ClInclude Include="BurgerCollisionComponent.h" />
     <ClInclude Include="BurgerPartsCollisionComponent.h" />
     <ClInclude Include="DecreaseLivesCommand.h" />
+    <ClInclude Include="EndLevelComponent.h" />
+    <ClInclude Include="EndLevelObserver.h" />
     <ClInclude Include="EnemyStateComponent.h" />
     <ClInclude Include="EnemyStates.h" />
     <ClInclude Include="FallingCondition.h" />
@@ -213,6 +219,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="HealthDisplayComponent.h" />
     <ClInclude Include="HealthObserver.h" />
+    <ClInclude Include="Level1.h" />
     <ClInclude Include="MoveOnLadderCommand.h" />
     <ClInclude Include="MuteSoundCommand.h" />
     <ClInclude Include="PlayerHealthInfo.h" />
@@ -224,6 +231,7 @@
     <ClInclude Include="ScoreDisplayComponent.h" />
     <ClInclude Include="ScoreObserver.h" />
     <ClInclude Include="StartGameCommand.h" />
+    <ClInclude Include="TopBurgerComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -7,11 +7,6 @@ void dae::SceneManager::Update()
 	//{
 	//	scene->Update();
 	//}
-	if (m_NextScene != nullptr)
-	{
-		m_CurrentScene = m_NextScene;
-		m_NextScene = nullptr;
-	}
 	m_CurrentScene->Update();
 }
 
@@ -23,6 +18,11 @@ void dae::SceneManager::LateUpdate()
 	}*/
 	// Thanks to Viktor Vermeire for the logic of updating/switching scene
 	m_CurrentScene->LateUpdate();
+	if (m_NextScene != nullptr)
+	{
+		m_CurrentScene = m_NextScene;
+		m_NextScene = nullptr;
+	}
 }
 
 void dae::SceneManager::Render()
@@ -35,7 +35,16 @@ void dae::SceneManager::SwitchScene(unsigned int name)
 	auto it = std::find_if(m_scenes.begin(), m_scenes.end(), [&](std::shared_ptr<Scene> scene) { return scene->GetName() == name; });
 	if (it != m_scenes.end())
 	{
-		m_NextScene = *it;
+		m_CurrentScene = *it;
+	}
+}
+
+void dae::SceneManager::SetStartScene(unsigned int name)
+{
+	auto it = std::find_if(m_scenes.begin(), m_scenes.end(), [&](std::shared_ptr<Scene> scene) { return scene->GetName() == name; });
+	if (it != m_scenes.end())
+	{
+		m_CurrentScene = *it;
 	}
 }
 

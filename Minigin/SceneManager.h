@@ -17,6 +17,7 @@ namespace dae
 		void Render();
 
 		void SwitchScene(unsigned int name);
+		void SetStartScene(unsigned int name);
 		//void SetCurrentScene()
 		Scene* GetCurrentScene();
 		Scene* GetNextScene();

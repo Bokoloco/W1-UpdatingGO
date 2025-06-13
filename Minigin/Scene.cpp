@@ -39,8 +39,10 @@ void Scene::RemoveAll()
 
 void Scene::Update()
 {
+
 	for(auto& object : m_objects)
 	{
+		if (!object) continue;
 		object->Update();
 	}
 
@@ -49,6 +51,7 @@ void Scene::Update()
 
 void dae::Scene::LateUpdate()
 {
+	m_objects.erase(std::remove_if(m_objects.begin(), m_objects.end(), [](auto& go) { return go == nullptr; }), m_objects.end());
 	m_objects.erase(std::remove_if(m_objects.begin(), m_objects.end(), [](auto& go) { return go->m_ReadyForDelete; }), m_objects.end());
 }
 
@@ -56,6 +59,8 @@ void Scene::Render() const
 {
 	for (const auto& object : m_objects)
 	{
+		if (!object) continue;
+
 		object->Render();
 	}
 }
@@ -64,11 +69,14 @@ void dae::Scene::CheckCollision()
 {
 	for (auto& gameObj1 : m_objects)
 	{
+		if (gameObj1 == nullptr) continue;
 		if (!gameObj1->CanCollide()) continue;
 		if (gameObj1->ContainsComponent<dae::CollisionComponent>())
 		{
 			for (auto& gameObj2 : m_objects)
 			{
+				if (gameObj2 == nullptr) continue;
+
 				if (gameObj1 == gameObj2 || !gameObj2->CanCollide()) continue;
 				if (gameObj1->IsChild(gameObj2.get()) || gameObj1->GetParent() == gameObj2.get()) continue;
 
@@ -122,15 +130,13 @@ unsigned int dae::Scene::GetName() const
 	return m_name;
 }
 
-std::vector<std::unique_ptr<GameObject>> dae::Scene::GetObjectsWithTag(unsigned int tag)
+std::unique_ptr<GameObject> dae::Scene::GetObjectsWithTag(unsigned int tag)
 {
-	std::vector<std::unique_ptr<GameObject>> objects;
-
 	for (auto& object : m_objects)
 	{
+		if (object == nullptr) continue;
 		if (object->ActorHasTag(tag))
-			objects.push_back(std::move(object));
+			return std::move(object);
 	}
-
-	return objects;
+	return nullptr;
 }
