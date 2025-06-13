@@ -273,7 +273,7 @@ void load()
 	auto ladder10 = std::make_unique<dae::GameObject>();
 	ladder10->SetTexture("BackgroundSheet.tga", 10, 36);
 	ladder10->SetSourceRectTexture(0, 6, 10, 34);
-	ladder10->SetLocalPosition({ 228.f, 173.f, 0.f });
+	ladder10->SetLocalPosition({ 228.f, 171.f, 0.f });
 	ladder10->SetCanCollide(true);
 	ladder10->SetScaling(2.f, 2.f, 2.f);
 	ladder10->AddTag(dae::make_sdbm_hash("Ladder"));
