@@ -31,6 +31,8 @@ namespace dae
 		Scene& operator=(const Scene& other) = delete;
 		Scene& operator=(Scene&& other) = delete;
 
+		bool m_ReadyForDelete{};
+
 	private: 
 		explicit Scene(unsigned int name);
 

@@ -3,11 +3,14 @@
 #include "MoveDownLadderComponent.h"
 #include "Utils.h"
 #include <iostream>
+#include "Observer.h"
+#include "Subject.h"
 
 dae::PlayerCollisionComponent::PlayerCollisionComponent(GameObject& go)
 	: CollisionComponent(go)
 {
 	m_pMoveDownLadderComponent = GetOwner()->GetComponent<MoveDownLadderComponent>();
+	m_pSubject = std::make_unique<Subject>();
 }
 
 void dae::PlayerCollisionComponent::Update()
@@ -42,6 +45,21 @@ void dae::PlayerCollisionComponent::OnColliding(GameObject& go)
 		else
 			m_pMoveDownLadderComponent->SetCanMoveHorizontally(false);
 	}
+	if (go.ActorHasTag(dae::make_sdbm_hash("Enemy")))
+	{
+		float xPosEnemy = go.GetWorldPosition().x + (go.GetBoundingBox()->w / 2);
+
+		if (xPosEnemy >= GetOwner()->GetLocalPosition().x && xPosEnemy <= GetOwner()->GetLocalPosition().x + GetOwner()->GetBoundingBox()->w)
+		{
+			float yPosEnemy = go.GetLocalPosition().y + 4 * (go.GetBoundingBox()->h / 5);
+			float kneeOwner = GetOwner()->GetLocalPosition().y + 4 * (GetOwner()->GetBoundingBox()->h / 5);
+			if (yPosEnemy >= kneeOwner && yPosEnemy <= GetOwner()->GetLocalPosition().y + GetOwner()->GetBoundingBox()->h)
+			{
+				m_pSubject->NotifyObservers(dae::make_sdbm_hash("LowerHealth"), GetOwner());
+				std::cout << "Died" << std::endl;
+			}
+		}
+	}
 }
 
 void dae::PlayerCollisionComponent::OnEnter(GameObject& go)
@@ -75,4 +93,9 @@ void dae::PlayerCollisionComponent::OnExit(GameObject& go)
 	{
 		if (m_pMoveDownLadderComponent->CanMoveOnLadder())	m_pMoveDownLadderComponent->SetCanMoveHorizontally(false);
 	}
+}
+
+void dae::PlayerCollisionComponent::AddObserver(Observer& observer)
+{
+	m_pSubject->AddObserver(observer);
 }

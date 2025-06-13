@@ -18,9 +18,14 @@ namespace dae
 
 		void SwitchScene(unsigned int name);
 		void SetStartScene(unsigned int name);
+
+		void QueueRemoveScene(Scene* scene);
+
 		//void SetCurrentScene()
 		Scene* GetCurrentScene();
 		Scene* GetNextScene();
+
+		bool m_Pause{};
 
 	private:
 		friend class Singleton<SceneManager>;
@@ -28,6 +33,6 @@ namespace dae
 		std::vector<std::shared_ptr<Scene>> m_scenes;
 
 		std::shared_ptr<Scene> m_CurrentScene{};
-		std::shared_ptr<Scene> m_NextScene{};
+		Scene* m_SceneToDelete{};
 	};
 }

@@ -77,7 +77,7 @@ dae::EnemyState* dae::PlatformState::HandleInput()
 
 void dae::PlatformState::OnEnter()
 {
-	GetOwner()->SetSourceRectTexture(32, 32, 15, 16);
+	GetOwner()->SetSourceRectTexture(32, 32, 16, 16);
 }
 
 void dae::PlatformState::Update()

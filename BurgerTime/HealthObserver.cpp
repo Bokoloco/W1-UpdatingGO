@@ -1,5 +1,6 @@
 #include "HealthObserver.h"
 #include "Utils.h"
+#include "SceneManager.h"
 
 dae::HealthObserver::HealthObserver()
 {
@@ -10,8 +11,9 @@ void dae::HealthObserver::OnNotify(unsigned int eventID, GameObject*)
 {
 	if (eventID == m_LowerHealth)
 	{
-		--m_Lives;
+		if (m_Lives > 0) --m_Lives;
 		m_HasLivesChanged = true;
+		//dae::SceneManager::GetInstance().m_Pause = true;
 	}
 }
 

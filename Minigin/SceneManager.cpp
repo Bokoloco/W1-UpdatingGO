@@ -7,7 +7,8 @@ void dae::SceneManager::Update()
 	//{
 	//	scene->Update();
 	//}
-	m_CurrentScene->Update();
+
+	if (!m_Pause)	m_CurrentScene->Update();
 }
 
 void dae::SceneManager::LateUpdate()
@@ -17,12 +18,9 @@ void dae::SceneManager::LateUpdate()
 		scene->LateUpdate();
 	}*/
 	// Thanks to Viktor Vermeire for the logic of updating/switching scene
-	m_CurrentScene->LateUpdate();
-	if (m_NextScene != nullptr)
-	{
-		m_CurrentScene = m_NextScene;
-		m_NextScene = nullptr;
-	}
+	if (!m_Pause) m_CurrentScene->LateUpdate();
+
+	m_scenes.erase(std::remove_if(m_scenes.begin(), m_scenes.end(), [&](std::shared_ptr<dae::Scene> scene) { return scene->m_ReadyForDelete; }), m_scenes.end());
 }
 
 void dae::SceneManager::Render()
@@ -32,7 +30,7 @@ void dae::SceneManager::Render()
 
 void dae::SceneManager::SwitchScene(unsigned int name)
 {
-	auto it = std::find_if(m_scenes.begin(), m_scenes.end(), [&](std::shared_ptr<Scene> scene) { return scene->GetName() == name; });
+	auto it = std::find_if(m_scenes.begin(), m_scenes.end(), [&](std::shared_ptr<Scene> scene) { return scene->GetName() == name && !scene->m_ReadyForDelete; });
 	if (it != m_scenes.end())
 	{
 		m_CurrentScene = *it;
@@ -48,6 +46,12 @@ void dae::SceneManager::SetStartScene(unsigned int name)
 	}
 }
 
+void dae::SceneManager::QueueRemoveScene(Scene* scene)
+{
+	m_SceneToDelete = scene;
+	/*m_scenes.erase(std::remove_if(m_scenes.begin(), m_scenes.end(), [&](std::shared_ptr<dae::Scene> scene) { return scene == scene; }), m_scenes.end());*/
+}
+
 dae::Scene* dae::SceneManager::GetCurrentScene()
 {
 	return m_CurrentScene.get();
@@ -55,7 +59,7 @@ dae::Scene* dae::SceneManager::GetCurrentScene()
 
 dae::Scene* dae::SceneManager::GetNextScene()
 {
-	return m_NextScene.get();
+	return m_SceneToDelete;
 }
 
 dae::Scene& dae::SceneManager::CreateScene(unsigned int name)

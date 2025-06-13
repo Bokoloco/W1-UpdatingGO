@@ -18,9 +18,10 @@
 #include "EndLevelObserver.h"
 #include "EndLevelComponent.h"
 
-dae::Level1::Level1(unsigned int sceneName, std::shared_ptr<dae::Font> font)
+dae::Level1::Level1(unsigned int sceneName)
 {
 	auto& scene = dae::SceneManager::GetInstance().CreateScene(sceneName);
+	auto font = dae::ResourceManager::GetInstance().LoadFont("PressStart2P-Regular.ttf", 12);
 
 	auto ladder19 = std::make_unique<dae::GameObject>();
 	ladder19->SetTexture("BackgroundSheet.tga", 10, 50);

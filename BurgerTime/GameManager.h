@@ -20,6 +20,7 @@ namespace dae
 
 		void SetGameMode(GameMode mode);
 		void SwitchScene(unsigned int sceneName);
+		void ResetScene();
 
 		void AddPlayer1(std::unique_ptr<GameObject> player1);
 		void AddPlayer2(std::unique_ptr<GameObject> player2);
@@ -33,6 +34,7 @@ namespace dae
 		GameManager() = default;
 
 		bool m_GetObjectsOut{};
+		bool m_ShouldRemoveLevel{};
 
 		GameMode m_GameMode;
 

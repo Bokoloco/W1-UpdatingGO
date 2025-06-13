@@ -69,7 +69,6 @@ void load()
 	dae::ServiceLocator::GetSoundSystem().PlayMusic(dae::make_sdbm_hash("MainMusic"));
 
 	auto& mainMenuScene = dae::SceneManager::GetInstance().CreateScene(dae::make_sdbm_hash("MainMenu"));
-
 	auto font = dae::ResourceManager::GetInstance().LoadFont("PressStart2P-Regular.ttf", 12);
 
 	auto intro = std::make_unique<dae::GameObject>();
@@ -122,6 +121,7 @@ void load()
 	healthDisplay->SetSourceRectTexture(201, 0, 7, 8);
 	healthDisplay->SetLocalPosition({ 20.f, 445.f, 0.f });
 	healthDisplay->SetScaling(2.f, 2.f, 2.f);
+	healthDisplay->AddTag(dae::make_sdbm_hash("HealthObComponent"));
 	healthDisplay->AddComponent<dae::HealthDisplayComponent>();
 
 	auto moveLeft = std::make_unique<dae::MoveOnLadderCommand>(*burgerGuy, glm::vec3{ -1.f, 0.f, 0.f });
@@ -166,11 +166,13 @@ void load()
 	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_UP, true, std::move(moveUp2));
 	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_DOWN, true, std::move(moveDown2));
 
+	burgerGuy->GetComponent<dae::PlayerCollisionComponent>()->AddObserver(*healthDisplay->GetComponent<dae::HealthDisplayComponent>()->GetObserver());
+
 	dae::GameManager::GetInstance().AddPlayer1(std::move(burgerGuy));
 	dae::GameManager::GetInstance().AddPlayer2(std::move(burgerGuy2));
 	dae::GameManager::GetInstance().AddHealthObserver(std::move(healthDisplay));
 
-	auto level1 = std::make_unique<dae::Level1>(dae::make_sdbm_hash("Level1"), font);
+	auto level1 = std::make_unique<dae::Level1>(dae::make_sdbm_hash("Level1"));
 
 	mainMenuScene.Add(std::move(intro));
 	mainMenuScene.Add(std::move(intro1));

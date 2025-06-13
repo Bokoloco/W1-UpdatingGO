@@ -3,6 +3,8 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "GameObject.h"
+#include "Level1.h"
+#include "ResourceManager.h"
 
 dae::GameManager::~GameManager()
 {
@@ -54,6 +56,23 @@ void dae::GameManager::SwitchScene(unsigned int sceneName)
 
 		SceneManager::GetInstance().SwitchScene(sceneName);
 	}
+}
+
+void dae::GameManager::ResetScene()
+{
+	m_pPlayer1 = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("Player1"));
+	if (m_GameMode != GameMode::SinglePlayer) m_pPlayer2 = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("Player2"));
+
+	m_HealthObserverObject = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("HealthObComponent"));
+
+	auto curScene = SceneManager::GetInstance().GetCurrentScene();
+	curScene->m_ReadyForDelete = true;
+
+	auto level1 = std::make_unique<dae::Level1>(make_sdbm_hash("Level1"));
+
+	SwitchScene(make_sdbm_hash("Level1"));
+
+	SceneManager::GetInstance().QueueRemoveScene(curScene);
 }
 
 void dae::GameManager::AddPlayer1(std::unique_ptr<GameObject> player1)
