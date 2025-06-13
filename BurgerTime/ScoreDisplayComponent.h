@@ -5,6 +5,7 @@
 namespace dae
 {
 	class Observer;
+	class TextComponent;
 	class ScoreDisplayComponent final : public BaseComponent
 	{
 	public:
@@ -12,12 +13,15 @@ namespace dae
 		~ScoreDisplayComponent() = default;
 		
 		void Update() override;
-		void Render() const override {};
+		void Render() const override;
 
 		ScoreObserver* GetObserver() const;
 
 	private:
+		unsigned int m_Score{};
+
 		std::unique_ptr<ScoreObserver> m_pScoreObserver{};
+		TextComponent* m_pTextComponent{};
 
 	};
 }

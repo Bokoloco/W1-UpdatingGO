@@ -87,6 +87,8 @@ void load()
 
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
 
+	
+
 	/*dae::GameObject* go = std::make_unique<dae::GameObject>();
 	go->SetTexture("background.tga");
 	scene.Add(go);*/
@@ -928,8 +930,15 @@ void load()
 	plate1->AddComponent<dae::CollisionComponent>();
 	scene.Add(std::move(plate1));
 
+	auto font = dae::ResourceManager::GetInstance().LoadFont("PressStart2P-Regular.ttf", 12);
+
 	auto pScoreObserver = std::make_unique<dae::ScoreObserver>();
 	auto scoreDisplay = std::make_unique<dae::GameObject>();
+	scoreDisplay->SetLocalPosition({ 100.f, 0.f, 0.f });
+	scoreDisplay->SetBoudingBoxDimensions(100.f, 100.f);
+	scoreDisplay->SetScaling( 1.f, 1.f, 1.f );
+	scoreDisplay->AddComponent<dae::TextComponent>();
+	scoreDisplay->GetComponent<dae::TextComponent>()->SetFont(font);
 	scoreDisplay->AddComponent<dae::ScoreDisplayComponent>();
 
 	auto burgerBun1 = std::make_unique<dae::GameObject>();

@@ -13,6 +13,9 @@ namespace dae
 
 		void OnNotify(unsigned int eventID, GameObject* go);
 
+		unsigned int GetScore() const;
+		bool m_HasScoreChanged{ true };
+
 	private:
 		unsigned int m_HashBurgerDropped{};
 		unsigned int m_HashMrHotDog{};

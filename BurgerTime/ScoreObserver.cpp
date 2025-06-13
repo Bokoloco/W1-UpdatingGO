@@ -27,5 +27,10 @@ void dae::ScoreObserver::OnNotify(unsigned int eventID, GameObject* go)
 		m_Score += 250 * static_cast<int>(std::pow(2, go->GetComponent<dae::BurgerCollisionComponent>()->GetAmountOfEnemiesOnBurger()));
 		std::cout << "Score when enemies: " << m_Score << std::endl;
 	}
+	m_HasScoreChanged = true;
+}
 
+unsigned int dae::ScoreObserver::GetScore() const
+{
+	return m_Score;
 }
