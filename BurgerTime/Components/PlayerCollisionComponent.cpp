@@ -45,7 +45,7 @@ void dae::PlayerCollisionComponent::OnColliding(GameObject& go)
 		else
 			m_pMoveDownLadderComponent->SetCanMoveHorizontally(false);
 	}
-	if (go.ActorHasTag(dae::make_sdbm_hash("Enemy")))
+	if (go.ActorHasTag(dae::make_sdbm_hash("Enemy")) || go.ActorHasTag(dae::make_sdbm_hash("MrHotDog")))
 	{
 		float xPosEnemy = go.GetWorldPosition().x + (go.GetBoundingBox()->w / 2);
 

@@ -803,15 +803,50 @@ dae::Level1::Level1(unsigned int sceneName)
 	burgerPlatform20->AddComponent<dae::CollisionComponent>();
 	scene.Add(std::move(burgerPlatform20));
 
-	auto plate1 = std::make_unique<dae::GameObject>();
-	plate1->SetTexture("BackgroundSheet.tga", 38, 6);
-	plate1->SetSourceRectTexture(0, 40, 38, 6);
-	plate1->SetLocalPosition({ 56.f, 445.f, 0.f });
-	plate1->SetScaling(2.f, 2.f, 2.f);
-	plate1->SetCanCollide(true);
-	plate1->AddTag(dae::make_sdbm_hash("Plate"));
-	plate1->AddComponent<dae::CollisionComponent>();
-	scene.Add(std::move(plate1));
+	auto plate = std::make_unique<dae::GameObject>();
+	plate->SetTexture("BackgroundSheet.tga", 38, 6);
+	plate->SetSourceRectTexture(0, 40, 38, 6);
+	plate->SetLocalPosition({ 56.f, 445.f, 0.f });
+	plate->SetScaling(2.f, 2.f, 2.f);
+	plate->SetCanCollide(true);
+	plate->AddTag(dae::make_sdbm_hash("Plate"));
+	plate->AddComponent<dae::CollisionComponent>();
+	scene.Add(std::move(plate));
+
+	plate.reset(new dae::GameObject);
+
+	plate->SetTexture("BackgroundSheet.tga", 38, 6);
+	plate->SetSourceRectTexture(0, 40, 38, 6);
+	plate->SetLocalPosition({ 154.f, 445.f, 0.f });
+	plate->SetScaling(2.f, 2.f, 2.f);
+	plate->SetCanCollide(true);
+	plate->AddTag(dae::make_sdbm_hash("Plate"));
+	plate->AddComponent<dae::CollisionComponent>();
+	scene.Add(std::move(plate));
+
+	plate.reset(new dae::GameObject);
+
+	plate->SetTexture("BackgroundSheet.tga", 38, 6);
+	plate->SetSourceRectTexture(0, 40, 38, 6);
+	plate->SetLocalPosition({ 250.f, 445.f, 0.f });
+	plate->SetScaling(2.f, 2.f, 2.f);
+	plate->SetCanCollide(true);
+	plate->AddTag(dae::make_sdbm_hash("Plate"));
+	plate->AddComponent<dae::CollisionComponent>();
+	scene.Add(std::move(plate));
+
+	plate.reset(new dae::GameObject);
+
+	plate->SetTexture("BackgroundSheet.tga", 38, 6);
+	plate->SetSourceRectTexture(0, 40, 38, 6);
+	plate->SetLocalPosition({ 346.f, 445.f, 0.f });
+	plate->SetScaling(2.f, 2.f, 2.f);
+	plate->SetCanCollide(true);
+	plate->AddTag(dae::make_sdbm_hash("Plate"));
+	plate->AddComponent<dae::CollisionComponent>();
+	scene.Add(std::move(plate));
+
+	plate.reset(new dae::GameObject);
 
 	auto pScoreObserver = std::make_unique<dae::ScoreObserver>();
 	auto scoreDisplay = std::make_unique<dae::GameObject>();
@@ -829,253 +864,275 @@ dae::Level1::Level1(unsigned int sceneName)
 	endLevel->SetScaling(1.f, 1.f, 1.f);
 	endLevel->AddComponent<dae::EndLevelComponent>();
 
-	auto burgerBun1 = std::make_unique<dae::GameObject>();
-	burgerBun1->SetLocalPosition({ 63.f, 68.f, 0.f });
-	burgerBun1->SetShouldRender(false);
-	burgerBun1->SetCanCollide(true);
-	burgerBun1->SetBoudingBoxDimensions(8.f * 4.f, 7.f);
-	burgerBun1->SetScaling(2.f, 2.f, 2.f);
+	int offset = 8;
 
-	auto burgerBun1Part1 = std::make_unique<dae::GameObject>();
-	burgerBun1Part1->SetTexture("BurgerTime.png", 8, 7);
-	burgerBun1Part1->SetSourceRectTexture(112, 49, 8, 7);
-	burgerBun1Part1->SetLocalPosition({ 0.f, 0.f, 0.f });
-	burgerBun1Part1->SetScaling(2.f, 2.f, 2.f);
-	burgerBun1Part1->SetCanCollide(true);
-	burgerBun1Part1->AddComponent<dae::BurgerPartsCollisionComponent>(0);
-	burgerBun1Part1->SetParent(burgerBun1.get());
-	burgerBun1Part1->AddTag(dae::make_sdbm_hash("Food"));
-	scene.Add(std::move(burgerBun1Part1));
+	auto burgerBunTop = std::make_unique<dae::GameObject>();
+	burgerBunTop->SetLocalPosition({ 63.f, 68.f, 0.f });
+	burgerBunTop->SetShouldRender(false);
+	burgerBunTop->SetCanCollide(true);
+	burgerBunTop->SetBoudingBoxDimensions(8.f * 4.f, 7.f);
+	burgerBunTop->SetScaling(2.f, 2.f, 2.f);
 
-	auto burgerBun1Part2 = std::make_unique<dae::GameObject>();
-	burgerBun1Part2->SetTexture("BurgerTime.png", 8, 7);
-	burgerBun1Part2->SetSourceRectTexture(120, 49, 8, 7);
-	burgerBun1Part2->SetLocalPosition({ 16.f, 0.f, 0.f });
-	burgerBun1Part2->SetScaling(2.f, 2.f, 2.f);
-	burgerBun1Part2->SetCanCollide(true);
-	burgerBun1Part2->AddComponent<dae::BurgerPartsCollisionComponent>(1);
-	burgerBun1Part2->SetParent(burgerBun1.get());
-	burgerBun1Part2->AddTag(dae::make_sdbm_hash("Food"));
-	scene.Add(std::move(burgerBun1Part2));
+	MakeBurgerParts(offset, 49, burgerBunTop.get(), scene);
 
-	auto burgerBun1Part3 = std::make_unique<dae::GameObject>();
-	burgerBun1Part3->SetTexture("BurgerTime.png", 8, 7);
-	burgerBun1Part3->SetSourceRectTexture(128, 49, 8, 7);
-	burgerBun1Part3->SetLocalPosition({ 32.f, 0.f, 0.f });
-	burgerBun1Part3->SetScaling(2.f, 2.f, 2.f);
-	burgerBun1Part3->SetCanCollide(true);
-	burgerBun1Part3->AddComponent<dae::BurgerPartsCollisionComponent>(2);
-	burgerBun1Part3->SetParent(burgerBun1.get());
-	burgerBun1Part3->AddTag(dae::make_sdbm_hash("Food"));
-	scene.Add(std::move(burgerBun1Part3));
+	burgerBunTop->AddTag(dae::make_sdbm_hash("FoodParent"));
+	burgerBunTop->AddComponent<dae::FoodFallingComponent>(0.2f);
+	burgerBunTop->AddComponent<dae::BurgerCollisionComponent>();
+	burgerBunTop->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
+	burgerBunTop->AddComponent<dae::TopBurgerComponent>();
+	burgerBunTop->GetComponent<dae::TopBurgerComponent>()->AddObserver(*endLevel->GetComponent<dae::EndLevelComponent>()->GetObserver());
 
-	auto burgerBun1Part4 = std::make_unique<dae::GameObject>();
-	burgerBun1Part4->SetTexture("BurgerTime.png", 8, 7);
-	burgerBun1Part4->SetSourceRectTexture(136, 49, 8, 7);
-	burgerBun1Part4->SetLocalPosition({ 48.f, 0.f, 0.f });
-	burgerBun1Part4->SetScaling(2.f, 2.f, 2.f);
-	burgerBun1Part4->SetCanCollide(true);
-	burgerBun1Part4->AddComponent<dae::BurgerPartsCollisionComponent>(3);
-	burgerBun1Part4->SetParent(burgerBun1.get());
-	burgerBun1Part4->AddTag(dae::make_sdbm_hash("Food"));
-	scene.Add(std::move(burgerBun1Part4));
+	scene.Add(std::move(burgerBunTop));
 
-	burgerBun1->AddTag(dae::make_sdbm_hash("FoodParent"));
-	burgerBun1->AddComponent<dae::FoodFallingComponent>(0.2f);
-	burgerBun1->AddComponent<dae::BurgerCollisionComponent>();
-	burgerBun1->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
-	burgerBun1->AddComponent<dae::TopBurgerComponent>();
-	burgerBun1->GetComponent<dae::TopBurgerComponent>()->AddObserver(*endLevel->GetComponent<dae::EndLevelComponent>()->GetObserver());
-
-	scene.Add(std::move(endLevel));
-	scene.Add(std::move(burgerBun1));
-
-	auto lettuce1 = std::make_unique<dae::GameObject>();
-	lettuce1->SetLocalPosition({ 63.f, 133.f, 0.f });
-	lettuce1->SetShouldRender(false);
-	lettuce1->SetCanCollide(true);
-	lettuce1->SetBoudingBoxDimensions(8.f * 4.f, 7.f);
-	lettuce1->SetScaling(2.f, 2.f, 2.f);
-
-	auto lettuce1Part1 = std::make_unique<dae::GameObject>();
-	lettuce1Part1->SetTexture("BurgerTime.png", 8, 7);
-	lettuce1Part1->SetSourceRectTexture(112, 89, 8, 7);
-	lettuce1Part1->SetLocalPosition({ 0.f, 0.f, 0.f });
-	lettuce1Part1->SetScaling(2.f, 2.f, 2.f);
-	lettuce1Part1->SetCanCollide(true);
-	lettuce1Part1->AddComponent<dae::BurgerPartsCollisionComponent>(0);
-	lettuce1Part1->SetParent(lettuce1.get());
-	lettuce1Part1->AddTag(dae::make_sdbm_hash("Food"));
-	scene.Add(std::move(lettuce1Part1));
-
-	auto lettuce1Part2 = std::make_unique<dae::GameObject>();
-	lettuce1Part2->SetTexture("BurgerTime.png", 8, 7);
-	lettuce1Part2->SetSourceRectTexture(120, 89, 8, 7);
-	lettuce1Part2->SetLocalPosition({ 16.f, 0.f, 0.f });
-	lettuce1Part2->SetScaling(2.f, 2.f, 2.f);
-	lettuce1Part2->SetCanCollide(true);
-	lettuce1Part2->AddComponent<dae::BurgerPartsCollisionComponent>(1);
-	lettuce1Part2->SetParent(lettuce1.get());
-	lettuce1Part2->AddTag(dae::make_sdbm_hash("Food"));
-	scene.Add(std::move(lettuce1Part2));
-
-	auto lettuce1Part3 = std::make_unique<dae::GameObject>();
-	lettuce1Part3->SetTexture("BurgerTime.png", 8, 7);
-	lettuce1Part3->SetSourceRectTexture(128, 89, 8, 7);
-	lettuce1Part3->SetLocalPosition({ 32.f, 0.f, 0.f });
-	lettuce1Part3->SetScaling(2.f, 2.f, 2.f);
-	lettuce1Part3->SetCanCollide(true);
-	lettuce1Part3->AddComponent<dae::BurgerPartsCollisionComponent>(2);
-	lettuce1Part3->SetParent(lettuce1.get());
-	lettuce1Part3->AddTag(dae::make_sdbm_hash("Food"));
-	scene.Add(std::move(lettuce1Part3));
-
-	auto lettuce1Part4 = std::make_unique<dae::GameObject>();
-	lettuce1Part4->SetTexture("BurgerTime.png", 8, 7);
-	lettuce1Part4->SetSourceRectTexture(136, 89, 8, 7);
-	lettuce1Part4->SetLocalPosition({ 48.f, 0.f, 0.f });
-	lettuce1Part4->SetScaling(2.f, 2.f, 2.f);
-	lettuce1Part4->SetCanCollide(true);
-	lettuce1Part4->AddComponent<dae::BurgerPartsCollisionComponent>(3);
-	lettuce1Part4->SetParent(lettuce1.get());
-	lettuce1Part4->AddTag(dae::make_sdbm_hash("Food"));
-	scene.Add(std::move(lettuce1Part4));
-
-	lettuce1->AddTag(dae::make_sdbm_hash("FoodParent"));
-	lettuce1->AddComponent<dae::FoodFallingComponent>(0.2f);
-	lettuce1->AddComponent<dae::BurgerCollisionComponent>();
-	lettuce1->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
-	scene.Add(std::move(lettuce1));
-
-	auto beef1 = std::make_unique<dae::GameObject>();
-	beef1->SetLocalPosition({ 65.f, 195.f, 0.f });
-	beef1->SetShouldRender(false);
-	beef1->SetCanCollide(true);
-	beef1->SetBoudingBoxDimensions(7.f * 4.f, 7.f);
-	beef1->SetScaling(2.f, 2.f, 2.f);
-	beef1->AddTag(dae::make_sdbm_hash("FoodParent"));
-
-	auto beef1Part1 = std::make_unique<dae::GameObject>();
-	beef1Part1->SetTexture("BurgerTime.png", 7, 7);
-	beef1Part1->SetSourceRectTexture(114, 73, 7, 7);
-	beef1Part1->SetLocalPosition({ 0.f, 0.f, 0.f });
-	beef1Part1->SetScaling(2.f, 2.f, 2.f);
-	beef1Part1->SetCanCollide(true);
-	beef1Part1->AddComponent<dae::BurgerPartsCollisionComponent>(0);
-	beef1Part1->SetParent(beef1.get());
-	beef1Part1->AddTag(dae::make_sdbm_hash("Food"));
-	scene.Add(std::move(beef1Part1));
-
-	auto beef1Part2 = std::make_unique<dae::GameObject>();
-	beef1Part2->SetTexture("BurgerTime.png", 7, 7);
-	beef1Part2->SetSourceRectTexture(120, 73, 7, 7);
-	beef1Part2->SetLocalPosition({ 14.f, 0.f, 0.f });
-	beef1Part2->SetScaling(2.f, 2.f, 2.f);
-	beef1Part2->SetCanCollide(true);
-	beef1Part2->AddComponent<dae::BurgerPartsCollisionComponent>(1);
-	beef1Part2->SetParent(beef1.get());
-	beef1Part2->AddTag(dae::make_sdbm_hash("Food"));
-	scene.Add(std::move(beef1Part2));
-
-	auto beef1Part3 = std::make_unique<dae::GameObject>();
-	beef1Part3->SetTexture("BurgerTime.png", 7, 7);
-	beef1Part3->SetSourceRectTexture(127, 73, 7, 7);
-	beef1Part3->SetLocalPosition({ 28.f, 0.f, 0.f });
-	beef1Part3->SetScaling(2.f, 2.f, 2.f);
-	beef1Part3->SetCanCollide(true);
-	beef1Part3->AddComponent<dae::BurgerPartsCollisionComponent>(2);
-	beef1Part3->SetParent(beef1.get());
-	beef1Part3->AddTag(dae::make_sdbm_hash("Food"));
-	scene.Add(std::move(beef1Part3));
-
-	auto beef1Part4 = std::make_unique<dae::GameObject>();
-	beef1Part4->SetTexture("BurgerTime.png", 8, 7);
-	beef1Part4->SetSourceRectTexture(134, 73, 7, 7);
-	beef1Part4->SetLocalPosition({ 42.f, 0.f, 0.f });
-	beef1Part4->SetScaling(2.f, 2.f, 2.f);
-	beef1Part4->SetCanCollide(true);
-	beef1Part4->AddComponent<dae::BurgerPartsCollisionComponent>(3);
-	beef1Part4->SetParent(beef1.get());
-	beef1Part4->AddTag(dae::make_sdbm_hash("Food"));
-	scene.Add(std::move(beef1Part4));
-
-	beef1->AddComponent<dae::FoodFallingComponent>(0.2f);
-	beef1->AddComponent<dae::BurgerCollisionComponent>();
-	beef1->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
-	scene.Add(std::move(beef1));
-
-	auto topBun1 = std::make_unique<dae::GameObject>();
-	topBun1->SetLocalPosition({ 62.f, 356.f, 0.f });
-	topBun1->SetShouldRender(false);
-	topBun1->SetCanCollide(true);
-	topBun1->SetBoudingBoxDimensions(8.f * 4.f, 7.f);
-	topBun1->SetScaling(2.f, 2.f, 2.f);
-
-	auto topBun1Part1 = std::make_unique<dae::GameObject>();
-	topBun1Part1->SetTexture("BurgerTime.png", 8, 7);
-	topBun1Part1->SetSourceRectTexture(112, 57, 8, 7);
-	topBun1Part1->SetLocalPosition({ 0.f, 0.f, 0.f });
-	topBun1Part1->SetScaling(2.f, 2.f, 2.f);
-	topBun1Part1->SetCanCollide(true);
-	topBun1Part1->AddComponent<dae::BurgerPartsCollisionComponent>(0);
-	topBun1Part1->SetParent(topBun1.get());
-	topBun1Part1->AddTag(dae::make_sdbm_hash("Food"));
-	scene.Add(std::move(topBun1Part1));
-
-	auto topBun1Part2 = std::make_unique<dae::GameObject>();
-	topBun1Part2->SetTexture("BurgerTime.png", 8, 7);
-	topBun1Part2->SetSourceRectTexture(120, 57, 8, 7);
-	topBun1Part2->SetLocalPosition({ 16.f, 0.f, 0.f });
-	topBun1Part2->SetScaling(2.f, 2.f, 2.f);
-	topBun1Part2->SetCanCollide(true);
-	topBun1Part2->AddComponent<dae::BurgerPartsCollisionComponent>(1);
-	topBun1Part2->SetParent(topBun1.get());
-	topBun1Part2->AddTag(dae::make_sdbm_hash("Food"));
-	scene.Add(std::move(topBun1Part2));
-
-	auto topBun1Part3 = std::make_unique<dae::GameObject>();
-	topBun1Part3->SetTexture("BurgerTime.png", 8, 7);
-	topBun1Part3->SetSourceRectTexture(128, 57, 8, 7);
-	topBun1Part3->SetLocalPosition({ 32.f, 0.f, 0.f });
-	topBun1Part3->SetScaling(2.f, 2.f, 2.f);
-	topBun1Part3->SetCanCollide(true);
-	topBun1Part3->AddComponent<dae::BurgerPartsCollisionComponent>(2);
-	topBun1Part3->SetParent(topBun1.get());
-	topBun1Part3->AddTag(dae::make_sdbm_hash("Food"));
-	scene.Add(std::move(topBun1Part3));
-
-	auto topBun1Part4 = std::make_unique<dae::GameObject>();
-	topBun1Part4->SetTexture("BurgerTime.png", 8, 7);
-	topBun1Part4->SetSourceRectTexture(136, 57, 8, 7);
-	topBun1Part4->SetLocalPosition({ 48.f, 0.f, 0.f });
-	topBun1Part4->SetScaling(2.f, 2.f, 2.f);
-	topBun1Part4->SetCanCollide(true);
-	topBun1Part4->AddComponent<dae::BurgerPartsCollisionComponent>(3);
-	topBun1Part4->SetParent(topBun1.get());
-	topBun1Part4->AddTag(dae::make_sdbm_hash("Food"));
-	scene.Add(std::move(topBun1Part4));
-
-	topBun1->AddTag(dae::make_sdbm_hash("FoodParent"));
-	topBun1->AddComponent<dae::FoodFallingComponent>(0.2f);
-	topBun1->AddComponent<dae::BurgerCollisionComponent>();
-	topBun1->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
-	scene.Add(std::move(topBun1));
+	burgerBunTop.reset(new GameObject);
 
 
-	auto mrHotDog = std::make_unique<dae::GameObject>();
-	mrHotDog->SetTexture("BurgerTime.png", 15.f, 16.f);
-	mrHotDog->SetSourceRectTexture(1, 32, 15, 16);
-	mrHotDog->SetLocalPosition({ 100.f, 175.f, 0.f });
-	mrHotDog->SetSpeed(0.1f);
-	mrHotDog->SetCanCollide(true);
-	mrHotDog->SetScaling(2.f, 2.f, 2.f);
-	mrHotDog->SetAmountFrames(2);
-	mrHotDog->AddTag(dae::make_sdbm_hash("Enemy"));
-	mrHotDog->AddTag(dae::make_sdbm_hash("MrHotDog"));
-	mrHotDog->AddComponent<dae::MoveDownLadderComponent>(0.07f);
-	mrHotDog->AddComponent<dae::PlayerCollisionComponent>();
-	mrHotDog->AddComponent<dae::EnemyStateComponent>(*dae::GameManager::GetInstance().Player1());
-	scene.Add(std::move(mrHotDog));
+
+	auto lettuce = std::make_unique<dae::GameObject>();
+	lettuce->SetLocalPosition({ 63.f, 133.f, 0.f });
+	lettuce->SetShouldRender(false);
+	lettuce->SetCanCollide(true);
+	lettuce->SetBoudingBoxDimensions(8.f * 4.f, 7.f);
+	lettuce->SetScaling(2.f, 2.f, 2.f);
+
+	MakeBurgerParts(offset, 89, lettuce.get(), scene);
+
+	lettuce->AddTag(dae::make_sdbm_hash("FoodParent"));
+	lettuce->AddComponent<dae::FoodFallingComponent>(0.2f);
+	lettuce->AddComponent<dae::BurgerCollisionComponent>();
+	lettuce->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
+	scene.Add(std::move(lettuce));
+
+	lettuce.reset(new GameObject);
+
+	auto beef = std::make_unique<dae::GameObject>();
+	beef->SetLocalPosition({ 65.f, 195.f, 0.f });
+	beef->SetShouldRender(false);
+	beef->SetCanCollide(true);
+	beef->SetBoudingBoxDimensions(7.f * 4.f, 7.f);
+	beef->SetScaling(2.f, 2.f, 2.f);
+	beef->AddTag(dae::make_sdbm_hash("FoodParent"));
+
+	MakeBurgerParts(7, 73, beef.get(), scene);
+
+	beef->AddComponent<dae::FoodFallingComponent>(0.2f);
+	beef->AddComponent<dae::BurgerCollisionComponent>();
+	beef->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
+	scene.Add(std::move(beef));
+
+	beef.reset(new GameObject);
+
+	auto burgerBunBottom = std::make_unique<dae::GameObject>();
+	int offsetBurgerBun{ 96 };
+	for (int i{}; i < 4; ++i)
+	{
+		burgerBunBottom->SetLocalPosition({ 62.f + offsetBurgerBun * i, 356.f, 0.f });
+		burgerBunBottom->SetShouldRender(false);
+		burgerBunBottom->SetCanCollide(true);
+		burgerBunBottom->SetBoudingBoxDimensions(8.f * 4.f, 7.f);
+		burgerBunBottom->SetScaling(2.f, 2.f, 2.f);
+
+		MakeBurgerParts(offset, 57, burgerBunBottom.get(), scene);
+
+		burgerBunBottom->AddTag(dae::make_sdbm_hash("FoodParent"));
+		burgerBunBottom->AddComponent<dae::FoodFallingComponent>(0.2f);
+		burgerBunBottom->AddComponent<dae::BurgerCollisionComponent>();
+		burgerBunBottom->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
+		scene.Add(std::move(burgerBunBottom));
+
+		burgerBunBottom.reset(new GameObject);
+	}
+
+	// Second column
+	burgerBunTop->SetLocalPosition({ 159.f, 68.f, 0.f });
+	burgerBunTop->SetShouldRender(false);
+	burgerBunTop->SetCanCollide(true);
+	burgerBunTop->SetBoudingBoxDimensions(8.f * 4.f, 7.f);
+	burgerBunTop->SetScaling(2.f, 2.f, 2.f);
+
+	MakeBurgerParts(offset, 49, burgerBunTop.get(), scene);
+
+	burgerBunTop->AddTag(dae::make_sdbm_hash("FoodParent"));
+	burgerBunTop->AddComponent<dae::FoodFallingComponent>(0.2f);
+	burgerBunTop->AddComponent<dae::BurgerCollisionComponent>();
+	burgerBunTop->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
+	burgerBunTop->AddComponent<dae::TopBurgerComponent>();
+	burgerBunTop->GetComponent<dae::TopBurgerComponent>()->AddObserver(*endLevel->GetComponent<dae::EndLevelComponent>()->GetObserver());
+
+	scene.Add(std::move(burgerBunTop));
+
+	burgerBunTop.reset(new GameObject);
+
+	lettuce->SetLocalPosition({ 159.f, 226.f, 0.f });
+	lettuce->SetShouldRender(false);
+	lettuce->SetCanCollide(true);
+	lettuce->SetBoudingBoxDimensions(8.f * 4.f, 7.f);
+	lettuce->SetScaling(2.f, 2.f, 2.f);
+
+	MakeBurgerParts(offset, 89, lettuce.get(), scene);
+
+	lettuce->AddTag(dae::make_sdbm_hash("FoodParent"));
+	lettuce->AddComponent<dae::FoodFallingComponent>(0.2f);
+	lettuce->AddComponent<dae::BurgerCollisionComponent>();
+	lettuce->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
+	scene.Add(std::move(lettuce));
+
+	lettuce.reset(new GameObject);
+
+	beef->SetLocalPosition({ 159.f, 292.f, 0.f });
+	beef->SetShouldRender(false);
+	beef->SetCanCollide(true);
+	beef->SetBoudingBoxDimensions(7.f * 4.f, 7.f);
+	beef->SetScaling(2.f, 2.f, 2.f);
+	beef->AddTag(dae::make_sdbm_hash("FoodParent"));
+
+	MakeBurgerParts(7, 73, beef.get(), scene);
+
+	beef->AddComponent<dae::FoodFallingComponent>(0.2f);
+	beef->AddComponent<dae::BurgerCollisionComponent>();
+	beef->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
+	scene.Add(std::move(beef));
+
+	beef.reset(new GameObject);
+
+	// Third column
+	burgerBunTop->SetLocalPosition({ 255.f, 131.f, 0.f });
+	burgerBunTop->SetShouldRender(false);
+	burgerBunTop->SetCanCollide(true);
+	burgerBunTop->SetBoudingBoxDimensions(8.f * 4.f, 7.f);
+	burgerBunTop->SetScaling(2.f, 2.f, 2.f);
+
+	MakeBurgerParts(offset, 49, burgerBunTop.get(), scene);
+
+	burgerBunTop->AddTag(dae::make_sdbm_hash("FoodParent"));
+	burgerBunTop->AddComponent<dae::FoodFallingComponent>(0.2f);
+	burgerBunTop->AddComponent<dae::BurgerCollisionComponent>();
+	burgerBunTop->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
+	burgerBunTop->AddComponent<dae::TopBurgerComponent>();
+	burgerBunTop->GetComponent<dae::TopBurgerComponent>()->AddObserver(*endLevel->GetComponent<dae::EndLevelComponent>()->GetObserver());
+
+	scene.Add(std::move(burgerBunTop));
+
+	burgerBunTop.reset(new GameObject);
+
+	lettuce->SetLocalPosition({ 254.f, 228.f, 0.f });
+	lettuce->SetShouldRender(false);
+	lettuce->SetCanCollide(true);
+	lettuce->SetBoudingBoxDimensions(8.f * 4.f, 7.f);
+	lettuce->SetScaling(2.f, 2.f, 2.f);
+
+	MakeBurgerParts(offset, 89, lettuce.get(), scene);
+
+	lettuce->AddTag(dae::make_sdbm_hash("FoodParent"));
+	lettuce->AddComponent<dae::FoodFallingComponent>(0.2f);
+	lettuce->AddComponent<dae::BurgerCollisionComponent>();
+	lettuce->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
+	scene.Add(std::move(lettuce));
+
+	lettuce.reset(new GameObject);
+
+	beef->SetLocalPosition({ 258.f, 292.f, 0.f });
+	beef->SetShouldRender(false);
+	beef->SetCanCollide(true);
+	beef->SetBoudingBoxDimensions(7.f * 4.f, 7.f);
+	beef->SetScaling(2.f, 2.f, 2.f);
+	beef->AddTag(dae::make_sdbm_hash("FoodParent"));
+
+	MakeBurgerParts(7, 73, beef.get(), scene);
+
+	beef->AddComponent<dae::FoodFallingComponent>(0.2f);
+	beef->AddComponent<dae::BurgerCollisionComponent>();
+	beef->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
+	scene.Add(std::move(beef));
+
+	beef.reset(new GameObject);
+
+	// Fourth column
+	burgerBunTop->SetLocalPosition({ 351.f, 131.f, 0.f });
+	burgerBunTop->SetShouldRender(false);
+	burgerBunTop->SetCanCollide(true);
+	burgerBunTop->SetBoudingBoxDimensions(8.f * 4.f, 7.f);
+	burgerBunTop->SetScaling(2.f, 2.f, 2.f);
+
+	MakeBurgerParts(offset, 49, burgerBunTop.get(), scene);
+
+	burgerBunTop->AddTag(dae::make_sdbm_hash("FoodParent"));
+	burgerBunTop->AddComponent<dae::FoodFallingComponent>(0.2f);
+	burgerBunTop->AddComponent<dae::BurgerCollisionComponent>();
+	burgerBunTop->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
+	burgerBunTop->AddComponent<dae::TopBurgerComponent>();
+	burgerBunTop->GetComponent<dae::TopBurgerComponent>()->AddObserver(*endLevel->GetComponent<dae::EndLevelComponent>()->GetObserver());
+
+	scene.Add(std::move(burgerBunTop));
+
+	burgerBunTop.reset(new GameObject);
+
+	lettuce->SetLocalPosition({ 352.f, 196.f, 0.f });
+	lettuce->SetShouldRender(false);
+	lettuce->SetCanCollide(true);
+	lettuce->SetBoudingBoxDimensions(8.f * 4.f, 7.f);
+	lettuce->SetScaling(2.f, 2.f, 2.f);
+
+	MakeBurgerParts(offset, 89, lettuce.get(), scene);
+
+	lettuce->AddTag(dae::make_sdbm_hash("FoodParent"));
+	lettuce->AddComponent<dae::FoodFallingComponent>(0.2f);
+	lettuce->AddComponent<dae::BurgerCollisionComponent>();
+	lettuce->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
+	scene.Add(std::move(lettuce));
+
+	lettuce.reset(new GameObject);
+
+	beef->SetLocalPosition({ 356.f, 260.f, 0.f });
+	beef->SetShouldRender(false);
+	beef->SetCanCollide(true);
+	beef->SetBoudingBoxDimensions(7.f * 4.f, 7.f);
+	beef->SetScaling(2.f, 2.f, 2.f);
+	beef->AddTag(dae::make_sdbm_hash("FoodParent"));
+
+	MakeBurgerParts(7, 73, beef.get(), scene);
+
+	beef->AddComponent<dae::FoodFallingComponent>(0.2f);
+	beef->AddComponent<dae::BurgerCollisionComponent>();
+	beef->GetComponent<dae::BurgerCollisionComponent>()->AddObserver(*scoreDisplay->GetComponent<dae::ScoreDisplayComponent>()->GetObserver());
+	scene.Add(std::move(beef));
+
+	beef.reset(new GameObject);
+
+	//auto mrHotDog = std::make_unique<dae::GameObject>();
+	//mrHotDog->SetTexture("BurgerTime.png", 15.f, 16.f);
+	//mrHotDog->SetSourceRectTexture(1, 32, 15, 16);
+	//mrHotDog->SetLocalPosition({ 100.f, 175.f, 0.f });
+	//mrHotDog->SetSpeed(0.1f);
+	//mrHotDog->SetCanCollide(true);
+	//mrHotDog->SetScaling(2.f, 2.f, 2.f);
+	//mrHotDog->SetAmountFrames(2);
+	//mrHotDog->AddTag(dae::make_sdbm_hash("Enemy"));
+	//mrHotDog->AddTag(dae::make_sdbm_hash("MrHotDog"));
+	//mrHotDog->AddComponent<dae::MoveDownLadderComponent>(0.07f);
+	//mrHotDog->AddComponent<dae::PlayerCollisionComponent>();
+	//mrHotDog->AddComponent<dae::EnemyStateComponent>(*dae::GameManager::GetInstance().Player1());
+	//scene.Add(std::move(mrHotDog));
 
 	scene.Add(std::move(scoreDisplay));
+	scene.Add(std::move(endLevel));
+}
+
+void dae::Level1::MakeBurgerParts(int offset, int yOffset, GameObject* parent, Scene& scene)
+{
+	auto burgerBunPart = std::make_unique<GameObject>();
+	for (int i{}; i < 4; ++i)
+	{
+		burgerBunPart->SetTexture("BurgerTime.png", static_cast<float>(offset), 7.f);
+		burgerBunPart->SetSourceRectTexture(112 + offset * i, yOffset, offset, 7);
+		burgerBunPart->SetScaling(2.f, 2.f, 2.f);
+		burgerBunPart->SetLocalPosition({ 0.f + burgerBunPart->GetBoundingBox()->w * i, 0.f, 0.f });
+		burgerBunPart->SetCanCollide(true);
+		burgerBunPart->AddComponent<dae::BurgerPartsCollisionComponent>(i);
+		burgerBunPart->SetParent(parent);
+		burgerBunPart->AddTag(dae::make_sdbm_hash("Food"));
+		scene.Add(std::move(burgerBunPart));
+
+		burgerBunPart.reset(new GameObject);
+	}
 }

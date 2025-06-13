@@ -614,6 +614,7 @@ dae::Level2::Level2()
 		burgerPlatform->SetScaling(2.f, 2.f, 2.f);
 		burgerPlatform->SetCanCollide(true);
 		burgerPlatform->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
+		burgerPlatform->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 		burgerPlatform->AddComponent<dae::CollisionComponent>();
 		scene.Add(std::move(burgerPlatform));
 
@@ -628,6 +629,7 @@ dae::Level2::Level2()
 		burgerPlatform->SetScaling(2.f, 2.f, 2.f);
 		burgerPlatform->SetCanCollide(true);
 		burgerPlatform->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
+		burgerPlatform->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 		burgerPlatform->AddComponent<dae::CollisionComponent>();
 		scene.Add(std::move(burgerPlatform));
 
@@ -640,6 +642,7 @@ dae::Level2::Level2()
 	burgerPlatform->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform->SetCanCollide(true);
 	burgerPlatform->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
+	burgerPlatform->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	burgerPlatform->AddComponent<dae::CollisionComponent>();
 	scene.Add(std::move(burgerPlatform));
 
@@ -653,6 +656,7 @@ dae::Level2::Level2()
 		burgerPlatform->SetScaling(2.f, 2.f, 2.f);
 		burgerPlatform->SetCanCollide(true);
 		burgerPlatform->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
+		burgerPlatform->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 		burgerPlatform->AddComponent<dae::CollisionComponent>();
 		scene.Add(std::move(burgerPlatform));
 
@@ -665,6 +669,7 @@ dae::Level2::Level2()
 	burgerPlatform->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform->SetCanCollide(true);
 	burgerPlatform->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
+	burgerPlatform->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	burgerPlatform->AddComponent<dae::CollisionComponent>();
 	scene.Add(std::move(burgerPlatform));
 
@@ -677,6 +682,7 @@ dae::Level2::Level2()
 	burgerPlatform->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform->SetCanCollide(true);
 	burgerPlatform->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
+	burgerPlatform->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	burgerPlatform->AddComponent<dae::CollisionComponent>();
 	scene.Add(std::move(burgerPlatform));
 
@@ -690,6 +696,7 @@ dae::Level2::Level2()
 		burgerPlatform->SetScaling(2.f, 2.f, 2.f);
 		burgerPlatform->SetCanCollide(true);
 		burgerPlatform->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
+		burgerPlatform->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 		burgerPlatform->AddComponent<dae::CollisionComponent>();
 		scene.Add(std::move(burgerPlatform));
 
@@ -702,6 +709,7 @@ dae::Level2::Level2()
 	burgerPlatform->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform->SetCanCollide(true);
 	burgerPlatform->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
+	burgerPlatform->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	burgerPlatform->AddComponent<dae::CollisionComponent>();
 	scene.Add(std::move(burgerPlatform));
 
@@ -713,6 +721,7 @@ dae::Level2::Level2()
 	burgerPlatform->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform->SetCanCollide(true);
 	burgerPlatform->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
+	burgerPlatform->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	burgerPlatform->AddComponent<dae::CollisionComponent>();
 	scene.Add(std::move(burgerPlatform));
 
@@ -724,6 +733,7 @@ dae::Level2::Level2()
 	burgerPlatform->SetScaling(2.f, 2.f, 2.f);
 	burgerPlatform->SetCanCollide(true);
 	burgerPlatform->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
+	burgerPlatform->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 	burgerPlatform->AddComponent<dae::CollisionComponent>();
 	scene.Add(std::move(burgerPlatform));
 
@@ -737,6 +747,7 @@ dae::Level2::Level2()
 		burgerPlatform->SetScaling(2.f, 2.f, 2.f);
 		burgerPlatform->SetCanCollide(true);
 		burgerPlatform->AddTag(dae::make_sdbm_hash("BurgerPlatform"));
+		burgerPlatform->AddTag(dae::make_sdbm_hash("LadderPlatform"));
 		burgerPlatform->AddComponent<dae::CollisionComponent>();
 		scene.Add(std::move(burgerPlatform));
 
