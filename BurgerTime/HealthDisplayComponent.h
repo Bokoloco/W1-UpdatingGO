@@ -21,5 +21,10 @@ namespace dae
 		std::unique_ptr<HealthObserver> m_pHealthObserver{};
 		unsigned int m_AmountOfLives{  };
 
+		bool m_ChangeCooldown{};
+
+		float m_CoolDownBeforeReset{ 1100.f };
+		const float m_COOLDOWN{ 1100.f };
+
 	};
 }

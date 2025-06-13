@@ -8,7 +8,7 @@ dae::MuteSoundCommand::MuteSoundCommand(GameObject& go, const int maxVolume)
 
 void dae::MuteSoundCommand::Execute()
 {
-	int volume = m_IsMuted ? 0 : m_MaxVolume;
+	int volume = m_IsMuted ? m_MaxVolume : 0;
 	dae::ServiceLocator::GetSoundSystem().ChangeMasterVolume(volume);
 	m_IsMuted = !m_IsMuted;
 }

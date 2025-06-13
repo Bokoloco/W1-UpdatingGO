@@ -13,8 +13,8 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Levels">
-      <UniqueIdentifier>{5af4e561-a4f3-4b8a-b738-c0c7fb01579d}</UniqueIdentifier>
+    <Filter Include="Levels">
+      <UniqueIdentifier>{277b924f-b05b-4f3b-a3b2-9c167aa5822e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -108,9 +108,6 @@
     <ClCompile Include="StartGameCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Level1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="TopBurgerComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -119,6 +116,12 @@
     </ClCompile>
     <ClCompile Include="EndLevelComponent.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1.cpp">
+      <Filter>Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Level2.cpp">
+      <Filter>Levels</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,9 +212,6 @@
     <ClInclude Include="StartGameCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Level1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TopBurgerComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -220,6 +220,12 @@
     </ClInclude>
     <ClInclude Include="EndLevelComponent.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1.h">
+      <Filter>Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Level2.h">
+      <Filter>Levels</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

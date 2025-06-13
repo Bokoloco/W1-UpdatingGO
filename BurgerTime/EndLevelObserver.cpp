@@ -17,7 +17,7 @@ void dae::EndLevelObserver::OnNotify(unsigned int eventID, GameObject*)
 		std::cout << "BurgerHitPlate: " << m_AmountBurgersHitPlate << std::endl;
 		if (m_AmountBurgersHitPlate >= 1)
 		{
-			GameManager::GetInstance().ResetScene();
+			GameManager::GetInstance().NextLevel();
 		}
 	}
 }

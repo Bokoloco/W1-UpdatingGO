@@ -56,6 +56,7 @@
 #include "StartGameCommand.h"
 #include "GameManager.h"
 #include "Level1.h"
+#include "Level2.h"
 
 void load()
 {
@@ -64,9 +65,10 @@ void load()
 
 	dae::ServiceLocator::GetSoundSystem().AddSound(dae::make_sdbm_hash("BurgerStep"), "../Data/Sounds/BurgerStep.wav");
 	dae::ServiceLocator::GetSoundSystem().AddSound(dae::make_sdbm_hash("BurgerLand"), "../Data/Sounds/BurgerLand.wav");
+	dae::ServiceLocator::GetSoundSystem().AddMusic(dae::make_sdbm_hash("Death"), "../Data/Sounds/Death.wav");
 	dae::ServiceLocator::GetSoundSystem().AddMusic(dae::make_sdbm_hash("MainMusic"), "../Data/Sounds/BGM.mp3");
-	dae::ServiceLocator::GetSoundSystem().ChangeMasterVolume(50);
-	dae::ServiceLocator::GetSoundSystem().PlayMusic(dae::make_sdbm_hash("MainMusic"));
+	dae::ServiceLocator::GetSoundSystem().ChangeMasterVolume(30);
+	dae::ServiceLocator::GetSoundSystem().PlayMusic(dae::make_sdbm_hash("MainMusic"), -1);
 
 	auto& mainMenuScene = dae::SceneManager::GetInstance().CreateScene(dae::make_sdbm_hash("MainMenu"));
 	auto font = dae::ResourceManager::GetInstance().LoadFont("PressStart2P-Regular.ttf", 12);
@@ -137,7 +139,7 @@ void load()
 	auto playEnterSoundEffect = std::make_unique<dae::PlaySoundCommand>(*burgerGuy, dae::make_sdbm_hash("Enter"));
 	auto playMusic = std::make_unique<dae::PlayMusicCommand>(*burgerGuy, dae::make_sdbm_hash("MainMusic"));
 	auto pauseMusic = std::make_unique<dae::PauseMusicCommand>(*burgerGuy);
-	auto muteCommand = std::make_unique<dae::MuteSoundCommand>(*burgerGuy, 50);
+	auto muteCommand = std::make_unique<dae::MuteSoundCommand>(*burgerGuy, 30);
 	auto decLivesCommand = std::make_unique<dae::DecreaseLivesCommand>(*burgerGuy);
 	auto startSingleGame = std::make_unique<dae::StartSingleGameCommand>(*intro);
 	auto startCoopGame = std::make_unique<dae::StartCoopGameCommand>(*intro1);
@@ -173,6 +175,7 @@ void load()
 	dae::GameManager::GetInstance().AddHealthObserver(std::move(healthDisplay));
 
 	auto level1 = std::make_unique<dae::Level1>(dae::make_sdbm_hash("Level1"));
+	//auto level2 = std::make_unique<dae::Level2>();
 
 	mainMenuScene.Add(std::move(intro));
 	mainMenuScene.Add(std::move(intro1));

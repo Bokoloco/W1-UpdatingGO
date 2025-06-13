@@ -12,6 +12,13 @@ namespace dae
 		Versus
 	};
 
+	enum class Levels
+	{
+		Level1,
+		Level2,
+		Level3
+	};
+
 	class GameObject;
 	class GameManager final : public Singleton<GameManager>
 	{
@@ -29,12 +36,16 @@ namespace dae
 
 		void AddHealthObserver(std::unique_ptr<GameObject> healthObserverObject);
 
+		void NextLevel();
+
 	private:
 		friend class Singleton<GameManager>;
 		GameManager() = default;
 
 		bool m_GetObjectsOut{};
 		bool m_ShouldRemoveLevel{};
+
+		unsigned int m_CurrentLevel{};
 
 		GameMode m_GameMode;
 

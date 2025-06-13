@@ -7,6 +7,7 @@ namespace dae
 	class HealthObserver final : public Observer
 	{
 	public:
+		friend class HealthDisplayComponent;
 		HealthObserver() ;
 		~HealthObserver() = default;
 
@@ -14,7 +15,9 @@ namespace dae
 
 		unsigned int GetLives() const;
 
+	protected:
 		bool m_HasLivesChanged{true};
+		bool m_CanChangeLives{true};
 
 	private:
 		unsigned int m_LowerHealth{};
