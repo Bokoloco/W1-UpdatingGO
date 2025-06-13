@@ -99,6 +99,20 @@ void load()
 	intro->SetWorldPosition(10, 20);
 	mainMenuScene.Add(std::move(intro));
 
+	auto intro1 = std::make_unique<dae::GameObject>();
+	intro1->AddComponent<dae::TextComponent>();
+	intro1->GetComponent<dae::TextComponent>()->SetFont(font);
+	intro1->GetComponent<dae::TextComponent>()->SetText("Press 2 for coop player");
+	intro1->SetWorldPosition(10, 50);
+	mainMenuScene.Add(std::move(intro1));
+
+	auto intro2 = std::make_unique<dae::GameObject>();
+	intro2->AddComponent<dae::TextComponent>();
+	intro2->GetComponent<dae::TextComponent>()->SetFont(font);
+	intro2->GetComponent<dae::TextComponent>()->SetText("Press 2 for coop player");
+	intro2->SetWorldPosition(10, 80);
+	mainMenuScene.Add(std::move(intro2));
+
 	/*dae::GameObject* go = std::make_unique<dae::GameObject>();
 	go->SetTexture("background.tga");
 	scene.Add(go);*/
@@ -1263,6 +1277,8 @@ void load()
 	auto muteCommand = std::make_unique<dae::MuteSoundCommand>(*burgerGuy, 50);
 	auto decLivesCommand = std::make_unique<dae::DecreaseLivesCommand>(*burgerGuy);
 	auto startSingleGame = std::make_unique<dae::StartSingleGameCommand>(*intro);
+	auto startCoopGame = std::make_unique<dae::StartCoopGameCommand>(*intro1);
+	auto startVersusGame = std::make_unique<dae::StartVersusGameCommand>(*intro2);
 	decLivesCommand->AddObserver(*healthDisplay->GetComponent<dae::HealthDisplayComponent>()->GetObserver());
 
 	auto& input = dae::InputManager::GetInstance();
@@ -1276,6 +1292,8 @@ void load()
 	input.BindInputKeyboard(SDL_SCANCODE_F2, SDL_KEYUP, std::move(muteCommand));
 	input.BindInputKeyboard(SDL_SCANCODE_H, SDL_KEYUP, std::move(decLivesCommand));
 	input.BindInputKeyboard(SDL_SCANCODE_1, SDL_KEYUP, std::move(startSingleGame));
+	input.BindInputKeyboard(SDL_SCANCODE_2, SDL_KEYUP, std::move(startCoopGame));
+	input.BindInputKeyboard(SDL_SCANCODE_3, SDL_KEYUP, std::move(startVersusGame));
 
 
 	input.AddController();
@@ -1285,8 +1303,10 @@ void load()
 	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_DOWN, true, std::move(moveDown2));
 
 	dae::GameManager::GetInstance().AddPlayer1(std::move(burgerGuy));
+	dae::GameManager::GetInstance().AddPlayer2(std::move(burgerGuy2));
+
 	//scene.Add();
-	scene.Add(std::move(burgerGuy2));
+	//scene.Add(std::move(burgerGuy2));
 	scene.Add(std::move(healthDisplay));
 	dae::SceneManager::GetInstance().SwitchScene(dae::make_sdbm_hash("MainMenu"));
 }

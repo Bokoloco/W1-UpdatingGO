@@ -21,12 +21,24 @@ void dae::GameManager::SwitchScene(unsigned int sceneName)
 		switch (m_GameMode)
 		{
 		case dae::GameMode::SinglePlayer:
+		{
 			SceneManager::GetInstance().GetNextScene()->Add(std::move(m_pPlayer1));
 			break;
+		}
 		case dae::GameMode::Coop:
+		{
+			SceneManager::GetInstance().GetNextScene()->Add(std::move(m_pPlayer1));
+			SceneManager::GetInstance().GetNextScene()->Add(std::move(m_pPlayer2));
 			break;
+		}
 		case dae::GameMode::Versus:
+		{
+			m_pPlayer2->AddTag(dae::make_sdbm_hash("MrHotDog"));
+			m_pPlayer2->SetSourceRectTexture(32, 32, 15, 16);
+			SceneManager::GetInstance().GetNextScene()->Add(std::move(m_pPlayer1));
+			SceneManager::GetInstance().GetNextScene()->Add(std::move(m_pPlayer2));
 			break;
+		}
 		default:
 			break;
 		}

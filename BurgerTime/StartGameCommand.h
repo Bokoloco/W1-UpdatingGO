@@ -10,7 +10,21 @@ namespace dae
 		StartSingleGameCommand(GameObject& go);
 
 		void Execute() override;
+	};
 
-	private:
+	class StartCoopGameCommand : public Command
+	{
+	public:
+		StartCoopGameCommand(GameObject& go);
+
+		void Execute() override;
+	};
+
+	class StartVersusGameCommand : public Command
+	{
+	public:
+		StartVersusGameCommand(GameObject& go);
+
+		void Execute() override;
 	};
 }
