@@ -106,6 +106,7 @@ void dae::GameManager::NextLevel()
 	curScene->m_ReadyForDelete = true;
 
 	auto level = std::make_unique<dae::Level2>();
+	m_pPlayer1->SetLocalPosition(level->m_Player1StartPos);
 
 	SwitchScene(make_sdbm_hash("Level2"));
 
