@@ -53,6 +53,8 @@
 #include "HealthDisplayComponent.h"
 #include "DecreaseLivesCommand.h"
 #include "EnemyStateComponent.h"
+#include "StartGameCommand.h"
+#include "GameManager.h"
 
 // Defining our achievements
 //enum EAchievements
@@ -85,9 +87,17 @@ void load()
 	dae::ServiceLocator::GetSoundSystem().AddMusic(dae::make_sdbm_hash("MainMusic"), "../Data/Sounds/BGM.mp3");
 	dae::ServiceLocator::GetSoundSystem().ChangeMasterVolume(50);
 
-	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
+	auto& scene = dae::SceneManager::GetInstance().CreateScene(dae::make_sdbm_hash("Level1"));	
+	auto& mainMenuScene = dae::SceneManager::GetInstance().CreateScene(dae::make_sdbm_hash("MainMenu"));
 
-	
+	auto font = dae::ResourceManager::GetInstance().LoadFont("PressStart2P-Regular.ttf", 12);
+
+	auto intro = std::make_unique<dae::GameObject>();
+	intro->AddComponent<dae::TextComponent>();
+	intro->GetComponent<dae::TextComponent>()->SetFont(font);
+	intro->GetComponent<dae::TextComponent>()->SetText("Press 1 for single player");
+	intro->SetWorldPosition(10, 20);
+	mainMenuScene.Add(std::move(intro));
 
 	/*dae::GameObject* go = std::make_unique<dae::GameObject>();
 	go->SetTexture("background.tga");
@@ -930,8 +940,6 @@ void load()
 	plate1->AddComponent<dae::CollisionComponent>();
 	scene.Add(std::move(plate1));
 
-	auto font = dae::ResourceManager::GetInstance().LoadFont("PressStart2P-Regular.ttf", 12);
-
 	auto pScoreObserver = std::make_unique<dae::ScoreObserver>();
 	auto scoreDisplay = std::make_unique<dae::GameObject>();
 	scoreDisplay->SetLocalPosition({ 100.f, 0.f, 0.f });
@@ -1254,6 +1262,7 @@ void load()
 	auto pauseMusic = std::make_unique<dae::PauseMusicCommand>(*burgerGuy);
 	auto muteCommand = std::make_unique<dae::MuteSoundCommand>(*burgerGuy, 50);
 	auto decLivesCommand = std::make_unique<dae::DecreaseLivesCommand>(*burgerGuy);
+	auto startSingleGame = std::make_unique<dae::StartSingleGameCommand>(*intro);
 	decLivesCommand->AddObserver(*healthDisplay->GetComponent<dae::HealthDisplayComponent>()->GetObserver());
 
 	auto& input = dae::InputManager::GetInstance();
@@ -1266,6 +1275,7 @@ void load()
 	input.BindInputKeyboard(SDL_SCANCODE_P, SDL_KEYDOWN, std::move(pauseMusic));
 	input.BindInputKeyboard(SDL_SCANCODE_F2, SDL_KEYUP, std::move(muteCommand));
 	input.BindInputKeyboard(SDL_SCANCODE_H, SDL_KEYUP, std::move(decLivesCommand));
+	input.BindInputKeyboard(SDL_SCANCODE_1, SDL_KEYUP, std::move(startSingleGame));
 
 
 	input.AddController();
@@ -1274,9 +1284,11 @@ void load()
 	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_UP, true, std::move(moveUp2));
 	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_DOWN, true, std::move(moveDown2));
 
-	scene.Add(std::move(burgerGuy));
+	dae::GameManager::GetInstance().AddPlayer1(std::move(burgerGuy));
+	//scene.Add();
 	scene.Add(std::move(burgerGuy2));
 	scene.Add(std::move(healthDisplay));
+	dae::SceneManager::GetInstance().SwitchScene(dae::make_sdbm_hash("MainMenu"));
 }
 
 int main(int, char* []) {

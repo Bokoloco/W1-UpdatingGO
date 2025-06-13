@@ -9,7 +9,7 @@ using namespace dae;
 
 unsigned int Scene::m_idCounter = 0;
 
-Scene::Scene(const std::string& name) : m_name(name) {}
+Scene::Scene(unsigned int name) : m_name(name) {}
 
 Scene::~Scene()
 {
@@ -115,4 +115,22 @@ void dae::Scene::CheckCollision()
 			}
 		}
 	}
+}
+
+unsigned int dae::Scene::GetName() const
+{
+	return m_name;
+}
+
+std::vector<std::unique_ptr<GameObject>> dae::Scene::GetObjectsWithTag(unsigned int tag)
+{
+	std::vector<std::unique_ptr<GameObject>> objects;
+
+	for (auto& object : m_objects)
+	{
+		if (object->ActorHasTag(tag))
+			objects.push_back(std::move(object));
+	}
+
+	return objects;
 }

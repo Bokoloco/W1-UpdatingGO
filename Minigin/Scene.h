@@ -10,7 +10,7 @@ namespace dae
 	//class GameObject;
 	class Scene final
 	{
-		friend Scene& SceneManager::CreateScene(const std::string& name);
+		friend Scene& SceneManager::CreateScene(unsigned int name);
 	public:
 		void Add(std::unique_ptr<GameObject> object);
 		//void Remove(GameObject* object);
@@ -21,6 +21,9 @@ namespace dae
 		void Render() const;
 
 		void CheckCollision();
+		unsigned int GetName() const;
+
+		std::vector<std::unique_ptr<GameObject>> GetObjectsWithTag(unsigned int tag);
 
 		~Scene();
 		Scene(const Scene& other) = delete;
@@ -29,9 +32,9 @@ namespace dae
 		Scene& operator=(Scene&& other) = delete;
 
 	private: 
-		explicit Scene(const std::string& name);
+		explicit Scene(unsigned int name);
 
-		std::string m_name;
+		unsigned int m_name;
 		std::vector <std::unique_ptr<GameObject>> m_objects{};
 		std::multimap<CollisionComponent*, GameObject*> m_CurrentCollisions{};
 

@@ -3,29 +3,53 @@
 
 void dae::SceneManager::Update()
 {
-	for(auto& scene : m_scenes)
+	//for(auto& scene : m_scenes)
+	//{
+	//	scene->Update();
+	//}
+	if (m_NextScene != nullptr)
 	{
-		scene->Update();
+		m_CurrentScene = m_NextScene;
+		m_NextScene = nullptr;
 	}
+	m_CurrentScene->Update();
 }
 
 void dae::SceneManager::LateUpdate()
 {
-	for (auto& scene : m_scenes)
+	/*for (auto& scene : m_scenes)
 	{
 		scene->LateUpdate();
-	}
+	}*/
+	// Thanks to Viktor Vermeire for the logic of updating/switching scene
+	m_CurrentScene->LateUpdate();
 }
 
 void dae::SceneManager::Render()
 {
-	for (const auto& scene : m_scenes)
+	m_CurrentScene->Render();
+}
+
+void dae::SceneManager::SwitchScene(unsigned int name)
+{
+	auto it = std::find_if(m_scenes.begin(), m_scenes.end(), [&](std::shared_ptr<Scene> scene) { return scene->GetName() == name; });
+	if (it != m_scenes.end())
 	{
-		scene->Render();
+		m_NextScene = *it;
 	}
 }
 
-dae::Scene& dae::SceneManager::CreateScene(const std::string& name)
+dae::Scene* dae::SceneManager::GetCurrentScene()
+{
+	return m_CurrentScene.get();
+}
+
+dae::Scene* dae::SceneManager::GetNextScene()
+{
+	return m_NextScene.get();
+}
+
+dae::Scene& dae::SceneManager::CreateScene(unsigned int name)
 {
 	const auto& scene = std::shared_ptr<Scene>(new Scene(name));
 	m_scenes.push_back(scene);
