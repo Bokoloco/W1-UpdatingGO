@@ -1,6 +1,8 @@
 # Project
 This project was made for the course of Programming 4 in the second year of DAE. It was made by Bo Wauters of 2GD10.
 
+Link to '[github](https://github.com/Bokoloco/W1-UpdatingGO)'
+
 # Minigin
 
 Minigin is a very small project using [SDL2](https://www.libsdl.org/) and [glm](https://github.com/g-truc/glm) for 2D c++ game projects. It is in no way a game engine, only a barebone start project where everything sdl related has been set up. It contains glm for vector math, to aleviate the need to write custom vector and matrix classes.
