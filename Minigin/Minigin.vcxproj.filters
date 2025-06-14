@@ -108,13 +108,7 @@
     <ClInclude Include="Subject.h">
       <Filter>ObserverBases</Filter>
     </ClInclude>
-    <ClInclude Include="ScoreCommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CSteamAchievements.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SuicideCommand.h">
@@ -227,13 +221,7 @@
     <ClCompile Include="Subject.cpp">
       <Filter>ObserverBases</Filter>
     </ClCompile>
-    <ClCompile Include="ScoreCommand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CSteamAchievements.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SuicideCommand.cpp">

@@ -26,6 +26,11 @@ namespace dae
 		SDLSoundSystemImpl();
 		~SDLSoundSystemImpl();
 
+		SDLSoundSystemImpl(const SDLSoundSystemImpl& other) = delete;
+		SDLSoundSystemImpl(SDLSoundSystemImpl&& other) = delete;
+		SDLSoundSystemImpl& operator=(const SDLSoundSystemImpl& other) = default;
+		SDLSoundSystemImpl& operator=(SDLSoundSystemImpl&& other) = default;
+
 		void Play(const SoundId id, int loops = 0);
 		void PlayMusic(const SoundId id, int = -1);
 

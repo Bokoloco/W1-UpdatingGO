@@ -23,7 +23,6 @@
 #include "InputManager.h"
 #include "Command.h"
 #include "HealthComponent.h"
-#include "ScoreComponent.h"
 #include "PlayerHealthInfo.h"
 #include "PlayerScoreInfo.h"
 #include "MoveCommand.h"

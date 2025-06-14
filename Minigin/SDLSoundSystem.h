@@ -17,6 +17,11 @@ namespace dae
 		SDLSoundSystem();
 		~SDLSoundSystem();
 
+		SDLSoundSystem(const SDLSoundSystem& other) = delete;
+		SDLSoundSystem(SDLSoundSystem&& other) = delete;
+		SDLSoundSystem& operator=(const SDLSoundSystem& other) = default;
+		SDLSoundSystem& operator=(SDLSoundSystem&& other) = default;
+
 		void Play(const SoundId id, int loops = 0) override;
 		void PlayMusic(const SoundId id, int = -1) override;
 

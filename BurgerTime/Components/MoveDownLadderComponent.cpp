@@ -16,15 +16,12 @@ void dae::MoveDownLadderComponent::Update()
 	{
 		glm::vec3 newPos = GetOwner()->GetLocalPosition() + m_Speed * dae::Minigin::DELTATIME * m_Direction;
 		newPos.x = m_XPosOnLadder;
-		std::cout << "In if move up/down" << std::endl;
-		std::cout << "size height: " << m_MinHeights.size() << std::endl;
 
 		if (m_MinHeights.size() >= 2)
 		{
 			if ((newPos.y + GetOwner()->GetBoundingBox()->h > m_MinHeights.at(0) + 3.f && newPos.y + GetOwner()->GetBoundingBox()->h < m_MaxHeights.at(0)) ||
 				(newPos.y + GetOwner()->GetBoundingBox()->h > m_MinHeights.at(1) + 3.f && newPos.y + GetOwner()->GetBoundingBox()->h < m_MaxHeights.at(1)))
 			{
-				std::cout << "In if move up/down" << std::endl;
 				GetOwner()->SetLocalPosition(newPos);
 			}
 		}
@@ -32,8 +29,6 @@ void dae::MoveDownLadderComponent::Update()
 		{
 			if (newPos.y + GetOwner()->GetBoundingBox()->h > m_MinHeights.at(0) + 3.f && newPos.y + GetOwner()->GetBoundingBox()->h < m_MaxHeights.at(0))
 			{
-				std::cout << "In if move up/down" << std::endl;
-
 				GetOwner()->SetLocalPosition(newPos);
 			}
 		}
@@ -88,7 +83,7 @@ void dae::MoveDownLadderComponent::RemoveLadderFromList(float minheight, float m
 
 bool dae::MoveDownLadderComponent::CanMoveOnLadder()
 {
-	return m_CanMoveDownLadder /*&& (GetOwner()->GetWorldPosition().y + GetOwner()->GetBoundingBox()->h < m_MaxHeight && GetOwner()->GetWorldPosition().y >= m_MinHeight)*/;
+	return m_CanMoveDownLadder;
 }
 
 float dae::MoveDownLadderComponent::GetMinHeight() const
