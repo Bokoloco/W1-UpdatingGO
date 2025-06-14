@@ -19,3 +19,16 @@ This engine uses patterns from the book '[Game Programming Patterns](https://gam
 * EventQueue: For the sound
 * Component 
 * State: For the enemies, so they move around
+
+# Modes
+
+There is a single player mode, a co-op mode and a versus mode.
+
+# Controls
+
+* Player 1:
+    * W, A, S, D to move
+    * Dpad on controller to move
+
+* Player 2:
+    * Dpad on second controller to move
