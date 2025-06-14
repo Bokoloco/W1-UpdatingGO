@@ -32,6 +32,7 @@ namespace dae
 		bool CanMoveDownLadder();
 
 		bool m_CanMoveHorizontally{ true };
+		bool m_StopMoving{};
 
 	private:
 		bool m_CanMoveDownLadder{};

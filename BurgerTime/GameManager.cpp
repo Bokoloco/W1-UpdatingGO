@@ -85,10 +85,12 @@ void dae::GameManager::ResetScene()
 {
 	m_pPlayer1 = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("Player1"));
 	m_pPlayer1->GetComponent<dae::MoveDownLadderComponent>()->ResetComponent();
+	m_pPlayer1->GetComponent<dae::MoveDownLadderComponent>()->m_StopMoving = false;
 	if (m_GameMode != GameMode::SinglePlayer)
 	{
 		m_pPlayer2 = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("Player2"));
 		m_pPlayer2->GetComponent<dae::MoveDownLadderComponent>()->ResetComponent();
+		m_pPlayer2->GetComponent<dae::MoveDownLadderComponent>()->m_StopMoving = false;
 	}
 
 	m_HealthObserverObject = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("HealthObComponent"));

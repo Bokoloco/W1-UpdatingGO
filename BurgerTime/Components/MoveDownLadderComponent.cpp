@@ -12,6 +12,7 @@ dae::MoveDownLadderComponent::MoveDownLadderComponent(GameObject& go, float spee
 
 void dae::MoveDownLadderComponent::Update()
 {
+	if (m_StopMoving) return;
 	if (m_CanMoveDownLadder && m_Direction.y != 0.f)
 	{
 		glm::vec3 newPos = GetOwner()->GetLocalPosition() + m_Speed * dae::Minigin::DELTATIME * m_Direction;

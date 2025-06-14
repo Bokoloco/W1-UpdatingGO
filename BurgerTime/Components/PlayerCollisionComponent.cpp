@@ -57,6 +57,7 @@ void dae::PlayerCollisionComponent::OnColliding(GameObject& go)
 			if (yPosEnemy >= kneeOwner && yPosEnemy <= GetOwner()->GetLocalPosition().y + GetOwner()->GetBoundingBox()->h)
 			{
 				m_pSubject->NotifyObservers(dae::make_sdbm_hash("LowerHealth"), GetOwner());
+				m_pMoveDownLadderComponent->m_StopMoving = true;
 			}
 		}
 	}

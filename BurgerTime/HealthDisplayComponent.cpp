@@ -7,6 +7,7 @@
 #include <iostream>
 #include "ServiceLocator.h"
 #include "Utils.h"
+#include "./Components/MoveDownLadderComponent.h"
 
 dae::HealthDisplayComponent::HealthDisplayComponent(GameObject& go)
 	: BaseComponent(go)

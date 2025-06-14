@@ -12,6 +12,10 @@
 #include "EndLevelComponent.h"
 #include "GameManager.h"
 #include "ScoreDisplayComponent.h"
+#include "Components/MoveDownLadderComponent.h"
+#include "Components/PlayerCollisionComponent.h"
+#include "EnemyStateComponent.h"
+#include "EnemyComponent.h"
 
 dae::Level3::Level3()
 {
@@ -389,6 +393,105 @@ dae::Level3::Level3()
 
 		burgerPart.reset(new GameObject);
 	}
+
+	auto mrHotDog = std::make_unique<dae::GameObject>();
+	mrHotDog->SetTexture("BurgerTime.png", 15.f, 16.f);
+	mrHotDog->SetSourceRectTexture(1, 32, 15, 16);
+	mrHotDog->SetLocalPosition({ 30.f, 48.f, 0.f });
+	mrHotDog->SetSpeed(0.1f);
+	mrHotDog->SetCanCollide(true);
+	mrHotDog->SetScaling(2.f, 2.f, 2.f);
+	mrHotDog->SetAmountFrames(2);
+	mrHotDog->AddTag(dae::make_sdbm_hash("Enemy"));
+	mrHotDog->AddTag(dae::make_sdbm_hash("MrHotDog"));
+	mrHotDog->AddComponent<dae::MoveDownLadderComponent>(0.07f);
+	mrHotDog->AddComponent<dae::PlayerCollisionComponent>();
+	mrHotDog->AddComponent<dae::EnemyStateComponent>(*dae::GameManager::GetInstance().Player1());
+	mrHotDog->AddComponent<dae::EnemyComponent>(glm::vec3{ 30.f, 48.f, 0.f });
+	scene.Add(std::move(mrHotDog));
+
+	mrHotDog.reset(new GameObject);
+
+	mrHotDog->SetTexture("BurgerTime.png", 15.f, 16.f);
+	mrHotDog->SetSourceRectTexture(1, 32, 15, 16);
+	mrHotDog->SetLocalPosition({ 415.f, 48.f, 0.f });
+	mrHotDog->SetSpeed(0.1f);
+	mrHotDog->SetCanCollide(true);
+	mrHotDog->SetScaling(2.f, 2.f, 2.f);
+	mrHotDog->SetAmountFrames(2);
+	mrHotDog->AddTag(dae::make_sdbm_hash("Enemy"));
+	mrHotDog->AddTag(dae::make_sdbm_hash("MrHotDog"));
+	mrHotDog->AddComponent<dae::MoveDownLadderComponent>(0.07f);
+	mrHotDog->AddComponent<dae::PlayerCollisionComponent>();
+	mrHotDog->AddComponent<dae::EnemyStateComponent>(*dae::GameManager::GetInstance().Player1());
+	mrHotDog->AddComponent<dae::EnemyComponent>(glm::vec3{ 415.f, 48.f, 0.f });
+	scene.Add(std::move(mrHotDog));
+
+	mrHotDog.reset(new GameObject);
+
+	mrHotDog->SetTexture("BurgerTime.png", 15.f, 16.f);
+	mrHotDog->SetSourceRectTexture(1, 32, 15, 16);
+	mrHotDog->SetLocalPosition({ 30.f, 177.f, 0.f });
+	mrHotDog->SetSpeed(0.1f);
+	mrHotDog->SetCanCollide(true);
+	mrHotDog->SetScaling(2.f, 2.f, 2.f);
+	mrHotDog->SetAmountFrames(2);
+	mrHotDog->AddTag(dae::make_sdbm_hash("Enemy"));
+	mrHotDog->AddTag(dae::make_sdbm_hash("MrHotDog"));
+	mrHotDog->AddComponent<dae::MoveDownLadderComponent>(0.07f);
+	mrHotDog->AddComponent<dae::PlayerCollisionComponent>();
+	mrHotDog->AddComponent<dae::EnemyStateComponent>(*dae::GameManager::GetInstance().Player1());
+	mrHotDog->AddComponent<dae::EnemyComponent>(glm::vec3{ 30.f, 177.f, 0.f });
+	scene.Add(std::move(mrHotDog));
+	mrHotDog.reset(new GameObject);
+
+	mrHotDog->SetTexture("BurgerTime.png", 15.f, 16.f);
+	mrHotDog->SetSourceRectTexture(1, 32, 15, 16);
+	mrHotDog->SetLocalPosition({ 415.f, 177.f, 0.f });
+	mrHotDog->SetSpeed(0.1f);
+	mrHotDog->SetCanCollide(true);
+	mrHotDog->SetScaling(2.f, 2.f, 2.f);
+	mrHotDog->SetAmountFrames(2);
+	mrHotDog->AddTag(dae::make_sdbm_hash("Enemy"));
+	mrHotDog->AddTag(dae::make_sdbm_hash("MrHotDog"));
+	mrHotDog->AddComponent<dae::MoveDownLadderComponent>(0.07f);
+	mrHotDog->AddComponent<dae::PlayerCollisionComponent>();
+	mrHotDog->AddComponent<dae::EnemyStateComponent>(*dae::GameManager::GetInstance().Player1());
+	mrHotDog->AddComponent<dae::EnemyComponent>(glm::vec3{ 415.f, 177.f, 0.f });
+	scene.Add(std::move(mrHotDog));
+	mrHotDog.reset(new GameObject);
+
+	auto mrEgg = std::make_unique<dae::GameObject>();
+	mrEgg->SetTexture("BurgerTime.png", 16.f, 16.f);
+	mrEgg->SetSourceRectTexture(0, 96, 16, 16);
+	mrEgg->SetLocalPosition({ 125.f, 240.f, 0.f });
+	mrEgg->SetSpeed(0.1f);
+	mrEgg->SetCanCollide(true);
+	mrEgg->SetScaling(2.f, 2.f, 2.f);
+	mrEgg->SetAmountFrames(2);
+	mrEgg->AddTag(dae::make_sdbm_hash("Enemy"));
+	mrEgg->AddTag(dae::make_sdbm_hash("MrEgg"));
+	mrEgg->AddComponent<dae::MoveDownLadderComponent>(0.07f);
+	mrEgg->AddComponent<dae::PlayerCollisionComponent>();
+	mrEgg->AddComponent<dae::EnemyStateComponent>(*dae::GameManager::GetInstance().Player1());
+	mrEgg->AddComponent<dae::EnemyComponent>(glm::vec3{ 125.f, 240.f, 0.f });
+	scene.Add(std::move(mrEgg));
+
+	auto mrPickle = std::make_unique<dae::GameObject>();
+	mrPickle->SetTexture("BurgerTime.png", 16.f, 16.f);
+	mrPickle->SetSourceRectTexture(0, 64, 16, 16);
+	mrPickle->SetLocalPosition({ 317.f, 112.f, 0.f });
+	mrPickle->SetSpeed(0.1f);
+	mrPickle->SetCanCollide(true);
+	mrPickle->SetScaling(2.f, 2.f, 2.f);
+	mrPickle->SetAmountFrames(2);
+	mrPickle->AddTag(dae::make_sdbm_hash("Enemy"));
+	mrPickle->AddTag(dae::make_sdbm_hash("MrPickle"));
+	mrPickle->AddComponent<dae::MoveDownLadderComponent>(0.07f);
+	mrPickle->AddComponent<dae::PlayerCollisionComponent>();
+	mrPickle->AddComponent<dae::EnemyStateComponent>(*dae::GameManager::GetInstance().Player1());
+	mrPickle->AddComponent<dae::EnemyComponent>(glm::vec3{ 317.f, 112.f, 0.f });
+	scene.Add(std::move(mrPickle));
 
 	scene.Add(std::move(endLevel));
 }
