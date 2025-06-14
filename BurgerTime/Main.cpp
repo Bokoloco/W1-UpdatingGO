@@ -185,10 +185,16 @@ void load()
 	input.BindInputKeyboard(SDL_SCANCODE_M, SDL_KEYUP, std::move(mainMenuCommand));
 
 	input.AddController();
+	input.AddController();
 	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_LEFT, true, std::move(moveLeftp1GP));
 	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_RIGHT, true, std::move(moveRightp1GP));
 	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_UP, true, std::move(moveUpp1GP));
 	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_DOWN, true, std::move(moveDownp1GP));
+
+	input.BindInputController(1, XINPUT_GAMEPAD_DPAD_LEFT, true, std::move(moveLeft2));
+	input.BindInputController(1, XINPUT_GAMEPAD_DPAD_RIGHT, true, std::move(moveRight2));
+	input.BindInputController(1, XINPUT_GAMEPAD_DPAD_UP, true, std::move(moveUp2));
+	input.BindInputController(1, XINPUT_GAMEPAD_DPAD_DOWN, true, std::move(moveDown2));
 
 	burgerGuy->GetComponent<dae::PlayerCollisionComponent>()->AddObserver(*healthDisplay->GetComponent<dae::HealthDisplayComponent>()->GetObserver());
 

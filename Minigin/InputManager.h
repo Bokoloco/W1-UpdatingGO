@@ -25,9 +25,11 @@ namespace dae
 		bool isPressed;
 
 		bool operator<(const ControllerButtonBinding& other) const {
-			/*if (button != other.button)*/
+			if (controllerIndex != other.controllerIndex)
+				return controllerIndex < other.controllerIndex;
+			if (button != other.button)
 				return button < other.button;
-			//return isPressed < other.isPressed;
+			return isPressed < other.isPressed;
 		}
 	};
 
