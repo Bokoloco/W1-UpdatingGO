@@ -33,13 +33,6 @@ void dae::InputManager::BindInputController(DWORD controllerIndex, unsigned int 
 
 void dae::InputManager::BeginPlay()
 {
-	/*m_MoveLeftCommand = std::make_unique<dae::MoveLeft>();
-	m_MoveDownCommand = std::make_unique<dae::MoveDownCommand>();
-	m_MoveUpCommand = std::make_unique<dae::MoveUpCommand>();
-	m_MoveRightCommand = std::make_unique<dae::MoveRightCommand>();
-	m_SuicideCommand = std::make_unique<dae::SuicideCommand>();
-	m_ScoreSmallCommand = std::make_unique<dae::ScoreCommand>(ScoreAmount::Small);
-	m_ScoreBigCommand = std::make_unique<dae::ScoreCommand>(ScoreAmount::Big);*/
 }
 
 bool dae::InputManager::ProcessInput()

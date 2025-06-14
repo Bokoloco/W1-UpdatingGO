@@ -7,6 +7,8 @@
 #include <iostream>
 #include "FoodFallingComponent.h"
 #include <ServiceLocator.h>
+#include "EnemyComponent.h"
+#include "./Components/MoveDownLadderComponent.h"
 
 dae::BurgerCollisionComponent::BurgerCollisionComponent(GameObject& go)
 	: CollisionComponent(go)
@@ -92,7 +94,24 @@ void dae::BurgerCollisionComponent::OnEnter(GameObject& go)
 	{
 		if (!m_pFoodFallingComponent->IsFalling()) return;
 		m_pSubject->NotifyObservers(dae::make_sdbm_hash("MrHotDog"), GetOwner());
-		go.m_ReadyForDelete = true;
+		go.GetComponent<dae::EnemyComponent>()->ShouldReset = true;
+		go.GetComponent<dae::MoveDownLadderComponent>()->ResetComponent();
+	}
+
+	if (go.ActorHasTag(dae::make_sdbm_hash("MrEgg")) && go.GetWorldPosition().y >= GetOwner()->GetWorldPosition().y)
+	{
+		if (!m_pFoodFallingComponent->IsFalling()) return;
+		m_pSubject->NotifyObservers(dae::make_sdbm_hash("MrEgg"), GetOwner());
+		go.GetComponent<dae::EnemyComponent>()->ShouldReset = true;
+		go.GetComponent<dae::MoveDownLadderComponent>()->ResetComponent();
+	}
+
+	if (go.ActorHasTag(dae::make_sdbm_hash("MrPickle")) && go.GetWorldPosition().y >= GetOwner()->GetWorldPosition().y)
+	{
+		if (!m_pFoodFallingComponent->IsFalling()) return;
+		m_pSubject->NotifyObservers(dae::make_sdbm_hash("MrPickle"), GetOwner());
+		go.GetComponent<dae::EnemyComponent>()->ShouldReset = true;
+		go.GetComponent<dae::MoveDownLadderComponent>()->ResetComponent();
 	}
 
 	if (go.ActorHasTag(dae::make_sdbm_hash("Enemy")) && !m_pFoodFallingComponent->IsFalling())

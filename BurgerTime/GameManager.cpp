@@ -152,7 +152,13 @@ void dae::GameManager::AddScoreObserver(std::unique_ptr<GameObject> scoreObserve
 void dae::GameManager::NextLevel()
 {
 	m_pPlayer1 = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("Player1"));
-	if (m_GameMode != GameMode::SinglePlayer) m_pPlayer2 = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("Player2"));
+	m_pPlayer1->GetComponent<dae::MoveDownLadderComponent>()->ResetComponent();
+
+	if (m_GameMode != GameMode::SinglePlayer)
+	{
+		m_pPlayer2 = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("Player2"));
+		m_pPlayer2->GetComponent<dae::MoveDownLadderComponent>()->ResetComponent();
+	}
 
 	m_HealthObserverObject = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("HealthObComponent"));
 	m_ScoreObserverObject = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("ScoreObComponent"));

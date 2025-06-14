@@ -4,6 +4,7 @@
 
 namespace dae
 {
+	class GameObject;
 	class Observer;
 	class TextComponent;
 	class EndLevelComponent final : public BaseComponent

@@ -170,6 +170,7 @@
     <ClCompile Include="DecreaseLivesCommand.cpp" />
     <ClCompile Include="EndLevelComponent.cpp" />
     <ClCompile Include="EndLevelObserver.cpp" />
+    <ClCompile Include="EnemyComponent.cpp" />
     <ClCompile Include="EnemyStateComponent.cpp" />
     <ClCompile Include="EnemyStates.cpp" />
     <ClCompile Include="FallingCondition.cpp" />
@@ -209,6 +210,7 @@
     <ClInclude Include="DecreaseLivesCommand.h" />
     <ClInclude Include="EndLevelComponent.h" />
     <ClInclude Include="EndLevelObserver.h" />
+    <ClInclude Include="EnemyComponent.h" />
     <ClInclude Include="EnemyStateComponent.h" />
     <ClInclude Include="EnemyStates.h" />
     <ClInclude Include="FallingCondition.h" />

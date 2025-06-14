@@ -28,7 +28,7 @@ void dae::MoveDownLadderComponent::Update()
 				GetOwner()->SetLocalPosition(newPos);
 			}
 		}
-		else
+		else if (m_MinHeights.size() > 0)
 		{
 			if (newPos.y + GetOwner()->GetBoundingBox()->h > m_MinHeights.at(0) + 3.f && newPos.y + GetOwner()->GetBoundingBox()->h < m_MaxHeights.at(0))
 			{

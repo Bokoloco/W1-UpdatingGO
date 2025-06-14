@@ -51,12 +51,12 @@ void dae::PlayerCollisionComponent::OnColliding(GameObject& go)
 
 		if (xPosEnemy >= GetOwner()->GetLocalPosition().x && xPosEnemy <= GetOwner()->GetLocalPosition().x + GetOwner()->GetBoundingBox()->w)
 		{
+
 			float yPosEnemy = go.GetLocalPosition().y + 4 * (go.GetBoundingBox()->h / 5);
 			float kneeOwner = GetOwner()->GetLocalPosition().y + 4 * (GetOwner()->GetBoundingBox()->h / 5);
 			if (yPosEnemy >= kneeOwner && yPosEnemy <= GetOwner()->GetLocalPosition().y + GetOwner()->GetBoundingBox()->h)
 			{
 				m_pSubject->NotifyObservers(dae::make_sdbm_hash("LowerHealth"), GetOwner());
-				std::cout << "Died" << std::endl;
 			}
 		}
 	}
