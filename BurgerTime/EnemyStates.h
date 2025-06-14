@@ -10,7 +10,7 @@ namespace dae
 		EnemyState(GameObject* owner, GameObject* player) : m_pOwner{ owner }, m_pPlayer{ player } {};
 		virtual ~EnemyState() = default;
 
-		virtual EnemyState* HandleInput() = 0;
+		virtual std::unique_ptr<EnemyState> HandleInput() = 0;
 		virtual void OnEnter() = 0;
 		virtual void Update() = 0;
 
@@ -31,7 +31,7 @@ namespace dae
 		LadderState(GameObject* owner, GameObject* player);
 		~LadderState() = default;
 
-		EnemyState* HandleInput() override;
+		std::unique_ptr<EnemyState> HandleInput() override;
 		void OnEnter() override;
 		void Update() override;
 
@@ -47,7 +47,7 @@ namespace dae
 		PlatformState(GameObject* owner, GameObject* player);
 		~PlatformState() = default;
 
-		EnemyState* HandleInput() override;
+		std::unique_ptr<EnemyState> HandleInput() override;
 		void OnEnter() override;
 		void Update() override;
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseComponent.h"
+#include <memory>
 
 namespace dae
 {
@@ -14,7 +15,7 @@ namespace dae
 		void Render() const override {};
 
 	private:
-		EnemyState* m_CurrentState{};
+		std::unique_ptr<EnemyState> m_CurrentState{};
 
 	};
 }

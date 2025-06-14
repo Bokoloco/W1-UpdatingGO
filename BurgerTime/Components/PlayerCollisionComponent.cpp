@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Observer.h"
 #include "Subject.h"
+#include "../GameManager.h"
 
 dae::PlayerCollisionComponent::PlayerCollisionComponent(GameObject& go)
 	: CollisionComponent(go)
@@ -45,7 +46,7 @@ void dae::PlayerCollisionComponent::OnColliding(GameObject& go)
 		else
 			m_pMoveDownLadderComponent->SetCanMoveHorizontally(false);
 	}
-	if (go.ActorHasTag(dae::make_sdbm_hash("Enemy")) || go.ActorHasTag(dae::make_sdbm_hash("MrHotDog")))
+	if (go.ActorHasTag(dae::make_sdbm_hash("Enemy")) || (GameManager::GetInstance().GetCurrentGameMode() == GameMode::Versus && go.ActorHasTag(dae::make_sdbm_hash("Player2"))))
 	{
 		float xPosEnemy = go.GetWorldPosition().x + (go.GetBoundingBox()->w / 2);
 

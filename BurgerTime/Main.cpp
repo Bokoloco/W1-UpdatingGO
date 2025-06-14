@@ -77,19 +77,19 @@ void load()
 	auto intro = std::make_unique<dae::GameObject>();
 	intro->AddComponent<dae::TextComponent>();
 	intro->GetComponent<dae::TextComponent>()->SetFont(font);
-	intro->GetComponent<dae::TextComponent>()->SetText("Press 1 for single player");
+	intro->GetComponent<dae::TextComponent>()->SetText("Press 1/A for single player");
 	intro->SetWorldPosition(10, 20);
 
 	auto intro1 = std::make_unique<dae::GameObject>();
 	intro1->AddComponent<dae::TextComponent>();
 	intro1->GetComponent<dae::TextComponent>()->SetFont(font);
-	intro1->GetComponent<dae::TextComponent>()->SetText("Press 2 for coop player");
+	intro1->GetComponent<dae::TextComponent>()->SetText("Press 2/B for coop player");
 	intro1->SetWorldPosition(10, 50);
 
 	auto intro2 = std::make_unique<dae::GameObject>();
 	intro2->AddComponent<dae::TextComponent>();
 	intro2->GetComponent<dae::TextComponent>()->SetFont(font);
-	intro2->GetComponent<dae::TextComponent>()->SetText("Press 3 for Versus player");
+	intro2->GetComponent<dae::TextComponent>()->SetText("Press 3/X for Versus player");
 	intro2->SetWorldPosition(10, 80);
 
 	auto& endScreen = dae::SceneManager::GetInstance().CreateScene(dae::make_sdbm_hash("EndScreen"));
@@ -161,8 +161,14 @@ void load()
 	auto muteCommand = std::make_unique<dae::MuteSoundCommand>(*burgerGuy, 30);
 	auto decLivesCommand = std::make_unique<dae::DecreaseLivesCommand>(*burgerGuy);
 	auto startSingleGame = std::make_unique<dae::StartSingleGameCommand>(*intro);
+	auto startSingleGameGamePad1 = std::make_unique<dae::StartSingleGameCommand>(*intro);
+	auto startSingleGameGamePad2 = std::make_unique<dae::StartSingleGameCommand>(*intro);
 	auto startCoopGame = std::make_unique<dae::StartCoopGameCommand>(*intro1);
+	auto startCoopGameGamePad1 = std::make_unique<dae::StartCoopGameCommand>(*intro1);
+	auto startCoopGameGamePad2 = std::make_unique<dae::StartCoopGameCommand>(*intro1);
 	auto startVersusGame = std::make_unique<dae::StartVersusGameCommand>(*intro2);
+	auto startVersusGameGamePad1 = std::make_unique<dae::StartVersusGameCommand>(*intro2);
+	auto startVersusGameGamePad2 = std::make_unique<dae::StartVersusGameCommand>(*intro2);
 	auto mainMenuCommand = std::make_unique<dae::MainMenuCommand>(*burgerGuy);
 	auto nextLevelCommand = std::make_unique<dae::ChangeLevelCommand>(*burgerGuy);
 	decLivesCommand->AddObserver(*healthDisplay->GetComponent<dae::HealthDisplayComponent>()->GetObserver());
@@ -189,11 +195,17 @@ void load()
 	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_RIGHT, true, std::move(moveRightp1GP));
 	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_UP, true, std::move(moveUpp1GP));
 	input.BindInputController(0, XINPUT_GAMEPAD_DPAD_DOWN, true, std::move(moveDownp1GP));
+	input.BindInputController(0, XINPUT_GAMEPAD_A, true, std::move(startSingleGameGamePad1));
+	input.BindInputController(0, XINPUT_GAMEPAD_B, true, std::move(startCoopGameGamePad1));
+	input.BindInputController(0, XINPUT_GAMEPAD_X, true, std::move(startVersusGameGamePad1));
 
 	input.BindInputController(1, XINPUT_GAMEPAD_DPAD_LEFT, true, std::move(moveLeft2));
 	input.BindInputController(1, XINPUT_GAMEPAD_DPAD_RIGHT, true, std::move(moveRight2));
 	input.BindInputController(1, XINPUT_GAMEPAD_DPAD_UP, true, std::move(moveUp2));
 	input.BindInputController(1, XINPUT_GAMEPAD_DPAD_DOWN, true, std::move(moveDown2));
+	input.BindInputController(1, XINPUT_GAMEPAD_A, true, std::move(startSingleGameGamePad2));
+	input.BindInputController(1, XINPUT_GAMEPAD_B, true, std::move(startCoopGameGamePad2));
+	input.BindInputController(1, XINPUT_GAMEPAD_X, true, std::move(startVersusGameGamePad2));
 
 	burgerGuy->GetComponent<dae::PlayerCollisionComponent>()->AddObserver(*healthDisplay->GetComponent<dae::HealthDisplayComponent>()->GetObserver());
 

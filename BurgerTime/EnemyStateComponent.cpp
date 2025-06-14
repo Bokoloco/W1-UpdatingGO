@@ -5,12 +5,12 @@
 dae::EnemyStateComponent::EnemyStateComponent(GameObject& go, GameObject& player)
 	: BaseComponent(go)
 {
-	m_CurrentState = new PlatformState(GetOwner(), &player);
+	m_CurrentState = std::make_unique<PlatformState>(GetOwner(), &player);
 }
 
 dae::EnemyStateComponent::~EnemyStateComponent()
 {
-    delete m_CurrentState;
+    //delete m_CurrentState;
 }
 
 void dae::EnemyStateComponent::Update()
@@ -18,12 +18,9 @@ void dae::EnemyStateComponent::Update()
     auto newState = m_CurrentState->HandleInput();
     if (newState != nullptr)
     {
-        delete m_CurrentState;
-        m_CurrentState = newState;
+        m_CurrentState.reset();
+        m_CurrentState = std::move(newState);
 
-        //std::cout << "Switching states" << std::endl;
-
-        // Call the enter action on the new state.
         m_CurrentState->OnEnter();
     }
 

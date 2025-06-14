@@ -26,6 +26,7 @@ namespace dae
 		~GameManager() noexcept;
 
 		void SetGameMode(GameMode mode);
+		GameMode GetCurrentGameMode() const;
 		void SwitchScene(unsigned int sceneName);
 		void ResetScene();
 

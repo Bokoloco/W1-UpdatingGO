@@ -18,6 +18,11 @@ void dae::GameManager::SetGameMode(GameMode mode)
 	m_GameMode = mode;
 }
 
+dae::GameMode dae::GameManager::GetCurrentGameMode() const
+{
+	return m_GameMode;
+}
+
 void dae::GameManager::SwitchScene(unsigned int sceneName)
 {
 	if (sceneName == dae::make_sdbm_hash("MainMenu"))
@@ -57,6 +62,7 @@ void dae::GameManager::SwitchScene(unsigned int sceneName)
 		}
 		case dae::GameMode::Coop:
 		{
+			m_pPlayer2->SetSourceRectTexture(0, 0, 16, 16);
 			SceneManager::GetInstance().GetCurrentScene()->Add(std::move(m_pPlayer1));
 			SceneManager::GetInstance().GetCurrentScene()->Add(std::move(m_pPlayer2));
 
@@ -64,7 +70,6 @@ void dae::GameManager::SwitchScene(unsigned int sceneName)
 		}
 		case dae::GameMode::Versus:
 		{
-			m_pPlayer2->AddTag(dae::make_sdbm_hash("MrHotDog"));
 			m_pPlayer2->SetSourceRectTexture(32, 32, 15, 16);
 			SceneManager::GetInstance().GetCurrentScene()->Add(std::move(m_pPlayer1));
 			SceneManager::GetInstance().GetCurrentScene()->Add(std::move(m_pPlayer2));

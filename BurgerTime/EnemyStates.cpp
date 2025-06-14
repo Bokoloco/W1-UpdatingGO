@@ -11,7 +11,7 @@ dae::LadderState::LadderState(GameObject* owner, GameObject* player)
 	m_pMoveDownLadderComponent = GetOwner()->GetComponent<dae::MoveDownLadderComponent>();
 }
 
-dae::EnemyState* dae::LadderState::HandleInput()
+std::unique_ptr<dae::EnemyState> dae::LadderState::HandleInput()
 {
 	glm::vec3 direction = GetPlayer()->GetLocalPosition() - GetOwner()->GetLocalPosition();
 	//direction = glm::normalize(direction);
@@ -20,7 +20,7 @@ dae::EnemyState* dae::LadderState::HandleInput()
 	//float ceiledX = std::ceilf(x);
 
 	if (m_pMoveDownLadderComponent->m_CanMoveHorizontally && x > 0.f && x > (y / 2) && m_YDirection == 0.f)
-		return new PlatformState(GetOwner(), GetPlayer());
+		return std::make_unique<PlatformState>(GetOwner(), GetPlayer());
 	return nullptr;
 }
 
@@ -68,7 +68,7 @@ dae::PlatformState::PlatformState(GameObject* owner, GameObject* player)
 	m_pMoveDownLadderComponent = GetOwner()->GetComponent<dae::MoveDownLadderComponent>();
 }
 
-dae::EnemyState* dae::PlatformState::HandleInput()
+std::unique_ptr<dae::EnemyState> dae::PlatformState::HandleInput()
 {
 	glm::vec3 direction = GetPlayer()->GetLocalPosition() - GetOwner()->GetLocalPosition();
 	//direction = glm::normalize(direction);
@@ -83,7 +83,7 @@ dae::EnemyState* dae::PlatformState::HandleInput()
 
 
 	if (m_pMoveDownLadderComponent->CanMoveOnLadder() && y > 0.f && x < y)
-		return new LadderState(GetOwner(), GetPlayer());
+		return std::make_unique<LadderState>(GetOwner(), GetPlayer());
 	return nullptr;
 }
 
