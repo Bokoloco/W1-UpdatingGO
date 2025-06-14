@@ -7,6 +7,10 @@ dae::CollisionComponent::CollisionComponent(GameObject& go)
 {
 }
 
+dae::CollisionComponent::~CollisionComponent()
+{
+}
+
 void dae::CollisionComponent::Update()
 {
 

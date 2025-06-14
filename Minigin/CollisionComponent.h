@@ -8,6 +8,7 @@ namespace dae
 	{
 	public:
 		CollisionComponent(GameObject& go);
+		virtual ~CollisionComponent();
 
 		void Update() override;
 		void Render() const override;
