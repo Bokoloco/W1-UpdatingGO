@@ -90,8 +90,21 @@ void load()
 	auto intro2 = std::make_unique<dae::GameObject>();
 	intro2->AddComponent<dae::TextComponent>();
 	intro2->GetComponent<dae::TextComponent>()->SetFont(font);
-	intro2->GetComponent<dae::TextComponent>()->SetText("Press 3 for coop player");
+	intro2->GetComponent<dae::TextComponent>()->SetText("Press 3 for Versus player");
 	intro2->SetWorldPosition(10, 80);
+
+	auto& endScreen = dae::SceneManager::GetInstance().CreateScene(dae::make_sdbm_hash("EndScreen"));
+	auto gameOverText = std::make_unique<dae::GameObject>();
+	gameOverText->AddComponent<dae::TextComponent>();
+	gameOverText->GetComponent<dae::TextComponent>()->SetFont(font);
+	gameOverText->GetComponent<dae::TextComponent>()->SetText("Game Over!");
+	gameOverText->SetWorldPosition(10, 80);
+
+	auto scoreText = std::make_unique<dae::GameObject>();
+	scoreText->AddComponent<dae::TextComponent>();
+	scoreText->GetComponent<dae::TextComponent>()->SetFont(font);
+	scoreText->GetComponent<dae::TextComponent>()->SetText("You score was: ");
+	scoreText->SetWorldPosition(10, 100);
 
 	// Command exercise
 	auto burgerGuy = std::make_unique<dae::GameObject>();
@@ -199,6 +212,9 @@ void load()
 	mainMenuScene.Add(std::move(intro));
 	mainMenuScene.Add(std::move(intro1));
 	mainMenuScene.Add(std::move(intro2));
+
+	endScreen.Add(std::move(gameOverText));
+	endScreen.Add(std::move(scoreText));
 
 	dae::SceneManager::GetInstance().SetStartScene(dae::make_sdbm_hash("MainMenu"));
 }

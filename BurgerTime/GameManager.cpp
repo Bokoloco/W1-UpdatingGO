@@ -24,8 +24,24 @@ void dae::GameManager::SwitchScene(unsigned int sceneName)
 	{
 		m_pPlayer1 = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("Player1"));
 		if (m_GameMode != GameMode::SinglePlayer) m_pPlayer2 = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("Player2"));
+		m_HealthObserverObject = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("HealthObComponent"));
+		m_ScoreObserverObject = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("ScoreObComponent"));
 
 		SceneManager::GetInstance().SwitchScene(sceneName);
+
+		InMainMenu = true;
+	}
+	else if (sceneName == dae::make_sdbm_hash("EndScreen"))
+	{
+		m_pPlayer1 = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("Player1"));
+		if (m_GameMode != GameMode::SinglePlayer) m_pPlayer2 = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("Player2"));
+		m_HealthObserverObject = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("HealthObComponent"));
+		m_ScoreObserverObject = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("ScoreObComponent"));
+
+		SceneManager::GetInstance().SwitchScene(sceneName);
+
+		m_ScoreObserverObject->SetLocalPosition({ 200.f, 100.f, 0.f });
+		SceneManager::GetInstance().GetCurrentScene()->Add(std::move(m_ScoreObserverObject));
 
 		InMainMenu = true;
 	}
