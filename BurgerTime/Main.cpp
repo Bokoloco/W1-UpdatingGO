@@ -58,6 +58,7 @@
 #include "Level1.h"
 #include "Level2.h"
 #include "Level3.h"
+#include "ChangeLevelCommand.h"
 
 void load()
 {
@@ -151,6 +152,7 @@ void load()
 	auto startCoopGame = std::make_unique<dae::StartCoopGameCommand>(*intro1);
 	auto startVersusGame = std::make_unique<dae::StartVersusGameCommand>(*intro2);
 	auto mainMenuCommand = std::make_unique<dae::MainMenuCommand>(*burgerGuy);
+	auto nextLevelCommand = std::make_unique<dae::ChangeLevelCommand>(*burgerGuy);
 	decLivesCommand->AddObserver(*healthDisplay->GetComponent<dae::HealthDisplayComponent>()->GetObserver());
 
 	auto& input = dae::InputManager::GetInstance();
@@ -162,6 +164,7 @@ void load()
 	input.BindInputKeyboard(SDL_SCANCODE_E, SDL_KEYDOWN, std::move(playMusic));
 	input.BindInputKeyboard(SDL_SCANCODE_P, SDL_KEYDOWN, std::move(pauseMusic));
 	input.BindInputKeyboard(SDL_SCANCODE_F2, SDL_KEYUP, std::move(muteCommand));
+	input.BindInputKeyboard(SDL_SCANCODE_F1, SDL_KEYUP, std::move(nextLevelCommand));
 	input.BindInputKeyboard(SDL_SCANCODE_H, SDL_KEYUP, std::move(decLivesCommand));
 	input.BindInputKeyboard(SDL_SCANCODE_1, SDL_KEYUP, std::move(startSingleGame));
 	input.BindInputKeyboard(SDL_SCANCODE_2, SDL_KEYUP, std::move(startCoopGame));
