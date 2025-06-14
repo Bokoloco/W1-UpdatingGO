@@ -6,6 +6,7 @@
 #include "Level1.h"
 #include "Level2.h"
 #include "ResourceManager.h"
+#include "Level3.h"
 
 dae::GameManager::~GameManager()
 {
@@ -82,6 +83,12 @@ void dae::GameManager::ResetScene()
 		m_pPlayer1->SetLocalPosition(level->m_Player1StartPos);
 		SwitchScene(make_sdbm_hash("Level2"));
 	}
+	else if (m_CurrentLevel == 2)
+	{
+		auto level = std::make_unique<dae::Level3>();
+		m_pPlayer1->SetLocalPosition(level->m_Player1StartPos);
+		SwitchScene(make_sdbm_hash("Level3"));
+	}
 
 	SceneManager::GetInstance().QueueRemoveScene(curScene);
 }
@@ -125,7 +132,7 @@ void dae::GameManager::NextLevel()
 	m_ScoreObserverObject = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("ScoreObComponent"));
 
 	++m_CurrentLevel;
-	m_CurrentLevel %= 2;
+	m_CurrentLevel %= 3;
 
 	auto curScene = SceneManager::GetInstance().GetCurrentScene();
 	curScene->m_ReadyForDelete = true;
@@ -142,7 +149,12 @@ void dae::GameManager::NextLevel()
 		m_pPlayer1->SetLocalPosition(level->m_Player1StartPos);
 		SwitchScene(make_sdbm_hash("Level2"));
 	}
+	else if (m_CurrentLevel == 2)
+	{
+		auto level = std::make_unique<dae::Level3>();
+		m_pPlayer1->SetLocalPosition(level->m_Player1StartPos);
+		SwitchScene(make_sdbm_hash("Level3"));
+	}
 
 	SceneManager::GetInstance().QueueRemoveScene(curScene);
 }
-

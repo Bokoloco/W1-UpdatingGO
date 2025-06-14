@@ -21,7 +21,7 @@ void dae::BurgerPartsCollisionComponent::Render() const
 
 void dae::BurgerPartsCollisionComponent::OnColliding(GameObject& go)
 {
-	if (go.ActorHasTag(dae::make_sdbm_hash("Player")))
+	if (go.ActorHasTag(dae::make_sdbm_hash("Player")) && !go.ActorHasTag(make_sdbm_hash("MrHotDog")))
 	{
 		float xPosCollidingPlayer = go.GetWorldPosition().x + (go.GetBoundingBox()->w / 2);
 		float xPosOwner = GetOwner()->GetWorldPosition().x + GetOwner()->GetBoundingBox()->w;

@@ -17,6 +17,8 @@ void dae::MoveDownLadderComponent::Update()
 		glm::vec3 newPos = GetOwner()->GetLocalPosition() + m_Speed * dae::Minigin::DELTATIME * m_Direction;
 		newPos.x = m_XPosOnLadder;
 
+		std::cout << "In if move up/down" << std::endl;
+
 		if (m_MinHeights.size() == 2)
 		{
 			if ((newPos.y + GetOwner()->GetBoundingBox()->h > m_MinHeights.at(0) + 3.f && newPos.y + GetOwner()->GetBoundingBox()->h < m_MaxHeights.at(0)) ||

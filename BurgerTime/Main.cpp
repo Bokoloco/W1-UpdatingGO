@@ -57,6 +57,7 @@
 #include "GameManager.h"
 #include "Level1.h"
 #include "Level2.h"
+#include "Level3.h"
 
 void load()
 {
@@ -95,7 +96,7 @@ void load()
 	auto burgerGuy = std::make_unique<dae::GameObject>();
 	burgerGuy->SetTexture("BurgerTime.png", 16.f, 16.f);
 	burgerGuy->SetSourceRectTexture(0, 0, 16, 16);
-	burgerGuy->SetLocalPosition({ 200.f, 46.f, 0.f });
+	burgerGuy->SetLocalPosition({ 222.f, 335.f , 0.f });
 	burgerGuy->SetSpeed(0.1f);
 	burgerGuy->SetCanCollide(true);
 	burgerGuy->SetScaling(2.f, 2.f, 2.f);
@@ -190,7 +191,7 @@ void load()
 	dae::GameManager::GetInstance().AddHealthObserver(std::move(healthDisplay));
 
 	auto level1 = std::make_unique<dae::Level1>();
-	//auto level2 = std::make_unique<dae::Level2>();
+	//auto level2 = std::make_unique<dae::Level3>();
 
 	mainMenuScene.Add(std::move(intro));
 	mainMenuScene.Add(std::move(intro1));
