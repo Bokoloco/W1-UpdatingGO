@@ -1,7 +1,7 @@
 # Project
 This project was made for the course of Programming 4 in the second year of DAE. It was made by Bo Wauters of 2GD10.
 
-Link to '[github]([https://gameprogrammingpatterns.com/](https://github.com/Bokoloco/W1-UpdatingGO))'
+Link to '[github]((https://github.com/Bokoloco/W1-UpdatingGO))'
 
 # Minigin
 
