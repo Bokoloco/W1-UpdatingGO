@@ -4,6 +4,7 @@
 #include "Utils.h"
 #include <iostream>
 #include <ServiceLocator.h>
+#include "GameManager.h"
 
 dae::BurgerPartsCollisionComponent::BurgerPartsCollisionComponent(GameObject& go, int idx)
 	: CollisionComponent(go)
@@ -21,14 +22,17 @@ void dae::BurgerPartsCollisionComponent::Render() const
 
 void dae::BurgerPartsCollisionComponent::OnColliding(GameObject& go)
 {
-	if (go.ActorHasTag(dae::make_sdbm_hash("Player")) && !go.ActorHasTag(make_sdbm_hash("MrHotDog")))
+	if (go.ActorHasTag(dae::make_sdbm_hash("Player")))
 	{
-		float xPosCollidingPlayer = go.GetWorldPosition().x + (go.GetBoundingBox()->w / 2);
-		float xPosOwner = GetOwner()->GetWorldPosition().x + GetOwner()->GetBoundingBox()->w;
-		if (xPosCollidingPlayer <= xPosOwner && xPosCollidingPlayer >= GetOwner()->GetWorldPosition().x && !m_HasBeenSteppedOn && go.GetWorldPosition().y < GetOwner()->GetWorldPosition().y)
+		if (GameManager::GetInstance().GetCurrentGameMode() == GameMode::Versus && !go.ActorHasTag(dae::make_sdbm_hash("Player2")))
 		{
-			m_HasBeenSteppedOn = true;
-			GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, GetOwner()->GetLocalPosition().y + 3.f, 0.f });
+			float xPosCollidingPlayer = go.GetWorldPosition().x + (go.GetBoundingBox()->w / 2);
+			float xPosOwner = GetOwner()->GetWorldPosition().x + GetOwner()->GetBoundingBox()->w;
+			if (xPosCollidingPlayer <= xPosOwner && xPosCollidingPlayer >= GetOwner()->GetWorldPosition().x && !m_HasBeenSteppedOn && go.GetWorldPosition().y < GetOwner()->GetWorldPosition().y)
+			{
+				m_HasBeenSteppedOn = true;
+				GetOwner()->SetLocalPosition({ GetOwner()->GetLocalPosition().x, GetOwner()->GetLocalPosition().y + 3.f, 0.f });
+			}
 		}
 	}
 	if (go.ActorHasTag(dae::make_sdbm_hash("Food")))
