@@ -9,5 +9,6 @@ dae::ChangeLevelCommand::ChangeLevelCommand(GameObject& go)
 
 void dae::ChangeLevelCommand::Execute()
 {
-	GameManager::GetInstance().NextLevel();
+	if (!GameManager::GetInstance().InMainMenu)
+		GameManager::GetInstance().NextLevel();
 }

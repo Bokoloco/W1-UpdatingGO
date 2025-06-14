@@ -40,6 +40,8 @@ namespace dae
 
 		void NextLevel();
 
+		bool InMainMenu{true};
+
 	private:
 		friend class Singleton<GameManager>;
 		GameManager() = default;

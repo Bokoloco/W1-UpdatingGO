@@ -7,6 +7,7 @@
 #include "Level2.h"
 #include "ResourceManager.h"
 #include "Level3.h"
+#include "./Components/MoveDownLadderComponent.h"
 
 dae::GameManager::~GameManager()
 {
@@ -25,6 +26,8 @@ void dae::GameManager::SwitchScene(unsigned int sceneName)
 		if (m_GameMode != GameMode::SinglePlayer) m_pPlayer2 = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("Player2"));
 
 		SceneManager::GetInstance().SwitchScene(sceneName);
+
+		InMainMenu = true;
 	}
 	else
 	{
@@ -57,13 +60,20 @@ void dae::GameManager::SwitchScene(unsigned int sceneName)
 
 		SceneManager::GetInstance().GetCurrentScene()->Add(std::move(m_HealthObserverObject));
 		SceneManager::GetInstance().GetCurrentScene()->Add(std::move(m_ScoreObserverObject));
+
+		InMainMenu = false;
 	}
 }
 
 void dae::GameManager::ResetScene()
 {
 	m_pPlayer1 = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("Player1"));
-	if (m_GameMode != GameMode::SinglePlayer) m_pPlayer2 = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("Player2"));
+	m_pPlayer1->GetComponent<dae::MoveDownLadderComponent>()->ResetComponent();
+	if (m_GameMode != GameMode::SinglePlayer)
+	{
+		m_pPlayer2 = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("Player2"));
+		m_pPlayer2->GetComponent<dae::MoveDownLadderComponent>()->ResetComponent();
+	}
 
 	m_HealthObserverObject = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("HealthObComponent"));
 	m_ScoreObserverObject = SceneManager::GetInstance().GetCurrentScene()->GetObjectsWithTag(make_sdbm_hash("ScoreObComponent"));

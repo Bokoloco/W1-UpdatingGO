@@ -16,7 +16,7 @@ namespace dae
 		Level2(Level2&&) noexcept = default;
 		Level2& operator=(Level2&&) noexcept = default;
 
-		const glm::vec3 m_Player1StartPos{ 222.f, 368.f , 0.f };
+		const glm::vec3 m_Player1StartPos{ 222.f, 367.f , 0.f };
 
 		void MakeBurgerParts(int xOffset, int yOffset, GameObject* parent, Scene& scene);
 	};
