@@ -10,8 +10,11 @@ dae::StartSingleGameCommand::StartSingleGameCommand(GameObject& go)
 
 void dae::StartSingleGameCommand::Execute()
 {
-	GameManager::GetInstance().SetGameMode(GameMode::SinglePlayer);
-	GameManager::GetInstance().SwitchScene(dae::make_sdbm_hash("Level1"));
+	if (GameManager::GetInstance().InMainMenu)
+	{
+		GameManager::GetInstance().SetGameMode(GameMode::SinglePlayer);
+		GameManager::GetInstance().SwitchScene(dae::make_sdbm_hash("Level1"));
+	}
 }
 
 dae::StartCoopGameCommand::StartCoopGameCommand(GameObject& go)
@@ -21,8 +24,11 @@ dae::StartCoopGameCommand::StartCoopGameCommand(GameObject& go)
 
 void dae::StartCoopGameCommand::Execute()
 {
-	GameManager::GetInstance().SetGameMode(GameMode::Coop);
-	GameManager::GetInstance().SwitchScene(dae::make_sdbm_hash("Level1"));
+	if (GameManager::GetInstance().InMainMenu)
+	{
+		GameManager::GetInstance().SetGameMode(GameMode::Coop);
+		GameManager::GetInstance().SwitchScene(dae::make_sdbm_hash("Level1"));
+	}
 }
 
 dae::StartVersusGameCommand::StartVersusGameCommand(GameObject& go)
@@ -32,8 +38,11 @@ dae::StartVersusGameCommand::StartVersusGameCommand(GameObject& go)
 
 void dae::StartVersusGameCommand::Execute()
 {
-	GameManager::GetInstance().SetGameMode(GameMode::Versus);
-	GameManager::GetInstance().SwitchScene(dae::make_sdbm_hash("Level1"));
+	if (GameManager::GetInstance().InMainMenu)
+	{
+		GameManager::GetInstance().SetGameMode(GameMode::Versus);
+		GameManager::GetInstance().SwitchScene(dae::make_sdbm_hash("Level1"));
+	}
 }
 
 dae::MainMenuCommand::MainMenuCommand(GameObject& go)

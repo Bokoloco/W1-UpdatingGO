@@ -3,6 +3,7 @@
 #include "Components/MoveDownLadderComponent.h"
 #include <iostream>
 #include "Minigin.h"
+#include "Utils.h"
 
 dae::LadderState::LadderState(GameObject* owner, GameObject* player)
 	: EnemyState(owner, player)
@@ -25,7 +26,18 @@ dae::EnemyState* dae::LadderState::HandleInput()
 
 void dae::LadderState::OnEnter()
 {
-	GetOwner()->SetSourceRectTexture(1, 32, 15, 16);
+	if (GetOwner()->ActorHasTag(dae::make_sdbm_hash("MrHotDog")))
+	{
+		GetOwner()->SetSourceRectTexture(1, 32, 15, 16);
+	}
+	else if (GetOwner()->ActorHasTag(dae::make_sdbm_hash("MrEgg")))
+	{
+		GetOwner()->SetSourceRectTexture(0, 96, 16, 16);
+	}
+	else
+	{
+		GetOwner()->SetSourceRectTexture(0, 64, 16, 16);
+	}
 }
 
 void dae::LadderState::Update()
@@ -77,7 +89,21 @@ dae::EnemyState* dae::PlatformState::HandleInput()
 
 void dae::PlatformState::OnEnter()
 {
+
 	GetOwner()->SetSourceRectTexture(32, 32, 16, 16);
+
+	if (GetOwner()->ActorHasTag(dae::make_sdbm_hash("MrHotDog")))
+	{
+		GetOwner()->SetSourceRectTexture(32, 32, 16, 16);
+	}
+	else if (GetOwner()->ActorHasTag(dae::make_sdbm_hash("MrEgg")))
+	{
+		GetOwner()->SetSourceRectTexture(32, 96, 16, 16);
+	}
+	else
+	{
+		GetOwner()->SetSourceRectTexture(32, 64, 16, 16);
+	}
 }
 
 void dae::PlatformState::Update()

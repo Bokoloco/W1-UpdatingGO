@@ -1089,7 +1089,7 @@ dae::Level1::Level1()
 
 	beef.reset(new GameObject);
 
-	/*auto mrHotDog = std::make_unique<dae::GameObject>();
+	auto mrHotDog = std::make_unique<dae::GameObject>();
 	mrHotDog->SetTexture("BurgerTime.png", 15.f, 16.f);
 	mrHotDog->SetSourceRectTexture(1, 32, 15, 16);
 	mrHotDog->SetLocalPosition({ 90.f, 175.f, 0.f });
@@ -1102,7 +1102,7 @@ dae::Level1::Level1()
 	mrHotDog->AddComponent<dae::MoveDownLadderComponent>(0.07f);
 	mrHotDog->AddComponent<dae::PlayerCollisionComponent>();
 	mrHotDog->AddComponent<dae::EnemyStateComponent>(*dae::GameManager::GetInstance().Player1());
-	mrHotDog->AddComponent<dae::EnemyComponent>(glm::vec3{ 100.f, 175.f, 0.f });
+	mrHotDog->AddComponent<dae::EnemyComponent>(glm::vec3{ 90.f, 175.f, 0.f });
 	scene.Add(std::move(mrHotDog));
 
 	mrHotDog.reset(new GameObject);
@@ -1119,7 +1119,7 @@ dae::Level1::Level1()
 	mrHotDog->AddComponent<dae::MoveDownLadderComponent>(0.07f);
 	mrHotDog->AddComponent<dae::PlayerCollisionComponent>();
 	mrHotDog->AddComponent<dae::EnemyStateComponent>(*dae::GameManager::GetInstance().Player1());
-	mrHotDog->AddComponent<dae::EnemyComponent>(glm::vec3{ 100.f, 175.f, 0.f });
+	mrHotDog->AddComponent<dae::EnemyComponent>(glm::vec3{ 400.f, 175.f, 0.f });
 	scene.Add(std::move(mrHotDog));
 
 	mrHotDog.reset(new GameObject);
@@ -1136,7 +1136,7 @@ dae::Level1::Level1()
 	mrHotDog->AddComponent<dae::MoveDownLadderComponent>(0.07f);
 	mrHotDog->AddComponent<dae::PlayerCollisionComponent>();
 	mrHotDog->AddComponent<dae::EnemyStateComponent>(*dae::GameManager::GetInstance().Player1());
-	mrHotDog->AddComponent<dae::EnemyComponent>(glm::vec3{ 100.f, 175.f, 0.f });
+	mrHotDog->AddComponent<dae::EnemyComponent>(glm::vec3{ 30.f, 46.f, 0.f });
 	scene.Add(std::move(mrHotDog));
 	mrHotDog.reset(new GameObject);
 
@@ -1152,25 +1152,41 @@ dae::Level1::Level1()
 	mrHotDog->AddComponent<dae::MoveDownLadderComponent>(0.07f);
 	mrHotDog->AddComponent<dae::PlayerCollisionComponent>();
 	mrHotDog->AddComponent<dae::EnemyStateComponent>(*dae::GameManager::GetInstance().Player1());
-	mrHotDog->AddComponent<dae::EnemyComponent>(glm::vec3{ 100.f, 175.f, 0.f });
+	mrHotDog->AddComponent<dae::EnemyComponent>(glm::vec3{ 406.f, 46.f, 0.f });
 	scene.Add(std::move(mrHotDog));
 	mrHotDog.reset(new GameObject);
 
-	auto mrEggDog = std::make_unique<dae::GameObject>();
-	mrEggDog->SetTexture("BurgerTime.png", 15.f, 16.f);
-	mrEggDog->SetSourceRectTexture(1, 32, 15, 16);
-	mrEggDog->SetLocalPosition({ 90.f, 175.f, 0.f });
-	mrEggDog->SetSpeed(0.1f);
-	mrEggDog->SetCanCollide(true);
-	mrEggDog->SetScaling(2.f, 2.f, 2.f);
-	mrEggDog->SetAmountFrames(2);
-	mrEggDog->AddTag(dae::make_sdbm_hash("Enemy"));
-	mrEggDog->AddTag(dae::make_sdbm_hash("MrHotDog"));
-	mrEggDog->AddComponent<dae::MoveDownLadderComponent>(0.07f);
-	mrEggDog->AddComponent<dae::PlayerCollisionComponent>();
-	mrEggDog->AddComponent<dae::EnemyStateComponent>(*dae::GameManager::GetInstance().Player1());
-	mrEggDog->AddComponent<dae::EnemyComponent>(glm::vec3{ 100.f, 175.f, 0.f });
-	scene.Add(std::move(mrEggDog));*/
+	auto mrEgg = std::make_unique<dae::GameObject>();
+	mrEgg->SetTexture("BurgerTime.png", 16.f, 16.f);
+	mrEgg->SetSourceRectTexture(0, 96, 16, 16);
+	mrEgg->SetLocalPosition({ 414.f, 175.f, 0.f });
+	mrEgg->SetSpeed(0.1f);
+	mrEgg->SetCanCollide(true);
+	mrEgg->SetScaling(2.f, 2.f, 2.f);
+	mrEgg->SetAmountFrames(2);
+	mrEgg->AddTag(dae::make_sdbm_hash("Enemy"));
+	mrEgg->AddTag(dae::make_sdbm_hash("MrEgg"));
+	mrEgg->AddComponent<dae::MoveDownLadderComponent>(0.07f);
+	mrEgg->AddComponent<dae::PlayerCollisionComponent>();
+	mrEgg->AddComponent<dae::EnemyStateComponent>(*dae::GameManager::GetInstance().Player1());
+	mrEgg->AddComponent<dae::EnemyComponent>(glm::vec3{ 414.f, 175.f, 0.f });
+	scene.Add(std::move(mrEgg));
+
+	auto mrPickle = std::make_unique<dae::GameObject>();
+	mrPickle->SetTexture("BurgerTime.png", 16.f, 16.f);
+	mrPickle->SetSourceRectTexture(0, 64, 16, 16);
+	mrPickle->SetLocalPosition({ 60.f, 271.f, 0.f });
+	mrPickle->SetSpeed(0.1f);
+	mrPickle->SetCanCollide(true);
+	mrPickle->SetScaling(2.f, 2.f, 2.f);
+	mrPickle->SetAmountFrames(2);
+	mrPickle->AddTag(dae::make_sdbm_hash("Enemy"));
+	mrPickle->AddTag(dae::make_sdbm_hash("MrPickle"));
+	mrPickle->AddComponent<dae::MoveDownLadderComponent>(0.07f);
+	mrPickle->AddComponent<dae::PlayerCollisionComponent>();
+	mrPickle->AddComponent<dae::EnemyStateComponent>(*dae::GameManager::GetInstance().Player1());
+	mrPickle->AddComponent<dae::EnemyComponent>(glm::vec3{ 60.f, 271.f, 0.f });
+	scene.Add(std::move(mrPickle));
 
 	scene.Add(std::move(endLevel));
 }
